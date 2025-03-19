@@ -1,4 +1,7 @@
-# Flutter Addons
+
+
+
+![Logo Image](https://github.com/arrahmanbd/flutter_addons/raw/master/images/logo.png)
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.29-blue?logo=flutter&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -9,7 +12,6 @@
 ![Stars](https://img.shields.io/github/stars/arrahmanbd/flutter_addons)
 ![Contributors](https://img.shields.io/github/contributors/arrahmanbd/flutter_addons)
 
-![Logo Image](https://github.com/arrahmanbd/flutter_addons/raw/master/images/logo.png)
 
 Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications. This package includes a variety of tools that help streamline common tasks, making it easier to build high-quality apps quickly and efficiently.
 
