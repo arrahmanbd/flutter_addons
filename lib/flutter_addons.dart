@@ -74,5 +74,6 @@ part 'src/base/map_extension.dart';
 part 'src/base/string_extension.dart';
 part 'src/data/fake_data.dart';
 part 'src/data/img_data.dart';
+part 'src/decoration/decoration.dart';
 part 'src/decoration/shapes.dart';
 
