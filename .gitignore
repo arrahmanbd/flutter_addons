@@ -1,0 +1,15 @@
+# Ignore build directories
+/build/
+
+# Ignore Flutter-specific files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Ignore IDE configuration files
+.idea/
+.vscode/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db

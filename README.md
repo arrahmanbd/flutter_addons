@@ -1,2 +1,606 @@
-# flutter_addons
-Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications.
+# Flutter Addons
+
+![Flutter](https://img.shields.io/badge/Flutter-3.29-blue?logo=flutter&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Version](https://img.shields.io/badge/Version-1.0.0-orange)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
+![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
+![Stars](https://img.shields.io/github/stars/arrahmanbd/flutter_addons)
+![Contributors](https://img.shields.io/github/contributors/arrahmanbd/flutter_addons)
+
+![Logo Image](https://github.com/arrahmanbd/flutter_addons/raw/master/images/logo.png)
+
+Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications. This package includes a variety of tools that help streamline common tasks, making it easier to build high-quality apps quickly and efficiently.
+
+## Features
+
+ ## 🚀 **Key Features**
+
+- **🔧 Dart Extensions:** String, Map, Boolean, Integer, and other useful extensions.  
+- **🎨 Context Helpers:** Theme management, responsive layouts, and text styling.  
+- **📐 Widgets:** Prebuilt flexible layouts for rows, columns, grids, and stacking.  
+- **🔄 Routing Enhancements:** Advanced navigation with smooth page transitions.  
+- **🎞️ Animations:** Bezier motion, fade effects, physics-based movements, and more.  
+- **⚙️ System Utilities:** UI handling, network utilities, debugging, and error handling.  
+- **📊 Math & Time Helpers:** Convenient functions for formatting, delays, and calculations.  
+- **🎨 Image & Color Processing:** Extract dominant colors, manipulate images, and more.  
+
+
+
+## 📦 **Installation**
+
+Add the dependency in your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  flutter_addons:1.0.0
+```
+Or, run this command: 
+```bash
+flutter pub add flutter_addons
+```
+## ⚙️ Initialize
+
+A helper widget that initializes [UIConfig] to configure and manage  
+responsive UI scaling, text adaptation, and screen-related settings.
+```dart
+UIConfig(
+  frame: const Size(360, 890), // Define the base design frame   
+  minTextAdapt: true, // Enable minimum text adaptation
+  splitScreenMode: true, // Allow scaling in split-screen mode   builder: (_, child) {
+    return MaterialApp(
+      home: HomeScreen(),
+    );
+  },
+ );
+ ```
+
+## ResponsiveExtension
+The `ResponsiveExtension` provides a set of helper getters for determining the screen size category based on the width of the device. It extends `BuildContext` and uses `MediaQuery` to categorize screens into different breakpoints.
+
+
+
+### Example Usage
+You can use these getters to apply conditional layouts based on screen size.
+
+```dart
+if (context.isXs) {
+  print("Extra small screen");
+} else if (context.isSm) {
+  print("Small screen");
+} else if (context.isMd) {
+  print("Medium screen");
+} else if (context.isLg) {
+  print("Large screen");
+} else if (context.isXl) {
+  print("Extra large screen");
+}
+```
+
+## Breakpoints
+| Getter | Description | Width Range |
+|--------|------------|-------------|
+| `isXs` | Extra small screens (phones) | `< 576px` |
+| `isSm` | Small screens (phones) | `576px - 767px` |
+| `isMd` | Medium screens (tablets) | `768px - 991px` |
+| `isLg` | Large screens (desktops) | `992px - 1199px` |
+| `isXl` | Extra large screens (large desktops) | `>= 1200px` |
+
+## Notes
+- This extension helps in making responsive UI decisions.
+- Use these breakpoints to adjust widget layouts dynamically.
+
+
+## TextStyle Extensions Usage
+
+
+### 1. Applying Text Styles on `num`
+You can use the extension on `num` to apply various text styles directly.
+
+```dart
+Text(
+  "Hello, World!",
+  style: 16.textStyle.bold.italic.kolor(Colors.blue),
+);
+```
+
+- `16.textStyle` → Sets the font size to 16.
+- `.bold` → Applies bold font weight.
+- `.italic` → Makes the text italic.
+- `.kolor(Colors.blue)` → Changes the text color.
+
+---
+
+### 2. Using Predefined `TextTheme` Styles from `BuildContext`
+Easily access text styles from the app's `ThemeData`.
+
+```dart
+Text(
+  "Title Text",
+  style: context.titleLg,
+);
+```
+
+- `context.titleLg` → Retrieves the large title style from the theme.
+
+---
+
+### 3. Setting Custom Font Sizes with Colors
+Use the `ColorTextStyle` extension to define text styles with a specific font size and color.
+
+```dart
+Text(
+  "Custom Text",
+  style: Colors.red.size(18),
+);
+```
+
+- `.size(18)` → Sets the font size to 18.
+- `.kolor(Colors.red)` → Applies the red color.
+
+---
+
+### 4. Modifying Font Weight Dynamically
+Use the `FontWeights` extension to modify font weights easily.
+
+```dart
+Text(
+  "Bold Text",
+  style: TextStyle().bold,
+);
+```
+
+- `.bold` → Applies bold font weight.
+- `.semiBold`, `.light`, `.thin` → Other font weight options.
+
+---
+
+### 5. Changing Font Style
+Use the `FontStyles` extension to toggle between normal and italic styles.
+
+```dart
+Text(
+  "Italic Text",
+  style: TextStyle().italic,
+);
+```
+
+- `.italic` → Applies italic font style.
+- `.normal` → Sets the font style back to normal.
+
+---
+## Spacing Extension Usage
+
+The `Spacing` extension provides convenient methods to easily add margins, paddings, and `SizedBox` elements based on integer values. It uses `w` for width and `h` for height.
+
+## Margin
+
+### `m` - Margin on all sides
+```dart
+10.m  // Adds margin of 10 units to all sides (top, bottom, left, right)
+```
+
+### `mt` - Margin on the top
+```dart
+10.mt  // Adds margin of 10 units to the top
+```
+
+### `mb` - Margin on the bottom
+```dart
+10.mb  // Adds margin of 10 units to the bottom
+```
+
+### `ml` - Margin on the left
+```dart
+10.ml  // Adds margin of 10 units to the left
+```
+
+### `mr` - Margin on the right
+```dart
+10.mr  // Adds margin of 10 units to the right
+```
+
+### `mx` - Horizontal margin (left and right)
+```dart
+10.mx  // Adds margin of 10 units to both left and right
+```
+
+### `my` - Vertical margin (top and bottom)
+```dart
+10.my  // Adds margin of 10 units to both top and bottom
+```
+
+---
+
+## Padding
+
+### `p` - Padding on all sides
+```dart
+10.p  // Adds padding of 10 units to all sides (top, bottom, left, right)
+```
+
+### `pt` - Padding on the top
+```dart
+10.pt  // Adds padding of 10 units to the top
+```
+
+### `pb` - Padding on the bottom
+```dart
+10.pb  // Adds padding of 10 units to the bottom
+```
+
+### `pl` - Padding on the left
+```dart
+10.pl  // Adds padding of 10 units to the left
+```
+
+### `pr` - Padding on the right
+```dart
+10.pr  // Adds padding of 10 units to the right
+```
+
+### `px` - Horizontal padding (left and right)
+```dart
+10.px  // Adds padding of 10 units to both left and right
+```
+
+### `py` - Vertical padding (top and bottom)
+```dart
+10.py  // Adds padding of 10 units to both top and bottom
+```
+
+---
+
+## SizedBox
+
+### `s` - SizedBox with both height and width
+```dart
+10.s  // Creates a SizedBox with 10 units of height and width
+```
+--- 
+## DateExtension Usage
+
+### Accessing Dates
+
+```dart
+DateTime tomorrow = DateTime.now().tomorrow;
+DateTime yesterday = DateTime.now().yesterday;
+DateTime today = DateTime.now().today;
+```
+
+### Formatting Dates
+
+```dart
+String time24h = DateTime.now().time24h;
+String time12h = DateTime.now().time12h;
+String dateOnly = DateTime.now().dateOnly;
+String formattedDate = DateTime.now().formattedDate;
+```
+
+### Adding/Subtracting Days
+
+```dart
+DateTime nextDay = DateTime.now().nextDay;
+DateTime previousDay = DateTime.now().previousDay;
+DateTime add5Days = DateTime.now().addDays(5);
+DateTime subtract3Days = DateTime.now().addDays(-3);
+```
+
+### Checking Days
+
+```dart
+bool isToday = DateTime.now().isToday;
+bool isYesterday = DateTime.now().isYesterday;
+bool isTomorrow = DateTime.now().isTomorrow;
+bool isSameDay = DateTime.now().isSameDay(DateTime.now().subtract(Duration(days: 1)));
+```
+
+### Getting Time Ago
+
+```dart
+String timeAgo = DateTime.now().timeAgo;
+```
+
+### Greeting Based on Time
+
+```dart
+TimeOfDayGreeting greeting = DateTime.now().greeting;
+```
+
+### Week, Month, and Year Operations
+
+```dart
+List<DateTime> daysInMonth = DateTime.now().daysInMonth;
+DateTime firstDayOfWeek = DateTime.now().firstDayOfWeek;
+DateTime lastDayOfWeek = DateTime.now().lastDayOfWeek;
+DateTime previousMonth = DateTime.now().previousMonth;
+DateTime nextMonth = DateTime.now().nextMonth;
+DateTime previousWeek = DateTime.now().previousWeek;
+DateTime nextWeek = DateTime.now().nextWeek;
+```
+
+### Leap Year and Days in Month
+
+```dart
+bool isLeapYear = DateTime.now().leapYear(2024);
+int daysInFeb2024 = DateTime.now().daysInAMonth(2, 2024);
+```
+
+### Day Names
+
+```dart
+String fullDayName = DateTime.now().fullDayName;
+String shortDayName = DateTime.now().sortDayName;
+``` 
+
+
+---
+
+## Navigation Extension Usage
+
+### Animation
+Enum for available animations
+```dart
+AnimationType { fade, slideFromRight, slideFromLeft, scale, rotate,rotatescale }
+```
+### Navigate using `Context`
+```dart
+context.navigator
+```
+### `to(Widget page)`
+```dart
+context.to(MyPage());
+```
+
+### `toNamed(String name)`
+```dart
+context.toNamed('/myRoute');
+```
+
+### `back()`
+```dart
+context.back();
+```
+
+### `toReplace(Widget page)`
+```dart
+context.toReplace(MyPage());
+```
+
+
+### `go(BuildContext context)`
+```dart
+MyPage().go(context);
+```
+
+---
+
+# Animated Widget Extensions
+
+This extension adds animation effects to Flutter's `Widget` class, allowing for easy animations like fade, scale, slide, rotation, bounce, spring, and more.
+
+## Example Usage
+
+```dart
+Text("Hello, Flutter!").animate(),  // Fade + Scale + Slide
+SizedBox(height: 20),
+Icon(Icons.star, size: 50, color: Colors.amber).spring(),  // Spring Bounce
+SizedBox(height: 20),
+ElevatedButton(
+  onPressed: () {},
+  child: Text("Shake Me"),
+).shake(repeat: true, intensity: 5),  // Shaky Button
+SizedBox(height: 20),
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: List.generate(5, (index) => Icon(Icons.circle, size: 20).staggered(index)),  // Staggered effect
+),
+```
+
+## Available Animations
+
+Here’s a table summarizing the available animations and their parameters:
+
+| **Animation Type**        | **Description**                                                          | **Key Parameters**                                                                                          |
+|---------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| **Combined Animation**     | Fade, scale, and slide effects combined.                                 | `duration`, `delay`, `repeat`, `inverse`, `scaleBegin`, `scaleEnd`, `slideX`, `slideY`, `opacityBegin`, `opacityEnd` |
+| **Fade In**                | A fade-in effect with optional delay, repeat, and inverse animation.     | `duration`, `delay`, `repeat`, `inverse`                                                                     |
+| **Scale In**               | A scale effect with optional repeat, inverse, and delay.                | `duration`, `delay`, `repeat`, `inverse`, `begin`, `end`                                                     |
+| **Slide In From Left**     | A slide-in effect from the left with repeat and inverse options.        | `duration`, `delay`, `repeat`, `inverse`, `offset`                                                           |
+| **Rotation**               | A rotation effect with repeat, inverse, and delay options.              | `duration`, `delay`, `repeat`, `inverse`, `begin`, `end`                                                     |
+| **Bounce**                 | A bounce effect with optional repeat, inverse, and delay.               | `duration`, `delay`, `repeat`, `inverse`, `begin`, `end`                                                     |
+| **Spring (Bounce Effect)** | A spring animation with bounce effects.                                  | `duration`, `delay`, `repeat`, `inverse`, `begin`, `end`                                                     |
+| **Staggered**              | Applies animation with a staggered delay effect.                        | `index`, `duration`                                                                                         |
+| **Shake**                  | A randomized shake effect with optional repeat, inverse, and intensity. | `duration`, `delay`, `repeat`, `inverse`, `intensity`                                                        |
+
+
+This table provides a concise overview of the animation types, their descriptions, and key parameters that can be adjusted for each animation effect.
+
+## Widget Extension Usage
+
+These extensions provide easy-to-use methods to enhance widgets by applying different effects like padding, margins, gestures, and more.
+
+## 1. Center the Widget
+### `center()` - Wraps a widget in a `Center` widget.
+```dart
+Text("Hello, world!").center();
+```
+
+---
+
+## 2. Add Padding to Widget
+### `withPadding()` - Adds padding to the widget.
+```dart
+Text("Hello").withPadding(EdgeInsets.all(16));
+```
+
+---
+
+## 3. Add Margin to Widget
+### `withMargin()` - Adds margin to the widget.
+```dart
+Text("Hello").withMargin(EdgeInsets.symmetric(horizontal: 16));
+```
+
+---
+
+## 4. Apply onTap Gesture to Widget
+### `onTap()` - Adds a `GestureDetector` with an `onTap` function.
+```dart
+Text("Tap me!").onTap(() => print("Tapped"));
+```
+
+---
+
+## 5. Apply Border Radius to Widget
+### `withBorderRadius()` - Clips the widget with a `BorderRadius`.
+```dart
+Text("Hello").withBorderRadius(BorderRadius.circular(8));
+```
+
+---
+
+## 6. Apply Decoration to Widget
+### `withDecoration()` - Adds a `BoxDecoration` to the widget.
+```dart
+Text("Hello").withDecoration(BoxDecoration(color: Colors.blue));
+```
+
+---
+
+## 7. Set Visibility of Widget
+### `visible()` - Conditionally makes a widget visible or hidden.
+```dart
+Text("This is visible").visible(true);
+```
+
+---
+
+## 8. Wrap Widget with SizedBox
+### `sizedBox()` - Wraps widget in a `SizedBox` with fixed size.
+```dart
+Text("Hello").sizedBox(width: 100, height: 50);
+```
+
+---
+
+## 9. Add Tooltip to Widget
+### `withTooltip()` - Adds a tooltip to the widget.
+```dart
+Icon(Icons.info).withTooltip("Info Icon");
+```
+
+---
+
+## 10. Convert Widget to Column
+### `asColumn()` - Converts widget into a `Column`.
+```dart
+Text("This is a single column").asColumn();
+```
+
+---
+
+## 11. Apply AnimatedOpacity to Widget
+### `withAnimatedOpacity()` - Wraps widget with `AnimatedOpacity`.
+```dart
+Text("Fade In").withAnimatedOpacity(opacity: 1.0, duration: Duration(seconds: 1), curve: Curves.easeIn);
+```
+
+---
+
+## 12. Add Box Shadow to Widget
+### `withBoxShadow()` - Adds a shadow effect to the widget.
+```dart
+Text("Hello").withBoxShadow(color: Colors.blue, blurRadius: 10);
+```
+
+---
+
+## 13. Apply Custom Shape to Widget
+### `withShape()` - Clips the widget with a custom shape.
+```dart
+Container(color: Colors.red).withShape(RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)));
+```
+
+---
+
+## 14. Make Widget Scrollable
+### `scrollable()` - Makes the widget scrollable.
+```dart
+Column(children: [Text("Hello"), Text("World")]).scrollable();
+```
+
+---
+
+## 15. Add Separator Between Items in Iterable
+### `separatedBy()` - Adds separator between items of the iterable.
+```dart
+final widgets = [Text('Item 1'), Text('Item 2'), Text('Item 3')];
+final separator = Divider(color: Colors.black);
+final separatedWidgets = widgets.separatedBy(separator);
+```
+
+---
+
+## 16. Make Widget Circular
+### `circular()` - Clips widget to a circular shape.
+```dart
+Image.network("https://example.com/image.jpg").circular(radius: 100);
+```
+
+---
+
+## 17. Make Widget Rounded
+### `rounded()` - Clips widget to a rounded shape.
+```dart
+Image.network("https://example.com/image.jpg").rounded(borderRadius: 20);
+```
+
+---
+
+## 18. Apply Blur Effect to Widget
+### `blur()` - Adds a blur effect with an optional border and background.
+```dart
+Text("Hello with blur effect").blur(
+  blurRadius: 10,
+  borderWidth: 4,
+  borderColor: Colors.blue,
+  backgroundColor: Colors.black,
+  opacity: 0.4,
+);
+```
+
+
+## 🪄 Avoid Using Print Statements
+
+Instead of using `print` for debugging, leverage a dedicated logging system for clearer, more structured output. Below is an example using a custom `Debug` class to log messages with different severity levels:
+
+```dart
+Debug.bug("This is a bug message");   // Logs a bug message
+Debug.info("This is an info message"); // Logs an informational message
+Debug.warning("This is a warning message"); // Logs a warning message
+Debug.error("This is an error message"); // Logs an error message
+Debug.success("This is a success message"); // Logs a success message
+```
+
+Alternatively, for a more generic logging approach:
+
+```dart
+log('This is a log message');
+```
+
+Using a structured logging system allows better control and visibility over your app’s runtime behavior, making it easier to debug and maintain.
+
+
+## 📬 **Contributions & Support**
+Contributions are welcome! If you have any feature requests, bug reports, or suggestions,  
+feel free to submit an issue or a pull request on [GitHub](https://github.com/arrahmanbd/flutter_addons).  
+
+
+
+## 👨‍💻 Author
+
+Flutter Addons is actively maintained by **AR Rahman**. I am currently open to freelance and full-time opportunities. Feel free to [contact me](mailto:arrahman.bd@outlook.com) for inquiries, collaborations, or job offers.
+
+If you find Flutter Addons valuable, please consider giving the repository a ⭐️ to show your support!

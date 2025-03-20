@@ -1,0 +1,30 @@
+name: flutter_addons
+description: "Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications."
+version: 1.0.0
+repository: https://github.com/arrahmanbd/flutter_addons
+issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues
+screenshots:
+  - description: 'Flutter Addons Icon'
+    path: images/icon.png
+  - description: 'Flutter Addons Cover Image'
+    path: images/cover.jpg
+
+topics:
+  - theme
+  - utils
+  - extensions
+  - responsive
+  - spacing
+environment:
+  sdk: ^3.7.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
