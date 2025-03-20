@@ -336,8 +336,18 @@ String fullDayName = DateTime.now().fullDayName;
 String shortDayName = DateTime.now().sortDayName;
 ``` 
 
-
 ---
+## Currency Conversion
+
+Dart extension on num that converts a number into a currency format with a symbol, ensuring a fixed decimal length.
+
+```dart
+  double price = 1234.567;
+  print(price.toDollar());       // Output: $1234.57
+  print(price.toEuro());         // Output: €1234.57
+  print(price.toRupee());        // Output: ₹1234.57
+  print(price.toBangladeshiTaka()); // Output: ৳1234.57
+```
 
 ## Navigation Extension Usage
 

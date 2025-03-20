@@ -53,6 +53,7 @@ part 'src/animation/beizer_motion_effect.dart';
 part 'src/animation/collision_effect.dart';
 part 'src/animation/page_transitions.dart';
 part 'src/functions/colors_functions.dart';
+part 'src/functions/currency_format.dart';
 part 'src/functions/date_time_function.dart';
 part 'src/functions/debugger_function.dart';
 part 'src/functions/image_to_colors.dart';
@@ -74,3 +75,4 @@ part 'src/base/string_extension.dart';
 part 'src/data/fake_data.dart';
 part 'src/data/img_data.dart';
 part 'src/decoration/shapes.dart';
+
