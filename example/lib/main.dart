@@ -1,7 +1,10 @@
-import 'package:example/example.dart';
+import 'package:example/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 
+///Example of ThemeEngine
+final darkTheme = ThemeManager(DarkSoul());
+final lightTheme = ThemeManager(LightSoul());
 void main() {
   runApp(MyApp());
 }
@@ -19,10 +22,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Addons Example',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: Typography.dense2014.apply(fontSizeFactor: 1.sp),
-          ),
+          theme: lightTheme.themeData,
+          darkTheme: darkTheme.themeData,
           home: HomePage(),
         );
       },

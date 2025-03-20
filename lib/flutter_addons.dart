@@ -11,8 +11,8 @@
 ///
 /// *****************************************************************************
 
-
 library;
+
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
@@ -77,3 +77,16 @@ part 'src/data/img_data.dart';
 part 'src/decoration/decoration.dart';
 part 'src/decoration/shapes.dart';
 
+/// [Theme Engine]
+/// Colors
+part 'src/helper/colors/palette.dart';
+part 'src/helper/colors/kolors.dart';
+part 'src/helper/colors/seed.dart';
+part 'src/helper/colors/swatch.dart';
+
+/// Engine
+part 'src/helper/themes/theme_engine.dart';
+part 'src/helper/themes/theme_manager.dart';
+
+/// Color Plattes
+part 'src/core/color_palette.dart';

@@ -11,14 +11,16 @@ class ListOfProduct extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.blue.withAlpha(120),
-            child: Text(product[index].name.firstLetter),
-          ),
-          title: Text(product[index].name),
-          subtitle: Text(product[index].description),
-        ).animate().staggered(index).fadeIn();
+        return Card(
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: context.primaryColor,
+              child: Text(product[index].name.firstLetter,style: context.label,),
+            ),
+            title: Text(product[index].name),
+            subtitle: Text(product[index].description),
+          ).animate().staggered(index).fadeIn(),
+        );
       },
     );
   }

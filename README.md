@@ -18,6 +18,7 @@ Flutter Addons is a collection of extensions and utilities designed to simplify 
 ## Features
 
  ## 🚀 **Key Features**
+- **🎨 Theme Engine:** Enables structured theming with defined color palettes, typography, and component styles, ensuring a cohesive and consistent user interface.
 
 - **🔧 Dart Extensions:** String, Map, Boolean, Integer, and other useful extensions.  
 - **🎨 Context Helpers:** Theme management, responsive layouts, and text styling.  
@@ -93,6 +94,48 @@ if (context.isXs) {
 - This extension helps in making responsive UI decisions.
 - Use these breakpoints to adjust widget layouts dynamically.
 
+## 🎨 Addons Theme Engine
+The **Flutter Addons Theme Engine**  follows the **Material Design Guidelines**, allowing for structured theming with color palettes, typography, and component styles. It enables dynamic theming (light/dark mode) and custom theme extensions.
+
+---
+
+### 🌟 **Key Features**
+- **Material-based Theming**: Uses `ColorScheme` to align with Material 3.
+- **Light & Dark Modes**: Supports switching between light and dark themes.
+- **Customizable Palettes**: Extendable `Kolors` class for custom themes.
+- **Consistent UI Styling**: Defines colors, typography, and component themes globally.
+
+---
+### Usage
+
+Initialize the theme using `ThemeManager` with a predefined color palette:
+
+```dart
+final darkTheme = ThemeManager(DarkSoul());
+final lightTheme = ThemeManager(LightSoul());
+```
+
+## Extending `Kolors`
+
+To create a custom color palette, extend `Kolors` and define your colors:
+
+```dart
+class CustomTheme extends Kolors {
+  @override
+  Color get primaryColor => const Color(0xFF6200EE);
+
+  @override
+  Color get forground => const Color(0xFFFFFFFF);
+
+  @override
+  Color get background => const Color(0xFF121212)...
+```
+
+Now, use the custom theme:
+
+```dart
+final customTheme = ThemeManager(CustomTheme());
+```
 
 ## TextStyle Extensions Usage
 

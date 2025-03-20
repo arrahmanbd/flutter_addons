@@ -8,6 +8,8 @@ screenshots:
     path: images/icon.png
   - description: 'Flutter Addons Cover Image'
     path: images/cover.jpg
+  - description: 'Flutter Addons UI Example'
+    path: images/ui.jpg
 
 topics:
   - theme
