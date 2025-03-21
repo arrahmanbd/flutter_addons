@@ -1,14 +1,22 @@
-# 1.1.0 
+# 1.2.0  
 
-### Theme Engine [2025-03-20]
+### Soul Theme Engine [2025-03-21]  
 
-- Allowing for structured theming with color palettes
-- Added Currecncy Format
-  
-# 1.0.0 
+- Introduced **Soul Theme Engine**, an advanced theming solution  
+- Added **10+ premade themes** for easy customization  
+- Implemented **async extension** for async operation  
 
-### Initial Release [2025-03-19]
+# 1.1.0  
 
-- Released the initial  stable version of Flutter Addons
-- Core functionality implemented
-- Added documentation for setup and usage
+### Theme Engine [2025-03-20]  
+
+- Allowing for structured theming with color palettes  
+- Added **Currency Format**  
+
+# 1.0.0  
+
+### Initial Release [2025-03-19]  
+
+- Released the initial stable version of Flutter Addons  
+- Core functionality implemented  
+- Added documentation for setup and usage  

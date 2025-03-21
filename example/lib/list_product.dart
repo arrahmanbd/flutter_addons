@@ -12,14 +12,18 @@ class ListOfProduct extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Card(
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor: context.primaryColor,
-              child: Text(product[index].name.firstLetter,style: context.label,),
-            ),
-            title: Text(product[index].name),
-            subtitle: Text(product[index].description),
-          ).animate().staggered(index).fadeIn(),
+          child:
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: context.primaryColor,
+                  child: Text(
+                    product[index].name.firstLetter,
+                    style: context.bodySmall.copyWith(color: context.background),
+                  ),
+                ),
+                title: Text(product[index].name),
+                subtitle: Text(product[index].description),
+              ).animate().staggered(index).fadeIn(),
         );
       },
     );

@@ -1,11 +1,9 @@
 
+![Logo Image](/images/new_logo.png)
 
-
-![Logo Image](https://github.com/arrahmanbd/flutter_addons/raw/master/images/logo.png)
-
-![Flutter](https://img.shields.io/badge/Flutter-3.29-blue?logo=flutter&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Version](https://img.shields.io/badge/Version-1.0.0-orange)
+![Flutter](https://img.shields.io/badge/Flutter-3.7.29-blue?logo=flutter&logoColor=white)
+![License](https://img.shields.io/badge/License-Apache2.0-green)
+![Version](https://img.shields.io/badge/Version-1.1.1-orange)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
@@ -18,7 +16,7 @@ Flutter Addons is a collection of extensions and utilities designed to simplify 
 ## Features
 
  ## 🚀 **Key Features**
-- **🎨 Theme Engine:** Enables structured theming with defined color palettes, typography, and component styles, ensuring a cohesive and consistent user interface.
+- **🎨 Soul Theme Engine:** Enables structured theming with defined color palettes, typography, and component styles, ensuring a cohesive and consistent user interface.
 
 - **🔧 Dart Extensions:** String, Map, Boolean, Integer, and other useful extensions.  
 - **🎨 Context Helpers:** Theme management, responsive layouts, and text styling.  
@@ -31,15 +29,10 @@ Flutter Addons is a collection of extensions and utilities designed to simplify 
 
 
 
-## 📦 **Installation**
+## 📦 **Getting Started**
 
-Add the dependency in your `pubspec.yaml` file:
+Add the dependency in your `pubspec.yaml` file. Simply run this command: 
 
-```yaml
-dependencies:
-  flutter_addons:1.0.0
-```
-Or, run this command: 
 ```bash
 flutter pub add flutter_addons
 ```
@@ -94,15 +87,18 @@ if (context.isXs) {
 - This extension helps in making responsive UI decisions.
 - Use these breakpoints to adjust widget layouts dynamically.
 
-## 🎨 Addons Theme Engine
-The **Flutter Addons Theme Engine**  follows the **Material Design Guidelines**, allowing for structured theming with color palettes, typography, and component styles. It enables dynamic theming (light/dark mode) and custom theme extensions.
+## 🎨 Soul Theme Engine
 
----
+
+Soul is a **theme engine** designed by me to streamline and enhance theming in apps.  
+It follows the **Material Design Guidelines**, allowing for structured theming with **color palettes, typography, and component styles**.  
+It enables **dynamic theming** (light/dark mode) and supports **custom theme extensions**.  
 
 ### 🌟 **Key Features**
-- **Material-based Theming**: Uses `ColorScheme` to align with Material 3.
+
+- **Material-based Theming**: Uses `ColorScheme`  to align with Material 3.
 - **Light & Dark Modes**: Supports switching between light and dark themes.
-- **Customizable Palettes**: Extendable `Kolors` class for custom themes.
+- **Customizable Palettes**: An extendable `Kolors` class that allows for custom themes, supporting primary color `Seed` values or Material `Swatch` colors for flexible theming.
 - **Consistent UI Styling**: Defines colors, typography, and component themes globally.
 
 ---
@@ -137,6 +133,22 @@ Now, use the custom theme:
 final customTheme = ThemeManager(CustomTheme());
 ```
 
+
+## Extending `Typography`
+
+To create a custom typography, extend `Typography` and define your different textStyles:
+
+```dart
+class MyTypography extends Typography {
+  @override
+  String get fontFamily => 'Roboto';
+
+  @override
+  TextStyle get bodyText =>
+      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500);
+```
+Now, use the typography in your theme:
+
 ## TextStyle Extensions Usage
 
 
@@ -146,11 +158,11 @@ You can use the extension on `num` to apply various text styles directly.
 ```dart
 Text(
   "Hello, World!",
-  style: 16.textStyle.bold.italic.kolor(Colors.blue),
+  style: 16.t.bold.italic.c(Colors.blue),
 );
 ```
 
-- `16.textStyle` → Sets the font size to 16.
+- `16.t` → Sets the font size to 16.
 - `.bold` → Applies bold font weight.
 - `.italic` → Makes the text italic.
 - `.kolor(Colors.blue)` → Changes the text color.
@@ -163,57 +175,10 @@ Easily access text styles from the app's `ThemeData`.
 ```dart
 Text(
   "Title Text",
-  style: context.titleLg,
+  style: context.titleLarge,
 );
 ```
-
-- `context.titleLg` → Retrieves the large title style from the theme.
-
----
-
-### 3. Setting Custom Font Sizes with Colors
-Use the `ColorTextStyle` extension to define text styles with a specific font size and color.
-
-```dart
-Text(
-  "Custom Text",
-  style: Colors.red.size(18),
-);
-```
-
-- `.size(18)` → Sets the font size to 18.
-- `.kolor(Colors.red)` → Applies the red color.
-
----
-
-### 4. Modifying Font Weight Dynamically
-Use the `FontWeights` extension to modify font weights easily.
-
-```dart
-Text(
-  "Bold Text",
-  style: TextStyle().bold,
-);
-```
-
-- `.bold` → Applies bold font weight.
-- `.semiBold`, `.light`, `.thin` → Other font weight options.
-
----
-
-### 5. Changing Font Style
-Use the `FontStyles` extension to toggle between normal and italic styles.
-
-```dart
-Text(
-  "Italic Text",
-  style: TextStyle().italic,
-);
-```
-
-- `.italic` → Applies italic font style.
-- `.normal` → Sets the font style back to normal.
-
+You can use copywith for extends customization.
 ---
 ## Spacing Extension Usage
 
@@ -304,7 +269,52 @@ The `Spacing` extension provides convenient methods to easily add margins, paddi
 10.s  // Creates a SizedBox with 10 units of height and width
 ```
 --- 
-## DateExtension Usage
+
+## **Async Functions**
+**Dart Async Utility Extension** to simplify asynchronous operations
+### **1. Safe Future Execution**
+```dart
+String? result = await someAsyncFunction().safe(fallback: "Default Value");
+```
+
+### **2. Retry Async Calls on Failure**
+```dart
+String data = await fetchData().retry(retries: 3, delay: Duration(seconds: 2));
+```
+
+### **3. Set a Timeout for an Async Task**
+```dart
+String response = await fetchData().withTimeout(Duration(seconds: 5), fallback: "Timeout Error");
+```
+
+### **4. Collect Stream Data as List**
+```dart
+List<int> numbers = await numberStream.collect();
+```
+
+### **5. Map Async Streams**
+```dart
+Stream<String> upperCaseStream = textStream.asyncMap((text) async => text.toUpperCase());
+```
+
+### **6. Delay Stream Emissions**
+```dart
+Stream<int> delayedNumbers = numberStream.delayEach(Duration(seconds: 1));
+```
+
+### **7. Process Data in Batches**
+```dart
+Stream<List<int>> batches = numberStream.batch(5);
+```
+
+### **8. Await Multiple Futures Safely**
+```dart
+List<String> results = await FutureUtils.waitAll([
+  fetchData(),
+  fetchOtherData(),
+], ignoreErrors: true);
+```
+## Date Time Extension Usage
 
 ### Accessing Dates
 

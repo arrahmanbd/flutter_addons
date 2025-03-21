@@ -5,7 +5,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 extension ThemeExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
   ColorScheme get kolorScheme => theme.colorScheme;
-  TextTheme get textStyles => theme.textTheme;
+  TextTheme get typography => theme.textTheme;
 }
 
 extension ThemeColors on BuildContext {

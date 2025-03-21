@@ -1,16 +1,14 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
-class HandelError {
+class CatchException {
   // Singleton pattern
-  static final HandelError _instance = HandelError._internal();
+  static final CatchException _instance = CatchException._internal();
 
-  factory HandelError() {
+  factory CatchException() {
     return _instance;
   }
 
-  HandelError._internal();
+  CatchException._internal();
 
   void initialize() {
     // Initialize error handling

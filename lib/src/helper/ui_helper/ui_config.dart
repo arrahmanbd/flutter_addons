@@ -134,7 +134,7 @@ class _UIConfigState extends State<UIConfig> with WidgetsBindingObserver {
   @override
   void initState() {
     // Initialize error handling here
-    HandelError().initialize(); // Only here, no need in `main()`
+    CatchException().initialize(); // Only here, no need in `main()`
     if (widget.responsiveWidgets != null) {
       _canMarkedToBuild.addAll(widget.responsiveWidgets!);
     }

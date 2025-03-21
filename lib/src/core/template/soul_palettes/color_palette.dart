@@ -1,12 +1,12 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+/// This is Default Color Palette
 /// **Light Theme Color Palette**
-class LightSoul extends Kolors {
-
+class SoulColor extends Kolors {
   @override
   /// Theme mode defining this as a light theme
   Brightness get themeMode => Brightness.light;
-  
+
   @override
   /// Primary brand color, used for buttons and active elements
   Color get primaryColor => const Color(0xFF007AFF);
@@ -46,7 +46,6 @@ class LightSoul extends Kolors {
   @override
   /// Secondary button background color (e.g., card-like buttons)
   Color get secondaryButton => const Color(0xFFF3F3F3);
-
 }
 
 /// **Dark Theme Color Palette**

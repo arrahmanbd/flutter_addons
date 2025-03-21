@@ -1,7 +1,8 @@
-import 'package:example/list_product.dart';
-import 'package:example/next_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
+
+import 'list_product.dart';
+import 'next_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.background,
+        backgroundColor: context.primaryColor,
         centerTitle: true,
         title: Image.memory(flutterAddons.toByteData(), height: 34.h),
         actions: [

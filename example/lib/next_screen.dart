@@ -9,16 +9,13 @@ class NextScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Secrren')),
-      body: Column(
-        children: [
-          _buildHero(context),
-          ListOfProduct()
-        ],
-      ).scrollable(),
+      appBar: AppBar(title:  Text('Secrren',)),
+      body:
+          Column(children: [_buildHero(context), ListOfProduct()]).scrollable(),
     );
   }
-   Container _buildHero(BuildContext context) {
+
+  Container _buildHero(BuildContext context) {
     return Container(
       padding: 4.p,
       height: 0.32.sh,
@@ -44,7 +41,7 @@ class NextScreen extends StatelessWidget {
             children: [
               Text(
                 'Hello World',
-                style: context.bodyLg.copyWith(
+                style: context.bodyLarge.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 28.sp,
@@ -52,15 +49,15 @@ class NextScreen extends StatelessWidget {
               ).animate().spring(),
               Text(
                 'Good ${DateTime.now().greeting.name}',
-                style: context.bodyLg.copyWith(color: Colors.green),
+                style: context.bodyLarge.copyWith(color: Colors.green),
               ),
               Text(
                 'Today ${DateTime.now().formattedDate}',
-                style: context.bodyLg.copyWith(color: Colors.blue),
+                style: context.bodyLarge.copyWith(color: Colors.blue),
               ),
               Text(
                 'It\'s ${DateTime.now().time12h}',
-                style: context.bodyLg.copyWith(color: Colors.grey),
+                style: context.bodyLarge.copyWith(color: Colors.grey),
               ),
               5.s,
 
@@ -76,5 +73,4 @@ class NextScreen extends StatelessWidget {
       ),
     );
   }
-
 }
