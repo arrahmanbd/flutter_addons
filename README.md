@@ -1,5 +1,5 @@
 
-![Logo Image](/images/new_logo.png)
+![Logo Image](https://raw.githubusercontent.com/arrahmanbd/flutter_addons/master/images/new_logo.png)
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.7.29-blue?logo=flutter&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
