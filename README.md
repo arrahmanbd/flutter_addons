@@ -150,7 +150,7 @@ Initialize the theme using `ThemePainter` with a predefined color palette and ap
 final darkTheme = ThemePainter(DarkSoul()).themeData;
 final lightTheme = ThemePainter(LightSoul()).themeData;
 ```
-Now, You can manage and apply theme dynamically using `ThemeManager`. 
+You can manage and apply theme dynamically using `ThemeManager`. 
 ## TextStyle Extensions Usage
 
 
@@ -160,14 +160,14 @@ You can use the extension on `num` to apply various text styles directly.
 ```dart
 Text(
   "Hello, World!",
-  style: 16.t.bold.italic.c(Colors.blue),
+  style: 16.t.bold.italic.k(Colors.blue),
 );
 ```
 
 - `16.t` → Sets the font size to 16.
 - `.bold` → Applies bold font weight.
 - `.italic` → Makes the text italic.
-- `.kolor(Colors.blue)` → Changes the text color.
+- `.k(Colors.blue)` → Changes the text color.
 
 ---
 
@@ -180,7 +180,9 @@ Text(
   style: context.titleLarge,
 );
 ```
+
 You can use copywith for extends customization.
+
 ---
 ## Spacing Extension Usage
 

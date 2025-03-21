@@ -1,3 +1,10 @@
+# 1.2.1
+
+### Improved Platform Support [2025-03-21]  
+
+- Ensured proper platform support, including explicit web support  
+- Added theme image and improved pub.dev visibility  
+
 # 1.2.0  
 
 ### Soul Theme Engine [2025-03-21]  
