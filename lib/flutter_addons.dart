@@ -112,7 +112,7 @@ part 'src/helper/themes/theme_engine.dart';
 part 'src/helper/themes/theme_manager.dart';
 
 /// Color Plattes
-part 'src/core/template/soul_palettes/color_palette.dart';
+part 'src/core/template/soul_palettes/soul_colors.dart';
 part 'src/core/template/soul_palettes/forest_colors.dart';
 part 'src/core/template/soul_palettes/aura_colors.dart';
 part 'src/core/template/soul_palettes/mid_night_soul.dart';

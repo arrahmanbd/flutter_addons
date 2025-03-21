@@ -2,7 +2,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// This is Default Color Palette
 /// **Light Theme Color Palette**
-class SoulColor extends Kolors {
+class LightSoul extends Kolors {
   @override
   /// Theme mode defining this as a light theme
   Brightness get themeMode => Brightness.light;

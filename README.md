@@ -102,14 +102,8 @@ It enables **dynamic theming** (light/dark mode) and supports **custom theme ext
 - **Consistent UI Styling**: Defines colors, typography, and component themes globally.
 
 ---
-### Usage
+### Getting Started
 
-Initialize the theme using `ThemeManager` with a predefined color palette:
-
-```dart
-final darkTheme = ThemeManager(DarkSoul());
-final lightTheme = ThemeManager(LightSoul());
-```
 
 ## Extending `Kolors`
 
@@ -130,7 +124,7 @@ class CustomTheme extends Kolors {
 Now, use the custom theme:
 
 ```dart
-final customTheme = ThemeManager(CustomTheme());
+final customTheme = ThemePainter(CustomTheme());
 ```
 
 
@@ -149,6 +143,14 @@ class MyTypography extends Typography {
 ```
 Now, use the typography in your theme:
 
+## 🎨  Apply Theme
+Initialize the theme using `ThemePainter` with a predefined color palette and apply on your Material App.
+
+```dart
+final darkTheme = ThemePainter(DarkSoul()).themeData;
+final lightTheme = ThemePainter(LightSoul()).themeData;
+```
+Now, You can manage and apply theme dynamically using `ThemeManager`. 
 ## TextStyle Extensions Usage
 
 
