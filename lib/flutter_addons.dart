@@ -21,6 +21,7 @@ import 'dart:io';
 import 'dart:math' as math;
 import 'dart:math';
 import 'dart:ui' as ui;
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -124,7 +125,17 @@ part 'src/core/template/soul_palettes/autumn_soul.dart';
 
 /// Typography
 part 'src/helper/typography/base_styles.dart';
-part 'src/core/template/soul_typo/typo_graphy.dart';
+part 'src/core/template/soul_typography/typo_graphy.dart';
+
+/// FallBack View
+part 'src/core/components/error_page.dart';
+part 'src/utility/author_speech.dart';
+
 /// Errors
-part 'src/core/errors/catch_exception.dart';
-part 'src/core/errors/no_route_page.dart';
+part 'src/core/errors/addons_error_repoting.dart';
+
+/// App Exception
+part 'src/core/errors/default_error_maper.dart';
+part 'src/core/errors/error_maper.dart';
+part 'src/core/errors/app_exception.dart';
+part 'src/core/errors/common_exception.dart';

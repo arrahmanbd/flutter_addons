@@ -1,4 +1,4 @@
-import 'package:example/list_product.dart';
+import 'package:example/views/list_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 

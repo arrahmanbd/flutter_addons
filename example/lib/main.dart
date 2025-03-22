@@ -1,29 +1,31 @@
-import 'package:example/home_page.dart';
+import 'package:example/home.dart';
+import 'package:example/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Example of ThemeEngine
-final lightTheme = ThemePainter(LightSoul());
-final darkTheme = ThemePainter(DarkSoul());
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
     return UIConfig(
       frame: const Size(360, 890),
       minTextAdapt: true,
       splitScreenMode: true,
+      //useNewErrorPainter: false,
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Addons Example',
-          theme: lightTheme.themeData,
-          darkTheme: darkTheme.themeData,
+          theme: theme.theme.themeData,
+          darkTheme: theme.darkTheme.themeData,
+          themeMode: theme.mode,
           home: HomePage(),
         );
       },

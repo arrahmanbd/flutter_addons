@@ -21,7 +21,7 @@ class ListOfProduct extends StatelessWidget {
                     style: context.bodySmall.copyWith(color: context.background),
                   ),
                 ),
-                title: Text(product[index].name),
+                title: Text(product[index].name,),
                 subtitle: Text(product[index].description),
               ).animate().staggered(index).fadeIn(),
         );

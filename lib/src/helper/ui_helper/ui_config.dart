@@ -58,7 +58,11 @@ class UIConfig extends StatefulWidget {
     this.responsiveWidgets,
     this.excludeWidgets,
     this.fontSizeResolver = FontSizeResolvers.width,
+    this.useNewErrorPainter = true,
   });
+
+  /// Determines whether to use the new error painter.
+  final bool useNewErrorPainter;
 
   /// A function that wraps the app's UI with necessary configurations.
   final ScreenUtilInitBuilder? builder;
@@ -133,8 +137,9 @@ class _UIConfigState extends State<UIConfig> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    // Initialize error handling here
-    CatchException().initialize(); // Only here, no need in `main()`
+    FlutterAddonsErrorReporting().initialize(
+      useNewPainter: widget.useNewErrorPainter,
+    );
     if (widget.responsiveWidgets != null) {
       _canMarkedToBuild.addAll(widget.responsiveWidgets!);
     }

@@ -1,8 +1,11 @@
+import 'package:example/providers/theme_provider.dart';
+import 'package:example/views/data_screen.dart';
+import 'package:example/views/next_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'list_product.dart';
-import 'next_screen.dart';
+import 'views/list_product.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,12 +13,26 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: context.primaryColor,
+        backgroundColor: context.primaryColor.withAlpha(10),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: context.titleColor),
+          onPressed: () {},
+        ),
         title: Image.memory(flutterAddons.toByteData(), height: 34.h),
         actions: [
+          Consumer(
+            builder: (_, WidgetRef ref, __) {
+              return IconButton(
+                icon: Icon(Icons.color_lens, color: context.titleColor),
+                onPressed: () {
+                  ref.read(themeProvider.notifier).toggleTheme();
+                },
+              );
+            },
+          ),
           IconButton(
-            icon: const Icon(Icons.info_outline),
+            icon: Icon(Icons.info_outline, color: context.titleColor),
             onPressed: () {
               Debug.bug(
                 'Debugging is like being the detective in a crime movie where you are also the murderer.',
@@ -85,6 +102,7 @@ class HomePage extends StatelessWidget {
                     10.s,
                     OutlinedButton(
                       onPressed: () {
+                        DataScreen().go(context);
                         Debug.info(
                           'Your code doesn’t work? Just add more comments. At least your future self will suffer with context',
                         );

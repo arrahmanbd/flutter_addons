@@ -40,7 +40,7 @@ class ThemePainter implements SoulThemeEngine {
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
         elevation: 1,
-        titleTextStyle: typography.displayText.copyWith(
+        titleTextStyle: typography.titleSmall.copyWith(
           color: colorScheme.onPrimary,
         ),
         iconTheme: IconThemeData(color: colorScheme.onPrimary),
@@ -166,5 +166,4 @@ class ThemePainter implements SoulThemeEngine {
       ),
     );
   }
-
 }
