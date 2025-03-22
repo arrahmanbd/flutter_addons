@@ -26,7 +26,7 @@ class ErrorPage extends StatelessWidget {
               _buildSadFace(),
               SizedBox(height: 20.h),
               Text(
-                message ?? "Something went wrong",
+                message,
                 style: TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),

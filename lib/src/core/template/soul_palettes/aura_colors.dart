@@ -3,30 +3,30 @@
 
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
 class AuroraLight extends Kolors {
   @override Brightness get themeMode => Brightness.light;
-  @override Color get primaryColor => const Color(0xFFFF6B6B);
-  @override Color get forground => const Color(0xFF333333);
-  @override Color get background => const Color(0xFFFFF8E1);
-  @override Color get cardBackground => const Color(0xFFFFECB3);
-  @override Color get secondaryContent => const Color(0xFF757575);
-  @override Color get inputBackground => const Color(0xFFFFF3CD);
-  @override Color get outlineColor => const Color(0xFFD6D6D6);
-  @override Color get dividerColor => const Color(0xFFE0E0E0);
-  @override Color get shadowColor => const Color(0x29000000);
-  @override Color get secondaryButton => const Color(0xFFFFE082);
+  @override Color get primaryColor => const Color(0xFFEE7674);
+  @override Color get forground => const Color(0xFF444444);
+  @override Color get background => const Color(0xFFFEF9E7);
+  @override Color get cardBackground => const Color(0xFFFDE7B4);
+  @override Color get secondaryContent => const Color(0xFF868686);
+  @override Color get inputBackground => const Color(0xFFFCECC3);
+  @override Color get outlineColor => const Color(0xFFD9D9D9);
+  @override Color get dividerColor => const Color(0xFFE6E6E6);
+  @override Color get shadowColor => const Color(0x1A000000);
+  @override Color get secondaryButton => const Color(0xFFF5D48E);
 }
+
 class AuroraDark extends Kolors {
   @override Brightness get themeMode => Brightness.dark;
-  @override Color get primaryColor => const Color(0xFFFF4081);
-  @override Color get forground => const Color(0xFFFFFFFF);
-  @override Color get background => const Color(0xFF121212);
-  @override Color get cardBackground => const Color(0xFF1F1F1F);
-  @override Color get secondaryContent => const Color(0xFFBDBDBD);
-  @override Color get inputBackground => const Color(0xFF303030);
-  @override Color get outlineColor => const Color(0xFF424242);
-  @override Color get dividerColor => const Color(0xFF383838);
-  @override Color get shadowColor => const Color(0x29000000);
-  @override Color get secondaryButton => const Color(0xFF2E2E2E);
+  @override Color get primaryColor => const Color(0xFFDC5B89);
+  @override Color get forground => const Color(0xFFEDEDED);
+  @override Color get background => const Color(0xFF1A1A1A);
+  @override Color get cardBackground => const Color(0xFF292929);
+  @override Color get secondaryContent => const Color(0xFFC2C2C2);
+  @override Color get inputBackground => const Color(0xFF3A3A3A);
+  @override Color get outlineColor => const Color(0xFF4C4C4C);
+  @override Color get dividerColor => const Color(0xFF414141);
+  @override Color get shadowColor => const Color(0x1A000000);
+  @override Color get secondaryButton => const Color(0xFF3B3B3B);
 }

@@ -31,7 +31,7 @@ extension AsyncUtilities<T> on Future<T> {
 
   /// **Timeouts a Future**
   Future<T> withTimeout(Duration duration, {T? fallback}) {
-    return this.timeout(
+    return timeout(
       duration,
       onTimeout: () => fallback ?? (throw TimeoutException('Operation timed out')),
     );
@@ -46,8 +46,8 @@ extension AsyncUtilities<T> on Future<T> {
 
 /// **Batch Processing & Mapping for Streams**
 extension StreamExtensions<T> on Stream<T> {
-  /// **Converts Stream<T> into List<T>**
-  Future<List<T>> collect() => this.toList();
+  /// **Converts Stream into List**
+  Future<List<T>> collect() => toList();
 
   /// **Maps values asynchronously**
   Stream<R> asyncMap<R>(Future<R> Function(T) mapper) async* {

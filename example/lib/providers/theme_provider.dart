@@ -3,7 +3,7 @@ import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Example of ThemeEngine
-final lightTheme = ThemePainter(LightSoul());
+final lightTheme = ThemePainter(AuroraLight());
 final darkTheme = ThemePainter(DarkSoul());
 
 class ThemeNotifier extends StateNotifier<ThemeManager> {

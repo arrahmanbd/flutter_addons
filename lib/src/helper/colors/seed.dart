@@ -2,13 +2,13 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// [Generate Color Schema Based of Seed Color]
 class Seed extends Palette {
-  final Color seed;
+  final Color seedColor;
   final Brightness brightness;
 
-  Seed({required this.seed, this.brightness = Brightness.light});
+  Seed({required this.seedColor, this.brightness = Brightness.light});
 
   /// Generate a ColorScheme from seed color and brightness
   @override
   ColorScheme get colorScheme =>
-      ColorScheme.fromSeed(seedColor: seed, brightness: brightness);
+      ColorScheme.fromSeed(seedColor: seedColor, brightness: brightness);
 }

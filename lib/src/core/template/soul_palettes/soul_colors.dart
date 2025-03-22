@@ -17,11 +17,10 @@ class LightSoul extends Kolors {
 
   @override
   /// Background color for scaffold and major surfaces
-  Color get background => const Color(0xFFF5F5F5);
-
+  Color get background => const Color(0xFFEFF3F3);
   @override
   /// Background color for cards and containers
-  Color get cardBackground => const Color(0xFFF7F7F7);
+  Color get cardBackground => const Color(0xFFFFFFFF);
 
   @override
   /// Used as secondary text color for subtitles, labels, and hints
@@ -33,7 +32,7 @@ class LightSoul extends Kolors {
 
   @override
   /// Border color for dividers and outlines
-  Color get outlineColor => const Color(0xFFDDDDDD);
+  Color get outlineColor => const Color(0xFFB8B8B8);
 
   @override
   /// Divider line color for separating content
@@ -41,7 +40,7 @@ class LightSoul extends Kolors {
 
   @override
   /// Shadow color used for elevated elements
-  Color get shadowColor => const Color(0x29000000);
+  Color get shadowColor => const ui.Color.fromARGB(117, 0, 0, 0);
 
   @override
   /// Secondary button background color (e.g., card-like buttons)
@@ -64,11 +63,11 @@ class DarkSoul extends Kolors {
 
   @override
   /// Background color for scaffold and major surfaces
-  Color get background => const Color(0xFF121212);
+  Color get background => const Color(0xFF1D2429);
 
   @override
   /// Background color for cards and containers
-  Color get cardBackground => const Color(0xFF181818);
+  Color get cardBackground => const Color(0xFF181E24);
 
   @override
   /// Used as secondary text color for subtitles, labels, and hints
@@ -80,7 +79,7 @@ class DarkSoul extends Kolors {
 
   @override
   /// Border color for dividers and outlines
-  Color get outlineColor => const Color(0xFF3A3A3A);
+  Color get outlineColor => const ui.Color.fromARGB(255, 20, 22, 31);
 
   @override
   /// Divider line color for separating content
@@ -88,7 +87,7 @@ class DarkSoul extends Kolors {
 
   @override
   /// Shadow color used for elevated elements
-  Color get shadowColor => const Color(0x29000000);
+  Color get shadowColor => const ui.Color.fromARGB(41, 14, 20, 31);
 
   @override
   /// Secondary button background color (e.g., card-like buttons)

@@ -5,7 +5,8 @@
 - `AppException` handler to automatically map specific errors
 - Added `ErrorMapper` to map your own errors
 - Ensured consistent logging for easier debugging.
-- Enhanced Flutter error reporting
+- Enhanced Flutter error reporting.
+- Optimized Colors, Typography and Images.
 
 # 1.2.1
 
