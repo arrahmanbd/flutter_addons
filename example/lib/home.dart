@@ -17,7 +17,25 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.menu, color: context.titleColor),
-          onPressed: () {},
+          onPressed: () {
+            GlassSnackbar.show(
+              context,
+              message: "This is a custom Snackbar!",
+              duration: Duration(seconds: 4),
+              //animation: SnackBarAnimation., // Choose animation
+              backgroundColor: const Color.fromARGB(
+                17,
+                68,
+                137,
+                255,
+              ).withOpacity(0.8),
+              // textStyle: TextStyle(fontSize: 16, color: Colors.white),
+              // actionLabel: "Undo",
+              // onActionTap: () {
+              //   print("Undo Clicked!");
+              // },
+            );
+          },
         ),
         title: Image.memory(flutterAddons.toByteData(), height: 34.h),
         actions: [
@@ -26,7 +44,28 @@ class HomePage extends StatelessWidget {
               return IconButton(
                 icon: Icon(Icons.color_lens, color: context.titleColor),
                 onPressed: () {
-                  ref.read(themeProvider.notifier).toggleTheme();
+                  GlassAlertDialog.show(
+                    context,
+                    title: "Confirmation",
+                    message: "Are you sure you want to change Theme?",
+                    confirmText: "Yes",
+                    onConfirm: () {
+                      ref.read(themeProvider.notifier).toggleTheme();
+
+                      print("Confirmed!");
+                    },
+                    cancelText: "No",
+                    onCancel: () {
+                      print("Cancelled!");
+                    },
+                    animation: AlertAnimation.scale, // Choose animation
+                    backgroundColor: context.background.withValues(alpha: .25)
+                    ,
+                    // border: Border.all(
+                    //   color: const Color.fromARGB(35, 39, 39, 39),
+                    //   width: 2,
+                    // ),
+                  );
                 },
               );
             },
@@ -34,8 +73,29 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.info_outline, color: context.titleColor),
             onPressed: () {
-              Debug.bug(
-                'Debugging is like being the detective in a crime movie where you are also the murderer.',
+              FlutterToastr.show(
+                "Theme Changed!",
+                context,
+                duration: FlutterToastr.lengthLong,
+                position: FlutterToastr.bottom,
+                animation: ToastAnimation.scale, // Choose animation
+                backgroundColor: const Color(0xFF202020),
+                textStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              );
+              GlassDialog.show(
+                context,
+                title: "Alert",
+                message: "This is a custom glassmorphic dialog.",
+                icon: Icons.warning_amber_rounded,
+                onConfirm:
+                    () => Debug.bug(
+                      'Debugging is like being the detective in a crime movie where you are also the murderer.',
+                    ),
+                animation: DialogAnimation.scale,
               );
 
               Debug.success(

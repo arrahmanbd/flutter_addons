@@ -139,3 +139,13 @@ part 'src/core/errors/default_error_maper.dart';
 part 'src/core/errors/error_maper.dart';
 part 'src/core/errors/app_exception.dart';
 part 'src/core/errors/common_exception.dart';
+
+/// Components
+/// Alert
+part 'src/core/components/alart.dart';
+/// SnackBar  
+part 'src/core/components/snackbar.dart';
+/// Toaster
+part 'src/core/components/toaster.dart';
+/// Dialog
+part 'src/core/components/dialog.dart';
