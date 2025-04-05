@@ -3,7 +3,20 @@ part of 'package:flutter_addons/flutter_addons.dart';
 typedef FontSizeResolver = double Function(num fontSize, UIUtils instance);
 
 class UIUtils {
-  static const Size defaultSize = Size(360, 690);
+  /// Predefined design sizes for different devices
+  static const Size mobileDesign = Size(360, 890); // Standard mobile
+  static const Size tabletDesign = Size(768, 1024); // Standard tablet
+  static const Size desktopDesign = Size(1280, 800); // Standard desktop
+
+  /// Dynamically gets the design size based on the current screen size
+  static Size getFrame(BuildContext context) {
+    if (context.isXs || context.isSm) return mobileDesign;
+    if (context.isMd) return tabletDesign;
+    return desktopDesign;
+  }
+
+  /// Default design size for the UI
+  static const Size defaultSize = mobileDesign;
   static final UIUtils _instance = UIUtils._();
 
   static bool Function() _enableScaleWH = () => true;
@@ -161,8 +174,8 @@ class UIUtils {
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
- double textScaleFactor(double fontSize) => _data.textScaler.scale(fontSize); // ✅ Updated
-
+  double textScaleFactor(double fontSize) =>
+      _data.textScaler.scale(fontSize); // ✅ Updated
 
   /// 设备的像素密度
   /// The size of the media in logical pixels (e.g, the size of the screen).

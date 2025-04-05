@@ -10,15 +10,14 @@ Future<void> main() async {
   runApp(ProviderScope(child: MyApp()));
 }
 
-
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    return  UIConfig(
-      frame: const Size(360, 890),
+    return UIConfig(
+      frame: UIUtils.getFrame(context),
       minTextAdapt: true,
       splitScreenMode: true,
       //useNewErrorPainter: false,
@@ -31,7 +30,7 @@ class MyApp extends ConsumerWidget {
           themeMode: theme.themeMode,
           home: HomePage(),
         );
-      }
+      },
     );
   }
 }
