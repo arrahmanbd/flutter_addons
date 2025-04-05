@@ -22,7 +22,6 @@ extension ThemeColors on BuildContext {
   Color get cardBackground => Theme.of(this).colorScheme.secondaryContainer;
   Color get surfaceContent => Theme.of(this).colorScheme.onSurface;
   Color get inputBackground => Theme.of(this).colorScheme.surfaceContainerLow;
-
   /// Secondary brand color, used for accents like chips, toggles, and highlights.
   Color get secondaryButton => Theme.of(this).colorScheme.secondaryFixed;
   // Text and content color inside cards, primary usecase is After title.
