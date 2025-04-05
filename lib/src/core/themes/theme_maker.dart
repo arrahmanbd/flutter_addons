@@ -56,8 +56,8 @@ class ThemeMaker implements SoulThemeEngine {
   // Generate a unique cache key based on colors and typography
   static String _generateCacheKey(Palette colors, AppTypo typography) {
     return Object.hashAll([
-      colors.colorScheme.primary.r,
-      colors.colorScheme.secondary.r,
+      colors.colorScheme.onPrimary.hashCode,
+      colors.colorScheme.onSurface.hashCode,
       typography.fontFamily,
     ]).toString();
   }
