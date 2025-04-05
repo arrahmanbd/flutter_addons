@@ -1,3 +1,28 @@
+# 1.2.3
+
+## Theme Engine Enhancements  
+- Introduced a new `ThemeManager` for centralized theme control.  
+- Improved theme structure to enhance flexibility and maintainability.  
+- Added a dynamic theme registry for seamless theme switching.  
+- Optimized `ColorScheme` integration for consistency.  
+- Introduced the `ThemeToggleButton` widget for effortless theme switching. 
+
+## Adaptive UI Improvements
+- `getFrame()` selects design size based on screen type.  
+- Improved breakpoint detection (`context.isXs`, `context.isSm`, etc.).  
+
+
+## Custom Borders  Widget
+- Made `DottedBorder` reusable via an extension.  
+- Added support for `Triangle`, `Rectangle`, `Dotted`, and `Dashed` borders.  
+- Added option to show text as a border.  
+
+## General Fixes & Optimizations
+- Improved error handling with fallback text themes.  
+- Optimized typography, colors, and asset management.  
+- Enhanced Flutter error reporting.  
+
+
 # 1.2.2 
 
 ### Implemented a robust error-handling mechanism.  
