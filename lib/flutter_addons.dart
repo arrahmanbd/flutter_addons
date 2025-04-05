@@ -1,7 +1,7 @@
 /// *****************************************************************************
 /// 🧩 **Flutter Addons Library**
 ///
-/// 🌟 **Version:** 1.0.0
+/// 🌟 **Version:** 1.2.3
 /// 👨🏻‍💻 **Author:** AR Rahman
 /// 📅 **Created On:** March 20, 2025
 /// 📜 **License:** Apache License 2.0
@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as service;
 
 // Import necessary parts of the package
-
+// 
 // Base
 part 'src/base/boolean_extension.dart';
 part 'src/base/int_extension.dart';
@@ -52,11 +52,11 @@ part 'src/widgets/stacking.dart';
 part 'src/widgets/list_grid.dart';
 
 // Helper
-part 'src/helper/ui_helper/font_resolver.dart';
-part 'src/helper/ui_helper/rebuild_factor.dart';
-part 'src/helper/ui_helper/ui_utils.dart';
-part 'src/helper/ui_helper/ui_config.dart';
-part 'src/helper/ui_helper/ui_extension.dart';
+part 'src/core/ui_helper/font_resolver.dart';
+part 'src/core/ui_helper/rebuild_factor.dart';
+part 'src/core/ui_helper/ui_utils.dart';
+part 'src/core/ui_helper/ui_config.dart';
+part 'src/core/ui_helper/ui_extension.dart';
 
 // Spacing
 part 'src/spacing/spacing_extensions.dart';
@@ -102,30 +102,32 @@ part 'src/decoration/shapes.dart';
 
 /// [Soul Theme Engine]
 /// Colors
-part 'src/helper/colors/palette.dart';
-part 'src/helper/colors/kolors.dart';
-part 'src/helper/colors/seed.dart';
-part 'src/helper/colors/swatch.dart';
+part 'src/core/colors/palette.dart';
+part 'src/core/colors/kolors.dart';
+part 'src/core/colors/seed.dart';
+part 'src/core/colors/swatch.dart';
 
 /// Themes
-part 'src/helper/themes/theme_painter.dart';
-part 'src/helper/themes/theme_engine.dart';
-part 'src/helper/themes/theme_manager.dart';
+part 'src/core/themes/theme_maker.dart';
+part 'src/core/themes/theme_engine.dart';
+part 'src/core/themes/theme_manager.dart';
+part 'src/core/themes/soul_component.dart';
+
 
 /// Color Plattes
-part 'src/core/template/soul_palettes/soul_colors.dart';
-part 'src/core/template/soul_palettes/forest_colors.dart';
-part 'src/core/template/soul_palettes/aura_colors.dart';
-part 'src/core/template/soul_palettes/mid_night_soul.dart';
-part 'src/core/template/soul_palettes/cyber_soul.dart';
-part 'src/core/template/soul_palettes/retro_soul.dart';
-part 'src/core/template/soul_palettes/ocean_soul.dart';
-part 'src/core/template/soul_palettes/summer_soul.dart';
-part 'src/core/template/soul_palettes/autumn_soul.dart';
+part 'src/core/palettes/soul_colors.dart';
+part 'src/core/palettes/forest_colors.dart';
+part 'src/core/palettes/aura_colors.dart';
+part 'src/core/palettes/mid_night_soul.dart';
+part 'src/core/palettes/cyber_soul.dart';
+part 'src/core/palettes/retro_soul.dart';
+part 'src/core/palettes/ocean_soul.dart';
+part 'src/core/palettes/summer_soul.dart';
+part 'src/core/palettes/autumn_soul.dart';
 
 /// Typography
-part 'src/helper/typography/base_styles.dart';
-part 'src/core/template/soul_typography/typo_graphy.dart';
+part 'src/core/typography/base_styles.dart';
+part 'src/core/typography/fallback_typo.dart';
 
 /// FallBack View
 part 'src/core/components/error_page.dart';
@@ -141,11 +143,10 @@ part 'src/core/errors/app_exception.dart';
 part 'src/core/errors/common_exception.dart';
 
 /// Components
-/// Alert
+/// Alert , Snackbar, Toaster, Dialog, Theme Toggler
 part 'src/core/components/alart.dart';
-/// SnackBar  
 part 'src/core/components/snackbar.dart';
-/// Toaster
 part 'src/core/components/toaster.dart';
-/// Dialog
 part 'src/core/components/dialog.dart';
+part 'src/core/components/theme_toggler.dart';
+part 'src/core/components/border_maker.dart';

@@ -4,7 +4,12 @@ part of 'package:flutter_addons/flutter_addons.dart';
 //  It follows Material Design Guidelines, ensuring a cohesive and structured approach to theming.
 
 abstract class SoulThemeEngine {
-  ThemeData get themeData;
+  /// Provides the application's ColorScheme.
   ColorScheme get colorScheme;
+
+  /// Provides the application's TextTheme.
   TextTheme get textTheme;
+
+  /// Generates ThemeData from the theme engine.
+  ThemeData get themeData;
 }

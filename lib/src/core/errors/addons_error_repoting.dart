@@ -1,6 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
 // This singleton class is designed to handle and enhance Flutter's error reporting.
 // It logs errors, provides helpful debugging assistance, and includes a motivational message
 // to keep developers motivated during tough moments.
@@ -78,8 +77,9 @@ class FlutterAddonsErrorReporting {
 
             const SizedBox(height: 30),
             // Error Message inside a Dotted Border
-            CustomPaint(
-              painter: DottedBorderPainter(color: Colors.red),
+            DotBorder(
+              color: const Color.fromARGB(255, 255, 207, 207),
+              dashWidth: 8,
               child: Container(
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
@@ -206,25 +206,22 @@ class FlutterAddonsErrorReporting {
 
   // Error details (Simulated Stack Trace)
   Widget _buildErrorDetails(FlutterErrorDetails details) {
-    return CustomPaint(
-      painter: DottedBorderPainter(),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.35),
-          borderRadius: BorderRadius.circular(12),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.35),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        details.exception.toString(),
+        style: const TextStyle(
+          fontSize: 14,
+          color: Colors.white,
+          fontFamily: "Courier",
         ),
-        child: Text(
-          details.exception.toString(),
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.white,
-            fontFamily: "Courier",
-          ),
-          textAlign: TextAlign.center,
-          maxLines: 4,
-        ),
+        textAlign: TextAlign.center,
+        maxLines: 4,
       ),
     );
   }
@@ -284,21 +281,22 @@ class FlutterAddonsErrorReporting {
   }
 
   // Create a more specific Google search query with additional context
-String makeQuery(String? exception) {
-  // Ensure the exception is not null or empty, fallback to a default message
-  String formattedException = (exception ?? "Unknown error")
-      .replaceAll(RegExp(r'\s+'), ' ')
-      .trim();
+  String makeQuery(String? exception) {
+    // Ensure the exception is not null or empty, fallback to a default message
+    String formattedException =
+        (exception ?? "Unknown error").replaceAll(RegExp(r'\s+'), ' ').trim();
 
-  // Limit the exception message to 40 characters
-  if (formattedException.length > 40) {
-    formattedException = formattedException.substring(0, 40);
+    // Limit the exception message to 40 characters
+    if (formattedException.length > 40) {
+      formattedException = formattedException.substring(0, 40);
+    }
+
+    // Encode and generate the Google search URL
+    String searchQuery = Uri.encodeComponent(
+      "$formattedException in Flutter Dart",
+    );
+    return "https://www.google.com/search?q=$searchQuery";
   }
-
-  // Encode and generate the Google search URL
-  String searchQuery = Uri.encodeComponent("$formattedException in Flutter Dart");
-  return "https://www.google.com/search?q=$searchQuery";
-}
 
   void errorHelper(String exception) {
     String randomMessages = getRandomMotivationalMessage();
@@ -338,38 +336,4 @@ String makeQuery(String? exception) {
       ),
     );
   }
-}
-
-// Custom Painter for Dotted Border
-class DottedBorderPainter extends CustomPainter {
-  final Color color;
-  DottedBorderPainter({this.color = Colors.yellowAccent});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint =
-        Paint()
-          ..color = color
-          ..strokeWidth = 2
-          ..style = PaintingStyle.stroke;
-
-    const double dashWidth = 8, dashSpace = 8;
-    double startX = 0;
-    final Path path =
-        Path()..addRRect(RRect.fromRectXY(Offset.zero & size, 12, 12));
-
-    Path dashPath = Path();
-    for (final PathMetric pathMetric in path.computeMetrics()) {
-      while (startX < pathMetric.length) {
-        final double endX = (startX + dashWidth).clamp(0, pathMetric.length);
-        dashPath.addPath(pathMetric.extractPath(startX, endX), Offset.zero);
-        startX = endX + dashSpace;
-      }
-    }
-
-    canvas.drawPath(dashPath, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

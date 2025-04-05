@@ -1,7 +1,9 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+/// DefaultTypography provides a fallback set of typography styles.
+
 /// Default implementation of SoulTypography
-class DefaultTypography extends Typography {
+class FallBackTypography extends AppTypo {
   @override
   String get fontFamily => 'Roboto';
 

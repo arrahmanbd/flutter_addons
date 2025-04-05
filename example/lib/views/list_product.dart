@@ -18,10 +18,10 @@ class ListOfProduct extends StatelessWidget {
                   backgroundColor: context.primaryColor,
                   child: Text(
                     product[index].name.firstLetter,
-                    style: context.bodySmall.copyWith(color: context.background),
+                    style: context.bodySmall.copyWith(color: context.forground),
                   ),
                 ),
-                title: Text(product[index].name,),
+                title: Text(product[index].name),
                 subtitle: Text(product[index].description),
               ).animate().staggered(index).fadeIn(),
         );

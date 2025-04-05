@@ -23,12 +23,7 @@ class HomePage extends StatelessWidget {
               message: "This is a custom Snackbar!",
               duration: Duration(seconds: 4),
               //animation: SnackBarAnimation., // Choose animation
-              backgroundColor: const Color.fromARGB(
-                17,
-                68,
-                137,
-                255,
-              ).withOpacity(0.8),
+              backgroundColor: const Color(0x114489FF),
               // textStyle: TextStyle(fontSize: 16, color: Colors.white),
               // actionLabel: "Undo",
               // onActionTap: () {
@@ -41,38 +36,36 @@ class HomePage extends StatelessWidget {
         actions: [
           Consumer(
             builder: (_, WidgetRef ref, __) {
-              return IconButton(
-                icon: Icon(Icons.color_lens, color: context.titleColor),
-                onPressed: () {
-                  GlassAlertDialog.show(
-                    context,
-                    title: "Confirmation",
-                    message: "Are you sure you want to change Theme?",
-                    confirmText: "Yes",
-                    onConfirm: () {
-                      ref.read(themeProvider.notifier).toggleTheme();
-
-                      print("Confirmed!");
-                    },
-                    cancelText: "No",
-                    onCancel: () {
-                      print("Cancelled!");
-                    },
-                    animation: AlertAnimation.scale, // Choose animation
-                    backgroundColor: context.background.withValues(alpha: .25)
-                    ,
-                    // border: Border.all(
-                    //   color: const Color.fromARGB(35, 39, 39, 39),
-                    //   width: 2,
-                    // ),
-                  );
-                },
+              return ThemeToggleButton(
+                manager: ref.watch(themeProvider),
+                iconSize: 24,
+                iconColor: context.titleColor,
               );
             },
           ),
+
           IconButton(
             icon: Icon(Icons.info_outline, color: context.titleColor),
             onPressed: () {
+              GlassAlertDialog.show(
+                context,
+                title: "Confirmation",
+                message: "Are you sure you want to change Theme?",
+                confirmText: "Yes",
+                onConfirm: () {
+                  print("Confirmed!");
+                },
+                cancelText: "No",
+                onCancel: () {
+                  print("Cancelled!");
+                },
+                animation: AlertAnimation.scale, // Choose animation
+                backgroundColor: context.background.withValues(alpha: .25),
+                // border: Border.all(
+                //   color: const Color.fromARGB(35, 39, 39, 39),
+                //   width: 2,
+                // ),
+              );
               FlutterToastr.show(
                 "Theme Changed!",
                 context,
@@ -115,7 +108,9 @@ class HomePage extends StatelessWidget {
               Row(
                 children: List.generate(
                   12,
-                  (i) => Chip(label: Text('Menu $i')),
+                  (i) => Chip(
+                    label: Text('Menu $i',),
+                  ),
                 ).separatedBy(SizedBox(width: 12.w)),
               ).scrollable(scrollDirection: Axis.horizontal),
               ListOfProduct(),

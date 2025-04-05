@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
+Future<void> main() async {
+  // Ensure ScreenUtils is initialized
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(ProviderScope(child: MyApp()));
 }
+
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -14,7 +17,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    return UIConfig(
+    return  UIConfig(
       frame: const Size(360, 890),
       minTextAdapt: true,
       splitScreenMode: true,
@@ -23,12 +26,12 @@ class MyApp extends ConsumerWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Addons Example',
-          theme: theme.theme.themeData,
-          darkTheme: theme.darkTheme.themeData,
-          themeMode: theme.mode,
+          theme: theme.lightTheme,
+          darkTheme: theme.darkTheme,
+          themeMode: theme.themeMode,
           home: HomePage(),
         );
-      },
+      }
     );
   }
 }
