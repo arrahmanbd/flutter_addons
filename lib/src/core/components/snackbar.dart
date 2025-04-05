@@ -1,7 +1,14 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-// import 'dart:ui';
-// import 'package:flutter/material.dart';
+/// Still Developing 
+/// Glassmorphism snackbar utility class
+/// for displaying messages with animations
+/// and custom actions
+/// [SnackbarAnimation] is used to specify the animation type
+/// [backgroundColor] is used to specify the background color
+/// [messageStyle] is used to specify the message text style
+/// [backgroundRadius] is used to specify the background radius
+/// [border] is used to specify the border  
 
 /// Available Snackbar animations
 enum SnackbarAnimation {
@@ -59,7 +66,6 @@ class _GlassSnackbarWidget extends StatefulWidget {
   final Border? border;
 
   const _GlassSnackbarWidget({
-    Key? key,
     required this.message,
     required this.actionText,
     this.onAction,
@@ -68,7 +74,7 @@ class _GlassSnackbarWidget extends StatefulWidget {
     required this.messageStyle,
     required this.backgroundRadius,
     this.border,
-  }) : super(key: key);
+  });
 
   @override
   _GlassSnackbarWidgetState createState() => _GlassSnackbarWidgetState();
@@ -121,9 +127,7 @@ class _GlassSnackbarWidgetState extends State<_GlassSnackbarWidget>
         return ScaleTransition(scale: _scaleAnimation, child: child);
       case SnackbarAnimation.rotation:
         return RotationTransition(turns: _rotationAnimation, child: child);
-      default:
-        return child;
-    }
+      }
   }
 
   @override
@@ -136,7 +140,7 @@ class _GlassSnackbarWidgetState extends State<_GlassSnackbarWidget>
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
-              color: widget.backgroundColor.withOpacity(0.8),
+              color: widget.backgroundColor.withValues(alpha:0.8),
               borderRadius: BorderRadius.circular(widget.backgroundRadius),
               border: widget.border,
             ),

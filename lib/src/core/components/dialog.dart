@@ -8,6 +8,10 @@ enum DialogAnimation {
   rotation,
 }
 
+/// Still Developing 
+
+/// Glassmorphism dialog utility class
+/// for displaying messages with animations
 class GlassDialog {
   static void show(
     BuildContext context, {
@@ -68,7 +72,6 @@ class _GlassDialogWidget extends StatefulWidget {
   final IconData? icon;
 
   const _GlassDialogWidget({
-    Key? key,
     required this.title,
     required this.message,
     required this.confirmText,
@@ -82,7 +85,7 @@ class _GlassDialogWidget extends StatefulWidget {
     required this.backgroundRadius,
     this.border,
     this.icon,
-  }) : super(key: key);
+  });
 
   @override
   _GlassDialogWidgetState createState() => _GlassDialogWidgetState();
@@ -135,9 +138,7 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
         return ScaleTransition(scale: _scaleAnimation, child: child);
       case DialogAnimation.rotation:
         return RotationTransition(turns: _rotationAnimation, child: child);
-      default:
-        return child;
-    }
+      }
   }
 
   @override
@@ -154,7 +155,7 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
                 padding: const EdgeInsets.all(20),
                 width: MediaQuery.of(context).size.width * 0.8,
                 decoration: BoxDecoration(
-                  color: widget.backgroundColor.withOpacity(0.8),
+                  color: widget.backgroundColor.withValues(alpha:0.8),
                   borderRadius: BorderRadius.circular(widget.backgroundRadius),
                   border: widget.border,
                 ),
@@ -186,7 +187,7 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(0.3),
+                            backgroundColor: Colors.white.withValues(alpha:0.3),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),

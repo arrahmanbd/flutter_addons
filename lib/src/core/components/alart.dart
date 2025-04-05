@@ -69,7 +69,6 @@ class _GlassAlertWidget extends StatefulWidget {
   final Border? border;
 
   const _GlassAlertWidget({
-    Key? key,
     required this.title,
     required this.message,
     required this.confirmText,
@@ -82,7 +81,7 @@ class _GlassAlertWidget extends StatefulWidget {
     required this.messageStyle,
     required this.backgroundRadius,
     this.border,
-  }) : super(key: key);
+  });
 
   @override
   _GlassAlertWidgetState createState() => _GlassAlertWidgetState();

@@ -19,7 +19,7 @@ class Themer extends ThemeManager {
     // For example, you might want to save the theme preference to shared preferences
     // or notify other parts of your app about the theme change.
     // For demonstration, we will just print the current theme mode.
-    print(
+    log(
       "Current theme mode: ${themeMode == ThemeMode.dark ? 'Dark' : 'Light'}",
     );
   }

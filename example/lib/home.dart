@@ -53,11 +53,11 @@ class HomePage extends StatelessWidget {
                 message: "Are you sure you want to change Theme?",
                 confirmText: "Yes",
                 onConfirm: () {
-                  print("Confirmed!");
+                  log("Confirmed!");
                 },
                 cancelText: "No",
                 onCancel: () {
-                  print("Cancelled!");
+                  log("Cancelled!");
                 },
                 animation: AlertAnimation.scale, // Choose animation
                 backgroundColor: context.background.withValues(alpha: .25),
@@ -66,11 +66,11 @@ class HomePage extends StatelessWidget {
                 //   width: 2,
                 // ),
               );
-              FlutterToastr.show(
+              GlassToaster.show(
                 "Theme Changed!",
                 context,
-                duration: FlutterToastr.lengthLong,
-                position: FlutterToastr.bottom,
+                duration: GlassToaster.lengthLong,
+                position: GlassToaster.bottom,
                 animation: ToastAnimation.scale, // Choose animation
                 backgroundColor: const Color(0xFF202020),
                 textStyle: TextStyle(
@@ -108,9 +108,7 @@ class HomePage extends StatelessWidget {
               Row(
                 children: List.generate(
                   12,
-                  (i) => Chip(
-                    label: Text('Menu $i',),
-                  ),
+                  (i) => Chip(label: Text('Menu $i')),
                 ).separatedBy(SizedBox(width: 12.w)),
               ).scrollable(scrollDirection: Axis.horizontal),
               ListOfProduct(),

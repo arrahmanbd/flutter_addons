@@ -1,10 +1,13 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+
+/// Still Developing 
+
 /// Available toast animations
 enum ToastAnimation { fade, slide, scale, rotation }
 
 /// Toast utility class for displaying messages
-class FlutterToastr {
+class GlassToaster {
   static const int lengthShort = 1;
   static const int lengthLong = 2;
   static const int bottom = 0;
@@ -31,7 +34,7 @@ class FlutterToastr {
       duration,
       position,
       animation,
-      backgroundColor?? context.background.withValues(alpha: .25),
+      backgroundColor ?? context.background.withValues(alpha: .25),
       textStyle,
       backgroundRadius,
       border,
@@ -99,7 +102,6 @@ class _FlutterToastrWidget extends StatefulWidget {
   final Border? border;
 
   const _FlutterToastrWidget({
-    Key? key,
     required this.message,
     required this.position,
     required this.animation,
@@ -107,7 +109,7 @@ class _FlutterToastrWidget extends StatefulWidget {
     required this.textStyle,
     required this.backgroundRadius,
     this.border,
-  }) : super(key: key);
+  });
 
   @override
   _FlutterToastrWidgetState createState() => _FlutterToastrWidgetState();
@@ -170,11 +172,11 @@ class _FlutterToastrWidgetState extends State<_FlutterToastrWidget>
   Widget build(BuildContext context) {
     return Positioned(
       top:
-          widget.position == FlutterToastr.top
+          widget.position == GlassToaster.top
               ? MediaQuery.of(context).viewInsets.top + 50
               : null,
       bottom:
-          widget.position == FlutterToastr.bottom
+          widget.position == GlassToaster.bottom
               ? MediaQuery.of(context).viewInsets.bottom + 50
               : null,
       child: _buildAnimation(
