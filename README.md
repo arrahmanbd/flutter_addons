@@ -13,6 +13,11 @@
 
 Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications. This package includes a variety of tools that help streamline common tasks, making it easier to build high-quality apps quickly and efficiently.
 
+Absolutely! Here's a more convincing and impactful version of that line:
+
+> ⚡ Supercharge your Flutter workflow and become **10x more productive** by using the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons) – available now on the Visual Studio Marketplace!
+
+
 ## Features
 
  ## 🚀 **Key Features**
