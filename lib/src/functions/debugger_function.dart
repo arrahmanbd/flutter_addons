@@ -73,6 +73,7 @@ void dbug(String? message) {
   ); // Red for the error location
   return Debug.warning(highlightedMessage);
 }
+
 ///usage
 ///Debug.bug("This is a bug message");
 // Debug.info("This is an info message");

@@ -14,7 +14,8 @@ class Ok<T, E> extends Result<T, E> {
   const Ok(this.value);
 
   @override
-  R fold<R>(R Function(T value) onSuccess, R Function(E error) onError) => onSuccess(value);
+  R fold<R>(R Function(T value) onSuccess, R Function(E error) onError) =>
+      onSuccess(value);
 }
 
 class Err<T, E> extends Result<T, E> {
@@ -22,5 +23,6 @@ class Err<T, E> extends Result<T, E> {
   const Err(this.error);
 
   @override
-  R fold<R>(R Function(T value) onSuccess, R Function(E error) onError) => onError(error);
+  R fold<R>(R Function(T value) onSuccess, R Function(E error) onError) =>
+      onError(error);
 }

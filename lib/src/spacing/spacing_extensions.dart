@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 extension IntMarginPadding on int {
   // Margin

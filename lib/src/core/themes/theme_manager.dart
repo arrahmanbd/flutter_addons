@@ -19,7 +19,8 @@ abstract class ThemeManager extends ChangeNotifier {
   ThemeData get themeData => _currentTheme;
 
   /// Getter to check if the current theme is dark.
-  bool get isDarkMode => _themeMode == ThemeMode.dark ||
+  bool get isDarkMode =>
+      _themeMode == ThemeMode.dark ||
       (_themeMode == ThemeMode.system &&
           WidgetsBinding.instance.platformDispatcher.platformBrightness ==
               Brightness.dark);
@@ -46,15 +47,19 @@ abstract class ThemeManager extends ChangeNotifier {
 
   /// Toggle between light and dark mode.
   void toggleTheme() {
-    setThemeMode(_themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
+    setThemeMode(
+      _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light,
+    );
   }
 
   /// Cycles through Light → Dark → System.
   void toggleThemeMode() {
     setThemeMode(
-      _themeMode == ThemeMode.light ? ThemeMode.dark
-      : _themeMode == ThemeMode.dark ? ThemeMode.system
-      : ThemeMode.light,
+      _themeMode == ThemeMode.light
+          ? ThemeMode.dark
+          : _themeMode == ThemeMode.dark
+          ? ThemeMode.system
+          : ThemeMode.light,
     );
   }
 

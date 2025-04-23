@@ -9,7 +9,7 @@ class NextScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  Text('Next Screen',)),
+      appBar: AppBar(title: Text('Next Screen')),
       body:
           Column(children: [_buildHero(context), ListOfProduct()]).scrollable(),
     );

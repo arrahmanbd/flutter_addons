@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// Still Developing 
+/// Still Developing
 /// Glassmorphism snackbar utility class
 /// for displaying messages with animations
 /// and custom actions
@@ -8,15 +8,10 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// [backgroundColor] is used to specify the background color
 /// [messageStyle] is used to specify the message text style
 /// [backgroundRadius] is used to specify the background radius
-/// [border] is used to specify the border  
+/// [border] is used to specify the border
 
 /// Available Snackbar animations
-enum SnackbarAnimation {
-  fade,
-  scale,
-  slide,
-  rotation,
-}
+enum SnackbarAnimation { fade, scale, slide, rotation }
 
 class GlassSnackbar {
   static void show(
@@ -26,8 +21,10 @@ class GlassSnackbar {
     VoidCallback? onAction,
     SnackbarAnimation animation = SnackbarAnimation.slide,
     Color backgroundColor = Colors.black87,
-    TextStyle messageStyle =
-        const TextStyle(fontSize: 16, color: Colors.white70),
+    TextStyle messageStyle = const TextStyle(
+      fontSize: 16,
+      color: Colors.white70,
+    ),
     double backgroundRadius = 0.0,
     Border? border,
     Duration duration = const Duration(seconds: 3),
@@ -97,22 +94,25 @@ class _GlassSnackbarWidgetState extends State<_GlassSnackbarWidget>
       vsync: this,
     );
 
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, 0.2),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
-    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 0.8,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
 
-    _rotationAnimation = Tween<double>(begin: -0.1, end: 0.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    _rotationAnimation = Tween<double>(
+      begin: -0.1,
+      end: 0.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _controller.forward();
   }
@@ -127,7 +127,7 @@ class _GlassSnackbarWidgetState extends State<_GlassSnackbarWidget>
         return ScaleTransition(scale: _scaleAnimation, child: child);
       case SnackbarAnimation.rotation:
         return RotationTransition(turns: _rotationAnimation, child: child);
-      }
+    }
   }
 
   @override
@@ -140,7 +140,7 @@ class _GlassSnackbarWidgetState extends State<_GlassSnackbarWidget>
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
-              color: widget.backgroundColor.withValues(alpha:0.8),
+              color: widget.backgroundColor.withValues(alpha: 0.8),
               borderRadius: BorderRadius.circular(widget.backgroundRadius),
               border: widget.border,
             ),
@@ -148,14 +148,19 @@ class _GlassSnackbarWidgetState extends State<_GlassSnackbarWidget>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
-                  child: Text(widget.message,
-                      style: widget.messageStyle, textAlign: TextAlign.start),
+                  child: Text(
+                    widget.message,
+                    style: widget.messageStyle,
+                    textAlign: TextAlign.start,
+                  ),
                 ),
                 if (widget.onAction != null)
                   TextButton(
                     onPressed: widget.onAction,
-                    child: Text(widget.actionText,
-                        style: const TextStyle(color: Colors.white)),
+                    child: Text(
+                      widget.actionText,
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
               ],
             ),

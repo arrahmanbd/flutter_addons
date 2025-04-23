@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 class DataImageProvider extends ImageProvider<DataImageProvider> {
   final String base64ImageData;
@@ -16,9 +14,7 @@ class DataImageProvider extends ImageProvider<DataImageProvider> {
     final bytes = Uint8List.fromList(data);
 
     // Return an image stream completer with the decoded image bytes
-    return OneFrameImageStreamCompleter(
-      decode(bytes) as Future<ImageInfo>,
-    );
+    return OneFrameImageStreamCompleter(decode(bytes) as Future<ImageInfo>);
   }
 
   @override

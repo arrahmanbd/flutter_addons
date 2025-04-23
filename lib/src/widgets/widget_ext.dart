@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 // 2. Extension to Set a Padding to a Widget
 extension CenterWidget on Widget {
@@ -255,7 +253,10 @@ extension BlurEffectWidget on Widget {
           children: [
             // BackdropFilter to create the blur effect
             BackdropFilter(
-              filter: ui.ImageFilter.blur(sigmaX: blurRadius, sigmaY: blurRadius),
+              filter: ui.ImageFilter.blur(
+                sigmaX: blurRadius,
+                sigmaY: blurRadius,
+              ),
               child: Container(
                 color: backgroundColor.withValues(
                   alpha: opacity,

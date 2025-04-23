@@ -4,7 +4,6 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// for common operations like toggling, conditionally executing actions,
 /// and converting to different string representations.
 extension BoolExtensions on bool {
-  
   /// Returns the opposite of the boolean value.
   ///
   /// Example:
@@ -125,5 +124,3 @@ extension BoolExtensions on bool {
   String toCustomText(String trueText, String falseText) =>
       this ? trueText : falseText;
 }
-
-

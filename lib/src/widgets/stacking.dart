@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 /// Graph-style positioning system with (x, x') and (y, y') notation
 enum GraphPosition {

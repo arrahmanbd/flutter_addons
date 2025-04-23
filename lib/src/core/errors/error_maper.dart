@@ -8,7 +8,7 @@ abstract class ErrorMapper {
   /// Maps HTTP status codes to human-readable error messages for different HTTP request types.
   /// This method handles common HTTP error responses, including client errors (4xx),
   /// server errors (5xx), and success responses (2xx).
-  /// 
+  ///
   /// A default implementation is provided. You can override this in subclasses for custom error mapping.
   String mapHttpError(int statusCode) {
     switch (statusCode) {

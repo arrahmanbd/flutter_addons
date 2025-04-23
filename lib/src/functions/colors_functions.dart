@@ -1,4 +1,3 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Extension on `Color` to provide additional utility methods for color manipulation and analysis.
@@ -185,11 +184,11 @@ extension ColorExtensions on Color {
       opacity >= 0.0 && opacity <= 1.0,
       'Opacity must be between 0.0 and 1.0',
     );
-    return Color.fromARGB((a * opacity).toInt(), r.toInt(), g.toInt(), b.toInt());
+    return Color.fromARGB(
+      (a * opacity).toInt(),
+      r.toInt(),
+      g.toInt(),
+      b.toInt(),
+    );
   }
-
 }
-
-
-
-

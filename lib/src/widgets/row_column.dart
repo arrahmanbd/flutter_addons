@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 /// Extension for `Column` widget to provide responsive padding and spacing
 extension ResponsiveColumn on Column {
@@ -23,12 +21,7 @@ extension ResponsiveColumn on Column {
     }
 
     return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.all(padding),
-          child: this,
-        ),
-      ],
+      children: [Padding(padding: EdgeInsets.all(padding), child: this)],
     );
   }
 
@@ -56,9 +49,9 @@ extension ResponsiveColumn on Column {
           i == children.length - 1
               ? children[i]
               : Padding(
-                  padding: EdgeInsets.only(bottom: spacing),
-                  child: children[i],
-                ),
+                padding: EdgeInsets.only(bottom: spacing),
+                child: children[i],
+              ),
       ],
     );
   }
@@ -67,20 +60,14 @@ extension ResponsiveColumn on Column {
   Column alignChildrenVertically({
     MainAxisAlignment alignment = MainAxisAlignment.start,
   }) {
-    return Column(
-      mainAxisAlignment: alignment,
-      children: children,
-    );
+    return Column(mainAxisAlignment: alignment, children: children);
   }
 
   /// Aligns children horizontally (start, center, or end)
   Column alignChildrenHorizontally({
     CrossAxisAlignment alignment = CrossAxisAlignment.start,
   }) {
-    return Column(
-      crossAxisAlignment: alignment,
-      children: children,
-    );
+    return Column(crossAxisAlignment: alignment, children: children);
   }
 
   /// Centers all children within the Column
@@ -94,9 +81,7 @@ extension ResponsiveColumn on Column {
 
   /// Conditionally render children based on a condition
   Column renderConditionally(bool condition) {
-    return Column(
-      children: children.where((child) => condition).toList(),
-    );
+    return Column(children: children.where((child) => condition).toList());
   }
 }
 
@@ -121,12 +106,7 @@ extension ResponsiveRow on Row {
     }
 
     return Row(
-      children: [
-        Padding(
-          padding: EdgeInsets.all(padding),
-          child: this,
-        ),
-      ],
+      children: [Padding(padding: EdgeInsets.all(padding), child: this)],
     );
   }
 
@@ -154,9 +134,9 @@ extension ResponsiveRow on Row {
           i == children.length - 1
               ? children[i]
               : Padding(
-                  padding: EdgeInsets.only(right: spacing),
-                  child: children[i],
-                ),
+                padding: EdgeInsets.only(right: spacing),
+                child: children[i],
+              ),
       ],
     );
   }
@@ -165,20 +145,14 @@ extension ResponsiveRow on Row {
   Row alignChildrenHorizontally({
     MainAxisAlignment alignment = MainAxisAlignment.start,
   }) {
-    return Row(
-      mainAxisAlignment: alignment,
-      children: children,
-    );
+    return Row(mainAxisAlignment: alignment, children: children);
   }
 
   /// Aligns children vertically (start, center, or end)
   Row alignChildrenVertically({
     CrossAxisAlignment alignment = CrossAxisAlignment.start,
   }) {
-    return Row(
-      crossAxisAlignment: alignment,
-      children: children,
-    );
+    return Row(crossAxisAlignment: alignment, children: children);
   }
 
   /// Centers all children within the Row
@@ -192,8 +166,6 @@ extension ResponsiveRow on Row {
 
   /// Conditionally render children based on a condition
   Row renderConditionally(bool condition) {
-    return Row(
-      children: children.where((child) => condition).toList(),
-    );
+    return Row(children: children.where((child) => condition).toList());
   }
 }

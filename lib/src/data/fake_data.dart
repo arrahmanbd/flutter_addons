@@ -260,7 +260,8 @@ List<FakeProduct> generateDummyProducts(int count) {
     return FakeProduct(
       id: 'P${index + 1}',
       name: productNames[index % productNames.length],
-      description: fakeProductDescriptions[index % fakeProductDescriptions.length],
+      description:
+          fakeProductDescriptions[index % fakeProductDescriptions.length],
       price: (index + 1) * 20.0,
       imageUrl: 'https://example.com/images/product${index + 1}.png',
       category: fakeCategories[index % fakeCategories.length],

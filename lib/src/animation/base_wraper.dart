@@ -20,17 +20,15 @@ class AnimatedWrapper extends StatefulWidget {
   AnimatedWrapperState createState() => AnimatedWrapperState();
 }
 
-class AnimatedWrapperState extends State<AnimatedWrapper> with SingleTickerProviderStateMixin {
+class AnimatedWrapperState extends State<AnimatedWrapper>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    );
+    _controller = AnimationController(vsync: this, duration: widget.duration);
 
     _animation = CurvedAnimation(
       parent: _controller,

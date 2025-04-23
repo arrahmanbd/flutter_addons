@@ -1,4 +1,3 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// System UI Utilities
@@ -27,8 +26,8 @@ class SystemUI {
 
   /// Set dark status bar mode.
   static void setDarkStatusBar() {
-     service.SystemChrome.setSystemUIOverlayStyle(
-      const  service.SystemUiOverlayStyle(
+    service.SystemChrome.setSystemUIOverlayStyle(
+      const service.SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.black,
         systemNavigationBarIconBrightness: Brightness.light,
         statusBarColor: Colors.transparent,
@@ -40,8 +39,8 @@ class SystemUI {
 
   /// Set light status bar mode.
   static void setLightStatusBar() {
-     service.SystemChrome.setSystemUIOverlayStyle(
-      const  service.SystemUiOverlayStyle(
+    service.SystemChrome.setSystemUIOverlayStyle(
+      const service.SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
@@ -53,20 +52,26 @@ class SystemUI {
 
   /// Show the system status bar.
   static Future<void> showStatusBar() async {
-     service.SystemChrome.setEnabledSystemUIMode(
-       service.SystemUiMode.manual,
-      overlays:  service.SystemUiOverlay.values,
+    service.SystemChrome.setEnabledSystemUIMode(
+      service.SystemUiMode.manual,
+      overlays: service.SystemUiOverlay.values,
     );
   }
 
   /// Hide the system status bar.
   static Future<void> hideStatusBar() async {
-     service.SystemChrome.setEnabledSystemUIMode( service.SystemUiMode.manual, overlays: []);
+    service.SystemChrome.setEnabledSystemUIMode(
+      service.SystemUiMode.manual,
+      overlays: [],
+    );
   }
 
   /// Enter full-screen mode.
   static void enterFullScreen() {
-    service.SystemChrome.setEnabledSystemUIMode(service.SystemUiMode.manual, overlays: []);
+    service.SystemChrome.setEnabledSystemUIMode(
+      service.SystemUiMode.manual,
+      overlays: [],
+    );
   }
 
   /// Exit full-screen mode.

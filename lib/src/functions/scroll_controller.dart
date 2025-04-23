@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 /// Extension for [ScrollController] providing additional scroll functionality.
 extension ScrollControllerExtensions on ScrollController {
@@ -9,7 +7,11 @@ extension ScrollControllerExtensions on ScrollController {
   /// [offset] is the target scroll position (in pixels).
   /// [duration] specifies the duration of the scroll animation.
   /// [curve] defines the curve for the animation (defaults to `Curves.easeInOut`).
-  Future<void> animateToPosition(double offset, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
+  Future<void> animateToPosition(
+    double offset, {
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
     return animateTo(offset, duration: duration, curve: curve);
   }
 
@@ -17,7 +19,10 @@ extension ScrollControllerExtensions on ScrollController {
   ///
   /// [duration] specifies the duration of the scroll animation.
   /// [curve] defines the curve for the animation (defaults to `Curves.easeInOut`).
-  Future<void> scrollToTop({Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
+  Future<void> scrollToTop({
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
     return animateToPosition(0.0, duration: duration, curve: curve);
   }
 
@@ -25,8 +30,15 @@ extension ScrollControllerExtensions on ScrollController {
   ///
   /// [duration] specifies the duration of the scroll animation.
   /// [curve] defines the curve for the animation (defaults to `Curves.easeInOut`).
-  Future<void> scrollToBottom({Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
-    return animateToPosition(position.maxScrollExtent, duration: duration, curve: curve);
+  Future<void> scrollToBottom({
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
+    return animateToPosition(
+      position.maxScrollExtent,
+      duration: duration,
+      curve: curve,
+    );
   }
 
   /// Scrolls the [ScrollController] to the given index with smooth animation.
@@ -35,7 +47,12 @@ extension ScrollControllerExtensions on ScrollController {
   /// [itemHeight] is the height of a single item.
   /// [duration] specifies the duration of the scroll animation.
   /// [curve] defines the curve for the animation (defaults to `Curves.easeInOut`).
-  Future<void> scrollToIndex(int index, double itemHeight, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
+  Future<void> scrollToIndex(
+    int index,
+    double itemHeight, {
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
     double offset = index * itemHeight;
     return animateToPosition(offset, duration: duration, curve: curve);
   }
@@ -51,7 +68,11 @@ extension ScrollControllerExtensions on ScrollController {
   }
 
   /// Scrolls to the given position only if the position is not at the top already.
-  Future<void> scrollToPositionIfNotAtTop(double offset, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
+  Future<void> scrollToPositionIfNotAtTop(
+    double offset, {
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
     if (!isAtTop) {
       return animateToPosition(offset, duration: duration, curve: curve);
     }
@@ -59,7 +80,11 @@ extension ScrollControllerExtensions on ScrollController {
   }
 
   /// Scrolls to the given position only if the position is not at the bottom already.
-  Future<void> scrollToPositionIfNotAtBottom(double offset, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
+  Future<void> scrollToPositionIfNotAtBottom(
+    double offset, {
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
     if (!isAtBottom) {
       return animateToPosition(offset, duration: duration, curve: curve);
     }
@@ -71,8 +96,16 @@ extension ScrollControllerExtensions on ScrollController {
   /// [offset] is the value to add to the current scroll position (can be positive or negative).
   /// [duration] specifies the duration of the scroll animation.
   /// [curve] defines the curve for the animation (defaults to `Curves.easeInOut`).
-  Future<void> scrollByOffset(double offset, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
-    return animateTo(position.pixels + offset, duration: duration, curve: curve);
+  Future<void> scrollByOffset(
+    double offset, {
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
+    return animateTo(
+      position.pixels + offset,
+      duration: duration,
+      curve: curve,
+    );
   }
 
   /// Checks if the item at the given index is currently visible within the scroll view.
@@ -90,7 +123,12 @@ extension ScrollControllerExtensions on ScrollController {
   ///
   /// [index] is the target index of the item.
   /// [itemHeight] is the height of a single item.
-  Future<void> scrollToIndexIfNotVisible(int index, double itemHeight, {Duration duration = const Duration(milliseconds: 300), Curve curve = Curves.easeInOut}) {
+  Future<void> scrollToIndexIfNotVisible(
+    int index,
+    double itemHeight, {
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeInOut,
+  }) {
     if (!isItemVisible(index, itemHeight)) {
       return scrollToIndex(index, itemHeight, duration: duration, curve: curve);
     }

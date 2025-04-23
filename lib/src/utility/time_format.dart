@@ -1,4 +1,3 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
 class TimeFormatter {
@@ -58,7 +57,9 @@ class TimeFormatter {
   /// Converts time difference to months
   static String _formatMonths(int difference) {
     int count = (difference / _month).round();
-    return count > 12 ? '1 year ago' : '$count month${count > 1 ? 's' : ''} ago';
+    return count > 12
+        ? '1 year ago'
+        : '$count month${count > 1 ? 's' : ''} ago';
   }
 
   /// Converts time difference to years

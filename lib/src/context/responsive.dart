@@ -1,4 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
+
 /// Extension on `BuildContext` for responsive design.
 /// This extension provides methods to get screen dimensions, pixel ratio,
 /// and orientation. It also includes boolean properties to check the screen size
@@ -20,10 +21,12 @@ extension ResponsiveExtension on BuildContext {
   double get shortestSide => MediaQuery.of(this).size.shortestSide;
 
   /// Check if the device is in portrait mode
-  bool get isPortrait => MediaQuery.of(this).orientation == Orientation.portrait;
+  bool get isPortrait =>
+      MediaQuery.of(this).orientation == Orientation.portrait;
 
   /// Check if the device is in landscape mode
-  bool get isLandscape => MediaQuery.of(this).orientation == Orientation.landscape;
+  bool get isLandscape =>
+      MediaQuery.of(this).orientation == Orientation.landscape;
 
   /// Extra small screens (phones, less than 576px)
   bool get isXs => screenWidth < 576;

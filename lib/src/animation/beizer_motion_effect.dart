@@ -1,5 +1,5 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
+
 /// Bezier Motion Effect (Curved Path Animation)
 extension BezierMotion on Widget {
   /// Moves the widget along a Bezier curve path.
@@ -38,7 +38,8 @@ class _BezierMotionWrapper extends StatefulWidget {
   _BezierMotionWrapperState createState() => _BezierMotionWrapperState();
 }
 
-class _BezierMotionWrapperState extends State<_BezierMotionWrapper> with SingleTickerProviderStateMixin {
+class _BezierMotionWrapperState extends State<_BezierMotionWrapper>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -71,8 +72,10 @@ class _BezierMotionWrapperState extends State<_BezierMotionWrapper> with SingleT
         final p1 = widget.controlPoints[0];
         final p2 = widget.controlPoints[1];
 
-        final x = pow(1 - t, 2) * p0.dx + 2 * (1 - t) * t * p1.dx + pow(t, 2) * p2.dx;
-        final y = pow(1 - t, 2) * p0.dy + 2 * (1 - t) * t * p1.dy + pow(t, 2) * p2.dy;
+        final x =
+            pow(1 - t, 2) * p0.dx + 2 * (1 - t) * t * p1.dx + pow(t, 2) * p2.dx;
+        final y =
+            pow(1 - t, 2) * p0.dy + 2 * (1 - t) * t * p1.dy + pow(t, 2) * p2.dy;
 
         return Transform.translate(offset: Offset(x, y), child: widget.child);
       },

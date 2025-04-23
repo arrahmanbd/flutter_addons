@@ -33,9 +33,9 @@ extension DateExtension on DateTime {
 
   /// Returns a [DateTime] with only the date, setting time to midnight.
   /// Returns the date as a string in "YYYY-MM-DD" format without time.
-   String _twoDigits(int n) => n < 10 ? "0$n" : "$n";
+  String _twoDigits(int n) => n < 10 ? "0$n" : "$n";
 
- /// Returns the time in 24-hour format "HH:MM:SS"
+  /// Returns the time in 24-hour format "HH:MM:SS"
   String get time24h =>
       "${_twoDigits(hour)}:${_twoDigits(minute)}:${_twoDigits(second)}";
 
@@ -45,15 +45,28 @@ extension DateExtension on DateTime {
     String period = hour < 12 ? "AM" : "PM";
     return "$h:${_twoDigits(minute)} $period";
   }
+
   String get dateOnly => "$year-${_twoDigits(month)}-${_twoDigits(day)}";
- /// Returns the formatted date in "12 Sep 2024" format.
+
+  /// Returns the formatted date in "12 Sep 2024" format.
   String get formattedDate {
     const List<String> monthNames = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
     return "$day ${monthNames[month - 1]} $year";
   }
+
   bool get isToday => isSameDay(DateTime.now());
 
   bool get isYesterday => isSameDay(DateTime.now().subtract(Duration(days: 1)));

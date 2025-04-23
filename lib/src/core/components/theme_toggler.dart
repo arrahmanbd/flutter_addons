@@ -45,16 +45,23 @@ class ThemeToggleButton extends StatelessWidget {
       iconSize: iconSize,
       splashRadius: 28,
       color: iconColor ?? Theme.of(context).iconTheme.color,
-      highlightColor: splashColor ?? Theme.of(context).primaryColor.withValues(alpha:0.15),
+      highlightColor:
+          splashColor ?? Theme.of(context).primaryColor.withValues(alpha: 0.15),
       icon: AnimatedSwitcher(
         duration: animationDuration,
-        transitionBuilder: (child, animation) => ScaleTransition(
-          scale: animation.drive(Tween(begin: 0.7, end: 1.0).chain(CurveTween(curve: Curves.easeOut))),
-          child: FadeTransition(
-            opacity: animation,
-            child: RotationTransition(turns: animation, child: child),
-          ),
-        ),
+        transitionBuilder:
+            (child, animation) => ScaleTransition(
+              scale: animation.drive(
+                Tween(
+                  begin: 0.7,
+                  end: 1.0,
+                ).chain(CurveTween(curve: Curves.easeOut)),
+              ),
+              child: FadeTransition(
+                opacity: animation,
+                child: RotationTransition(turns: animation, child: child),
+              ),
+            ),
         child: Icon(icon, key: ValueKey(icon), size: iconSize),
       ),
     );

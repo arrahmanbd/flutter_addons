@@ -8,6 +8,8 @@ class Swatch extends Palette {
   Swatch({required this.swatchColor, this.brightness = Brightness.light});
 
   @override
-  ColorScheme get colorScheme =>
-      ColorScheme.fromSwatch(primarySwatch: swatchColor, brightness: brightness);
+  ColorScheme get colorScheme => ColorScheme.fromSwatch(
+    primarySwatch: swatchColor,
+    brightness: brightness,
+  );
 }

@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 // Navigator addons on Context
 
@@ -13,7 +11,6 @@ extension NavigationExtension on BuildContext {
   void back() => navigator.pop();
   void toReplace(Widget page) => navigator.pushReplacementWithAnimation(page);
 }
-
 
 //Go method on widget
 extension LaunchWidget on Widget {

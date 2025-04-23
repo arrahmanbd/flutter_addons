@@ -1,8 +1,7 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
+
 /// String Extensions
 extension StringExt on String {
-
   /// Get First Letter
   String get firstLetter {
     if (isEmpty) {

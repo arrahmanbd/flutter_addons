@@ -238,7 +238,6 @@ class _DotBorderPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
 
-
 /// Extension to add a custom border to any widget
 /// using the BorderMaker widget.
 /// This extension allows you to easily apply a custom border

@@ -1,5 +1,5 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
+
 /// Exception for network-related issues such as no internet connection,
 /// server unavailability, or connection timeout.
 class NetworkException extends AppException {
@@ -29,8 +29,12 @@ class ServerException extends AppException {
 class HttpRequestException extends AppException {
   final int statusCode;
 
-  HttpRequestException(String message, this.statusCode, [StackTrace? stackTrace, ErrorMapper? errorMapper])
-      : super(message, stackTrace, errorMapper);
+  HttpRequestException(
+    String message,
+    this.statusCode, [
+    StackTrace? stackTrace,
+    ErrorMapper? errorMapper,
+  ]) : super(message, stackTrace, errorMapper);
 
   @override
   String toString() => "HttpRequestException ($statusCode): $message";
@@ -54,9 +58,8 @@ class PlatformException extends AppException {
   PlatformException(super.message, [super.stackTrace, super.errorMapper]);
 }
 
-
 /// Dart Runtime Exception
-/// 
-class  DartError extends AppException {
+///
+class DartError extends AppException {
   DartError(super.message, [super.stackTrace, super.errorMapper]);
 }

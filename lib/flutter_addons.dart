@@ -29,7 +29,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as service;
 
 // Import necessary parts of the package
-// 
+//
 // Base
 part 'src/base/boolean_extension.dart';
 part 'src/base/int_extension.dart';
@@ -112,7 +112,6 @@ part 'src/core/themes/theme_maker.dart';
 part 'src/core/themes/theme_engine.dart';
 part 'src/core/themes/theme_manager.dart';
 part 'src/core/themes/soul_component.dart';
-
 
 /// Color Plattes
 part 'src/core/palettes/soul_colors.dart';

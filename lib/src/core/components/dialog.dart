@@ -1,14 +1,9 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Available dialog animations
-enum DialogAnimation {
-  fade,
-  scale,
-  slide,
-  rotation,
-}
+enum DialogAnimation { fade, scale, slide, rotation }
 
-/// Still Developing 
+/// Still Developing
 
 /// Glassmorphism dialog utility class
 /// for displaying messages with animations
@@ -24,9 +19,14 @@ class GlassDialog {
     DialogAnimation animation = DialogAnimation.scale,
     Color backgroundColor = Colors.black87,
     TextStyle titleStyle = const TextStyle(
-        fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
-    TextStyle messageStyle =
-        const TextStyle(fontSize: 16, color: Colors.white70),
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
+    TextStyle messageStyle = const TextStyle(
+      fontSize: 16,
+      color: Colors.white70,
+    ),
     double backgroundRadius = 20.0,
     Border? border,
     bool dismissible = true,
@@ -108,22 +108,25 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
       vsync: this,
     );
 
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, -0.1),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
-    _scaleAnimation = Tween<double>(begin: 0.7, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 0.7,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
 
-    _rotationAnimation = Tween<double>(begin: -0.1, end: 0.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    _rotationAnimation = Tween<double>(
+      begin: -0.1,
+      end: 0.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
 
     _controller.forward();
   }
@@ -138,7 +141,7 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
         return ScaleTransition(scale: _scaleAnimation, child: child);
       case DialogAnimation.rotation:
         return RotationTransition(turns: _rotationAnimation, child: child);
-      }
+    }
   }
 
   @override
@@ -155,7 +158,7 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
                 padding: const EdgeInsets.all(20),
                 width: MediaQuery.of(context).size.width * 0.8,
                 decoration: BoxDecoration(
-                  color: widget.backgroundColor.withValues(alpha:0.8),
+                  color: widget.backgroundColor.withValues(alpha: 0.8),
                   borderRadius: BorderRadius.circular(widget.backgroundRadius),
                   border: widget.border,
                 ),
@@ -166,9 +169,17 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
                       Icon(widget.icon, size: 40, color: Colors.white),
                       const SizedBox(height: 10),
                     ],
-                    Text(widget.title, style: widget.titleStyle, textAlign: TextAlign.center),
+                    Text(
+                      widget.title,
+                      style: widget.titleStyle,
+                      textAlign: TextAlign.center,
+                    ),
                     const SizedBox(height: 10),
-                    Text(widget.message, style: widget.messageStyle, textAlign: TextAlign.center),
+                    Text(
+                      widget.message,
+                      style: widget.messageStyle,
+                      textAlign: TextAlign.center,
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -179,7 +190,10 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
                               widget.onCancel?.call();
                               Navigator.pop(context);
                             },
-                            child: Text(widget.cancelText!, style: const TextStyle(color: Colors.red)),
+                            child: Text(
+                              widget.cancelText!,
+                              style: const TextStyle(color: Colors.red),
+                            ),
                           ),
                         ElevatedButton(
                           onPressed: () {
@@ -187,12 +201,17 @@ class _GlassDialogWidgetState extends State<_GlassDialogWidget>
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white.withValues(alpha:0.3),
+                            backgroundColor: Colors.white.withValues(
+                              alpha: 0.3,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          child: Text(widget.confirmText, style: const TextStyle(color: Colors.white)),
+                          child: Text(
+                            widget.confirmText,
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ),
                       ],
                     ),

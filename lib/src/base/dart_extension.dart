@@ -1,11 +1,9 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-// This file contains a collection of highly useful pure Dart extensions 
+// This file contains a collection of highly useful pure Dart extensions
 // These extensions provide additional functionality for various Dart operations.
 // Each extension is designed to be intuitive and easy to use.
 // Simply import this file to start leveraging these extensions in your Dart projects.
-
-
 
 // 1. Extension to Get the Last Element of a List
 extension LastElement<T> on List<T> {
@@ -20,7 +18,6 @@ extension LastElement<T> on List<T> {
 // final lastItem = list.lastOrNull;  // 3
 // final emptyList = [];
 // final noItem = emptyList.lastOrNull;  // null
-
 
 // 2. Extension to Shuffle a List
 extension ShuffleList<T> on List<T> {
@@ -40,7 +37,6 @@ extension ShuffleList<T> on List<T> {
 // list.shuffleList();  // Shuffles the list randomly
 // print(list);
 
-
 // 3. Extension to Remove Duplicates from a List
 extension RemoveDuplicates<T> on List<T> {
   List<T> removeDuplicates() {
@@ -53,7 +49,6 @@ extension RemoveDuplicates<T> on List<T> {
 // final uniqueList = list.removeDuplicates();  // [1, 2, 3, 4, 5]
 // print(uniqueList);
 
-
 // 4. Extension to Find the Index of the First Match
 extension FindIndex<T> on List<T> {
   int findIndex(bool Function(T) condition) {
@@ -62,7 +57,7 @@ extension FindIndex<T> on List<T> {
         return i;
       }
     }
-    return -1;  // Return -1 if no match found
+    return -1; // Return -1 if no match found
   }
 }
 
@@ -70,7 +65,6 @@ extension FindIndex<T> on List<T> {
 // final list = [1, 2, 3, 4, 5];
 // final index = list.findIndex((element) => element == 3);  // 2
 // print(index);
-
 
 // 5. Extension to Split a List into Chunks
 extension ChunkList<T> on List<T> {
@@ -87,7 +81,6 @@ extension ChunkList<T> on List<T> {
 // final list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 // final chunked = list.chunk(3);  // [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 // print(chunked);
-
 
 // 6. Extension to Sort by a Custom Comparator
 extension SortBy<T> on List<T> {
@@ -109,7 +102,6 @@ extension SortBy<T> on List<T> {
 // ];
 // people.sortBy((person) => person.age);
 
-
 // 7. Extension to Reverse the List
 extension ReverseList<T> on List<T> {
   List<T> reversedList() {
@@ -121,7 +113,6 @@ extension ReverseList<T> on List<T> {
 // final list = [1, 2, 3, 4, 5];
 // final reversed = list.reversedList();  // [5, 4, 3, 2, 1]
 // print(reversed);
-
 
 // 8. Extension to Remove the First Occurrence of an Item
 extension RemoveFirstOccurrence<T> on List<T> {
@@ -140,7 +131,6 @@ extension RemoveFirstOccurrence<T> on List<T> {
 // final removed = list.removeFirstOccurrence(3);  // true
 // print(list);  // [1, 2, 4, 5]
 
-
 // 9. Extension to Find a Specific Element or Return a Default
 extension FindOrDefault<T> on List<T> {
   T? findOrDefault(bool Function(T) condition, T? defaultValue) {
@@ -157,7 +147,6 @@ extension FindOrDefault<T> on List<T> {
 // final list = [1, 2, 3, 4, 5];
 // final found = list.findOrDefault((e) => e == 3, -1);  // 3
 // final notFound = list.findOrDefault((e) => e == 6, -1);  // -1
-
 
 // 10. Extension to Get the Index of a Maximum or Minimum Value
 extension MaxMinIndex<T> on List<T> {
@@ -195,9 +184,6 @@ extension MaxMinIndex<T> on List<T> {
 // print(maxIdx);  // 4
 // print(minIdx);  // 0
 
-
-
-
 // 11. Extension to Merge Two Lists
 extension MergeList<T> on List<T> {
   List<T> merge(List<T> other) {
@@ -209,7 +195,6 @@ extension MergeList<T> on List<T> {
 // final list1 = [1, 2, 3];
 // final list2 = [4, 5, 6];
 // final merged = list1.merge(list2);  // [1, 2, 3, 4, 5, 6]
-
 
 // 12. Extension to Filter Elements from a List Using Multiple Conditions
 extension MultiFilterList<T> on List<T> {
@@ -227,7 +212,6 @@ extension MultiFilterList<T> on List<T> {
 //   (x) => x > 2,
 // ]);  // [4]
 
-
 // 13. Extension to Remove Null Elements from a List
 extension RemoveNulls<T> on List<T?> {
   List<T> removeNulls() {
@@ -238,7 +222,6 @@ extension RemoveNulls<T> on List<T?> {
 // Usage:
 // final list = [1, null, 2, null, 3];
 // final cleaned = list.removeNulls();  // [1, 2, 3]
-
 
 // 14. Extension to Join List Elements into a String
 extension JoinList<T> on List<T> {
@@ -251,7 +234,6 @@ extension JoinList<T> on List<T> {
 // final list = ['apple', 'banana', 'cherry'];
 // final result = list.joinList(', ');  // "apple, banana, cherry"
 
-
 // 15. Extension to Create a List of N Repeated Elements
 extension RepeatList<T> on List<T> {
   List<T> repeat(int times) {
@@ -263,7 +245,6 @@ extension RepeatList<T> on List<T> {
 // final list = [1, 2, 3];
 // final repeated = list.repeat(5);  // [1, 2, 3, 1, 2]
 
-
 // 16. Extension to Check if a List Contains Any of a Set of Values
 extension ContainsAny<T> on List<T> {
   bool containsAny(List<T> elements) {
@@ -274,7 +255,6 @@ extension ContainsAny<T> on List<T> {
 // Usage:
 // final list = [1, 2, 3, 4, 5];
 // final contains = list.containsAny([2, 6]);  // true
-
 
 // 17. Extension to Calculate the Average Value of a List of Numbers
 extension AverageList on List<num> {
@@ -288,7 +268,6 @@ extension AverageList on List<num> {
 // final list = [1, 2, 3, 4, 5];
 // final avg = list.average;  // 3.0
 
-
 // 18. Extension to Convert a List of Strings into a Map
 extension StringListToMap on List<String> {
   Map<String, int> toStringMap() {
@@ -299,7 +278,6 @@ extension StringListToMap on List<String> {
 // Usage:
 // final list = ['a', 'bb', 'ccc'];
 // final map = list.toStringMap();  // {'a': 1, 'bb': 2, 'ccc': 3}
-
 
 // 19. Extension to Get Distinct Elements Based on a Key
 extension DistinctBy<T> on Iterable<T> {
@@ -312,7 +290,6 @@ extension DistinctBy<T> on Iterable<T> {
 // Usage:
 // final list = ['apple', 'banana', 'apple', 'cherry'];
 // final distinct = list.distinctBy((item) => item);  // ['apple', 'banana', 'cherry']
-
 
 // 20. Extension to Check if a List is Sorted
 extension IsSorted<T extends Comparable> on List<T> {
@@ -330,7 +307,6 @@ extension IsSorted<T extends Comparable> on List<T> {
 // final list = [1, 2, 3, 4];
 // final isSorted = list.isSorted;  // true
 
-
 // 21. Extension to Convert a Map to a List of Values
 extension MapToList<T, V> on Map<T, V> {
   List<V> toListOfValues() {
@@ -341,7 +317,6 @@ extension MapToList<T, V> on Map<T, V> {
 // Usage:
 // final map = {'a': 1, 'b': 2, 'c': 3};
 // final values = map.toListOfValues();  // [1, 2, 3]
-
 
 // 22. Extension to Count the Occurrences of a Character in a String
 extension CountChar on String {
@@ -354,7 +329,6 @@ extension CountChar on String {
 // final str = 'hello world';
 // final count = str.countOccurrences('o');  // 2
 
-
 // 23. Extension to Convert a Map of Strings to a Map of Ints
 extension MapStringToInt on Map<String, String> {
   Map<String, int> toIntMap() {
@@ -365,7 +339,6 @@ extension MapStringToInt on Map<String, String> {
 // Usage:
 // final map = {'a': '1', 'b': '2', 'c': '3'};
 // final intMap = map.toIntMap();  // {'a': 1, 'b': 2, 'c': 3}
-
 
 // 24. Extension to Add a Key-Value Pair to a Map if It Doesn’t Exist
 extension AddIfAbsent<K, V> on Map<K, V> {
@@ -381,7 +354,6 @@ extension AddIfAbsent<K, V> on Map<K, V> {
 // map.addIfAbsent('c', () => 3);  // Adds 'c': 3
 // print(map);  // {'a': 1, 'b': 2, 'c': 3}
 
-
 // 25. Extension to Create a List of Numbers in a Range
 extension RangeList on int {
   List<int> rangeTo(int end) {
@@ -391,7 +363,6 @@ extension RangeList on int {
 
 // Usage:
 // final range = 1.rangeTo(5);  // [1, 2, 3, 4, 5]
-
 
 // 26. Extension to Split a String into Substrings of Fixed Length
 extension SplitFixedLength on String {
@@ -408,7 +379,6 @@ extension SplitFixedLength on String {
 // final str = 'abcdefghij';
 // final parts = str.splitFixedLength(3);  // ['abc', 'def', 'ghi', 'j']
 
-
 // 27. Extension to Convert an Iterable to a List of Maps
 extension ToListOfMaps<T> on Iterable<T> {
   List<Map<String, T>> toListOfMaps(String key) {
@@ -418,12 +388,11 @@ extension ToListOfMaps<T> on Iterable<T> {
 
 extension ListGenerator on int {
   /// Generates a List of values based on the number.
-  List<T> generateList<T>({
-    required T Function(int) itemBuilder,
-  }) {
+  List<T> generateList<T>({required T Function(int) itemBuilder}) {
     return List.generate(this, (index) => itemBuilder(index));
   }
 }
+
 // Usage:
 // final list = [1, 2, 3];
 // final listOfMaps = list.toListOfMaps('number');  // [{'number': 1}, {'number': 2}, {'number': 3}]

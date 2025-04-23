@@ -49,8 +49,6 @@ extension BorderSideX on BorderSide {
   BorderSide width(double width) => copyWith(width: width);
 }
 
-
-
 extension BoxDecorationExtension on BoxDecoration {
   /// Adds a solid color background with rounded corners.
   BoxDecoration withRoundedCorners({
@@ -58,7 +56,7 @@ extension BoxDecorationExtension on BoxDecoration {
     double borderRadius = 8.0,
   }) {
     return BoxDecoration(
-     // color: color,
+      // color: color,
       borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
     );
   }
@@ -91,12 +89,9 @@ extension BoxDecorationExtension on BoxDecoration {
     double borderRadius = 8.0,
   }) {
     return BoxDecoration(
-     // color: this.color,
+      // color: this.color,
       borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-      border: Border.all(
-        color: color,
-        width: width,
-      ),
+      border: Border.all(color: color, width: width),
     );
   }
 
@@ -125,10 +120,7 @@ extension BoxDecorationExtension on BoxDecoration {
     return BoxDecoration(
       color: color,
       borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-      border: Border.all(
-        color: borderColor,
-        width: borderWidth,
-      ),
+      border: Border.all(color: borderColor, width: borderWidth),
       boxShadow: [
         BoxShadow(
           color: shadowColor,
@@ -140,7 +132,6 @@ extension BoxDecorationExtension on BoxDecoration {
     );
   }
 }
-
 
 /// Uses
 
@@ -154,8 +145,6 @@ extension BoxDecorationExtension on BoxDecoration {
 //       .errorText("Invalid username")
 //       .filled(true, fillColor: Colors.grey[200]),
 // );
-
-
 
 // Container(
 //   decoration: BoxDecoration()

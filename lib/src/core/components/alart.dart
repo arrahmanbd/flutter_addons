@@ -40,7 +40,7 @@ class GlassAlertDialog {
               backgroundColor ?? context.background.withValues(alpha: .25),
           titleStyle: titleStyle,
           messageStyle: messageStyle,
-          backgroundRadius: backgroundRadius??8.0,
+          backgroundRadius: backgroundRadius ?? 8.0,
           border:
               border ??
               Border.all(
@@ -191,10 +191,10 @@ class _GlassAlertWidgetState extends State<_GlassAlertWidget>
                               ),
                               side: BorderSide(
                                 color: context.primaryColor.withValues(
-                              alpha: 0.75,
-                            ),
+                                  alpha: 0.75,
+                                ),
 
-                              width: 1,
+                                width: 1,
                               ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
@@ -222,8 +222,8 @@ class _GlassAlertWidgetState extends State<_GlassAlertWidget>
                             ),
                             side: BorderSide(
                               color: context.primaryColor.withValues(
-                              alpha: 0.75,
-                            ),
+                                alpha: 0.75,
+                              ),
 
                               width: 1,
                             ),

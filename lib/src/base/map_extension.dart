@@ -1,4 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
+
 extension ExtendJson on Map {
   /// Merges the current map with one or more source maps.
   Map extend(Map source, [Iterable<Map>? additionalSources]) {
@@ -30,27 +31,26 @@ Map extend(Map target, Map source, [Iterable<Map>? sources]) =>
 Map extendAll(Map target, Iterable<Map> sources) =>
     target.extend(sources.first, sources.skip(1));
 
-
 /// Merges the current map with one or more source maps.
-  /// The original map is modified.
-  ///
-  /// Example:
-  /// ```dart
-  /// var base = {
-  ///   'name': 'John',
-  ///   'address': {
-  ///     'city': 'New York',
-  ///   }
-  /// };
-  ///
-  /// var update = {
-  ///   'age': 30,
-  ///   'address': {
-  ///     'city': 'Los Angeles',
-  ///     'country': 'USA',
-  ///   }
-  /// };
-  ///
-  /// base.extend(update);
-  /// print(base); // Output: {'name': 'John', 'address': {'city': 'Los Angeles', 'country': 'USA'}, 'age': 30}
-  /// ``
+/// The original map is modified.
+///
+/// Example:
+/// ```dart
+/// var base = {
+///   'name': 'John',
+///   'address': {
+///     'city': 'New York',
+///   }
+/// };
+///
+/// var update = {
+///   'age': 30,
+///   'address': {
+///     'city': 'Los Angeles',
+///     'country': 'USA',
+///   }
+/// };
+///
+/// base.extend(update);
+/// print(base); // Output: {'name': 'John', 'address': {'city': 'Los Angeles', 'country': 'USA'}, 'age': 30}
+/// ``

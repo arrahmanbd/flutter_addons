@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 extension ListViewGeneratorForList on List {
   /// Generates a ListView.builder widget based on the List
@@ -26,9 +24,7 @@ extension ListViewGeneratorForList on List {
   }
 
   /// Generates a List of widgets based on the current list's length
-  List<Widget> generateList({
-    required Widget Function(int) itemBuilder,
-  }) {
+  List<Widget> generateList({required Widget Function(int) itemBuilder}) {
     return List.generate(length, (index) => itemBuilder(index));
   }
 }

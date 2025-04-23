@@ -1,6 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
 /// Extension on `num` for dynamic `TextStyle` creation.
 extension SortHandStyleExtension on num {
   /// Returns a base text style with the given font size.
@@ -46,7 +45,6 @@ extension SortHandStyleExtension on num {
     );
   }
 }
-
 
 /// Extension on `Color` to quickly create `TextStyle` with a specific color.
 extension ColorTextStyle on Color {

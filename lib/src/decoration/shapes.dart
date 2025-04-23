@@ -2,7 +2,6 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// **Theme-Aware Common Styles**
 class Shapes {
-
   /// **Outline Border**
   static InputBorder flatBorder(BuildContext context, {Color? color}) {
     return OutlineInputBorder(
@@ -10,8 +9,6 @@ class Shapes {
       borderSide: BorderSide(color: color ?? context.outline, width: 1),
     );
   }
-
-
 
   /// **Button Style**
   static ButtonStyle buttonStyle(BuildContext context, {Color? background}) {
@@ -30,7 +27,7 @@ class Shapes {
       borderRadius: BorderRadius.circular(12.r),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withValues(alpha:0.05),
+          color: Colors.black.withValues(alpha: 0.05),
           spreadRadius: 1,
           blurRadius: 5,
         ),
@@ -42,7 +39,7 @@ class Shapes {
   static List<BoxShadow> softShadow() {
     return [
       BoxShadow(
-        color: Colors.black.withValues(alpha:0.08),
+        color: Colors.black.withValues(alpha: 0.08),
         blurRadius: 6,
         spreadRadius: 1,
         offset: const Offset(2, 2),
@@ -50,4 +47,3 @@ class Shapes {
     ];
   }
 }
-

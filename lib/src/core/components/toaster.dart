@@ -1,7 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
-/// Still Developing 
+/// Still Developing
 
 /// Available toast animations
 enum ToastAnimation { fade, slide, scale, rotation }

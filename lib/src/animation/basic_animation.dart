@@ -1,8 +1,7 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
 extension AnimatedWidgetExtensions on Widget {
-   /// Combined animation with fade, scale, and slide effects etc
+  /// Combined animation with fade, scale, and slide effects etc
   Widget animate({
     Duration duration = const Duration(milliseconds: 700),
     Duration delay = Duration.zero,
@@ -51,10 +50,9 @@ extension AnimatedWidgetExtensions on Widget {
       delay: delay,
       repeat: repeat,
       inverse: inverse,
-      builder: (context, animation) => Opacity(
-        opacity: animation.value,
-        child: this,
-      ),
+      builder:
+          (context, animation) =>
+              Opacity(opacity: animation.value, child: this),
     );
   }
 
@@ -72,10 +70,11 @@ extension AnimatedWidgetExtensions on Widget {
       delay: delay,
       repeat: repeat,
       inverse: inverse,
-      builder: (context, animation) => Transform.scale(
-        scale: begin + (animation.value * (end - begin)),
-        child: this,
-      ),
+      builder:
+          (context, animation) => Transform.scale(
+            scale: begin + (animation.value * (end - begin)),
+            child: this,
+          ),
     );
   }
 
@@ -92,10 +91,11 @@ extension AnimatedWidgetExtensions on Widget {
       delay: delay,
       repeat: repeat,
       inverse: inverse,
-      builder: (context, animation) => Transform.translate(
-        offset: Offset(-offset + (animation.value * offset), 0),
-        child: this,
-      ),
+      builder:
+          (context, animation) => Transform.translate(
+            offset: Offset(-offset + (animation.value * offset), 0),
+            child: this,
+          ),
     );
   }
 
@@ -113,10 +113,11 @@ extension AnimatedWidgetExtensions on Widget {
       delay: delay,
       repeat: repeat,
       inverse: inverse,
-      builder: (context, animation) => Transform.rotate(
-        angle: begin + (animation.value * (end - begin)) * 3.14,
-        child: this,
-      ),
+      builder:
+          (context, animation) => Transform.rotate(
+            angle: begin + (animation.value * (end - begin)) * 3.14,
+            child: this,
+          ),
     );
   }
 
@@ -134,15 +135,14 @@ extension AnimatedWidgetExtensions on Widget {
       delay: delay,
       repeat: repeat,
       inverse: inverse,
-      builder: (context, animation) => Transform.scale(
-        scale: begin + (animation.value * (end - begin)),
-        child: this,
-      ),
+      builder:
+          (context, animation) => Transform.scale(
+            scale: begin + (animation.value * (end - begin)),
+            child: this,
+          ),
     );
   }
 
-
- 
   /// Spring animation (bounce effect)
   Widget spring({
     Duration duration = const Duration(milliseconds: 800),
@@ -203,19 +203,18 @@ extension AnimatedWidgetExtensions on Widget {
   }
 }
 
-
 /// Use [Animation]
-/// 
+///
 ///  Text("Hello, Flutter!").animate(),  // Fade + Scale + Slide
-              // SizedBox(height: 20),
-              // Icon(Icons.star, size: 50, color: Colors.amber).spring(),  // Spring Bounce
-              // SizedBox(height: 20),
-              // ElevatedButton(
-              //   onPressed: () {},
-              //   child: Text("Shake Me"),
-              // ).shake(repeat: true, intensity: 5),  // Shaky Button
-              // SizedBox(height: 20),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: List.generate(5, (index) => Icon(Icons.circle, size: 20).staggered(index)),  // Staggered effect
-              // ),
+// SizedBox(height: 20),
+// Icon(Icons.star, size: 50, color: Colors.amber).spring(),  // Spring Bounce
+// SizedBox(height: 20),
+// ElevatedButton(
+//   onPressed: () {},
+//   child: Text("Shake Me"),
+// ).shake(repeat: true, intensity: 5),  // Shaky Button
+// SizedBox(height: 20),
+// Row(
+//   mainAxisAlignment: MainAxisAlignment.center,
+//   children: List.generate(5, (index) => Icon(Icons.circle, size: 20).staggered(index)),  // Staggered effect
+// ),

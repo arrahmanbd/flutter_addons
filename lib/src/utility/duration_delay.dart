@@ -1,4 +1,3 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
 extension GetDurationUtils on Duration {

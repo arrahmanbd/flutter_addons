@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 final flutterWidgets = HashSet<String>.from({
   'AbsorbPointer',
@@ -828,5 +826,5 @@ final flutterWidgets = HashSet<String>.from({
   'WidgetToRenderBoxAdapter',
   'WillPopScope',
   'WordBoundary',
-  'Wrap'
+  'Wrap',
 });

@@ -1,4 +1,3 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 // Dart extension on num that converts a number into a currency format with a symbol, ensuring a fixed decimal length.
 
@@ -51,4 +50,3 @@ extension CurrencyExtension on num {
     return '$symbol${toStringAsFixed(decimals)}';
   }
 }
-

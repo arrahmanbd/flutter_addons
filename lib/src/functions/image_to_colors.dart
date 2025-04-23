@@ -219,8 +219,6 @@ Future<List<List<int>>?> _decodeImageColors(
   );
 }
 
-
-
 /// Extracts a color palette from an `Image` object.
 Future<List<Color>> getPaletteFromImage(
   Uint8List imageData,
