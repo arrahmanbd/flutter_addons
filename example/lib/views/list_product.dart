@@ -6,7 +6,7 @@ class ListOfProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Product> product = generateDummyProducts(10);
+    List<FakeProduct> product = generateDummyProducts(10);
     return product.generateListView(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,

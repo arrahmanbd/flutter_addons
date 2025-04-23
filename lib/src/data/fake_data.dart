@@ -1,24 +1,25 @@
 part of 'package:flutter_addons/flutter_addons.dart';
+
 //dummy data
-class Person {
+class FakePerson {
   final String name;
   final int age;
   final String email;
 
-  Person({required this.name, required this.age, required this.email});
+  FakePerson({required this.name, required this.age, required this.email});
 
   @override
   String toString() => 'Person(name: $name, age: $age, email: $email)';
 }
 
-class User {
+class FakeUsers {
   final String username;
   final String password;
   final String fullName;
   final String email;
   final List<String> comments;
 
-  User({
+  FakeUsers({
     required this.username,
     required this.password,
     required this.fullName,
@@ -31,7 +32,7 @@ class User {
       'User(username: $username, password: $password, fullName: $fullName, email: $email, comments: $comments)';
 }
 
-class Product {
+class FakeProduct {
   final String id;
   final String name;
   final String description;
@@ -40,7 +41,7 @@ class Product {
   final String category;
   final List<String> comments;
 
-  Product({
+  FakeProduct({
     required this.id,
     required this.name,
     required this.description,
@@ -55,14 +56,14 @@ class Product {
       'Product(id: $id, name: $name, description: $description, price: $price, imageUrl: $imageUrl, category: $category, comments: $comments)';
 }
 
-class Item {
+class FakeItem {
   final String id;
   final String title;
   final String description;
   final double price;
   final List<String> comments;
 
-  Item({
+  FakeItem({
     required this.id,
     required this.title,
     required this.description,
@@ -77,7 +78,7 @@ class Item {
 
 // Realistic Dummy Data Generator Functions
 
-List<Person> generateDummyPersons(int count) {
+List<FakePerson> generateDummyPersons(int count) {
   List<String> names = [
     "John Smith",
     "Emily Davis",
@@ -105,7 +106,7 @@ List<Person> generateDummyPersons(int count) {
   ];
 
   return List.generate(count, (index) {
-    return Person(
+    return FakePerson(
       name: names[index % names.length],
       age: 20 + (index % 50),
       email: emails[index % emails.length],
@@ -113,7 +114,7 @@ List<Person> generateDummyPersons(int count) {
   });
 }
 
-List<User> generateDummyUsers(int count) {
+List<FakeUsers> generateDummyUsers(int count) {
   List<String> usernames = [
     "johnsmith123",
     "emilydavis_",
@@ -140,7 +141,7 @@ List<User> generateDummyUsers(int count) {
     "mysecurepassword",
   ];
 
-  List<String> names = [
+  List<String> fakeNames = [
     "John Smith",
     "Emily Davis",
     "Michael Brown",
@@ -148,7 +149,7 @@ List<User> generateDummyUsers(int count) {
     "David Wilson",
   ];
 
-  List<String> emails = [
+  List<String> fakeEmails = [
     "john.smith@example.com",
     "emily.davis@example.com",
     "michael.brown@example.com",
@@ -156,7 +157,7 @@ List<User> generateDummyUsers(int count) {
     "david.wilson@example.com",
   ];
 
-  List<List<String>> commentsList = [
+  List<List<String>> fakeCommentsList = [
     ["Great service!", "Loving the experience.", "Highly recommend!"],
     ["Not bad, but could improve.", "Fast delivery!", "Will shop again."],
     [
@@ -169,17 +170,17 @@ List<User> generateDummyUsers(int count) {
   ];
 
   return List.generate(count, (index) {
-    return User(
+    return FakeUsers(
       username: usernames[index % usernames.length],
       password: passwords[index % passwords.length],
-      fullName: names[index % names.length],
-      email: emails[index % emails.length],
-      comments: commentsList[index % commentsList.length],
+      fullName: fakeNames[index % fakeNames.length],
+      email: fakeEmails[index % fakeEmails.length],
+      comments: fakeCommentsList[index % fakeCommentsList.length],
     );
   });
 }
 
-List<Product> generateDummyProducts(int count) {
+List<FakeProduct> generateDummyProducts(int count) {
   List<String> productNames = [
     "Wireless Headphones",
     "Laptop Backpack",
@@ -193,7 +194,7 @@ List<Product> generateDummyProducts(int count) {
     "External Hard Drive",
   ];
 
-  List<String> productDescriptions = [
+  List<String> fakeProductDescriptions = [
     "High-quality wireless headphones with noise-canceling feature.",
     "Durable laptop backpack with extra compartments for storage.",
     "Adjustable smartphone stand for desk use.",
@@ -206,7 +207,7 @@ List<Product> generateDummyProducts(int count) {
     "Fast data transfer external hard drive with large storage capacity.",
   ];
 
-  List<String> categories = [
+  List<String> fakeCategories = [
     "Electronics",
     "Accessories",
     "Office Supplies",
@@ -214,7 +215,7 @@ List<Product> generateDummyProducts(int count) {
     "Home Entertainment",
   ];
 
-  List<List<String>> commentsList = [
+  List<List<String>> fakeCommentsList = [
     [
       "Great sound quality!",
       "Comfortable to wear for hours.",
@@ -256,19 +257,19 @@ List<Product> generateDummyProducts(int count) {
   ];
 
   return List.generate(count, (index) {
-    return Product(
+    return FakeProduct(
       id: 'P${index + 1}',
       name: productNames[index % productNames.length],
-      description: productDescriptions[index % productDescriptions.length],
+      description: fakeProductDescriptions[index % fakeProductDescriptions.length],
       price: (index + 1) * 20.0,
       imageUrl: 'https://example.com/images/product${index + 1}.png',
-      category: categories[index % categories.length],
-      comments: commentsList[index % commentsList.length],
+      category: fakeCategories[index % fakeCategories.length],
+      comments: fakeCommentsList[index % fakeCommentsList.length],
     );
   });
 }
 
-List<Item> generateDummyItems(int count) {
+List<FakeItem> generateDummyItems(int count) {
   List<String> itemTitles = [
     "Item One",
     "Item Two",
@@ -282,7 +283,7 @@ List<Item> generateDummyItems(int count) {
     "Item Ten",
   ];
 
-  List<String> itemDescriptions = [
+  List<String> fakeItemDescriptions = [
     "A useful item for various purposes.",
     "An item designed to solve common problems.",
     "A premium quality item for enthusiasts.",
@@ -295,7 +296,7 @@ List<Item> generateDummyItems(int count) {
     "A budget-friendly item for casual use.",
   ];
 
-  List<List<String>> commentsList = [
+  List<List<String>> fakeCommentsList = [
     [
       "Great item, will buy again.",
       "Not bad for the price.",
@@ -341,12 +342,12 @@ List<Item> generateDummyItems(int count) {
   ];
 
   return List.generate(count, (index) {
-    return Item(
+    return FakeItem(
       id: 'I${index + 1}',
       title: itemTitles[index % itemTitles.length],
-      description: itemDescriptions[index % itemDescriptions.length],
+      description: fakeItemDescriptions[index % fakeItemDescriptions.length],
       price: (index + 1) * 15.0,
-      comments: commentsList[index % commentsList.length],
+      comments: fakeCommentsList[index % fakeCommentsList.length],
     );
   });
 }
@@ -359,4 +360,3 @@ Map<String, dynamic> dummyDataGenerators = {
   'generateProducts': generateDummyProducts,
   'generateItems': generateDummyItems,
 };
-

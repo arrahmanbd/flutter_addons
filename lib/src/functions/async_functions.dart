@@ -1,4 +1,3 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// **Async Utilities Functions**
@@ -8,7 +7,7 @@ extension AsyncUtilities<T> on Future<T> {
     try {
       return await this;
     } catch (e, stackTrace) {
-      log("Async Error: $e\n$stackTrace"); // Log error
+      dbug("Async Error: $e\n$stackTrace"); // Log error
       return fallback;
     }
   }
@@ -33,7 +32,8 @@ extension AsyncUtilities<T> on Future<T> {
   Future<T> withTimeout(Duration duration, {T? fallback}) {
     return timeout(
       duration,
-      onTimeout: () => fallback ?? (throw TimeoutException('Operation timed out')),
+      onTimeout:
+          () => fallback ?? (throw TimeoutException('Operation timed out')),
     );
   }
 
@@ -92,7 +92,7 @@ class FutureUtils {
       try {
         results.add(await future);
       } catch (e) {
-        log("Ignoring error in Future.waitAll: $e");
+        dbug("Ignoring error in Future.waitAll: $e");
       }
     }
     return results;

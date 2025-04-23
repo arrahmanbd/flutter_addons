@@ -1,4 +1,3 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Log levels
@@ -64,9 +63,8 @@ class Debug {
   }
 }
 
-
 /// Easy access
-void log(String? message) {
+void dbug(String? message) {
   // Regular expression to match file paths (package:some_package/some_file.dart:line_number:column_number)
   final filePathRegex = RegExp(r'(package:[\w\d_\-]+(?:/[\w\d_\-]+)+:\d+:\d+)');
   final highlightedMessage = message?.replaceAllMapped(

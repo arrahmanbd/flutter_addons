@@ -53,11 +53,11 @@ class HomePage extends StatelessWidget {
                 message: "Are you sure you want to change Theme?",
                 confirmText: "Yes",
                 onConfirm: () {
-                  log("Confirmed!");
+                  dbug("Confirmed!");
                 },
                 cancelText: "No",
                 onCancel: () {
-                  log("Cancelled!");
+                  dbug("Cancelled!");
                 },
                 animation: AlertAnimation.scale, // Choose animation
                 backgroundColor: context.background.withValues(alpha: .25),

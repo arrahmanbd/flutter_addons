@@ -123,7 +123,7 @@ class FlutterAddonsErrorReporting {
               children: [
                 buildLogButton(
                   onPressed: () {
-                    log(details.exception.toString());
+                    dbug(details.exception.toString());
                   },
                   label: "View Log",
                   icon: Icons.bug_report,
@@ -232,7 +232,7 @@ class FlutterAddonsErrorReporting {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildLogButton(
-          onPressed: () => log("Error: ${details.exception.toString()}"),
+          onPressed: () => dbug("Error: ${details.exception.toString()}"),
           label: "View Log",
           icon: Icons.bug_report_outlined,
           backgroundColor: const Color.fromARGB(255, 81, 194, 250),

@@ -1,3 +1,8 @@
+# 1.2.4
+
+## Fixed Conflict Class Names   
+- Added Fake Data
+- Removed Conflict Class Names
 # 1.2.3
 
 ## Theme Engine Enhancements  
