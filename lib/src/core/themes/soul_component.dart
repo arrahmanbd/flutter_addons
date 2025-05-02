@@ -35,7 +35,7 @@ class SoulComponentThemes {
     style: ElevatedButton.styleFrom(
       backgroundColor: colorScheme.primary,
       foregroundColor: colorScheme.onPrimary,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
       elevation: .35,
     ),
   );

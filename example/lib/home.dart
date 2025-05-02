@@ -1,6 +1,4 @@
-import 'package:example/providers/theme_provider.dart';
-import 'package:example/views/data_screen.dart';
-import 'package:example/views/next_screen.dart';
+import 'package:example/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +9,7 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
+  throw Exception('ok error_message',);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.primaryColor.withAlpha(10),
@@ -141,33 +140,7 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 16.0.sp),
                 ).animate(),
                 10.s,
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        NextScreen().go(context);
-                        Debug.warning(
-                          'Your code is like your ex. You wrote it with love, now it only brings pain🗿',
-                        );
-                      },
-                      child: Text('Explore'),
-                    ),
-                    10.s,
-                    OutlinedButton(
-                      onPressed: () {
-                        DataScreen().go(context);
-                        Debug.info(
-                          'Your code doesn’t work? Just add more comments. At least your future self will suffer with context',
-                        );
-
-                        Debug.error(
-                          'Every time you fix a bug, two new ones spawn. That’s called feature growth.',
-                        );
-                      },
-                      child: Text('Signup'),
-                    ),
-                  ],
-                ),
+                
               ],
             ),
           ),

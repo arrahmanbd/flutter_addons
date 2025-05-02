@@ -13,7 +13,6 @@
 
 library;
 
-import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:core';
@@ -51,12 +50,11 @@ part 'src/widgets/row_column.dart';
 part 'src/widgets/stacking.dart';
 part 'src/widgets/list_grid.dart';
 
-// Helper
-part 'src/core/ui_helper/font_resolver.dart';
-part 'src/core/ui_helper/rebuild_factor.dart';
-part 'src/core/ui_helper/ui_utils.dart';
-part 'src/core/ui_helper/ui_config.dart';
-part 'src/core/ui_helper/ui_extension.dart';
+// Responsive
+part 'src/core/responsive/responsive_app.dart';
+part 'src/core/responsive/responsive_space.dart';
+part 'src/core/responsive/base_responsive.dart';
+part 'src/core/responsive/screen_calculator.dart';
 
 // Spacing
 part 'src/spacing/spacing_extensions.dart';
@@ -133,7 +131,7 @@ part 'src/core/components/error_page.dart';
 part 'src/utility/author_speech.dart';
 
 /// Errors
-part 'src/core/errors/addons_error_repoting.dart';
+part 'src/core/errors/screen_of_death.dart';
 
 /// App Exception
 part 'src/core/errors/default_error_maper.dart';

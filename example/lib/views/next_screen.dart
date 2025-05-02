@@ -18,8 +18,8 @@ class NextScreen extends StatelessWidget {
   Container _buildHero(BuildContext context) {
     return Container(
       padding: 4.p,
-      height: 0.32.sh,
-      width: 420.w,
+      height: 40.h,
+      width: 100.w,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: MemoryImage(testBackground.toByteData()),

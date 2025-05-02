@@ -37,6 +37,7 @@ dependencies:
   flutter_addons:
     path: ../
   flutter_riverpod: ^2.6.1
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:

@@ -1,36 +1,42 @@
 import 'package:example/home.dart';
-import 'package:example/providers/theme_provider.dart';
+import 'package:example/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
-  // Ensure ScreenUtils is initialized
   WidgetsFlutterBinding.ensureInitialized();
   runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsiveApp(
+      builder: (context, orientation, screenType) {
+        return MetaApp();
+      },
+      designSize: Size(375, 812), // iPhone 12 Pro Max
+      errorScreenStyle: ErrorScreenStyle.blueCrash,
+    );
+  }
+}
+
+class MetaApp extends ConsumerWidget {
+  const MetaApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-    return UIConfig(
-      frame: UIUtils.getFrame(context),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      //useNewErrorPainter: false,
-      builder: (_, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Addons Example',
-          theme: theme.lightTheme,
-          darkTheme: theme.darkTheme,
-          themeMode: theme.themeMode,
-          home: HomePage(),
-        );
-      },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Addons Example',
+      theme: theme.lightTheme,
+      darkTheme: theme.darkTheme,
+      themeMode: theme.themeMode,
+      home: HomePage(),
     );
   }
 }
