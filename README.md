@@ -713,7 +713,7 @@ Debug.success("This is a success message"); // Logs a success message
 Alternatively, for a more generic logging approach:
 
 ```dart
-log('This is a log message');
+debug('This is a log message');
 ```
 
 Using a structured logging system allows better control and visibility over your app’s runtime behavior, making it easier to debug and maintain.
@@ -723,10 +723,11 @@ Using a structured logging system allows better control and visibility over your
 Contributions are welcome! If you have any feature requests, bug reports, or suggestions,  
 feel free to submit an issue or a pull request on [GitHub](https://github.com/arrahmanbd/flutter_addons).  
 
-
-
 ## 👨‍💻 Author
 
-Flutter Addons is actively maintained by **AR Rahman**. I am currently open to freelance and full-time opportunities. Feel free to [contact me](mailto:arrahman.bd@outlook.com) for inquiries, collaborations, or job offers.
+**Flutter Addons** is actively maintained by [**AR Rahman**](mailto:arrahman.bd@outlook.com).
+For questions, suggestions, or collaboration opportunities, feel free to [reach out](mailto:arrahman.bd@outlook.com).
 
-If you find Flutter Addons valuable, please consider giving the repository a ⭐️ to show your support!
+If you find this package helpful, please consider giving it a ⭐️ on GitHub — your support is greatly appreciated! 🚀
+
+
