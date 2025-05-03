@@ -5,14 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // Example of ThemeEngine
 class Themer extends ThemeManager {
   /// Define the light and dark themes in `Themer`.
-@override
-  ThemeData get lightTheme =>
-      ThemeMaker.makeTheme(LightSoul(),);
+  @override
+  ThemeData get lightTheme => ThemeMaker.makeTheme(LightSoul());
 
   @override
-  ThemeData get darkTheme =>
-      ThemeMaker.makeTheme(DarkSoul(),);
-
+  ThemeData get darkTheme => ThemeMaker.makeTheme(DarkSoul());
 
   /// Implement theme updating logic (this will be triggered when the theme changes).
   @override

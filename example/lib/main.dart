@@ -42,7 +42,6 @@ class MetaApp extends ConsumerWidget {
   }
 }
 
-
 // This is a simple example of a design using Flutter Addons
 // It demonstrates how to create a responsive layout with reference designSize
 class DesignExample extends StatelessWidget {
@@ -112,12 +111,7 @@ class DesignExample extends StatelessWidget {
                           child: Text('Explore'),
                         ),
                         4.s,
-                        OutlinedButton(
-                          onPressed: () {
-                           
-                          },
-                          child: Text('Signup'),
-                        ),
+                        OutlinedButton(onPressed: () {}, child: Text('Signup')),
                       ],
                     ),
                   ],
