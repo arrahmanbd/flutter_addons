@@ -68,8 +68,9 @@ extension AbsoluteValue on num {
 // 6. Extension to Calculate the Square Root of a Number
 extension SquareRoot on num {
   double get squareRoot {
-    if (this < 0)
+    if (this < 0) {
       return double.nan; // Square root is not defined for negative numbers
+    }
     return sqrt(this);
   }
 }
@@ -157,8 +158,9 @@ extension EuclideanDistance on Point {
 // 13. Extension to Get the Angle Between Two Vectors
 extension AngleBetweenVectors on List<num> {
   double angleBetween(List<num> other) {
-    if (length != other.length)
+    if (length != other.length) {
       throw ArgumentError('Vectors must have the same dimensions.');
+    }
     double dotProduct = 0;
     double magnitudeA = 0;
     double magnitudeB = 0;

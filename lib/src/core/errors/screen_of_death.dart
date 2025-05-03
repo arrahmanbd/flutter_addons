@@ -4,6 +4,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// **Blue Screen of Death (BSOD) Widget**
 /// This widget is displayed when an error occurs in the app.
 /// I have no idea why I made this, but it looks cool.
+/// *****************************************************************************
 
 class _BlueScreenOfDeath extends StatelessWidget {
   final FlutterErrorDetails details;
@@ -17,7 +18,7 @@ class _BlueScreenOfDeath extends StatelessWidget {
       backgroundColor: const ui.Color.fromARGB(255, 6, 144, 250),
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
+          padding: EdgeInsets.symmetric(horizontal: 5.pw, vertical: 4.ph),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -29,7 +30,7 @@ class _BlueScreenOfDeath extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 2.h),
+              SizedBox(height: 2.ph),
               Text(
                 "Oops! An unexpected issue occurred.",
                 textAlign: TextAlign.center,
@@ -39,19 +40,19 @@ class _BlueScreenOfDeath extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(height: 1.h),
+              SizedBox(height: 1.ph),
               Text(
                 "Debug info is being collected. You may restart or fix the issue.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14.sp, color: Colors.white70),
               ),
-              SizedBox(height: 3.h),
+              SizedBox(height: 3.ph),
               _buildErrorBox(exceptionText),
-              SizedBox(height: 3.h),
+              SizedBox(height: 3.ph),
               _buildOutlinedDebugButton(
                 onPressed: () => _logDebugInfo(exceptionText),
               ),
-              SizedBox(height: 4.h),
+              SizedBox(height: 4.ph),
               Text(
                 _getRandomMotivationalMessage(),
                 textAlign: TextAlign.center,
@@ -147,7 +148,7 @@ class _AppErrorScreen extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -163,7 +164,7 @@ class _AppErrorScreen extends StatelessWidget {
               Text(
                 "Oops! Something went wrong.",
                 style: theme.textTheme.headlineSmall?.copyWith(
-                  color: theme.colorScheme.onBackground,
+                  color: theme.colorScheme.onSurface,
                   fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
@@ -172,7 +173,7 @@ class _AppErrorScreen extends StatelessWidget {
               Text(
                 "The app encountered an unexpected error.\nWe’re working to fix it.",
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onBackground.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha:0.7),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -188,7 +189,7 @@ class _AppErrorScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     fontFamily: "monospace",
-                    color: theme.colorScheme.onBackground.withOpacity(0.85),
+                    color: theme.colorScheme.onSurface.withValues(alpha:0.85),
                   ),
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
@@ -217,7 +218,7 @@ class _AssistantErrorScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surfaceVariant,
+      backgroundColor: theme.colorScheme.surfaceContainerHighest,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -226,7 +227,7 @@ class _AssistantErrorScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: theme.colorScheme.background,
+            color: theme.colorScheme.surface,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
               child: Column(
@@ -234,7 +235,7 @@ class _AssistantErrorScreen extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 36,
-                    backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
+                    backgroundColor: theme.colorScheme.primary.withValues(alpha:0.1),
                     child: Icon(
                       Icons.smart_toy_rounded,
                       color: theme.colorScheme.primary,
@@ -253,7 +254,7 @@ class _AssistantErrorScreen extends StatelessWidget {
                     "Something didn’t go as planned. Let me show you what happened.",
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onBackground.withOpacity(0.7),
+                      color: theme.colorScheme.onSurface.withValues(alpha:0.7),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -263,7 +264,7 @@ class _AssistantErrorScreen extends StatelessWidget {
                       color: theme.colorScheme.surface,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: theme.colorScheme.outline.withOpacity(0.2),
+                        color: theme.colorScheme.outline.withValues(alpha:0.2),
                       ),
                     ),
                     child: Text(
@@ -385,7 +386,7 @@ class _SciFiErrorScreen extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.cyanAccent, width: 2),
             borderRadius: BorderRadius.circular(12),
-            color: Colors.black.withOpacity(0.7),
+            color: Colors.black.withValues(alpha:0.7),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -431,7 +432,7 @@ class _SciFiErrorScreen extends StatelessWidget {
 
 class _TheaterErrorScreen extends StatelessWidget {
   final FlutterErrorDetails details;
-  const _TheaterErrorScreen(this.details, {super.key});
+  const _TheaterErrorScreen(this.details);
 
   @override
   Widget build(BuildContext context) {
@@ -444,7 +445,7 @@ class _TheaterErrorScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.7),
+                color: Colors.black.withValues(alpha:0.7),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
@@ -552,8 +553,8 @@ class _PixelArtErrorScreen extends StatelessWidget {
             const SizedBox(height: 20),
             TextButton(
               onPressed: () => debugPrint(details.exception.toString()),
-              child: const Text("VIEW ERROR LOG"),
               style: TextButton.styleFrom(foregroundColor: Colors.redAccent),
+              child: const Text("VIEW ERROR LOG"),
             ),
           ],
         ),
@@ -564,7 +565,7 @@ class _PixelArtErrorScreen extends StatelessWidget {
 
 class _FrostErrorScreen extends StatelessWidget {
   final FlutterErrorDetails details;
-  const _FrostErrorScreen(this.details, {super.key});
+  const _FrostErrorScreen(this.details);
 
   @override
   Widget build(BuildContext context) {
@@ -588,7 +589,7 @@ class _FrostErrorScreen extends StatelessWidget {
                 width: 320,
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.3),
+                  color: Colors.white.withValues(alpha:0.3),
                   borderRadius: BorderRadius.circular(24),
                   border: Border.all(color: Colors.white38, width: 1),
                 ),
@@ -644,7 +645,7 @@ class _FrostErrorScreen extends StatelessWidget {
 
 class _CatHackerErrorScreen extends StatelessWidget {
   final FlutterErrorDetails details;
-  const _CatHackerErrorScreen(this.details, {super.key});
+  const _CatHackerErrorScreen(this.details);
 
   @override
   Widget build(BuildContext context) {
@@ -705,7 +706,7 @@ class _CatHackerErrorScreen extends StatelessWidget {
 
 class _ScrollErrorScreen extends StatelessWidget {
   final FlutterErrorDetails details;
-  const _ScrollErrorScreen(this.details, {super.key});
+  const _ScrollErrorScreen(this.details);
 
   @override
   Widget build(BuildContext context) {
@@ -784,7 +785,7 @@ class _ScrollErrorScreen extends StatelessWidget {
 
 class _Desert404ErrorScreen extends StatelessWidget {
   final FlutterErrorDetails details;
-  const _Desert404ErrorScreen(this.details, {super.key});
+  const _Desert404ErrorScreen(this.details);
 
   @override
   Widget build(BuildContext context) {
@@ -896,7 +897,7 @@ class DesertCactusPainter extends CustomPainter {
     canvas.drawRect(potRect, potPaint);
 
     // Draw the base of the pot (darker shade)
-    final basePaint = Paint()..color = Colors.black.withOpacity(0.2);
+    final basePaint = Paint()..color = Colors.black.withValues(alpha:0.2);
     canvas.drawRect(
       Rect.fromLTWH(
         size.width * 0.3,
@@ -957,7 +958,7 @@ class CurtainPainter extends CustomPainter {
     // Draw folds
     final foldPaint =
         Paint()
-          ..color = Colors.red.shade800.withOpacity(0.3)
+          ..color = Colors.red.shade800.withValues(alpha:0.3)
           ..strokeWidth = 4
           ..style = PaintingStyle.stroke;
 
@@ -981,7 +982,6 @@ class CurtainPainter extends CustomPainter {
 class HackerCatPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()..color = Colors.black;
 
     // Cat face shape (circle)
     final facePaint = Paint()..color = Colors.grey.shade800;
@@ -1061,7 +1061,7 @@ class HackerCatPainter extends CustomPainter {
     canvas.drawPath(mouthPath, mouthPaint);
 
     // Cat whiskers
-    final whiskerPaint = Paint()..color = Colors.black.withOpacity(0.6);
+    final whiskerPaint = Paint()..color = Colors.black.withValues(alpha:0.6);
     canvas.drawLine(
       Offset(size.width * 0.2, size.height * 0.6),
       Offset(size.width * 0.05, size.height * 0.6),
@@ -1172,7 +1172,7 @@ class EightBitSkullPainter extends CustomPainter {
     }
 
     // Skull shadow effect (darker shade)
-    final shadowPaint = Paint()..color = Colors.black.withOpacity(0.2);
+    final shadowPaint = Paint()..color = Colors.black.withValues(alpha:0.2);
     final shadowPath =
         Path()..addRRect(
           RRect.fromRectAndRadius(

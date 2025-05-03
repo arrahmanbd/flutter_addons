@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:example/providers/exception_provider.dart';
+import 'package:example/legacy-example/providers/exception_provider.dart';
 
 class DataScreen extends ConsumerWidget {
   const DataScreen({super.key});

@@ -34,7 +34,7 @@ enum ErrorScreenStyle {
   codeTerminal,
   sifi,
   theater,
-  disert,
+  dessert,
   book,
 }
 
@@ -55,7 +55,7 @@ class ResponsiveApp extends StatelessWidget {
   const ResponsiveApp({
     super.key,
     required this.builder,
-    required this.designSize,
+    this.designSize,
     this.maxMobileWidth = 599,
     this.maxTabletWidth,
     this.onFlutterError,
@@ -109,7 +109,7 @@ class ResponsiveApp extends StatelessWidget {
         case ErrorScreenStyle.theater:
           screen = _TheaterErrorScreen(details);
           break;
-        case ErrorScreenStyle.disert:
+        case ErrorScreenStyle.dessert:
           screen = _Desert404ErrorScreen(details);
           break;
         case ErrorScreenStyle.book:

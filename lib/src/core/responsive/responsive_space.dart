@@ -2,7 +2,6 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Extension for converting units and handling responsive sizing based on device dimensions.
 extension ResponsiveSpacing on num {
-
   /// Converts the value to centimeters (cm).
   double get cm => this * 37.8;
 
@@ -25,10 +24,11 @@ extension ResponsiveSpacing on num {
   double get px => toDouble();
 
   /// Converts the value to a percentage of the device's screen height.
-  double get h => this * Device.height / 100;
+  double get ph => this * Device.height / 100;
 
   /// Converts the value to a percentage of the device's screen width.
-  double get w => this * Device.width / 100;
+  /// To convert Px like  16.px width ➝ (16 / 360) * 100 = 4.44.w
+  double get pw => this * Device.width / 100;
 
   /// Converts the value to a percentage of the available height after `SafeArea`.
   double get sh => this * Device.safeHeight / 100;
@@ -39,21 +39,25 @@ extension ResponsiveSpacing on num {
   /// Converts the value to scalable pixels (sp), adjusting for pixel density and aspect ratio.
   double get sp =>
       this *
-      (((h + w) + (Device.pixelRatio * Device.aspectRatio)) / 2.08) /
+      (((ph + pw) + (Device.pixelRatio * Device.aspectRatio)) / 2.08) /
       100;
 
   /// Converts the value to scalable pixels (spa) with an alternate formula.
   double get spa =>
-      this * (((h + w) + (240 * Device.aspectRatio)) / 2.08) / 100;
+      this * (((ph + pw) + (240 * Device.aspectRatio)) / 2.08) / 100;
 
   /// Converts the value to density-independent pixels (dp) for consistent sizing across devices.
-  double get dp => this * (w * 160) / Device.pixelRatio;
+  double get dp => this * (pw * 160) / Device.pixelRatio;
 
   /// Converts the value to a percentage of the viewport's smaller dimension (height/width).
   double get vmin => this * min(Device.height, Device.width) / 100;
 
   /// Converts the value to a percentage of the viewport's larger dimension (height/width).
   double get vmax => this * max(Device.height, Device.width) / 100;
-   /// Converts the value to a responsive radius (r), based on screen width.
+
+  /// Converts the value to a responsive radius (r), based on screen width.
   double get r => this * Device.width / 100;
+
 }
+
+

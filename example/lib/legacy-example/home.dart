@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
-  throw Exception('ok error_message',);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.primaryColor.withAlpha(10),
@@ -31,7 +30,7 @@ class HomePage extends StatelessWidget {
             );
           },
         ),
-        title: Image.memory(flutterAddons.toByteData(), height: 34.h),
+        title: Image.memory(flutterAddons.toByteData(), height: 34.ph),
         actions: [
           Consumer(
             builder: (_, WidgetRef ref, __) {
@@ -108,7 +107,7 @@ class HomePage extends StatelessWidget {
                 children: List.generate(
                   12,
                   (i) => Chip(label: Text('Menu $i')),
-                ).separatedBy(SizedBox(width: 12.w)),
+                ).separatedBy(SizedBox(width: 12.pw)),
               ).scrollable(scrollDirection: Axis.horizontal),
               ListOfProduct(),
             ],
@@ -134,13 +133,12 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ).animate(),
-                SizedBox(height: 8.0.h),
+                SizedBox(height: 8.0.ph),
                 Text(
                   'This is the content of the blog post. It can be multiple lines long and will wrap accordingly.',
                   style: TextStyle(fontSize: 16.0.sp),
                 ).animate(),
                 10.s,
-                
               ],
             ),
           ),

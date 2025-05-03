@@ -16,7 +16,7 @@ class Shapes {
       backgroundColor: background ?? context.primaryColor,
       foregroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
-      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
+      padding: EdgeInsets.symmetric(vertical: 12.ph, horizontal: 20.pw),
     );
   }
 

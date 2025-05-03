@@ -147,3 +147,8 @@ part 'src/core/components/toaster.dart';
 part 'src/core/components/dialog.dart';
 part 'src/core/components/theme_toggler.dart';
 part 'src/core/components/border_maker.dart';
+
+//responsive helper
+part 'src/core/responsive/reference_utils.dart';
+part 'src/core/responsive/reference_extensions.dart';
+part 'src/routes/navigator_manager.dart';

@@ -12,7 +12,7 @@ class SoulComponentThemes {
     backgroundColor: colorScheme.primary,
     foregroundColor: colorScheme.onPrimary,
     elevation: 1,
-    titleTextStyle: textTheme.titleSmall?.copyWith(
+    titleTextStyle: textTheme.titleMedium?.copyWith(
       color: colorScheme.onPrimary,
     ),
     iconTheme: IconThemeData(color: colorScheme.onPrimary),
@@ -44,7 +44,7 @@ class SoulComponentThemes {
     style: OutlinedButton.styleFrom(
       foregroundColor: colorScheme.primary,
       side: BorderSide(color: colorScheme.primary),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
     ),
   );
 

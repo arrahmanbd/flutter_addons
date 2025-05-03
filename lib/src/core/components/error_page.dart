@@ -24,7 +24,7 @@ class ErrorPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildSadFace(),
-              SizedBox(height: 20.h),
+              SizedBox(height: 20.ph),
               Text(
                 message,
                 style: TextStyle(fontSize: 20),

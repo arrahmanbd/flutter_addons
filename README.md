@@ -11,26 +11,32 @@
 ![Contributors](https://img.shields.io/github/contributors/arrahmanbd/flutter_addons)
 
 
-Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications. This package includes a variety of tools that help streamline common tasks, making it easier to build high-quality apps quickly and efficiently.
+Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of  responsive Flutter applications. This package includes a variety of tools that help streamline common tasks, such as scaling UI elements, adapting layouts to different screen sizes, making it easier and faster to build high-quality apps quickly and efficiently.
 
 Absolutely! Here's a more convincing and impactful version of that line:
 
 > ⚡ Supercharge your Flutter workflow and become **10x more productive** by using the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons) – available now on the Visual Studio Marketplace!
 
 
-## Features
+## 🚀 **Key Features**
 
- ## 🚀 **Key Features**
-- **🎨 Soul Theme Engine:** Enables structured theming with defined color palettes, typography, and component styles, ensuring a cohesive and consistent user interface.
+* **🎨 Soul Theme Engine** – Structured theming with defined color palettes, typography, and component styles for a cohesive UI.
+* **🔧 Dart Extensions** – Useful extensions for `String`, `Map`, `Bool`, `int`, and more.
+* **🧠 Context Helpers** – Access theme, media queries, and text styles easily.
+* **📐 Prebuilt Widgets** – Flexible layouts: rows, columns, grids, stacks.
+* **🔄 Enhanced Routing** – Smooth navigation and page transitions.
+* **🎞️ Animations** – Includes bezier motion, fades, physics-based animations, and more.
+* **⚙️ System Utilities** – Network tools, debug helpers, UI handling, error catchers.
+* **📊 Math & Time Helpers** – Formatters, delays, calculations, and time utilities.
+* **🖼️ Image & Color Tools** – Extract dominant colors, apply filters, and process images.
+* **📏 Design Size Scaling** – Responsive scaling based on a fixed `designSize` (for Figma / AdobeXD).
+* **📲 Device Type Detection** – Automatically detects `ScreenType.mobile`, `tablet`, and `desktop`.
+* **🔁 Orientation Awareness** – Detects `Orientation.portrait` and `landscape`.
+* **❄️ Custom Error Screens** – Built-in styles: `frost`, `desert`, `win10`, and more.
+* **✅ Split-Screen & DPI Support** – Handles screen density and safe area variations.
+* **⚡ Simple Integration** – Just wrap your app with `ResponsiveApp`.
 
-- **🔧 Dart Extensions:** String, Map, Boolean, Integer, and other useful extensions.  
-- **🎨 Context Helpers:** Theme management, responsive layouts, and text styling.  
-- **📐 Widgets:** Prebuilt flexible layouts for rows, columns, grids, and stacking.  
-- **🔄 Routing Enhancements:** Advanced navigation with smooth page transitions.  
-- **🎞️ Animations:** Bezier motion, fade effects, physics-based movements, and more.  
-- **⚙️ System Utilities:** UI handling, network utilities, debugging, and error handling.  
-- **📊 Math & Time Helpers:** Convenient functions for formatting, delays, and calculations.  
-- **🎨 Image & Color Processing:** Extract dominant colors, manipulate images, and more.  
+
 
 
 
@@ -43,19 +49,63 @@ flutter pub add flutter_addons
 ```
 ## ⚙️ Initialize
 
-A helper widget that initializes [UIConfig] to configure and manage  
-responsive UI scaling, text adaptation, and screen-related settings.
+## 📱 Make Your App Responsive
+A modern, flexible alternative to UIConfig for responsive Flutter apps. It allows you to configure the layout to adjust for different screen sizes and orientations by either using a fixed design size or relying on responsive units based on device screen properties (height, width, etc.).
+
+💡 Design Scaling:
+- Design Size: A fixed reference design size for scaling (e.g., Figma or AdobeXD).
+
+- Responsive Units: Units like ph, pw, dp, sp, etc., automatically adjust based on screen dimensions and density.
+
+### 🚀 Usage:
+
 ```dart
-UIConfig(
-  frame: const Size(360, 890), // Define the base design frame   
-  minTextAdapt: true, // Enable minimum text adaptation
-  splitScreenMode: true, // Allow scaling in split-screen mode   builder: (_, child) {
-    return MaterialApp(
-      home: HomeScreen(),
-    );
+ResponsiveApp(
+  builder: (context, orientation, screenType) {
+    return const MyApp();
   },
- );
- ```
+  designSize: Size(375, 812),
+  errorScreenStyle: ErrorScreenStyle.dessert,
+);
+```
+
+
+
+### 📐 Responsive Unit Extensions
+
+| Expression | Description                                        | Example                                 |
+| ---------- | -------------------------------------------------- | --------------------------------------- |
+| `16.cm`    | Convert to **centimeters** (1 cm ≈ 37.8 px)        | `Container(height: 16.cm)`              |
+| `10.mm`    | Convert to **millimeters**                         | `SizedBox(width: 10.mm)`                |
+| `4.Q`      | Convert to **quarter-millimeters (Q)**             | `Padding(padding: EdgeInsets.all(4.Q))` |
+| `2.inches` | Convert to **inches** (1 in = 96 px)               | `SizedBox(height: 2.inches)`            |
+| `5.pc`     | Convert to **picas** (1 pc = 1/6 inch)             | `TextStyle(letterSpacing: 5.pc)`        |
+| `12.pt`    | Convert to **points** (1 pt = 1/72 inch)           | `TextStyle(fontSize: 12.pt)`            |
+| `20.px`    | Raw **pixels**                                     | `Container(width: 20.px)`               |
+| `50.ph`    | 50% of **screen height**                           | `SizedBox(height: 50.ph)`               |
+| `25.pw`    | 25% of **screen width**                            | `SizedBox(width: 25.pw)`                |
+| `80.sh`    | 80% of **safe height** (excludes status/nav bars)  | `Container(height: 80.sh)`              |
+| `90.sw`    | 90% of **safe width**                              | `Container(width: 90.sw)`               |
+| `14.sp`    | Responsive **font scale** (density + aspect aware) | `TextStyle(fontSize: 14.sp)`            |
+| `14.spa`   | Alternative responsive font formula                | `TextStyle(fontSize: 14.spa)`           |
+| `16.dp`    | **Density-independent** pixels                     | `EdgeInsets.all(16.dp)`                 |
+| `10.vmin`  | 10% of **smaller** screen dimension                | `SizedBox(width: 10.vmin)`              |
+| `10.vmax`  | 10% of **larger** screen dimension                 | `SizedBox(height: 10.vmax)`             |
+| `8.r`      | Responsive **radius** from screen width            | `BorderRadius.circular(8.r)`            |
+
+---
+
+### 📏 Design-Based Scaling Extensions
+
+| Expression          | Description                                 | Example                                                              |
+| ------------------- | ------------------------------------------- | -------------------------------------------------------------------- |
+| `100.w`             | Scaled **width** based on design reference  | `Container(width: 100.w)`                                            |
+| `50.h`              | Scaled **height** based on design reference | `Container(height: 50.h)`                                            |
+| `16.ts`             | Scaled **text size** (typography scale)     | `TextStyle(fontSize: 16.ts)`                                         |
+| `32.rs`             | Minimum of scaled width and height          | `SizedBox(width: 32.rs, height: 32.rs)`                              |
+| `12.verticalSpace`  | Responsive vertical spacing                 | `Column(children: [Text("Top"), 12.verticalSpace, Text("Bottom")])`  |
+| `8.horizontalSpace` | Responsive horizontal spacing               | `Row(children: [Icon(Icons.star), 8.horizontalSpace, Text("Rate")])` |
+
 
 ## ResponsiveExtension
 The `ResponsiveExtension` provides a set of helper getters for determining the screen size category based on the width of the device. It extends `BuildContext` and uses `MediaQuery` to categorize screens into different breakpoints.
@@ -129,7 +179,7 @@ class CustomTheme extends Kolors {
 Now, use the custom theme:
 
 ```dart
-final customTheme = ThemePainter(CustomTheme());
+final customTheme = ThemeMaker.makeTheme(CustomTheme());
 ```
 
 
@@ -149,13 +199,15 @@ class MyTypography extends Typography {
 Now, use the typography in your theme:
 
 ## 🎨  Apply Theme
-Initialize the theme using `ThemePainter` with a predefined color palette and apply on your Material App.
+Initialize the theme using `ThemeMaker` with a predefined color palette and apply on your Material App.
 
-```dart
-final darkTheme = ThemePainter(DarkSoul()).themeData;
-final lightTheme = ThemePainter(LightSoul()).themeData;
+```javascript
+final  lightTheme = ThemeMaker.makeTheme(LightSoul(),MyTypo());
+
+final  darkTheme = ThemeMaker.makeTheme(DarkSoul(),MyTypo());
+
 ```
-You can manage and apply theme dynamically using `ThemeManager`. 
+You can manage and apply theme dynamically by extending  `ThemeManager`. See the example app. 
 ## TextStyle Extensions Usage
 
 

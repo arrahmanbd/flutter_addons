@@ -1,4 +1,4 @@
-import 'package:example/views/list_product.dart';
+import 'package:example/legacy-example/views/list_product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 
@@ -18,8 +18,8 @@ class NextScreen extends StatelessWidget {
   Container _buildHero(BuildContext context) {
     return Container(
       padding: 4.p,
-      height: 40.h,
-      width: 100.w,
+      height: 40.ph,
+      width: 100.pw,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: MemoryImage(testBackground.toByteData()),
@@ -32,7 +32,7 @@ class NextScreen extends StatelessWidget {
             .withShadow(color: Colors.black)
             .withRoundedCorners(borderRadius: 34),
         margin: 20.m,
-        width: 120.w,
+        width: 120.pw,
         child: Padding(
           padding: 16.p,
           child: Column(
