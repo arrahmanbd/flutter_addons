@@ -1,58 +1,34 @@
 part of 'package:flutter_addons/flutter_addons.dart';
-
-/// An extension on num to provide responsive scaling utilities.
+/// Provides `.w`, `.h`, `.ts` (text scale), and layout helpers on `num`.
 extension ResponsiveScale on num {
-  /// Returns the minimum of the responsive width and height.
-  double get rs {
+  /// Responsive width (based on screen width or design frame)
+  double get w => _safe(() => _DesignScale.instance.setWidth(this));
+
+  /// Responsive height (based on screen height or design frame)
+  double get h => _safe(() => _DesignScale.instance.setHeight(this));
+
+  /// Responsive text size (uses min of width/height scaling)
+  double get ts => _safe(() => _DesignScale.instance.setFont(this));
+
+  /// Responsive scale (min of w and h)
+  double get rs => min(w, h);
+
+  /// Horizontal spacing using SizedBox
+  SizedBox get horizontalSpace => SizedBox(width: w);
+
+  /// Vertical spacing using SizedBox
+  SizedBox get verticalSpace => SizedBox(height: h);
+
+  // square box
+  SizedBox get squareBox => SizedBox(width: w, height: h);
+
+
+  T _safe<T>(T Function() compute) {
     try {
-      return min(w, h);
+      return compute();
     } catch (e) {
-      _handleError(e);
+      debugPrint('ResponsiveScale error: $e');
       rethrow;
     }
-  }
-
-  /// Returns the responsive width.
-  double get w {
-    try {
-      return _DesignScale.instance.setWidth(this);
-    } catch (e) {
-      _handleError(e);
-      rethrow;
-    }
-  }
-
-  /// Returns the responsive height.
-  double get h {
-    try {
-      return _DesignScale.instance.setHeight(this);
-    } catch (e) {
-      _handleError(e);
-      rethrow;
-    }
-  }
-
-  /// Returns the responsive font size.
-  double get ts {
-    try {
-      return _DesignScale.instance.setRt(this);
-    } catch (e) {
-      _handleError(e);
-      rethrow;
-    }
-  }
-
-  void _handleError(dynamic error) {
-    debugPrint('ResponsiveScale encountered an error: $error');
-  }
-
-  /// Returns a SizedBox with responsive height.
-  SizedBox get verticalSpace {
-    return SizedBox(height: h);
-  }
-
-  /// Returns a SizedBox with responsive width.
-  SizedBox get horizontalSpace {
-    return SizedBox(width: w);
   }
 }

@@ -1,86 +1,69 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// DesignScale is a class that initializes and provides
-/// responsive scaling utilities based on you Figma 0r AdobeXd frame.
+/// A utility class for responsive UI scaling based on a design frame (e.g., Figma/AdobeXD).
 class _DesignScale {
   static _DesignScale? _instance;
-
+  late bool _adaptive;
   late double _designWidth;
   late double _designHeight;
   BuildContext? _context;
 
   _DesignScale._internal();
 
-  /// Returns the single instance of the DesignScale class.
-  ///
-  /// This instance is lazily initialized.
+  /// Singleton accessor
   static _DesignScale get instance {
-    _instance ??= _DesignScale._internal();
-    return _instance!;
+    return _instance ??= _DesignScale._internal();
   }
 
-  /// Initializes the Design Scale with design dimensions and context.
+  /// Initializes the scaling utility with design reference dimensions and context.
   ///
-  /// The [designWidth] and [designHeight] parameters represent the base dimensions
-  /// for scaling the UI elements. The [context] is used to obtain the current screen
-  /// size and other properties.
-  ///
-  /// Throws an [AssertionError] if any of the parameters are invalid.
+  /// [designWidth] and [designHeight] should match your design frame (e.g., 360x800).
   void init({
     required double designWidth,
     required double designHeight,
     required BuildContext context,
+    required bool makeAdaptive,
   }) {
-    if (designWidth <= 0 || designHeight <= 0) {
-      throw AssertionError(
-        'Design width and height must be greater than zero.',
-      );
-    }
-
+    assert(designWidth > 0 && designHeight > 0, 'Design size must be greater than 0.');
     _designWidth = designWidth;
     _designHeight = designHeight;
     _context = context;
+    _adaptive = makeAdaptive;
   }
 
-  /// Returns the current BuildContext.
-  ///
-  /// Throws a [FlutterError] if the context is not initialized.
-  BuildContext? get context => _context;
-
-  MediaQueryData get _mediaQueryData {
-    if (context == null) {
-      throw FlutterError('You must provide designSize before using it.');
+  /// Current build context
+  BuildContext get _ctx {
+    if (_context == null) {
+      throw FlutterError('DesignScale.init() must be called before use.');
     }
-    return MediaQuery.of(context!);
+    return _context!;
   }
 
-  /// The scaling factor based on the design width.
-  double get scaleWidth => _mediaQueryData.size.width / _designWidth;
+  MediaQueryData get _mediaQuery => MediaQuery.of(_ctx);
 
-  /// The scaling factor based on the design height.
-  double get scaleHeight => _mediaQueryData.size.height / _designHeight;
+  /// Actual device width and height
+  double get _screenWidth => _mediaQuery.size.width;
+  double get _screenHeight => _mediaQuery.size.height;
 
-  /// Returns the scaled width based on the design width.
+  /// Scale factor relative to design dimensions
+  double get _scaleWidth => _screenWidth / _designWidth;
+  double get _scaleHeight => _screenHeight / _designHeight;
+
+  /// Converts a width value from design frame to device size
   double setWidth(num width) {
-    if (width < 0) {
-      throw ArgumentError('Width cannot be negative.');
-    }
-    return width * scaleWidth;
+    if (width < 0) throw ArgumentError('Width must be positive.');
+    return _adaptive ? (width / _designWidth) * 100.pw : width * _scaleWidth;
   }
 
-  /// Returns the scaled height based on the design height.
+  /// Converts a height value from design frame to device size
   double setHeight(num height) {
-    if (height < 0) {
-      throw ArgumentError('Height cannot be negative.');
-    }
-    return height * scaleHeight;
+    if (height < 0) throw ArgumentError('Height must be positive.');
+    return _adaptive ? (height / _designHeight) * 100.ph : height * _scaleHeight;
   }
 
-  /// Returns the resolved font size based on the minimum scaling factor.
-  double setRt(num fontSize) {
-    if (fontSize < 0) {
-      throw ArgumentError('Font size cannot be negative.');
-    }
-    return fontSize * min(scaleWidth, scaleHeight);
+  /// Converts a font size using the minimum scale factor
+  double setFont(num size) {
+    if (size < 0) throw ArgumentError('Font size must be positive.');
+    return size * min(_scaleWidth, _scaleHeight);
   }
 }

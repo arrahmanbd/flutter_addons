@@ -53,7 +53,7 @@ part 'src/widgets/list_grid.dart';
 // Responsive
 part 'src/core/responsive/responsive_app.dart';
 part 'src/core/responsive/responsive_space.dart';
-part 'src/core/responsive/base_responsive.dart';
+part 'src/core/responsive/base_responsive_widget.dart';
 part 'src/core/responsive/screen_calculator.dart';
 
 // Spacing

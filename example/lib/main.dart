@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       },
       designSize: Size(375, 812), // iPhone 12 Pro Max
       errorScreenStyle: ErrorScreenStyle.dessert,
+      adaptDesign: true,
     );
   }
 }

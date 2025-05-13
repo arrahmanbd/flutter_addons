@@ -41,14 +41,14 @@ enum ErrorScreenStyle {
 class ResponsiveApp extends StatelessWidget {
   final ErrorScreenStyle errorScreenStyle;
   final Size? designSize;
+  final bool adaptDesign;
   final double maxMobileWidth;
   final double? maxTabletWidth;
   final Widget Function(
     BuildContext context,
     Orientation orientation,
     ScreenType screenType,
-  )
-  builder;
+  ) builder;
   final FlutterExceptionHandler? onFlutterError;
   final Widget Function(FlutterErrorDetails error)? errorScreen;
 
@@ -60,7 +60,8 @@ class ResponsiveApp extends StatelessWidget {
     this.maxTabletWidth,
     this.onFlutterError,
     this.errorScreen,
-    this.errorScreenStyle = ErrorScreenStyle.frost, // default
+    this.adaptDesign = true,
+    this.errorScreenStyle = ErrorScreenStyle.dessert, // default
   });
 
   @override
@@ -71,18 +72,24 @@ class ResponsiveApp extends StatelessWidget {
       designSize: designSize,
       maxMobileWidth: maxMobileWidth,
       maxTabletWidth: maxTabletWidth,
+      adaptDesign: adaptDesign,
     );
   }
 
+  /// Sets up global error handlers for uncaught Flutter errors.
   void _setupGlobalErrorHandlers() {
+    // Handle Flutter error display
     ErrorWidget.builder = (FlutterErrorDetails details) {
+      // If a custom error screen is provided, use it
       if (errorScreen != null) return errorScreen!(details);
 
+      // Log the error for debugging
       final exception = details.exception.toString();
-      Debug.info('🥷 Flutter Addons Ninja detected: $exception');
+      Debug.info('🥷 Ghost Warrior Issue detected: $exception');
       Debug.info('🔍 Help: ${_makeQuery(exception)}');
       FlutterError.presentError(details);
 
+      // Define the error screen based on selected error style
       Widget screen;
       switch (errorScreenStyle) {
         case ErrorScreenStyle.pixelArt:
@@ -118,12 +125,14 @@ class ResponsiveApp extends StatelessWidget {
         case ErrorScreenStyle.codeTerminal:
           screen = _TerminalErrorScreen(details);
           break;
-      }
+        }
 
       return Material(color: Colors.transparent, child: screen);
     };
   }
 
+  /// Generates a search query for troubleshooting the error.
+  /// It returns a Google search link with the exception message.
   String _makeQuery(String exception) {
     String cleaned = exception.replaceAll(RegExp(r'\s+'), ' ').trim();
     if (cleaned.length > 50) cleaned = cleaned.substring(0, 50);

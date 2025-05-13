@@ -1,45 +1,111 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// Extension on `BuildContext` for responsive design.
-/// This extension provides methods to get screen dimensions, pixel ratio,
-/// and orientation. It also includes boolean properties to check the screen size
-/// categories (extra small, small, medium, large, extra large).
-/// This is useful for creating responsive UIs that adapt to different screen sizes
-/// and orientations.
-
+/// Extension on `BuildContext` for screen size and platform breakpoints.
 extension ResponsiveExtension on BuildContext {
-  /// Get screen width
   double get screenWidth => MediaQuery.of(this).size.width;
-
-  /// Get screen height
   double get screenHeight => MediaQuery.of(this).size.height;
-
-  /// Get pixel ratio
-  double get pixelRatio => MediaQuery.of(this).devicePixelRatio;
-
-  /// Get shortest side (useful for responsive UI)
   double get shortestSide => MediaQuery.of(this).size.shortestSide;
 
-  /// Check if the device is in portrait mode
-  bool get isPortrait =>
-      MediaQuery.of(this).orientation == Orientation.portrait;
+  bool get isTablet => shortestSide >= 600;
 
-  /// Check if the device is in landscape mode
-  bool get isLandscape =>
-      MediaQuery.of(this).orientation == Orientation.landscape;
+  bool get isDesktop =>
+      screenWidth >= 992 &&
+      defaultTargetPlatform != TargetPlatform.android &&
+      defaultTargetPlatform != TargetPlatform.iOS;
 
-  /// Extra small screens (phones, less than 576px)
-  bool get isXs => screenWidth < 576;
+  bool get isMobile => !isTablet && !isDesktop;
 
-  /// Small screens (phones, 576px and up)
   bool get isSm => screenWidth >= 576 && screenWidth < 768;
-
-  /// Medium screens (tablets, 768px and up)
   bool get isMd => screenWidth >= 768 && screenWidth < 992;
-
-  /// Large screens (desktops, 992px and up)
   bool get isLg => screenWidth >= 992 && screenWidth < 1200;
-
-  /// Extra large screens (large desktops, 1200px and up)
   bool get isXl => screenWidth >= 1200;
+}
+
+/// Primary adaptive accessor to group all adaptive layout values under `context.adaptive`
+extension AdaptiveLayoutAccessor on BuildContext {
+  _Adaptive get adaptive => _Adaptive(this);
+}
+
+/// Groups all adaptive layout logic in a single namespace-like class
+class _Adaptive {
+  final BuildContext context;
+
+  _Adaptive(this.context);
+
+  double get spacing {
+    if (context.isDesktop) return 32;
+    if (context.isTablet) return 24;
+    return 16;
+  }
+
+  EdgeInsets get padding => EdgeInsets.all(spacing);
+
+  /// Common aspect ratios by context
+  double get squareRatio => 1.0;
+
+  double get productCardRatio {
+    if (context.isDesktop) return 1.25;
+    if (context.isTablet) return 1.0;
+    return 0.85;
+  }
+
+  double get cardWithImageRatio {
+    if (context.isDesktop) return .95;
+    if (context.isTablet) return .95;
+    return .55;
+  }
+
+  double get imageOnlyRatio {
+    if (context.isDesktop) return 1.0;
+    if (context.isTablet) return 0.9;
+    return 0.75;
+  }
+
+  double get sliderRatio {
+    if (context.isDesktop) return 3.5;
+    if (context.isTablet) return 2.8;
+    return 2.0;
+  }
+
+  double get heroRatio {
+    if (context.isDesktop) return 2.5;
+    if (context.isTablet) return 2.0;
+    return 1.6;
+  }
+
+  double get bannerRatio {
+    if (context.isDesktop) return 3.0;
+    if (context.isTablet) return 2.5;
+    return 2.0;
+  }
+
+  int get columnCount {
+    if (context.isDesktop) return 4;
+    if (context.isTablet) return 3;
+    return 2;
+  }
+
+  double get cardWidth {
+    final width = context.screenWidth;
+    return (width / columnCount) - spacing;
+  }
+
+  AdaptiveGridConfig get grid => AdaptiveGridConfig(
+    crossAxisCount: columnCount,
+    childAspectRatio: productCardRatio,
+    spacing: spacing,
+  );
+}
+
+/// Grid configuration data holder
+class AdaptiveGridConfig {
+  final int crossAxisCount;
+  final double childAspectRatio;
+  final double spacing;
+
+  const AdaptiveGridConfig({
+    required this.crossAxisCount,
+    required this.childAspectRatio,
+    required this.spacing,
+  });
 }
