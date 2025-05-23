@@ -1,22 +1,13 @@
-# 1.2.7
+# 1.3.0
 ### ✨ Preparing for 2.0.0
 
 - Upgraded Flutter SDK to 3.32 and Dart SDK to 3.8
 
 - Applied necessary fixes for breaking changes in Flutter/Dart APIs and ecosystem dependencies
 
-- This marks the last minor release (1.2.7) before 2.0.0, which will introduce breaking changes and drop compatibility with older Flutter versions
-
---- 
-### 1.2.6
-### 🛠 Bug Fixes
-- Addressed minor bugs related to layout rendering and app performance
-
-- Decoupled the responsive layer in preparation for Flutter migration
+- This marks the last minor release (1.3.0) before 2.0.0, which will introduce breaking changes and drop compatibility with older Flutter versions
 
 
-
---- 
 ### 1.2.5
 
 #### ✨ Features:
