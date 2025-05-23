@@ -173,7 +173,7 @@ class _AppErrorScreen extends StatelessWidget {
               Text(
                 "The app encountered an unexpected error.\nWe’re working to fix it.",
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withValues(alpha:0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -189,7 +189,7 @@ class _AppErrorScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13,
                     fontFamily: "monospace",
-                    color: theme.colorScheme.onSurface.withValues(alpha:0.85),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.85),
                   ),
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
@@ -235,7 +235,9 @@ class _AssistantErrorScreen extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 36,
-                    backgroundColor: theme.colorScheme.primary.withValues(alpha:0.1),
+                    backgroundColor: theme.colorScheme.primary.withValues(
+                      alpha: 0.1,
+                    ),
                     child: Icon(
                       Icons.smart_toy_rounded,
                       color: theme.colorScheme.primary,
@@ -254,7 +256,7 @@ class _AssistantErrorScreen extends StatelessWidget {
                     "Something didn’t go as planned. Let me show you what happened.",
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurface.withValues(alpha:0.7),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -264,7 +266,7 @@ class _AssistantErrorScreen extends StatelessWidget {
                       color: theme.colorScheme.surface,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: theme.colorScheme.outline.withValues(alpha:0.2),
+                        color: theme.colorScheme.outline.withValues(alpha: 0.2),
                       ),
                     ),
                     child: Text(
@@ -386,7 +388,7 @@ class _SciFiErrorScreen extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.cyanAccent, width: 2),
             borderRadius: BorderRadius.circular(12),
-            color: Colors.black.withValues(alpha:0.7),
+            color: Colors.black.withValues(alpha: 0.7),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -445,7 +447,7 @@ class _TheaterErrorScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha:0.7),
+                color: Colors.black.withValues(alpha: 0.7),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
@@ -589,7 +591,7 @@ class _FrostErrorScreen extends StatelessWidget {
                 width: 320,
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha:0.3),
+                  color: Colors.white.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(24),
                   border: Border.all(color: Colors.white38, width: 1),
                 ),
@@ -897,7 +899,7 @@ class DesertCactusPainter extends CustomPainter {
     canvas.drawRect(potRect, potPaint);
 
     // Draw the base of the pot (darker shade)
-    final basePaint = Paint()..color = Colors.black.withValues(alpha:0.2);
+    final basePaint = Paint()..color = Colors.black.withValues(alpha: 0.2);
     canvas.drawRect(
       Rect.fromLTWH(
         size.width * 0.3,
@@ -958,7 +960,7 @@ class CurtainPainter extends CustomPainter {
     // Draw folds
     final foldPaint =
         Paint()
-          ..color = Colors.red.shade800.withValues(alpha:0.3)
+          ..color = Colors.red.shade800.withValues(alpha: 0.3)
           ..strokeWidth = 4
           ..style = PaintingStyle.stroke;
 
@@ -982,7 +984,6 @@ class CurtainPainter extends CustomPainter {
 class HackerCatPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-
     // Cat face shape (circle)
     final facePaint = Paint()..color = Colors.grey.shade800;
     canvas.drawCircle(
@@ -1061,7 +1062,7 @@ class HackerCatPainter extends CustomPainter {
     canvas.drawPath(mouthPath, mouthPaint);
 
     // Cat whiskers
-    final whiskerPaint = Paint()..color = Colors.black.withValues(alpha:0.6);
+    final whiskerPaint = Paint()..color = Colors.black.withValues(alpha: 0.6);
     canvas.drawLine(
       Offset(size.width * 0.2, size.height * 0.6),
       Offset(size.width * 0.05, size.height * 0.6),
@@ -1172,7 +1173,7 @@ class EightBitSkullPainter extends CustomPainter {
     }
 
     // Skull shadow effect (darker shade)
-    final shadowPaint = Paint()..color = Colors.black.withValues(alpha:0.2);
+    final shadowPaint = Paint()..color = Colors.black.withValues(alpha: 0.2);
     final shadowPath =
         Path()..addRRect(
           RRect.fromRectAndRadius(

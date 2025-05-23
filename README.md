@@ -1,9 +1,9 @@
 
 ![Logo Image](https://raw.githubusercontent.com/arrahmanbd/flutter_addons/master/images/new_logo.png)
 
-![Flutter](https://img.shields.io/badge/Flutter-3.7.29-blue?logo=flutter&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-1.2.3-orange)
+![Version](https://img.shields.io/badge/Version-1.2.7-blue)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)

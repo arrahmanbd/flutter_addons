@@ -1,11 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
-enum Mode { percent, absolute, design }
-
-class AdaptiveConfig {
-  static Mode mode = Mode.percent;
-}
 /// Extension for converting units and handling responsive sizing based on device dimensions.
 extension ResponsiveSpacing on num {
   /// Converts the value to centimeters (cm).
@@ -63,7 +57,4 @@ extension ResponsiveSpacing on num {
 
   /// Converts the value to a responsive radius (r), based on screen width.
   double get r => this * Device.width / 100;
-
 }
-
-

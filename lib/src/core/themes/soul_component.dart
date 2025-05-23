@@ -49,7 +49,7 @@ class SoulComponentThemes {
   );
 
   /// Returns a configured Card theme.
-  CardTheme get cardTheme => CardTheme(
+  CardThemeData get cardTheme => CardThemeData(
     color: colorScheme.surfaceContainer,
     shadowColor: colorScheme.shadow,
     elevation: 0.25,
@@ -75,7 +75,7 @@ class SoulComponentThemes {
     ),
   );
 
-  DialogTheme get dialogTheme => DialogTheme(
+  DialogThemeData get dialogTheme => DialogThemeData(
     backgroundColor: colorScheme.surfaceContainer,
     titleTextStyle: TextStyle(
       color: colorScheme.onSurface,

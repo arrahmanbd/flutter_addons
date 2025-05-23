@@ -1,21 +1,10 @@
 part of 'package:flutter_addons/flutter_addons.dart';
+
 /// Defines the operating platform the app is currently running on.
-enum DeviceType {
-  android,
-  ios,
-  fuchsia,
-  web,
-  windows,
-  mac,
-  linux,
-}
+enum DeviceType { android, ios, fuchsia, web, windows, mac, linux }
 
 /// Defines the general screen size category for the current device.
-enum ScreenType {
-  mobile,
-  tablet,
-  desktop,
-}
+enum ScreenType { mobile, tablet, desktop }
 
 /// A utility class providing global access to the current device's
 /// layout properties such as screen dimensions, orientation, and pixel density.
@@ -95,7 +84,10 @@ class Device {
   }
 
   /// Determines the [ScreenType] based on current orientation and thresholds.
-  static ScreenType _resolveScreenType(double maxMobileWidth, double? maxTabletWidth) {
+  static ScreenType _resolveScreenType(
+    double maxMobileWidth,
+    double? maxTabletWidth,
+  ) {
     final primaryAxis = orientation == Orientation.portrait ? width : height;
 
     if (primaryAxis <= maxMobileWidth) return ScreenType.mobile;
@@ -123,4 +115,3 @@ class Device {
 /// **pt()** - The respective value in points (1/72th of 1 inch).
 ///
 /// **px()** - The respective value in pixels.
-

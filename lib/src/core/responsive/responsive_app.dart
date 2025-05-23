@@ -48,7 +48,8 @@ class ResponsiveApp extends StatelessWidget {
     BuildContext context,
     Orientation orientation,
     ScreenType screenType,
-  ) builder;
+  )
+  builder;
   final FlutterExceptionHandler? onFlutterError;
   final Widget Function(FlutterErrorDetails error)? errorScreen;
 
@@ -125,7 +126,7 @@ class ResponsiveApp extends StatelessWidget {
         case ErrorScreenStyle.codeTerminal:
           screen = _TerminalErrorScreen(details);
           break;
-        }
+      }
 
       return Material(color: Colors.transparent, child: screen);
     };

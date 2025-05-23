@@ -1,4 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
+
 /// Provides `.w`, `.h`, `.ts` (text scale), and layout helpers on `num`.
 extension ResponsiveScale on num {
   /// Responsive width (based on screen width or design frame)
@@ -21,7 +22,6 @@ extension ResponsiveScale on num {
 
   // square box
   SizedBox get squareBox => SizedBox(width: w, height: h);
-
 
   T _safe<T>(T Function() compute) {
     try {

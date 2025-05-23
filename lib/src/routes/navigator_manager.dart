@@ -53,13 +53,21 @@ class NavigatorManager {
     }
   }
 
-  static Route _getRoute(BuildContext context, Widget page,
-      RouteAnimations? animation, Duration? duration) {
+  static Route _getRoute(
+    BuildContext context,
+    Widget page,
+    RouteAnimations? animation,
+    Duration? duration,
+  ) {
     if (animation == null) {
       return _getPlatformRoute(context, page);
     } else {
       return _NavigationAnimationBuilder.build(
-          context, page, animation, duration!);
+        context,
+        page,
+        animation,
+        duration!,
+      );
     }
   }
 
@@ -75,28 +83,41 @@ class NavigatorManager {
   }
 
   /// Navigate to a new screen.
-  static void go(Widget page,
-      {RouteAnimations? animation, Duration? animationDuration}) {
+  static void go(
+    Widget page, {
+    RouteAnimations? animation,
+    Duration? animationDuration,
+  }) {
     _navigate(page, animation: animation, animationDuration: animationDuration);
   }
 
   /// Navigate to a new screen and remove the current screen.
-  static void goRemove(Widget page,
-      {RouteAnimations? animation, Duration? animationDuration}) {
-    _navigate(page,
-        animation: animation,
-        animationDuration: animationDuration,
-        replace: true);
+  static void goRemove(
+    Widget page, {
+    RouteAnimations? animation,
+    Duration? animationDuration,
+  }) {
+    _navigate(
+      page,
+      animation: animation,
+      animationDuration: animationDuration,
+      replace: true,
+    );
   }
 
   /// Navigate to a new screen and remove all previous screens.
-  static void goRemoveAll(Widget page,
-      {RouteAnimations? animation, Duration? animationDuration}) {
-    _navigate(page,
-        animation: animation,
-        animationDuration: animationDuration,
-        replace: true,
-        removeUntil: true);
+  static void goRemoveAll(
+    Widget page, {
+    RouteAnimations? animation,
+    Duration? animationDuration,
+  }) {
+    _navigate(
+      page,
+      animation: animation,
+      animationDuration: animationDuration,
+      replace: true,
+      removeUntil: true,
+    );
   }
 
   /// Navigate back to the previous screen.
@@ -134,10 +155,14 @@ class _NavigationAnimationBuilder {
             const begin = Offset(1.0, 0.0);
             const end = Offset.zero;
             const curve = Curves.easeInOut;
-            var tween =
-                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var tween = Tween(
+              begin: begin,
+              end: end,
+            ).chain(CurveTween(curve: curve));
             return SlideTransition(
-                position: animation.drive(tween), child: child);
+              position: animation.drive(tween),
+              child: child,
+            );
           },
           transitionDuration: duration,
         );
@@ -146,8 +171,10 @@ class _NavigationAnimationBuilder {
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const curve = Curves.easeInOut;
-            var tween =
-                Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: curve));
+            var tween = Tween(
+              begin: 0.0,
+              end: 1.0,
+            ).chain(CurveTween(curve: curve));
             return ScaleTransition(scale: animation.drive(tween), child: child);
           },
           transitionDuration: duration,
@@ -186,7 +213,9 @@ class _NavigationAnimationBuilder {
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             final bounceOutTween = CurveTween(curve: Curves.elasticOut);
             return ScaleTransition(
-                scale: animation.drive(bounceOutTween), child: child);
+              scale: animation.drive(bounceOutTween),
+              child: child,
+            );
           },
           transitionDuration: duration,
         );
@@ -195,8 +224,10 @@ class _NavigationAnimationBuilder {
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            final flipAnimation =
-                Tween(begin: 0.0, end: 1.0).animate(animation);
+            final flipAnimation = Tween(
+              begin: 0.0,
+              end: 1.0,
+            ).animate(animation);
             return AnimatedBuilder(
               animation: flipAnimation,
               child: child,
@@ -229,10 +260,14 @@ class _NavigationAnimationBuilder {
             const begin = Offset(0.0, 1.0);
             const end = Offset.zero;
             const curve = Curves.easeInOut;
-            var tween =
-                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var tween = Tween(
+              begin: begin,
+              end: end,
+            ).chain(CurveTween(curve: curve));
             return SlideTransition(
-                position: animation.drive(tween), child: child);
+              position: animation.drive(tween),
+              child: child,
+            );
           },
           transitionDuration: duration,
         );
@@ -241,18 +276,16 @@ class _NavigationAnimationBuilder {
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            final fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(
-              CurvedAnimation(parent: animation, curve: Curves.easeIn),
-            );
+            final fadeAnimation = Tween(
+              begin: 0.0,
+              end: 1.0,
+            ).animate(CurvedAnimation(parent: animation, curve: Curves.easeIn));
             final scaleAnimation = Tween(begin: 0.8, end: 1.0).animate(
               CurvedAnimation(parent: animation, curve: Curves.easeInOut),
             );
             return FadeTransition(
               opacity: fadeAnimation,
-              child: ScaleTransition(
-                scale: scaleAnimation,
-                child: child,
-              ),
+              child: ScaleTransition(scale: scaleAnimation, child: child),
             );
           },
           transitionDuration: duration,
@@ -270,10 +303,7 @@ class _NavigationAnimationBuilder {
                     sigmaX: animation.value * 10,
                     sigmaY: animation.value * 10,
                   ),
-                  child: FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
+                  child: FadeTransition(opacity: animation, child: child),
                 );
               },
               child: child,
@@ -289,8 +319,10 @@ class _NavigationAnimationBuilder {
             const begin = Offset(1.0, 0.0);
             const end = Offset.zero;
             const curve = Curves.easeInOut;
-            var offsetTween =
-                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var offsetTween = Tween(
+              begin: begin,
+              end: end,
+            ).chain(CurveTween(curve: curve));
             var fadeTween = Tween(begin: 0.0, end: 1.0);
             return SlideTransition(
               position: animation.drive(offsetTween),
@@ -308,8 +340,10 @@ class _NavigationAnimationBuilder {
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const curve = Curves.easeInOut;
-            var scaleTween =
-                Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: curve));
+            var scaleTween = Tween(
+              begin: 0.0,
+              end: 1.0,
+            ).chain(CurveTween(curve: curve));
             return RotationTransition(
               turns: animation,
               child: ScaleTransition(
@@ -325,8 +359,10 @@ class _NavigationAnimationBuilder {
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            final flipAnimation =
-                Tween(begin: 0.0, end: 1.0).animate(animation);
+            final flipAnimation = Tween(
+              begin: 0.0,
+              end: 1.0,
+            ).animate(animation);
             return AnimatedBuilder(
               animation: flipAnimation,
               child: child,
@@ -338,13 +374,14 @@ class _NavigationAnimationBuilder {
                   alignment: Alignment.center,
                   child: FadeTransition(
                     opacity: animation,
-                    child: isUnder
-                        ? Transform(
-                            transform: Matrix4.rotationY(3.141592653589793),
-                            alignment: Alignment.center,
-                            child: page,
-                          )
-                        : child,
+                    child:
+                        isUnder
+                            ? Transform(
+                              transform: Matrix4.rotationY(3.141592653589793),
+                              alignment: Alignment.center,
+                              child: page,
+                            )
+                            : child,
                   ),
                 );
               },
@@ -352,8 +389,6 @@ class _NavigationAnimationBuilder {
           },
           transitionDuration: duration,
         );
-
-      }
+    }
   }
 }
-

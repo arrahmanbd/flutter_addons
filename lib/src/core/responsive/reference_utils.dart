@@ -24,7 +24,10 @@ class _DesignScale {
     required BuildContext context,
     required bool makeAdaptive,
   }) {
-    assert(designWidth > 0 && designHeight > 0, 'Design size must be greater than 0.');
+    assert(
+      designWidth > 0 && designHeight > 0,
+      'Design size must be greater than 0.',
+    );
     _designWidth = designWidth;
     _designHeight = designHeight;
     _context = context;
@@ -58,7 +61,9 @@ class _DesignScale {
   /// Converts a height value from design frame to device size
   double setHeight(num height) {
     if (height < 0) throw ArgumentError('Height must be positive.');
-    return _adaptive ? (height / _designHeight) * 100.ph : height * _scaleHeight;
+    return _adaptive
+        ? (height / _designHeight) * 100.ph
+        : height * _scaleHeight;
   }
 
   /// Converts a font size using the minimum scale factor

@@ -33,7 +33,7 @@ class StoreHomePage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: _buildHeaderCard(context)),
-          
+
           SliverPadding(
             padding: 16.p,
             sliver: SliverGrid(
@@ -101,10 +101,10 @@ class StoreHomePage extends StatelessWidget {
 
   Container _buildHeaderCard(BuildContext context) {
     return Container(
-      height: 20.ph, // 20% height of screen
+      height: 350.h, // 20% height of screen
       padding: EdgeInsets.all(4.pw),
       decoration: BoxDecoration(
-       // borderRadius: BorderRadius.circular(2.r),
+        // borderRadius: BorderRadius.circular(2.r),
         gradient: LinearGradient(
           colors: [
             const Color.fromARGB(255, 204, 221, 253),

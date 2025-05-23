@@ -1,7 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
-// Example: 
+// Example:
 // Container(
 //   padding: 2.pp, // Padding all sides based on screen width percentage
 //   margin: 3.pmx, // Margin horizontal based on screen width percentage
