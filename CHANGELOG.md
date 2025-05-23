@@ -1,3 +1,10 @@
+# 1.3.1
+
+### 🛠 Fixes & Improvements
+
+- Fixed `SizeBox` shorthand to support **design reference-based sizing** instead of percentage, avoiding conflicts with older versions.
+
+
 # 1.3.0
 ### ✨ Preparing for 2.0.0
 

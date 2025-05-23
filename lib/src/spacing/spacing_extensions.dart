@@ -29,7 +29,7 @@ extension IntMarginPaddingBasedOnDesign on int {
   EdgeInsets get py => EdgeInsets.symmetric(vertical: h); // padding vertical
 
   // Square Box
-  SizedBox get s => SizedBox(height: ph, width: pw);
+  SizedBox get s => SizedBox(height: h, width: w);
 }
 
 /// ExtraP for percentage-based margins and paddings (using percentages of screen width/height)
