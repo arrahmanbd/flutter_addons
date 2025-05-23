@@ -8,9 +8,18 @@
 - This marks the last minor release (1.2.7) before 2.0.0, which will introduce breaking changes and drop compatibility with older Flutter versions
 
 --- 
+### 1.2.6
+### 🛠 Bug Fixes
+- Addressed minor bugs related to layout rendering and app performance
 
+- Decoupled the responsive layer in preparation for Flutter migration
+
+
+
+--- 
 ### 1.2.5
 
+#### ✨ Features:
 
 * **Responsive Layouts**: Implemented responsive scaling to adjust UI elements dynamically for different screen sizes and orientations.
 * **NavigatorManager**: Introduced a streamlined navigator manager to simplify navigation and improve app flow.
@@ -23,9 +32,6 @@
 
 * Addressed minor bugs related to layout rendering and app performance.
 
-#### Under Preview/Testing:
-
-* This version is currently under preview/testing. Future optimizations and bug fixes will be included in subsequent releases.
 
 ---
 
