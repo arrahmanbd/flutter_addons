@@ -1,6 +1,16 @@
-# 1.2.5
+# 1.2.7
+### ✨ Preparing for 2.0.0
 
-#### New Features:
+- Upgraded Flutter SDK to 3.32 and Dart SDK to 3.8
+
+- Applied necessary fixes for breaking changes in Flutter/Dart APIs and ecosystem dependencies
+
+- This marks the last minor release (1.2.7) before 2.0.0, which will introduce breaking changes and drop compatibility with older Flutter versions
+
+--- 
+
+### 1.2.5
+
 
 * **Responsive Layouts**: Implemented responsive scaling to adjust UI elements dynamically for different screen sizes and orientations.
 * **NavigatorManager**: Introduced a streamlined navigator manager to simplify navigation and improve app flow.
