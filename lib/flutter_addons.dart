@@ -1,7 +1,7 @@
 /// *****************************************************************************
 /// 🧩 **Flutter Addons Library**
 ///
-/// 🌟 **Version:** 1.2.3
+/// 🌟 **Version:** 1.3.2
 /// 👨🏻‍💻 **Author:** AR Rahman
 /// 📅 **Created On:** March 20, 2025
 /// 📜 **License:** Apache License 2.0
@@ -51,13 +51,12 @@ part 'src/widgets/stacking.dart';
 part 'src/widgets/list_grid.dart';
 
 // Responsive
-part 'src/core/responsive/responsive_app.dart';
-part 'src/core/responsive/responsive_space.dart';
-part 'src/core/responsive/base_responsive_widget.dart';
-part 'src/core/responsive/screen_calculator.dart';
+part 'src/core/adaptive/responsive_app.dart';
+part 'src/core/spacing/responsive_space.dart';
+part 'src/core/adaptive/screen_utils.dart';
 
 // Spacing
-part 'src/spacing/spacing_extensions.dart';
+part 'src/core/spacing/spacing_extensions.dart';
 
 // Routes
 part 'src/routes/navigator_addons.dart';
@@ -149,6 +148,10 @@ part 'src/core/components/theme_toggler.dart';
 part 'src/core/components/border_maker.dart';
 
 //responsive helper
-part 'src/core/responsive/reference_utils.dart';
-part 'src/core/responsive/reference_extensions.dart';
+part 'src/core/adaptive/design_utils.dart';
 part 'src/routes/navigator_manager.dart';
+
+part 'src/core/adaptive/rs_extensions.dart';
+part 'src/core/adaptive/unified_scale.dart';
+part 'src/core/adaptive/smart_utils.dart';
+part 'src/core/adaptive/unified_enams.dart';

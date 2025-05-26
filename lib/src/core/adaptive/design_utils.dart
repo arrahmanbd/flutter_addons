@@ -1,18 +1,17 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// A utility class for responsive UI scaling based on a design frame (e.g., Figma/AdobeXD).
-class _DesignScale {
-  static _DesignScale? _instance;
-  late bool _adaptive;
+class _DesignUtils {
+  static _DesignUtils? _instance;
   late double _designWidth;
   late double _designHeight;
   BuildContext? _context;
 
-  _DesignScale._internal();
+  _DesignUtils._internal();
 
   /// Singleton accessor
-  static _DesignScale get instance {
-    return _instance ??= _DesignScale._internal();
+  static _DesignUtils get instance {
+    return _instance ??= _DesignUtils._internal();
   }
 
   /// Initializes the scaling utility with design reference dimensions and context.
@@ -22,7 +21,6 @@ class _DesignScale {
     required double designWidth,
     required double designHeight,
     required BuildContext context,
-    required bool makeAdaptive,
   }) {
     assert(
       designWidth > 0 && designHeight > 0,
@@ -31,7 +29,6 @@ class _DesignScale {
     _designWidth = designWidth;
     _designHeight = designHeight;
     _context = context;
-    _adaptive = makeAdaptive;
   }
 
   /// Current build context
@@ -55,20 +52,24 @@ class _DesignScale {
   /// Converts a width value from design frame to device size
   double setWidth(num width) {
     if (width < 0) throw ArgumentError('Width must be positive.');
-    return _adaptive ? (width / _designWidth) * 100.pw : width * _scaleWidth;
+    return width * _scaleWidth;
   }
 
   /// Converts a height value from design frame to device size
   double setHeight(num height) {
     if (height < 0) throw ArgumentError('Height must be positive.');
-    return _adaptive
-        ? (height / _designHeight) * 100.ph
-        : height * _scaleHeight;
+    return height * _scaleHeight;
   }
 
   /// Converts a font size using the minimum scale factor
   double setFont(num size) {
     if (size < 0) throw ArgumentError('Font size must be positive.');
     return size * min(_scaleWidth, _scaleHeight);
+  }
+
+  /// Converts a radius value from design frame to device size
+  double setRadius(num radius) {
+    if (radius < 0) throw ArgumentError('Radius must be positive.');
+    return radius * _scaleWidth;
   }
 }

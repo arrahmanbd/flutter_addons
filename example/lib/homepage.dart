@@ -1,4 +1,5 @@
-import 'package:example/theme/theme_provider.dart';
+
+import 'package:example_app/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,32 +25,41 @@ class StoreHomePage extends StatelessWidget {
           Consumer(
             builder: (context, ref, child) {
               final manager = ref.watch(themeProvider);
-              return ThemeToggleButton(manager: manager, iconSize: 18.sp);
+              return ThemeToggleButton(manager: manager, iconSize: 24.sp);
             },
           ),
-          2.s,
+          //2.s,
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(child: _buildHeaderCard(context)),
+      body: Row(
+        children: [
+          Container(color: Colors.green, height: .5.ph, width: 0.5.pw),
+          Container(color: Colors.red, height: .5.ph, width: 0.5.pw),
+        ],
+      ),
+    );
+  }
 
-          SliverPadding(
-            padding: 16.p,
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return _buildProductCard(context);
-              }, childCount: 8),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: context.adaptive.grid.crossAxisCount,
-                crossAxisSpacing: 24,
-                mainAxisSpacing: 24,
-                childAspectRatio: context.adaptive.cardWithImageRatio,
-              ),
+  CustomScrollView _buildTestBody(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(child: _buildHeaderCard(context)),
+
+        SliverPadding(
+          padding: 16.p,
+          sliver: SliverGrid(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              return _buildProductCard(context);
+            }, childCount: 8),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: context.adaptive.grid.crossAxisCount,
+              crossAxisSpacing: 24,
+              mainAxisSpacing: 24,
+              childAspectRatio: context.adaptive.cardWithImageRatio,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -71,16 +81,16 @@ class StoreHomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 150.h,
+            height: 150.w,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(2.pw),
               color: context.secondaryButton,
             ),
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: 20.w),
           Text("Product Name", style: context.bodyLarge),
-          SizedBox(height: 5.h),
+          SizedBox(height: 5.w),
           Text(
             "\$49.99",
             style: TextStyle(
@@ -89,7 +99,7 @@ class StoreHomePage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 10.w),
           Text(
             "Short description of the product goes here.",
             style: context.bodyMedium,
@@ -101,7 +111,7 @@ class StoreHomePage extends StatelessWidget {
 
   Container _buildHeaderCard(BuildContext context) {
     return Container(
-      height: 350.h, // 20% height of screen
+      height: 350.w, // 20% height of screen
       padding: EdgeInsets.all(4.pw),
       decoration: BoxDecoration(
         // borderRadius: BorderRadius.circular(2.r),

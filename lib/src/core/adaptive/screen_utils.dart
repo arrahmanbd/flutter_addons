@@ -1,14 +1,10 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// Defines the operating platform the app is currently running on.
-enum DeviceType { android, ios, fuchsia, web, windows, mac, linux }
 
-/// Defines the general screen size category for the current device.
-enum ScreenType { mobile, tablet, desktop }
 
 /// A utility class providing global access to the current device's
 /// layout properties such as screen dimensions, orientation, and pixel density.
-class Device {
+class DeviceUtils {
   // Core layout constraints
   static late BoxConstraints boxConstraints;
   static late Orientation orientation;
@@ -99,19 +95,3 @@ class Device {
     return ScreenType.desktop;
   }
 }
-
-/// Conversion methods for various units based on the device's screen size and pixel density.
-///
-/// **cm()** - The respective value in centimeters.
-///
-/// **mm()** - The respective value in millimeters.
-///
-/// **Q()** - The respective value in quarter-millimeters.
-///
-/// **inches()** - The respective value in inches.
-///
-/// **pc()** - The respective value in picas (1/6th of 1 inch).
-///
-/// **pt()** - The respective value in points (1/72th of 1 inch).
-///
-/// **px()** - The respective value in pixels.

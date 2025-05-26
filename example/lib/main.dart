@@ -1,13 +1,9 @@
-import 'package:example/theme/theme_provider.dart';
-import 'package:example/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(ProviderScope(child: MyApp()));
-}
+import 'appbar.dart';
+
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,133 +11,217 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveApp(
+      designSize: const Size(375, 812), // Reference design size
+      scaleMode: ScaleMode.design, // Use design scaling
+      debugLog: true,
       builder: (context, orientation, screenType) {
-        return MetaApp();
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Addons Example',
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: ThemeMode.light,
+          home: const HomePage(),
+        );
       },
-      designSize: Size(375, 812), // iPhone 12 Pro Max
-      errorScreenStyle: ErrorScreenStyle.dessert,
-      adaptDesign: true,
     );
   }
 }
 
-class MetaApp extends ConsumerWidget {
-  const MetaApp({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(themeProvider);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Addons Example',
-      theme: theme.lightTheme,
-      darkTheme: theme.darkTheme,
-      themeMode: theme.themeMode,
-      home: StoreHomePage(),
-      navigatorKey: NavigatorManager.navigatorKey,
-    );
-  }
-}
-
-// This is a simple example of a design using Flutter Addons
-// It demonstrates how to create a responsive layout with reference designSize
-class DesignExample extends StatelessWidget {
-  const DesignExample({super.key});
+  final List<String> categories = const [
+    'All',
+    'Technology',
+    'Design',
+    'Business',
+    'Health',
+    'Travel',
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 2.h),
-              // Intro Card / Banner
-              Container(
-                height: 300.h,
-                width: double.infinity,
-                padding: EdgeInsets.all(4.w),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(2.w),
-                  gradient: LinearGradient(
-                    colors: [
-                      const Color.fromARGB(
-                        255,
-                        204,
-                        221,
-                        253,
-                      ).withValues(alpha: .75),
-                      const Color.fromARGB(
-                        255,
-                        214,
-                        198,
-                        241,
-                      ).withValues(alpha: .65),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+      appBar: FacebookAppBar(
+        title: 'My Blog',
+        onSearchTap: () => print('Search tapped'),
+        onMessagesTap: () => print('Messages tapped'),
+        onNotificationsTap: () => print('Notifications tapped'),
+      ),
+      body: Padding(
+        padding: 16.px,
+        child: CustomScrollView(
+          slivers: [
+            // Sliver: Search Bar
+            SliverToBoxAdapter(
+              child: Padding(padding: 16.py, child: _buildSearchBar(theme)),
+            ),
+
+            // Sliver: Categories
+            SliverToBoxAdapter(
+              child: Padding(padding: 16.py, child: _buildCategoryList()),
+            ),
+
+            // Sliver: Header
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: 16.py,
+                child: Text(
+                  'Latest Posts',
+                  style: context.bodyLarge!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.sp,
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+            ),
+
+            // Sliver: Grid of posts
+            SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => const PostCard(),
+                childCount: 6,
+              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: context.isMobile ? 1 : 3,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: context.isMobile ?1.2:1.8,
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add new post
+        },
+        tooltip: 'Add New Post',
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget _buildSearchBar(ThemeData theme) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Search articles, topics...',
+        prefixIcon: const Icon(Icons.search),
+        filled: true,
+        fillColor: theme.colorScheme.onSecondary,
+        contentPadding: const EdgeInsets.symmetric(vertical: 12),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      onChanged: (value) {
+        // Search logic here
+      },
+    );
+  }
+
+  Widget _buildCategoryList() {
+    return SizedBox(
+      height: 36.sp,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        separatorBuilder: (_, __) => SizedBox(width: 12.sp),
+        itemBuilder: (context, index) {
+          final category = categories[index];
+          final isSelected = index == 0;
+
+          return ChoiceChip(
+            label: Text(category),
+            selected: isSelected,
+            onSelected: (selected) {
+              // Category filter logic
+            },
+            selectedColor: Colors.blueAccent,
+            backgroundColor: Colors.grey.shade200,
+            labelStyle: TextStyle(
+              color: isSelected ? Colors.white : Colors.black87,
+              fontWeight: FontWeight.w600,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class PostCard extends StatelessWidget {
+  const PostCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: .5,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: 120.h,
+            child: Image.network(
+              'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0.sp),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Flutter Responsive Blog Card',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 8.sp),
+                Text(
+                  'Build beautiful and responsive blog cards easily with Flutter and flutter_addons.',
+                  style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
+                ),
+                SizedBox(height: 16.sp),
+                Row(
                   children: [
-                    Text(
-                      "Welcome to Flutter Addons!",
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: context.primaryColor,
+                    CircleAvatar(
+                      radius: 16.rs,
+                      backgroundImage: NetworkImage(
+                        'https://randomuser.me/api/portraits/men/32.jpg',
                       ),
                     ),
-                    SizedBox(height: 1.h),
+                    8.s,
                     Text(
-                      "Explore top deals and new arrivals.",
-                      style: context.bodyLarge,
+                      'John Doe',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     Spacer(),
-                    Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            dbug(
-                              'Your code is like your ex. You wrote it with love, now it only brings pain🗿',
-                            );
-                          },
-                          child: Text('Explore'),
-                        ),
-                        4.s,
-                        OutlinedButton(onPressed: () {}, child: Text('Signup')),
-                      ],
+                    Icon(Icons.calendar_today, size: 14.sp, color: Colors.grey),
+                    SizedBox(width: 4.sp),
+                    Text(
+                      'Jun 10, 2024',
+                      style: TextStyle(fontSize: 12.sp, color: Colors.grey),
                     ),
                   ],
                 ),
-              ),
-
-              SizedBox(height: 30.h),
-              Container(
-                width: 250.w, //responsive width
-                height: 250.h, //responsive height
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(25.rs), // responsive size
-                ),
-                child: Center(
-                  child: Text(
-                    'This is a Responsive Text',
-                    style: TextStyle(
-                      fontSize: 22.sp, // responsive font-size
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
-              20.verticalSpace, // SizedBox(height:20.rh) responsive vertical space
-              20.horizontalSpace, // SizedBox(width: 20.rw) responsive horizontal space
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
