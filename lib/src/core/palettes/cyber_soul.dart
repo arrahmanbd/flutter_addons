@@ -2,7 +2,7 @@
 // Inspired by neon lights and cyberpunk aesthetics.
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class CyberLight extends Kolors {
+class CyberLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -27,7 +27,7 @@ class CyberLight extends Kolors {
   Color get secondaryButton => const Color(0xFFE06492);
 }
 
-class CyberDark extends Kolors {
+class CyberDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

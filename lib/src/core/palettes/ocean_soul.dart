@@ -2,7 +2,7 @@
 // Inspired by deep sea blues and coastal waves.
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class OceanLight extends Kolors {
+class OceanLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -27,7 +27,7 @@ class OceanLight extends Kolors {
   Color get secondaryButton => const Color(0xFFAACBEF);
 }
 
-class OceanDark extends Kolors {
+class OceanDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

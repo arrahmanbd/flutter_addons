@@ -1,11 +1,23 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Extension on `Color` to provide additional utility methods for color manipulation and analysis.
+
+
 extension ColorExtensions on Color {
   /// Converts the `Color` object to a hexadecimal string representation.
+  /// The output can be customized to include or exclude the leading '#' symbol and the alpha (transparency) value.
   ///
+  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
+
   /// You can customize the output by setting [leadingHashSign] to include or omit the '#' symbol.
   /// You can also include the alpha (transparency) value in the hex string by setting [includeAlpha].
+  ///
   ///
   /// Example:
   /// ```dart

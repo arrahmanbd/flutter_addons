@@ -2,7 +2,7 @@
 // A sophisticated dark theme with deep purples and blues.
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class MidnightLight extends Kolors {
+class MidnightLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -27,7 +27,7 @@ class MidnightLight extends Kolors {
   Color get secondaryButton => const Color(0xFFC4B0DC);
 }
 
-class MidnightDark extends Kolors {
+class MidnightDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

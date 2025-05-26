@@ -99,8 +99,7 @@ part 'src/decoration/shapes.dart';
 
 /// [Soul Theme Engine]
 /// Colors
-part 'src/core/colors/palette.dart';
-part 'src/core/colors/kolors.dart';
+part 'src/core/colors/base_theme.dart';
 part 'src/core/colors/seed.dart';
 part 'src/core/colors/swatch.dart';
 
@@ -126,7 +125,7 @@ part 'src/core/typography/base_styles.dart';
 part 'src/core/typography/fallback_typo.dart';
 
 /// FallBack View
-part 'src/core/components/error_page.dart';
+part 'src/components/error_page.dart';
 part 'src/utility/author_speech.dart';
 
 /// Errors
@@ -140,12 +139,12 @@ part 'src/core/errors/common_exception.dart';
 
 /// Components
 /// Alert , Snackbar, Toaster, Dialog, Theme Toggler
-part 'src/core/components/alart.dart';
-part 'src/core/components/snackbar.dart';
-part 'src/core/components/toaster.dart';
-part 'src/core/components/dialog.dart';
-part 'src/core/components/theme_toggler.dart';
-part 'src/core/components/border_maker.dart';
+part 'src/components/alart.dart';
+part 'src/components/snackbar.dart';
+part 'src/components/toaster.dart';
+part 'src/components/dialog.dart';
+part 'src/components/theme_toggler.dart';
+part 'src/components/border_maker.dart';
 
 //responsive helper
 part 'src/core/adaptive/design_utils.dart';
@@ -155,3 +154,11 @@ part 'src/core/adaptive/rs_extensions.dart';
 part 'src/core/adaptive/unified_scale.dart';
 part 'src/core/adaptive/smart_utils.dart';
 part 'src/core/adaptive/unified_enams.dart';
+
+
+// Colors
+part 'src/core/colors/kolors.dart';
+part 'src/core/typography/text_weight.dart';
+part 'src/core/typography/text_size.dart';
+part 'src/components/label.dart';
+part 'src/core/colors/safe_colors.dart';

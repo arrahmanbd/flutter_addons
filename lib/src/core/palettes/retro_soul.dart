@@ -3,7 +3,7 @@
 
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class RetroLight extends Kolors {
+class RetroLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -28,7 +28,7 @@ class RetroLight extends Kolors {
   Color get secondaryButton => const Color(0xFF9C27B0); // Purple
 }
 
-class RetroDark extends Kolors {
+class RetroDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

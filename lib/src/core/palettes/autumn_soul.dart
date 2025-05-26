@@ -2,7 +2,7 @@
 // Inspired by delicate pastel shades.
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class PastelLight extends Kolors {
+class PastelLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -27,7 +27,7 @@ class PastelLight extends Kolors {
   Color get secondaryButton => const Color(0xFFF0AB72);
 }
 
-class PastelDark extends Kolors {
+class PastelDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

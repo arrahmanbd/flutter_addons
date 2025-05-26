@@ -3,7 +3,7 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-1.2.7-blue)
+![Version](https://img.shields.io/badge/Version-2.0.0-red)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
@@ -13,7 +13,6 @@
 
 Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of  responsive Flutter applications. This package includes a variety of tools that help streamline common tasks, such as scaling UI elements, adapting layouts to different screen sizes, making it easier and faster to build high-quality apps quickly and efficiently.
 
-Absolutely! Here's a more convincing and impactful version of that line:
 
 > ⚡ Supercharge your Flutter workflow and become **10x more productive** by using the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons) – available now on the Visual Studio Marketplace!
 
@@ -38,40 +37,45 @@ Absolutely! Here's a more convincing and impactful version of that line:
 
 
 
+## ⚙️ **Initialization**
 
-
-## 📦 **Getting Started**
-
-Add the dependency in your `pubspec.yaml` file. Simply run this command: 
-
-```bash
-flutter pub add flutter_addons
-```
-## ⚙️ Initialize
-
-## 📱 Make Your App Responsive
-A modern, flexible alternative to UIConfig for responsive Flutter apps. It allows you to configure the layout to adjust for different screen sizes and orientations by either using a fixed design size or relying on responsive units based on device screen properties (height, width, etc.).
-
-💡 Design Scaling:
-- Design Size: A fixed reference design size for scaling (e.g., Figma or AdobeXD).
-
-- Responsive Units: Units like ph, pw, dp, sp, etc., automatically adjust based on screen dimensions and density.
-
-### 🚀 Usage:
+Wrap your root widget with `ResponsiveApp` to enable responsive scaling and theming:
 
 ```dart
-ResponsiveApp(
+ResponsiveApp( // 👈 VERY IMPORTANT
   builder: (context, orientation, screenType) {
     return const MyApp();
   },
-  designSize: Size(375, 812),
-  errorScreenStyle: ErrorScreenStyle.dessert,
+  designSize: const Size(375, 812), // Reference size from Figma/Adobe XD
+  scaleMode: ScaleMode.design,      // Supports design-based or adaptive scaling
+  debugLog: true,                   // Logs internal scaling/debug info
+  errorScreenStyle: ErrorScreenStyle.dessert, // Custom error UI
 );
 ```
 
-Here’s a clean and developer-friendly **README table** comparing your responsive units: **Smart**, **Percent**, and **Design** modes — with a quick explanation for each unit extension:
 
----
+## 🧠 **Why Use It?**
+
+* 🔁 **Consistent API**
+  Work with intuitive, unified extensions like `.h`, `.w`,`.rs`, `.sp`—making your UI code concise, readable, and predictable.
+
+* 🎛 **Mode Control**
+  Seamlessly switch between different scaling or theming modes. Whether you're working with a Figma-based design or a dynamic layout, it's adaptable.
+
+* ⚖ **Centralized Logic**
+  All responsive and styling logic is handled in one place. This means less repetition and easier project-wide updates.
+
+* 💎 **Unified UX**
+  Your UI scales proportionally across devices, maintaining visual harmony and a polished look throughout your app.
+
+
+### Remember
+
+- The modes represent different scaling strategies.
+
+- Mixing them without care breaks layout.
+
+- Best practice: choose one main mode and stick to it globally.
 
 ### 📐 Unified Responsive Units Table
 
@@ -147,19 +151,18 @@ It enables **dynamic theming** (light/dark mode) and supports **custom theme ext
 
 - **Material-based Theming**: Uses `ColorScheme`  to align with Material 3.
 - **Light & Dark Modes**: Supports switching between light and dark themes.
-- **Customizable Palettes**: An extendable `Kolors` class that allows for custom themes, supporting primary color `Seed` values or Material `Swatch` colors for flexible theming.
+- **Customizable Palettes**: An extendable `ThemeKolors` class that allows for custom themes, supporting primary color `Seed` values or Material `Swatch` colors for flexible theming.
 - **Consistent UI Styling**: Defines colors, typography, and component themes globally.
 
 ---
-### Getting Started
 
 
-## Extending `Kolors`
+## Extending `ThemeKolors`
 
-To create a custom color palette, extend `Kolors` and define your colors:
+To create a custom color palette, extend `ThemeKolors` and define your colors:
 
 ```dart
-class CustomTheme extends Kolors {
+class CustomTheme extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFF6200EE);
 

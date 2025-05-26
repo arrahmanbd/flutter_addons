@@ -2,7 +2,7 @@
 //Inspired by lush green landscapes.
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class ForestLight extends Kolors {
+class ForestLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -27,7 +27,7 @@ class ForestLight extends Kolors {
   Color get secondaryButton => const Color(0xFF6CBF74);
 }
 
-class ForestDark extends Kolors {
+class ForestDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

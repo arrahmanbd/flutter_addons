@@ -69,12 +69,9 @@ class HomePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: 16.py,
-                child: Text(
-                  'Latest Posts',
-                  style: context.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.sp,
-                  ),
+                child: Label(
+                  'Discover Latest Posts!',
+                  style: 'text-lg text-gray-500 text-left font-bold',
                 ),
               ),
             ),
@@ -89,7 +86,7 @@ class HomePage extends StatelessWidget {
                 crossAxisCount: context.isMobile ? 1 : 3,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
-                childAspectRatio: context.isMobile ?1.2:1.8,
+                childAspectRatio: context.isMobile ? 1.2 : 1.8,
               ),
             ),
           ],
