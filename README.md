@@ -69,42 +69,36 @@ ResponsiveApp(
 );
 ```
 
-
-
-### 📐 Responsive Unit Extensions
-
-| Expression | Description                                        | Example                                 |
-| ---------- | -------------------------------------------------- | --------------------------------------- |
-| `16.cm`    | Convert to **centimeters** (1 cm ≈ 37.8 px)        | `Container(height: 16.cm)`              |
-| `10.mm`    | Convert to **millimeters**                         | `SizedBox(width: 10.mm)`                |
-| `4.Q`      | Convert to **quarter-millimeters (Q)**             | `Padding(padding: EdgeInsets.all(4.Q))` |
-| `2.inches` | Convert to **inches** (1 in = 96 px)               | `SizedBox(height: 2.inches)`            |
-| `5.pc`     | Convert to **picas** (1 pc = 1/6 inch)             | `TextStyle(letterSpacing: 5.pc)`        |
-| `12.pt`    | Convert to **points** (1 pt = 1/72 inch)           | `TextStyle(fontSize: 12.pt)`            |
-| `20.px`    | Raw **pixels**                                     | `Container(width: 20.px)`               |
-| `50.ph`    | 50% of **screen height**                           | `SizedBox(height: 50.ph)`               |
-| `25.pw`    | 25% of **screen width**                            | `SizedBox(width: 25.pw)`                |
-| `80.sh`    | 80% of **safe height** (excludes status/nav bars)  | `Container(height: 80.sh)`              |
-| `90.sw`    | 90% of **safe width**                              | `Container(width: 90.sw)`               |
-| `14.sp`    | Responsive **font scale** (density + aspect aware) | `TextStyle(fontSize: 14.sp)`            |
-| `14.spa`   | Alternative responsive font formula                | `TextStyle(fontSize: 14.spa)`           |
-| `16.dp`    | **Density-independent** pixels                     | `EdgeInsets.all(16.dp)`                 |
-| `10.vmin`  | 10% of **smaller** screen dimension                | `SizedBox(width: 10.vmin)`              |
-| `10.vmax`  | 10% of **larger** screen dimension                 | `SizedBox(height: 10.vmax)`             |
-| `8.r`      | Responsive **radius** from screen width            | `BorderRadius.circular(8.r)`            |
+Here’s a clean and developer-friendly **README table** comparing your responsive units: **Smart**, **Percent**, and **Design** modes — with a quick explanation for each unit extension:
 
 ---
 
-### 📏 Design-Based Scaling Extensions
+### 📐 Unified Responsive Units Table
 
-| Expression          | Description                                 | Example                                                              |
-| ------------------- | ------------------------------------------- | -------------------------------------------------------------------- |
-| `100.w`             | Scaled **width** based on design reference  | `Container(width: 100.w)`                                            |
-| `50.h`              | Scaled **height** based on design reference | `Container(height: 50.h)`                                            |
-| `16.ts`             | Scaled **text size** (typography scale)     | `TextStyle(fontSize: 16.ts)`                                         |
-| `32.rs`             | Minimum of scaled width and height          | `SizedBox(width: 32.rs, height: 32.rs)`                              |
-| `12.verticalSpace`  | Responsive vertical spacing                 | `Column(children: [Text("Top"), 12.verticalSpace, Text("Bottom")])`  |
-| `8.horizontalSpace` | Responsive horizontal spacing               | `Row(children: [Icon(Icons.star), 8.horizontalSpace, Text("Rate")])` |
+| Extension | Purpose        | Example | Description                              |
+| --------- | -------------- | ------- | ---------------------------------------- |
+| `.w`      | Width          | `16.w`  | Auto-scaled width                        |
+| `.h`      | Height         | `24.h`  | Auto-scaled height                       |
+| `.sp`     | Font size      | `14.sp` | Auto-scaled font size (like `sp`)        |
+| `.rs`     | Radius / Scale | `12.rs` | Based on shortest side (width vs height) |
+
+### 📐 Other Responsive Units
+
+
+| Extension | Unit Type | Description                                         | Example       |
+|-----------|-----------|-----------------------------------------------------|---------------|
+| `.pw`     | Percent   | Width as % of screen width (`0.5.pw = 50%`)         | `0.5.pw`      |
+| `.ph`     | Percent   | Height as % of screen height (`0.4.ph = 40%`)       | `0.4.ph`      |
+| `.pt`     | Percent   | Font size scaling based on pixel/ratio blend        | `12.pt`       |
+| `.pr`     | Percent   | Radius scaling based on screen width                | `10.pr`       |
+| `.dw`     | Design    | Width based on design reference dimensions          | `20.dw`       |
+| `.dh`     | Design    | Height based on design reference dimensions         | `20.dh`       |
+| `.dt`     | Design    | Text size from design scale                         | `16.dt`       |
+| `.dr`     | Design    | Radius from design scale                            | `10.dr`       |
+| `.sx`     | Smart     | Smart X-axis scaling based on shortest screen edge  | `16.sx`       |
+| `.sy`     | Smart     | Smart Y-axis scaling based on shortest screen edge  | `16.sy`       |
+| `.su`     | Smart     | Smart unit scaling using shortest screen side       | `16.su`       |
+| `.st()`   | Smart     | Smart scalable text with optional scale factor      | `14.st(1.1)`  |
 
 
 ## ResponsiveExtension

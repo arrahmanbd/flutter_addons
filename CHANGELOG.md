@@ -1,11 +1,38 @@
-# 1.3.1
+# 2.0.0
+
+### ✨ Features
+
+* **Unified Scaling Extensions**: Introduced `.w`, `.h`, `.sp`, and `.rs` for simplified and auto-detected scaling across Smart, Design, and Percent modes.
+* **Unified Font Sizing**: Added `.usp()` for smart-aware and unified scalable text sizing.
+* **Safe Mode Execution**: Prevents crashes when required utilities are uninitialized (`_safe()` wrapper).
+* **Radius Shortcut**: Added `.rs` as a unified responsive radius shortcut based on mode.
+
+### 🧠 Modes Supported
+
+* `Smart`: Context-aware scaling using screen ratios and pixel density.
+* `Design`: Fixed mockup scaling via logical pixel-to-dp mapping.
+* `Percent`: Percentage-based scaling relative to screen dimensions.
+
+
+### 🛠️ Refactors
+
+* Improved extension method naming consistency and formatting.
+* Updated internal logic to enhance readability and maintainability.
+
+### ⚠️ BREAKING CHANGES
+
+* Replaced scattered utility access with `UnifiedScale().mode` for centralized control.
+* Some older `.scale` usages may need migration to `.sx`, `.sy`, `.su`, or `.w` / `.h`.
+
+---
+### 1.3.1
 
 ### 🛠 Fixes & Improvements
 
 - Fixed `SizeBox` shorthand to support **design reference-based sizing** instead of percentage, avoiding conflicts with older versions.
+----
 
-
-# 1.3.0
+### 1.3.0
 ### ✨ Preparing for 2.0.0
 
 - Upgraded Flutter SDK to 3.32 and Dart SDK to 3.8
@@ -13,7 +40,8 @@
 - Applied necessary fixes for breaking changes in Flutter/Dart APIs and ecosystem dependencies
 
 - This marks the last minor release (1.3.0) before 2.0.0, which will introduce breaking changes and drop compatibility with older Flutter versions
-
+ 
+---
 
 ### 1.2.5
 
