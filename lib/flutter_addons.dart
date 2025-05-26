@@ -155,10 +155,10 @@ part 'src/core/adaptive/unified_scale.dart';
 part 'src/core/adaptive/smart_utils.dart';
 part 'src/core/adaptive/unified_enams.dart';
 
-
 // Colors
 part 'src/core/colors/kolors.dart';
 part 'src/core/typography/text_weight.dart';
 part 'src/core/typography/text_size.dart';
 part 'src/components/label.dart';
+part 'src/components/button.dart';
 part 'src/core/colors/safe_colors.dart';

@@ -1,7 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
-
 /// A utility class providing global access to the current device's
 /// layout properties such as screen dimensions, orientation, and pixel density.
 class DeviceUtils {

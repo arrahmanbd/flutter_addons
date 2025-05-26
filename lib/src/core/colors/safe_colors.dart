@@ -1,6 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
 Map<String, dynamic> tailwindColors = {
   'black': '#000000',
   'white': '#ffffff',
@@ -289,5 +288,5 @@ Map<String, dynamic> tailwindColors = {
     800: '#9f1239',
     900: '#881337',
     950: '#4c0519',
-  }
+  },
 };

@@ -78,7 +78,8 @@ class ResponsiveApp extends StatelessWidget {
   }
 
   void _setupGlobalErrorHandlers() {
-    FlutterError.onError = onFlutterError ??
+    FlutterError.onError =
+        onFlutterError ??
         (FlutterErrorDetails details) {
           FlutterError.presentError(details);
         };

@@ -3,28 +3,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
 
-
-// Example of ThemeEngine
 class Themer extends ThemeManager {
-  /// Define the light and dark themes in `Themer`.
-  @override
-  ThemeData get lightTheme => ThemeMaker.makeTheme(AppColors());
+  static const _themeKey = 'selected_theme';
+
+  Themer() {
+    _loadThemeFromPrefs(); // Load theme on initialization
+  }
 
   @override
-  ThemeData get darkTheme => ThemeMaker.makeTheme(DarkSoul());
+  ThemeData get lightTheme => ThemeMaker.makeTheme(AppLightColors());
 
-  /// Implement theme updating logic (this will be triggered when the theme changes).
   @override
-  void onUpdateTheme() {
-    // This method is called when the theme is updated.
-    // You can add custom logic here if needed.
-    // For example, you might want to save the theme preference to shared preferences
-    // or notify other parts of your app about the theme change.
-    // For demonstration, we will just print the current theme mode.
+  ThemeData get darkTheme => ThemeMaker.makeTheme(AppDarkColors());
+
+  /// Save the theme mode when updated
+  @override
+  void onUpdateTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_themeKey, themeMode == ThemeMode.dark);
+
     dbug(
       "Current theme mode: ${themeMode == ThemeMode.dark ? 'Dark' : 'Light'}",
     );
+  }
+
+  /// Load theme from shared preferences
+  Future<void> _loadThemeFromPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isDark = prefs.getBool(_themeKey) ?? false;
+    setThemeMode(isDark ? ThemeMode.dark : ThemeMode.light);
+  }
+
+  /// Toggle between light and dark
+  void toggle() {
+    toggleTheme(); // This will also trigger onUpdateTheme
   }
 }
 

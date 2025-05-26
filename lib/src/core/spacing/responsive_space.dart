@@ -23,13 +23,11 @@ extension ResponsiveSpacing on num {
   /// Converts the value to pixels (px). Default unit.
   double get px => toDouble();
 
-
   /// Converts the value to a percentage of the available height after `SafeArea`.
   double get sh => this * DeviceUtils.safeHeight / 100;
 
   /// Converts the value to a percentage of the available width after `SafeArea`.
   double get sw => this * DeviceUtils.safeWidth / 100;
-
 
   /// Converts the value to scalable pixels (spa) with an alternate formula.
   double get spa =>
@@ -43,6 +41,4 @@ extension ResponsiveSpacing on num {
 
   /// Converts the value to a percentage of the viewport's larger dimension (height/width).
   double get vmax => this * max(DeviceUtils.height, DeviceUtils.width) / 100;
-
- 
 }

@@ -9,7 +9,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const FacebookAppBar({
     super.key,
-    this.title = 'My Blog',
+    this.title = '',
     this.onSearchTap,
     this.onMessagesTap,
     this.onNotificationsTap,
@@ -20,11 +20,9 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Material(
       elevation: 0,
-      color: Colors.blueAccent,
+      color: context.primaryColor,
       child: SafeArea(
         bottom: false,
         child: Container(
@@ -35,7 +33,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
               // Logo or Title
               Text(
                 title,
-                style: theme.textTheme.bodyLarge!.copyWith(
+                style: context.titleSmall.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,

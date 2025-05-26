@@ -1,6 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
 /// Abstract class for All kolors
 abstract class Palette {
   const Palette();

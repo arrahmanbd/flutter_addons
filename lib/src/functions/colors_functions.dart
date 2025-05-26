@@ -2,7 +2,6 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Extension on `Color` to provide additional utility methods for color manipulation and analysis.
 
-
 extension ColorExtensions on Color {
   /// Converts the `Color` object to a hexadecimal string representation.
   /// The output can be customized to include or exclude the leading '#' symbol and the alpha (transparency) value.
