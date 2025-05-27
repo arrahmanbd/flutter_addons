@@ -27,7 +27,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
         bottom: false,
         child: Container(
           height: preferredSize.height,
-          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Row(
             children: [
               // Logo or Title
@@ -36,7 +36,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
                 style: context.titleSmall.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
+                  //letterSpacing: 1.2,
                 ),
               ),
 

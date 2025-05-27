@@ -3,7 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 enum BorderShape { rectangle, triangle, dot, dash }
 
-class BorderMaker extends StatelessWidget {
+class BorderBox extends StatelessWidget {
   final Color color;
   final double dashWidth;
   final double dashSpace;
@@ -12,7 +12,7 @@ class BorderMaker extends StatelessWidget {
   final BorderShape borderShape;
   final Widget child;
 
-  const BorderMaker({
+  const BorderBox({
     super.key,
     required this.color,
     this.dashWidth = 8.0,
@@ -252,7 +252,7 @@ extension BorderExtension on Widget {
     String? text,
     BorderShape borderShape = BorderShape.rectangle,
   }) {
-    return BorderMaker(
+    return BorderBox(
       color: color,
       dashWidth: dashWidth,
       dashSpace: dashSpace,

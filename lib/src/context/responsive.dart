@@ -23,14 +23,14 @@ extension ResponsiveExtension on BuildContext {
 
 /// Primary adaptive accessor to group all adaptive layout values under `context.adaptive`
 extension AdaptiveLayoutAccessor on BuildContext {
-  Adaptive get adaptive => Adaptive(this);
+  Adapt get adaptive => Adapt(this);
 }
 
 /// Groups all adaptive layout logic in a single namespace-like class
-class Adaptive {
+class Adapt {
   final BuildContext context;
 
-  Adaptive(this.context);
+  Adapt(this.context);
 
   double get spacing {
     if (context.isDesktop) return 32;

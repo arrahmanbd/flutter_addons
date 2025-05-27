@@ -1,6 +1,8 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// A utility class for responsive UI scaling based on a design frame (e.g., Figma/AdobeXD).
+///
+
 class _DesignUtils {
   static _DesignUtils? _instance;
 

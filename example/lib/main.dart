@@ -1,5 +1,5 @@
 import 'package:example_app/home.dart';
-import 'package:example_app/theme/theme_provider.dart';
+import 'package:example_app/core/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveApp(
-      designSize: const Size(380, 820), // your design size, // Reference design size
-      scaleMode: ScaleMode.design, // Use design scaling
-      debugLog: true,
-      builder: (context, orientation, screenType) {
+      enableDebugLogging: true,
+      designFrame: Frame(width: 320, height: 812),
+      scaleMode: ScaleMode.design,
+      layoutBuilder: (context, orientation, screenType) {
         return SoulApp();
       },
     );
@@ -38,4 +38,3 @@ class SoulApp extends ConsumerWidget {
     );
   }
 }
-

@@ -1,4 +1,4 @@
-import 'package:example_app/theme/app_colors.dart';
+import 'package:example_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

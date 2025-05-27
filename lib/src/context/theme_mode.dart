@@ -2,7 +2,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 extension ThemeModeExtensions on BuildContext {
   /// Gets the current ThemeMode based on the Theme's brightness and system.
-  /// 
+  ///
   /// This is a simple fallback assuming you don't store ThemeMode explicitly.
   /// Override this if you manage themeMode in app state.
   ThemeMode get themeMode {

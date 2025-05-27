@@ -1,5 +1,13 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+class Frame {
+  final double width;
+  final double height;
+  const Frame({required this.width, required this.height});
+  @override
+  String toString() => 'Frame(width: $width, height: $height)';
+}
+
 class UnifiedScale {
   static final UnifiedScale _instance = UnifiedScale._internal();
 
@@ -17,7 +25,7 @@ class UnifiedScale {
     required BoxConstraints constraints,
     required Orientation orientation,
     required ScaleMode mode,
-    Size? designSize,
+    Frame? designSize,
     double maxMobileWidth = 600,
     double maxTabletWidth = 1024,
     bool debugLog = false,

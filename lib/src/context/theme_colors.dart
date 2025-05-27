@@ -8,8 +8,6 @@ extension ThemeExtension on BuildContext {
   TextTheme get typography => theme.textTheme;
 }
 
-
-
 extension ThemeColors on BuildContext {
   /// Primary brand color, used for buttons, FABs, and active elements.
   Color get primaryColor => Theme.of(this).colorScheme.primary;

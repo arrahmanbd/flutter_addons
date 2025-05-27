@@ -1,49 +1,45 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// **Theme-Aware Common Styles**
 class Shapes {
-  /// **Outline Border**
-  static InputBorder flatBorder(BuildContext context, {Color? color}) {
+  /// Rounded rectangle with customizable corner radius.
+  static RoundedRectangleBorder roundedRect({double radius = 12}) {
+    return RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
+  }
+
+  /// Circular shape (perfect circle).
+  static CircleBorder circle() {
+    return const CircleBorder();
+  }
+
+  /// Stadium shape (pill-shaped, fully rounded on short sides).
+  static StadiumBorder stadium() {
+    return const StadiumBorder();
+  }
+
+  /// Beveled rectangle with customizable radius.
+  static BeveledRectangleBorder beveledRect({double radius = 8}) {
+    return BeveledRectangleBorder(borderRadius: BorderRadius.circular(radius));
+  }
+
+  /// Rounded rectangle border for input fields or containers.
+  static OutlineInputBorder outlineInputBorder({
+    double radius = 8,
+    Color borderColor = Colors.grey,
+    double borderWidth = 1,
+  }) {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8.r),
-      borderSide: BorderSide(color: color ?? context.outline, width: 1),
+      borderRadius: BorderRadius.circular(radius),
+      borderSide: BorderSide(color: borderColor, width: borderWidth),
     );
   }
 
-  /// **Button Style**
-  static ButtonStyle buttonStyle(BuildContext context, {Color? background}) {
-    return ElevatedButton.styleFrom(
-      backgroundColor: background ?? context.primaryColor,
-      foregroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
-      padding: EdgeInsets.symmetric(vertical: 12.ph, horizontal: 20.pw),
+  /// Underline border for input fields.
+  static UnderlineInputBorder underlineInputBorder({
+    Color borderColor = Colors.grey,
+    double borderWidth = 1,
+  }) {
+    return UnderlineInputBorder(
+      borderSide: BorderSide(color: borderColor, width: borderWidth),
     );
-  }
-
-  /// **Card Style**
-  static BoxDecoration cardDecoration(BuildContext context) {
-    return BoxDecoration(
-      color: context.cardBackground,
-      borderRadius: BorderRadius.circular(12.r),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.05),
-          spreadRadius: 1,
-          blurRadius: 5,
-        ),
-      ],
-    );
-  }
-
-  /// **Box Shadow**
-  static List<BoxShadow> softShadow() {
-    return [
-      BoxShadow(
-        color: Colors.black.withValues(alpha: 0.08),
-        blurRadius: 6,
-        spreadRadius: 1,
-        offset: const Offset(2, 2),
-      ),
-    ];
   }
 }

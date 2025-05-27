@@ -52,9 +52,9 @@ part 'src/widgets/stacking.dart';
 part 'src/widgets/list_grid.dart';
 
 // Responsive
-part 'src/core/adaptive/responsive_app.dart';
+part 'src/core/responsive/responsive_app.dart';
 part 'src/core/spacing/responsive_space.dart';
-part 'src/core/adaptive/screen_utils.dart';
+part 'src/core/responsive/screen_utils.dart';
 
 // Spacing
 part 'src/core/spacing/spacing_extensions.dart';
@@ -96,7 +96,7 @@ part 'src/data/img_data.dart';
 
 //  Shapes & Decoration
 part 'src/decoration/decoration.dart';
-part 'src/decoration/shapes.dart';
+part 'src/decoration/button_styles.dart';
 
 /// [Soul Theme Engine]
 /// Colors
@@ -109,7 +109,6 @@ part 'src/core/themes/theme_maker.dart';
 part 'src/core/themes/theme_engine.dart';
 part 'src/core/themes/theme_manager.dart';
 part 'src/core/themes/soul_component.dart';
-
 
 /// Color Plattes
 part 'src/core/palettes/soul_colors.dart';
@@ -146,17 +145,17 @@ part 'src/components/snackbar.dart';
 part 'src/components/toaster.dart';
 part 'src/components/dialog.dart';
 part 'src/components/theme_toggler.dart';
-part 'src/components/border_maker.dart';
+part 'src/decoration/border_box.dart';
 
 //responsive helper
-part 'src/core/adaptive/design_utils.dart';
+part 'src/core/responsive/design_utils.dart';
 part 'src/routes/navigator_manager.dart';
 
-part 'src/core/adaptive/rs_extensions.dart';
-part 'src/core/adaptive/unified_scale.dart';
-part 'src/core/adaptive/smart_utils.dart';
-part 'src/core/adaptive/unified_enams.dart';
-
+part 'src/core/responsive/rs_extensions.dart';
+part 'src/core/responsive/unified_scale.dart';
+part 'src/core/responsive/smart_utils.dart';
+part 'src/core/responsive/unified_enams.dart';
+part 'src/core/responsive/layout_mixin.dart';
 // Colors
 part 'src/core/colors/kolors.dart';
 part 'src/core/typography/text_weight.dart';
@@ -164,3 +163,7 @@ part 'src/core/typography/text_size.dart';
 part 'src/components/label.dart';
 part 'src/components/button.dart';
 part 'src/core/colors/safe_colors.dart';
+
+// decoration
+part 'src/decoration/input_decoration.dart';
+part 'src/decoration/shapes.dart';

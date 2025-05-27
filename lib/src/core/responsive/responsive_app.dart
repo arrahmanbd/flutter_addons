@@ -6,32 +6,32 @@ part of 'package:flutter_addons/flutter_addons.dart';
 class ResponsiveApp extends StatefulWidget {
   const ResponsiveApp({
     super.key,
-    required this.builder,
-    this.designSize,
+    required this.layoutBuilder,
+    this.designFrame,
     this.scaleMode = ScaleMode.percent,
     this.maxMobileWidth = 599,
     this.maxTabletWidth = 1024,
     this.onFlutterError,
     this.errorScreen,
-    this.debugLog = false,
+    this.enableDebugLogging = false,
     this.errorScreenStyle = ErrorScreenStyle.dessert,
   });
 
   /// Custom app builder that receives context, orientation, and screen type.
-  final ResponsiveBuilderType builder;
+  final ResponsiveBuilderType layoutBuilder;
 
   /// Scaling strategy: percent, design, or smart.
   final ScaleMode scaleMode;
 
   /// Optional design size for `design` or `smart` mode.
-  final Size? designSize;
+  final Frame? designFrame;
 
   /// Custom max widths for screen type logic.
   final double maxMobileWidth;
   final double maxTabletWidth;
 
   /// Whether to enable debug output.
-  final bool debugLog;
+  final bool enableDebugLogging;
 
   /// Optional Flutter error handler.
   final FlutterExceptionHandler? onFlutterError;
@@ -74,13 +74,13 @@ class _ResponsiveAppState extends State<ResponsiveApp> {
           constraints: constraints,
           orientation: orientation,
           mode: widget.scaleMode,
-          designSize: widget.designSize,
+          designSize: widget.designFrame,
           maxMobileWidth: widget.maxMobileWidth,
           maxTabletWidth: widget.maxTabletWidth,
-          debugLog: widget.debugLog,
+          debugLog: widget.enableDebugLogging,
         );
 
-        return widget.builder(context, orientation, screenType);
+        return widget.layoutBuilder(context, orientation, screenType);
       },
     );
   }
@@ -89,11 +89,12 @@ class _ResponsiveAppState extends State<ResponsiveApp> {
       width <= widget.maxMobileWidth
           ? ScreenType.mobile
           : width <= widget.maxTabletWidth
-              ? ScreenType.tablet
-              : ScreenType.desktop;
+          ? ScreenType.tablet
+          : ScreenType.desktop;
 
   void _setupGlobalErrorHandlers() {
-    FlutterError.onError = widget.onFlutterError ??
+    FlutterError.onError =
+        widget.onFlutterError ??
         (FlutterErrorDetails details) {
           FlutterError.presentError(details);
         };
@@ -102,7 +103,7 @@ class _ResponsiveAppState extends State<ResponsiveApp> {
       if (widget.errorScreen != null) return widget.errorScreen!(details);
 
       final exception = details.exception.toString();
-      if (widget.debugLog) {
+      if (widget.enableDebugLogging) {
         debugPrint('💥 Exception: $exception');
         debugPrint('🔍 Help: ${_makeQuery(exception)}');
       }

@@ -1,6 +1,6 @@
-import 'package:example_app/widgets/appbar.dart';
-import 'package:example_app/theme/theme_provider.dart';
-import 'package:example_app/widgets/post_card.dart';
+import 'package:example_app/core/widgets/appbar.dart';
+import 'package:example_app/core/theme/theme_provider.dart';
+import 'package:example_app/core/widgets/post_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,7 +56,7 @@ class StoreHomePage extends StatelessWidget {
               crossAxisCount: context.isMobile ? 1 : 3,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
-              childAspectRatio: context.isMobile ? 1.2 : 1.8,
+              childAspectRatio: context.isMobile ? 1.1 : 1.8,
             ),
           ),
         ),
@@ -126,20 +126,14 @@ class StoreHomePage extends StatelessWidget {
           _buildSearchBar(context),
         ],
       ),
-    ).stackWith(
-      children: [
-        Positioned(
-          right: 16.w,
-          top: 0,
-          child: Consumer(
-            builder: (context, ref, _) {
-              final manager = ref.watch(themeProvider);
-              return ThemeToggleButton(manager: manager, iconSize: 24.sp);
-            },
-          ),
-        ),
-      ],
-    );
+    ).stackedWith([
+      Consumer(
+        builder: (context, ref, _) {
+          final manager = ref.watch(themeProvider);
+          return ThemeToggleButton(manager: manager, iconSize: 24.sp);
+        },
+      ).positioned(top: 0, right: 16.w),
+    ]);
   }
 
   Widget _buildSearchBar(BuildContext context) {
