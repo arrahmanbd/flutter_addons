@@ -16,7 +16,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => Size.fromHeight(56.h);
+  Size get preferredSize => Size.fromHeight(48.h);
 
   @override
   Widget build(BuildContext context) {

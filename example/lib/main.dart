@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveApp(
-      designSize: const Size(375, 812), // Reference design size
+      designSize: const Size(380, 820), // your design size, // Reference design size
       scaleMode: ScaleMode.design, // Use design scaling
       debugLog: true,
       builder: (context, orientation, screenType) {
@@ -38,3 +38,4 @@ class SoulApp extends ConsumerWidget {
     );
   }
 }
+

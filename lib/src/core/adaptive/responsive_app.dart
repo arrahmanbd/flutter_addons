@@ -3,7 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// A responsive wrapper widget with optional global error handling.
 ///  includes a BSOD-style fallback error screen.
 
-class ResponsiveApp extends StatelessWidget {
+class ResponsiveApp extends StatefulWidget {
   const ResponsiveApp({
     super.key,
     required this.builder,
@@ -17,7 +17,7 @@ class ResponsiveApp extends StatelessWidget {
     this.errorScreenStyle = ErrorScreenStyle.dessert,
   });
 
-  /// Your custom app builder that receives context, orientation, and screen type.
+  /// Custom app builder that receives context, orientation, and screen type.
   final ResponsiveBuilderType builder;
 
   /// Scaling strategy: percent, design, or smart.
@@ -43,8 +43,23 @@ class ResponsiveApp extends StatelessWidget {
   final ErrorScreenStyle errorScreenStyle;
 
   @override
+  State<ResponsiveApp> createState() => _ResponsiveAppState();
+}
+
+class _ResponsiveAppState extends State<ResponsiveApp> {
+  bool _errorHandlersSet = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_errorHandlersSet) {
+      _setupGlobalErrorHandlers();
+      _errorHandlersSet = true;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    _setupGlobalErrorHandlers();
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth == 0 || constraints.maxHeight == 0) {
@@ -54,45 +69,46 @@ class ResponsiveApp extends StatelessWidget {
         final orientation = MediaQuery.of(context).orientation;
         final screenType = _resolveScreenType(constraints.maxWidth);
 
-        // Unified scale init
         UnifiedScale().init(
           context: context,
           constraints: constraints,
           orientation: orientation,
-          mode: scaleMode,
-          designSize: designSize,
-          maxMobileWidth: maxMobileWidth,
-          maxTabletWidth: maxTabletWidth,
-          debugLog: debugLog,
+          mode: widget.scaleMode,
+          designSize: widget.designSize,
+          maxMobileWidth: widget.maxMobileWidth,
+          maxTabletWidth: widget.maxTabletWidth,
+          debugLog: widget.debugLog,
         );
 
-        return builder(context, orientation, screenType);
+        return widget.builder(context, orientation, screenType);
       },
     );
   }
 
-  ScreenType _resolveScreenType(double width) {
-    if (width <= maxMobileWidth) return ScreenType.mobile;
-    if (width <= maxTabletWidth) return ScreenType.tablet;
-    return ScreenType.desktop;
-  }
+  ScreenType _resolveScreenType(double width) =>
+      width <= widget.maxMobileWidth
+          ? ScreenType.mobile
+          : width <= widget.maxTabletWidth
+              ? ScreenType.tablet
+              : ScreenType.desktop;
 
   void _setupGlobalErrorHandlers() {
-    FlutterError.onError =
-        onFlutterError ??
+    FlutterError.onError = widget.onFlutterError ??
         (FlutterErrorDetails details) {
           FlutterError.presentError(details);
         };
 
     ErrorWidget.builder = (FlutterErrorDetails details) {
-      if (errorScreen != null) return errorScreen!(details);
+      if (widget.errorScreen != null) return widget.errorScreen!(details);
 
       final exception = details.exception.toString();
-      Debug.info('💥 Exception: $exception');
-      Debug.info('🔍 Help: ${_makeQuery(exception)}');
+      if (widget.debugLog) {
+        debugPrint('💥 Exception: $exception');
+        debugPrint('🔍 Help: ${_makeQuery(exception)}');
+      }
 
-      late final Widget screen;
-      switch (errorScreenStyle) {
+      final Widget screen;
+      switch (widget.errorScreenStyle) {
         case ErrorScreenStyle.pixelArt:
           screen = _PixelArtErrorScreen(details);
           break;
@@ -133,7 +149,7 @@ class ResponsiveApp extends StatelessWidget {
   }
 
   String _makeQuery(String exception) {
-    String cleaned = exception.replaceAll(RegExp(r'\s+'), ' ').trim();
+    var cleaned = exception.replaceAll(RegExp(r'\s+'), ' ').trim();
     if (cleaned.length > 50) cleaned = cleaned.substring(0, 50);
     return "https://www.google.com/search?q=${Uri.encodeComponent('$cleaned in Flutter')}";
   }

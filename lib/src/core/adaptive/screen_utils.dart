@@ -2,62 +2,46 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// A utility class providing global access to the current device's
 /// layout properties such as screen dimensions, orientation, and pixel density.
-class DeviceUtils {
-  // Core layout constraints
+class DeviceScreenUtils {
   static late BoxConstraints boxConstraints;
   static late Orientation orientation;
   static late DeviceType deviceType;
   static late ScreenType screenType;
 
-  // Screen dimensions
   static late double width;
   static late double height;
   static late double safeWidth;
   static late double safeHeight;
 
-  // Display characteristics
   static late double aspectRatio;
   static late double pixelRatio;
 
-  /// Initializes the device's layout data using the provided context and constraints.
-  ///
-  /// - [context]: The build context to extract media properties.
-  /// - [constraints]: The current layout constraints.
-  /// - [currentOrientation]: The screen's orientation.
-  /// - [maxMobileWidth]: The threshold width for mobile screens.
-  /// - [maxTabletWidth]: The optional threshold width for tablets (if not provided, only mobile detection applies).
-  static void setScreenSize(
-    BuildContext context,
+  /// Initializes the device's layout data using constraints, orientation, and mediaQuery.
+  static void initialize(
     BoxConstraints constraints,
-    Orientation currentOrientation,
+    Orientation orientation,
+    MediaQueryData mediaQuery,
     double maxMobileWidth, [
     double? maxTabletWidth,
   ]) {
-    // Store layout and orientation data
     boxConstraints = constraints;
-    orientation = currentOrientation;
+    DeviceScreenUtils.orientation = orientation;
 
-    // Screen dimensions
     width = constraints.maxWidth;
     height = constraints.maxHeight;
 
-    // Calculate SafeArea-aware dimensions
-    final padding = MediaQuery.of(context).viewPadding;
+    final padding = mediaQuery.viewPadding;
     safeWidth = width - padding.horizontal;
     safeHeight = height - padding.vertical;
 
-    // Display properties
     aspectRatio = width / height;
-    pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    pixelRatio = mediaQuery.devicePixelRatio;
 
-    // Determine platform type
     deviceType = _resolveDeviceType();
 
-    // Determine screen type
     screenType = _resolveScreenType(maxMobileWidth, maxTabletWidth);
   }
 
-  /// Maps the current platform to the corresponding [DeviceType].
   static DeviceType _resolveDeviceType() {
     if (kIsWeb) return DeviceType.web;
 
@@ -77,7 +61,6 @@ class DeviceUtils {
     }
   }
 
-  /// Determines the [ScreenType] based on current orientation and thresholds.
   static ScreenType _resolveScreenType(
     double maxMobileWidth,
     double? maxTabletWidth,

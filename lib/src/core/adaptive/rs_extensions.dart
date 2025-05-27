@@ -7,18 +7,19 @@ extension SmartScalerExtension on num {
   // ------------------------
 
   /// Percent of screen height (0.5 ➝ 50% of height)
-  double get ph => this * DeviceUtils.height / 100;
+  double get ph => this * DeviceScreenUtils.height / 100;
 
   /// Percent of screen width
-  double get pw => this * DeviceUtils.width;
+  double get pw => this * DeviceScreenUtils.width;
 
   /// Responsive radius from percent width
-  double get pr => this * DeviceUtils.width / 100;
+  double get pr => this * DeviceScreenUtils.width / 100;
 
   /// Responsive font size based on pixelRatio and aspectRatio
   double get pt =>
       this *
-      (((ph + pw) + (DeviceUtils.pixelRatio * DeviceUtils.aspectRatio)) /
+      (((ph + pw) +
+              (DeviceScreenUtils.pixelRatio * DeviceScreenUtils.aspectRatio)) /
           2.08) /
       100;
 

@@ -10,6 +10,7 @@ class UnifiedScale {
   late ScaleMode _mode;
   bool _initialized = false;
   bool _debugLog = false;
+  late MediaQueryData _mediaQuery;
 
   void init({
     required BuildContext context,
@@ -29,46 +30,49 @@ class UnifiedScale {
     _mode = mode;
     _debugLog = debugLog;
 
-    _log('[UnifiedScale] Initializing mode: $_mode');
+    _log('[UnifiedScale] Initializing all scale utilities');
 
-    switch (_mode) {
-      case ScaleMode.percent:
-        DeviceUtils.setScreenSize(
-          context,
-          constraints,
-          orientation,
-          maxMobileWidth,
-          maxTabletWidth,
-        );
-        _log('[UnifiedScale] Percent-based scaling initialized.');
-        break;
+    // Initialize MediaQuery once
+    _mediaQuery = MediaQueryData.fromView(
+      WidgetsBinding.instance.platformDispatcher.views.first,
+    );
+    final orientation = _mediaQuery.orientation;
+    // Initialize DeviceUtils (percent scaling)
+    DeviceScreenUtils.initialize(
+      constraints,
+      orientation,
+      _mediaQuery,
+      maxMobileWidth,
+      maxTabletWidth,
+    );
+    _log('[UnifiedScale] Percent-based scaling initialized.');
 
-      case ScaleMode.design:
-        if (designSize == null ||
-            designSize.width <= 0 ||
-            designSize.height <= 0) {
-          debugPrint('[UnifiedScale] Warning: Invalid designSize passed.');
-        } else {
-          _DesignUtils.instance.init(
-            designWidth: designSize.width,
-            designHeight: designSize.height,
-            context: context,
-          );
-          _log('[UnifiedScale] Design-based scaling initialized.');
-        }
-        break;
-
-      case ScaleMode.smart:
-        SmartUnitUtils.instance.init(
-          context: context,
-          designWidth: designSize?.width ?? 375,
-          designHeight: designSize?.height ?? 812,
-        );
-        _log('[UnifiedScale] Smart-based scaling initialized.');
-        break;
+    // Initialize DesignScale (design scaling), if designSize is valid
+    if (designSize != null && designSize.width > 0 && designSize.height > 0) {
+      _DesignUtils.instance.init(
+        designWidth: designSize.width,
+        designHeight: designSize.height,
+        mediaQuery: _mediaQuery,
+      );
+      _log(
+        '[UnifiedScale] Design-based scaling initialized with designSize: $designSize',
+      );
+    } else {
+      _log(
+        '[UnifiedScale] Design-based scaling skipped due to invalid designSize.',
+      );
     }
 
+    // Initialize SmartUnitUtils (smart scaling)
+    SmartUnitUtils.instance.init(
+      context: context,
+      designWidth: designSize?.width ?? 375,
+      designHeight: designSize?.height ?? 812,
+    );
+    _log('[UnifiedScale] Smart-based scaling initialized.');
+
     _initialized = true;
+    _log('[UnifiedScale] Initialization complete. Active mode: $_mode');
   }
 
   ScaleMode get mode {

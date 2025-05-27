@@ -43,6 +43,7 @@ part 'src/context/typo_graphy.dart';
 part 'src/context/quick_typo.dart';
 part 'src/context/responsive.dart';
 part 'src/context/theme_colors.dart';
+part 'src/context/theme_mode.dart';
 
 // Widgets
 part 'src/widgets/widget_ext.dart';
@@ -108,6 +109,7 @@ part 'src/core/themes/theme_maker.dart';
 part 'src/core/themes/theme_engine.dart';
 part 'src/core/themes/theme_manager.dart';
 part 'src/core/themes/soul_component.dart';
+
 
 /// Color Plattes
 part 'src/core/palettes/soul_colors.dart';

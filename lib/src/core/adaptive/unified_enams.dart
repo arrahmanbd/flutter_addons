@@ -3,7 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 enum ScaleMode { smart, design, percent }
 
 /// Defines the operating platform the app is currently running on.
-enum DeviceType { android, ios, fuchsia, web, windows, mac, linux }
+enum DeviceType { android, ios, fuchsia, web, windows, mac, linux, unknown }
 
 /// Defines the general screen size category for the current device.
 enum ScreenType { mobile, tablet, desktop }

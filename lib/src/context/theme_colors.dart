@@ -8,10 +8,7 @@ extension ThemeExtension on BuildContext {
   TextTheme get typography => theme.textTheme;
 }
 
-extension ThemeModeContext on BuildContext {
-  bool get isDark => Theme.of(this).brightness == Brightness.dark;
-  bool get isLight => Theme.of(this).brightness == Brightness.light;
-}
+
 
 extension ThemeColors on BuildContext {
   /// Primary brand color, used for buttons, FABs, and active elements.

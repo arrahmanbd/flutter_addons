@@ -66,7 +66,7 @@ class StoreHomePage extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context) {
     return Container(
-      height: 200.h,
+      height: 28.ph,
       padding: 16.p,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(3.r),
@@ -110,7 +110,9 @@ class StoreHomePage extends StatelessWidget {
               FlatButton(
                 label: "Save",
                 icon: Icon(Icons.save),
-                onPressed: () {},
+                onPressed: () {
+                  print(context.isLight);
+                },
                 variant: ButtonVariant.outline,
                 size: ButtonSize.md,
                 isRounded: true,
