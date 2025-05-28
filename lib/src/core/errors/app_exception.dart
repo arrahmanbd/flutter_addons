@@ -24,7 +24,6 @@ class AppException implements Exception {
   }
 }
 
-
 class _ErrorHandlerService {
   static bool _initialized = false;
 
@@ -105,4 +104,3 @@ class _ErrorHandlerService {
     return "https://www.google.com/search?q=${Uri.encodeComponent('$cleaned in Flutter')}";
   }
 }
-

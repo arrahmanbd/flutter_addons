@@ -31,11 +31,6 @@ enum ErrorScreenStyle {
   book,
 }
 
-enum ResponsiveTransition {
-  fade,
-  slide,
-  scale,
-  slideScale,
-  rotation,
-}
+enum ResponsiveTransition { fade, slide, scale, slideScale, rotation }
+
 /// Defines the orientation of the device.
