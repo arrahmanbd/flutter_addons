@@ -143,6 +143,29 @@ class _ScreenUtils {
     return safeHeight * (percent / 100);
   }
 
+  /// Returns radius scaled by percentage of screen width (0-100).
+  static double percentRadius(double percent) {
+    _assertInitialized();
+    assert(percent >= 0 && percent <= 100, 'Percent must be between 0 and 100.');
+    // You can choose to scale radius by width or safeWidth here, I use safeWidth:
+    return safeWidth * (percent / 100);
+  }
+
+
+  /// Returns scaled font size (sp) based on combined height, width, pixel ratio, and aspect ratio.
+  /// The formula is: (((ph + pw) + (pixelRatio * aspectRatio)) / 2.08) / 100 * size
+  static double percentFontSize(double size) {
+    _assertInitialized();
+    assert(size > 0, 'Font size must be greater than zero.');
+    final scaledValue =
+        ((percentHeight(size) + percentWidth(size)) +
+            (pixelRatio * aspectRatio)) /
+        2.08 /
+        100;
+
+    return size * scaledValue;
+  }
+
   static DeviceType _resolveDeviceType() {
     if (kIsWeb) return DeviceType.web;
     switch (defaultTargetPlatform) {

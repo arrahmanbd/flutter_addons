@@ -13,12 +13,12 @@ class Frame {
   String toString() => 'Frame(width: $width, height: $height)';
 }
 
-class UnifiedScale {
-  static final UnifiedScale _instance = UnifiedScale._internal();
+class _UnifiedScale {
+  static final _UnifiedScale _instance = _UnifiedScale._internal();
 
-  factory UnifiedScale() => _instance;
+  factory _UnifiedScale() => _instance;
 
-  UnifiedScale._internal();
+  _UnifiedScale._internal();
 
   late ScaleMode _mode;
   bool _initialized = false;
@@ -107,6 +107,6 @@ class UnifiedScale {
   }
 
   void _log(String message) {
-    if (_debugLog) debugPrint(message);
+    if (_debugLog) Debug.info(message);
   }
 }

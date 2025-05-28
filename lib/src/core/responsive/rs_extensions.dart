@@ -7,21 +7,18 @@ extension SmartScalerExtension on num {
   // ------------------------
 
   /// Percent of screen height (0.5 ➝ 50% of height)
-  double get ph => this * _ScreenUtils.height / 100;
+  double get ph => _ScreenUtils.percentHeight(toDouble());
 
   /// Percent of screen width
-  double get pw => this * _ScreenUtils.width / 100;
+  double get pw => _ScreenUtils.percentWidth(toDouble());
 
   /// Responsive radius from percent width
-  double get pr => this * _ScreenUtils.width / 100;
+  double get pr => _ScreenUtils.percentRadius(toDouble());
 
   /// Responsive font size based on pixelRatio and aspectRatio
-  double get pt =>
-      this *
-      (((ph + pw) + (_ScreenUtils.pixelRatio * _ScreenUtils.aspectRatio)) /
-          2.08) /
-      100;
+  double get pt => _ScreenUtils.percentFontSize(toDouble());
 
+  // double get prs => min(_ScreenUtils.percentSafeHeight(toDouble())/ _ScreenUtils.percentSafeWidth(toDouble()), 1.0) * toDouble();
   // ------------------------
   // Design-based extensions
   // ------------------------
@@ -60,7 +57,7 @@ extension SmartScalerExtension on num {
 
   /// Unified width/radius/text-size depending on current active ScaleMode
   double get w {
-    switch (UnifiedScale().mode) {
+    switch (_UnifiedScale().mode) {
       case ScaleMode.smart:
         return sx;
       case ScaleMode.design:
@@ -72,7 +69,7 @@ extension SmartScalerExtension on num {
 
   // unified height
   double get h {
-    switch (UnifiedScale().mode) {
+    switch (_UnifiedScale().mode) {
       case ScaleMode.smart:
         return sy;
       case ScaleMode.design:
@@ -82,9 +79,9 @@ extension SmartScalerExtension on num {
     }
   }
 
-  // unified height
+  // unified responsive radius
   double get rs {
-    switch (UnifiedScale().mode) {
+    switch (_UnifiedScale().mode) {
       case ScaleMode.smart:
         return min(sy, sx);
       case ScaleMode.design:
@@ -95,7 +92,7 @@ extension SmartScalerExtension on num {
   }
 
   double get sp {
-    final mode = UnifiedScale().mode;
+    final mode = _UnifiedScale().mode;
     switch (mode) {
       case ScaleMode.smart:
         return st();
@@ -108,7 +105,7 @@ extension SmartScalerExtension on num {
 
   /// Unified scalable font size
   double usp([double textScaleFactor = 1.0]) {
-    switch (UnifiedScale().mode) {
+    switch (_UnifiedScale().mode) {
       case ScaleMode.smart:
         return st(textScaleFactor);
       case ScaleMode.design:
