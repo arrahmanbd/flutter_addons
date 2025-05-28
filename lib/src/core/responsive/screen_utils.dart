@@ -137,26 +137,6 @@ class _ScreenUtils {
     return height * (percent / 100);
   }
 
-  /// Returns safe width scaled by percentage (0-100).
-  static double percentSafeWidth(double percent) {
-    _assertInitialized();
-    assert(
-      percent >= 0 && percent <= 100,
-      'Percent must be between 0 and 100.',
-    );
-    return safeWidth * (percent / 100);
-  }
-
-  /// Returns safe height scaled by percentage (0-100).
-  static double percentSafeHeight(double percent) {
-    _assertInitialized();
-    assert(
-      percent >= 0 && percent <= 100,
-      'Percent must be between 0 and 100.',
-    );
-    return safeHeight * (percent / 100);
-  }
-
   /// Returns radius scaled by percentage of screen width (0-100).
   static double percentRadius(double percent) {
     _assertInitialized();
@@ -207,8 +187,9 @@ class _ScreenUtils {
     final logicalWidth = orientation == Orientation.portrait ? width : height;
 
     if (logicalWidth <= maxMobileWidth) return ScreenType.mobile;
-    if (maxTabletWidth == null || logicalWidth <= maxTabletWidth)
+    if (maxTabletWidth == null || logicalWidth <= maxTabletWidth) {
       return ScreenType.tablet;
+    }
     return ScreenType.desktop;
   }
 }

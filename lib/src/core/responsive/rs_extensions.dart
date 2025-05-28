@@ -133,4 +133,8 @@ extension SmartScalerExtension on num {
   // ------------------------
   double get fs => sp; // fontSize shorthand
   double get r => rs; // radius shorthand
+  DeviceType get device => _ScreenUtils.deviceType; // device type shorthand
+  Orientation get orientation =>
+      _ScreenUtils.orientation; // orientation shorthand
+  ScreenType get screen => _ScreenUtils.screenType; // screen type shorthand
 }
