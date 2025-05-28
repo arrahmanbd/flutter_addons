@@ -1,4 +1,4 @@
-# 2.0.0-beta
+# 2.0.0
 ### Added
 - Introduced `ResponsiveScope` as the root-level responsive layout wrapper.
 - Renamed NavigationExtension to NavigationContextExtensions for clarity.
