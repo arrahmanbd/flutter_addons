@@ -8,6 +8,7 @@
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
 ![Stars](https://img.shields.io/github/stars/arrahmanbd/flutter_addons)
 ![Contributors](https://img.shields.io/github/contributors/arrahmanbd/flutter_addons)
+[![Stand With Palestine](https://github.com/arrahmanbd/bangla_pdf_fixer/raw/master/images/StandWithPalestine.svg)](https://pub.dev/packages/bangla_pdf_fixer)
 
 
 **Flutter Addons** is a powerful toolkit designed to streamline responsive Flutter development. It includes theming engines, layout utilities, scaling extensions, and animation helpers—everything you need to build polished, adaptive apps faster. Whether you're working with Figma designs or coding pixel-perfect UIs, Flutter Addons keeps your code clean, consistent, and scalable.
