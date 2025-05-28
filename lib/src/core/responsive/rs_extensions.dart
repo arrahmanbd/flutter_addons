@@ -7,19 +7,18 @@ extension SmartScalerExtension on num {
   // ------------------------
 
   /// Percent of screen height (0.5 ➝ 50% of height)
-  double get ph => this * DeviceScreenUtils.height / 100;
+  double get ph => this * _ScreenUtils.height / 100;
 
   /// Percent of screen width
-  double get pw => this * DeviceScreenUtils.width;
+  double get pw => this * _ScreenUtils.width / 100;
 
   /// Responsive radius from percent width
-  double get pr => this * DeviceScreenUtils.width / 100;
+  double get pr => this * _ScreenUtils.width / 100;
 
   /// Responsive font size based on pixelRatio and aspectRatio
   double get pt =>
       this *
-      (((ph + pw) +
-              (DeviceScreenUtils.pixelRatio * DeviceScreenUtils.aspectRatio)) /
+      (((ph + pw) + (_ScreenUtils.pixelRatio * _ScreenUtils.aspectRatio)) /
           2.08) /
       100;
 
@@ -47,13 +46,13 @@ extension SmartScalerExtension on num {
   // ------------------------
 
   /// Smart unit scale based on shortest side
-  double get su => SmartUnitUtils.instance.scale(this);
-  double get sx => SmartUnitUtils.instance.scaleX(this);
-  double get sy => SmartUnitUtils.instance.scaleY(this);
+  double get su => _SmartUnitUtils.instance.scale(this);
+  double get sx => _SmartUnitUtils.instance.scaleX(this);
+  double get sy => _SmartUnitUtils.instance.scaleY(this);
 
   /// Smart font scaling
   double st([double textScaleFactor = 1.0]) =>
-      SmartUnitUtils.instance.sp(this, textScaleFactor: textScaleFactor);
+      _SmartUnitUtils.instance.sp(this, textScaleFactor: textScaleFactor);
 
   // ------------------------
   // Unified extensions (auto-detect mode)

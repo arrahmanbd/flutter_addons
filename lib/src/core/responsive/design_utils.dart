@@ -26,7 +26,10 @@ class _DesignUtils {
     required double designHeight,
     required MediaQueryData mediaQuery,
   }) {
-    assert(designWidth > 0 && designHeight > 0, 'Design size must be greater than 0.');
+    assert(
+      designWidth > 0 && designHeight > 0,
+      'Design size must be greater than 0.',
+    );
 
     _designWidth = designWidth;
     _designHeight = designHeight;

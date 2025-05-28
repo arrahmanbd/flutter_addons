@@ -24,23 +24,21 @@ extension ResponsiveSpacing on num {
   double get px => toDouble();
 
   /// Converts the value to a percentage of the available height after `SafeArea`.
-  double get sh => this * DeviceScreenUtils.safeHeight / 100;
+  double get sh => this * _ScreenUtils.safeHeight / 100;
 
   /// Converts the value to a percentage of the available width after `SafeArea`.
-  double get sw => this * DeviceScreenUtils.safeWidth / 100;
+  double get sw => this * _ScreenUtils.safeWidth / 100;
 
   /// Converts the value to scalable pixels (spa) with an alternate formula.
   double get spa =>
-      this * (((ph + pw) + (240 * DeviceScreenUtils.aspectRatio)) / 2.08) / 100;
+      this * (((ph + pw) + (240 * _ScreenUtils.aspectRatio)) / 2.08) / 100;
 
   /// Converts the value to density-independent pixels (dp) for consistent sizing across devices.
-  double get dp => this * (pw * 160) / DeviceScreenUtils.pixelRatio;
+  double get dp => this * (pw * 160) / _ScreenUtils.pixelRatio;
 
   /// Converts the value to a percentage of the viewport's smaller dimension (height/width).
-  double get vmin =>
-      this * min(DeviceScreenUtils.height, DeviceScreenUtils.width) / 100;
+  double get vmin => this * min(_ScreenUtils.height, _ScreenUtils.width) / 100;
 
   /// Converts the value to a percentage of the viewport's larger dimension (height/width).
-  double get vmax =>
-      this * max(DeviceScreenUtils.height, DeviceScreenUtils.width) / 100;
+  double get vmax => this * max(_ScreenUtils.height, _ScreenUtils.width) / 100;
 }

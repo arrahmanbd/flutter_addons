@@ -1,4 +1,14 @@
-# 2.0.0-alpha.2
+# 2.0.0-alpha.3
+### Added
+- `Frame.reversed` getter to automatically swap width and height for landscape orientation.
+- Dynamic design frame handling based on `MediaQuery.orientation` to ensure consistent scaling.
+
+### Changed
+- Scaling logic now adapts to screen orientation, reversing the design frame in landscape mode.
+- Fallback mechanism added to handle null or invalid `designFrame` values gracefully.
+
+
+### 2.0.0-alpha.2
 
 ### ✨ Features
 

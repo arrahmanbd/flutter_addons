@@ -13,7 +13,6 @@ class Frame {
   String toString() => 'Frame(width: $width, height: $height)';
 }
 
-
 class UnifiedScale {
   static final UnifiedScale _instance = UnifiedScale._internal();
 
@@ -52,12 +51,11 @@ class UnifiedScale {
     );
     final orientation = _mediaQuery.orientation;
     // Initialize DeviceUtils (percent scaling)
-    DeviceScreenUtils.initialize(
-      constraints,
-      orientation,
-      _mediaQuery,
-      maxMobileWidth,
-      maxTabletWidth,
+    _ScreenUtils.initialize(
+      mediaQuery: _mediaQuery,
+      orientation: orientation,
+      maxMobileWidth: maxMobileWidth,
+      maxTabletWidth: maxTabletWidth,
     );
     _log('[UnifiedScale] Percent-based scaling initialized.');
 
@@ -78,7 +76,7 @@ class UnifiedScale {
     }
 
     // Initialize SmartUnitUtils (smart scaling)
-    SmartUnitUtils.instance.init(
+    _SmartUnitUtils.instance.init(
       context: context,
       designWidth: designSize?.width ?? 375,
       designHeight: designSize?.height ?? 812,

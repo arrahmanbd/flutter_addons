@@ -1,50 +1,150 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// A utility class providing global access to the current device's
-/// layout properties such as screen dimensions, orientation, and pixel density.
-class DeviceScreenUtils {
-  static late BoxConstraints boxConstraints;
-  static late Orientation orientation;
-  static late DeviceType deviceType;
-  static late ScreenType screenType;
+/// A utility class providing global access to the current device's layout
+/// properties such as screen dimensions, orientation, and pixel density.
 
-  static late double width;
-  static late double height;
-  static late double safeWidth;
-  static late double safeHeight;
+/// Internal utility class for device and screen-related metrics.
+///
+/// Should be initialized once before use.
+class _ScreenUtils {
+  static late Size _screenSize;
+  static late EdgeInsets _padding;
+  static late Orientation _orientation;
+  static late double _devicePixelRatio;
 
-  static late double aspectRatio;
-  static late double pixelRatio;
+  static late DeviceType _deviceType;
+  static late ScreenType _screenType;
 
-  /// Initializes the device's layout data using constraints, orientation, and mediaQuery.
-  static void initialize(
-    BoxConstraints constraints,
-    Orientation orientation,
-    MediaQueryData mediaQuery,
-    double maxMobileWidth, [
+  /// Initializes the device metrics and screen classifications.
+  ///
+  /// Must be called before accessing any properties.
+  static void initialize({
+    required MediaQueryData mediaQuery,
+    required Orientation orientation,
+    required double maxMobileWidth,
     double? maxTabletWidth,
-  ]) {
-    boxConstraints = constraints;
-    DeviceScreenUtils.orientation = orientation;
+  }) {
+    assert(
+      mediaQuery.size.width > 0 && mediaQuery.size.height > 0,
+      'MediaQuery size must be greater than zero.',
+    );
+    assert(maxMobileWidth > 0, 'maxMobileWidth must be greater than zero.');
+    if (maxTabletWidth != null) {
+      assert(
+        maxTabletWidth > maxMobileWidth,
+        'maxTabletWidth must be greater than maxMobileWidth.',
+      );
+    }
 
-    width = constraints.maxWidth;
-    height = constraints.maxHeight;
+    _screenSize = mediaQuery.size;
+    _padding = mediaQuery.padding;
+    _devicePixelRatio = mediaQuery.devicePixelRatio;
+    _orientation = orientation;
 
-    final padding = mediaQuery.viewPadding;
-    safeWidth = width - padding.horizontal;
-    safeHeight = height - padding.vertical;
+    _deviceType = _resolveDeviceType();
+    _screenType = _resolveScreenType(maxMobileWidth, maxTabletWidth);
+  }
 
-    aspectRatio = width / height;
-    pixelRatio = mediaQuery.devicePixelRatio;
+  static void _assertInitialized() {
+    assert(
+      _screenSize.width > 0 && _screenSize.height > 0,
+      'DeviceScreenUtils not initialized. Call initialize() first.',
+    );
+  }
 
-    deviceType = _resolveDeviceType();
+  /// Width of the screen in logical pixels.
+  static double get width {
+    _assertInitialized();
+    return _screenSize.width;
+  }
 
-    screenType = _resolveScreenType(maxMobileWidth, maxTabletWidth);
+  /// Height of the screen in logical pixels.
+  static double get height {
+    _assertInitialized();
+    return _screenSize.height;
+  }
+
+  /// Safe width excluding horizontal padding (e.g., notches).
+  static double get safeWidth {
+    _assertInitialized();
+    return width - _padding.horizontal;
+  }
+
+  /// Safe height excluding vertical padding (e.g., status bar).
+  static double get safeHeight {
+    _assertInitialized();
+    return height - _padding.vertical;
+  }
+
+  /// Aspect ratio (width / height).
+  static double get aspectRatio {
+    _assertInitialized();
+    return width / height;
+  }
+
+  /// Physical pixel density.
+  static double get pixelRatio {
+    _assertInitialized();
+    return _devicePixelRatio;
+  }
+
+  static Orientation get orientation {
+    _assertInitialized();
+    return _orientation;
+  }
+
+  static DeviceType get deviceType {
+    _assertInitialized();
+    return _deviceType;
+  }
+
+  static ScreenType get screenType {
+    _assertInitialized();
+    return _screenType;
+  }
+
+  /// Returns width scaled by percentage (0-100).
+  static double percentWidth(double percent) {
+    _assertInitialized();
+    assert(
+      percent >= 0 && percent <= 100,
+      'Percent must be between 0 and 100.',
+    );
+    return width * (percent / 100);
+  }
+
+  /// Returns height scaled by percentage (0-100).
+  static double percentHeight(double percent) {
+    _assertInitialized();
+    assert(
+      percent >= 0 && percent <= 100,
+      'Percent must be between 0 and 100.',
+    );
+    return height * (percent / 100);
+  }
+
+  /// Returns safe width scaled by percentage (0-100).
+  static double percentSafeWidth(double percent) {
+    _assertInitialized();
+    assert(
+      percent >= 0 && percent <= 100,
+      'Percent must be between 0 and 100.',
+    );
+    return safeWidth * (percent / 100);
+  }
+
+  /// Returns safe height scaled by percentage (0-100).
+  static double percentSafeHeight(double percent) {
+    _assertInitialized();
+    assert(
+      percent >= 0 && percent <= 100,
+      'Percent must be between 0 and 100.',
+    );
+    return safeHeight * (percent / 100);
   }
 
   static DeviceType _resolveDeviceType() {
     if (kIsWeb) return DeviceType.web;
-
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return DeviceType.android;
@@ -65,14 +165,11 @@ class DeviceScreenUtils {
     double maxMobileWidth,
     double? maxTabletWidth,
   ) {
-    final primaryAxis = orientation == Orientation.portrait ? width : height;
+    final logicalWidth = orientation == Orientation.portrait ? width : height;
 
-    if (primaryAxis <= maxMobileWidth) return ScreenType.mobile;
-
-    if (maxTabletWidth == null || primaryAxis <= maxTabletWidth) {
+    if (logicalWidth <= maxMobileWidth) return ScreenType.mobile;
+    if (maxTabletWidth == null || logicalWidth <= maxTabletWidth)
       return ScreenType.tablet;
-    }
-
     return ScreenType.desktop;
   }
 }
