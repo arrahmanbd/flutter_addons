@@ -2,17 +2,17 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-2.0.0-red)
+![Version](https://img.shields.io/badge/Version-2.0.0-yellow)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
 ![Stars](https://img.shields.io/github/stars/arrahmanbd/flutter_addons)
 ![Contributors](https://img.shields.io/github/contributors/arrahmanbd/flutter_addons)
 
-Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of responsive Flutter applications. This package includes a variety of tools that help streamline common tasks, such as scaling UI elements, adapting layouts to different screen sizes, making it easier and faster to build high-quality apps quickly and efficiently.
 
-> ⚡ Supercharge your Flutter workflow and become **10x more productive** by using the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons) – available now on the Visual Studio Marketplace!
+**Flutter Addons** is a powerful toolkit designed to streamline responsive Flutter development. It includes theming engines, layout utilities, scaling extensions, and animation helpers—everything you need to build polished, adaptive apps faster. Whether you're working with Figma designs or coding pixel-perfect UIs, Flutter Addons keeps your code clean, consistent, and scalable.
 
+> ⚡ Supercharge your Flutter workflow and become **10x more productive** with the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons).
 
 
 ---
@@ -62,7 +62,7 @@ Smooth scaling across devices. Use one mode globally for consistency.
 | `.w`      | Width          | `16.w`  | Auto-scaled width                        |
 
 
-## 💎 Global Themeing — Quick Guide
+### 💎 Effortless Theming with Soul —  Quickstart Guide
 
 1. **Create Custom Colors**  
    Extend `ThemeKolors` and override colors:
