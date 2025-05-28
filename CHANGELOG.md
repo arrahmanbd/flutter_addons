@@ -5,6 +5,9 @@
 - Improved SmartUnitUtils scaling calculations with orientation-aware design frame handling.
 - Refactored ResponsiveApp for cleaner separation of error handling and screen type resolution logic.
 - Enhanced debug logging for better insights on orientation and screen type changes.
+
+- Transition Effect for responsive widget on rebuild.
+
 - General code cleanup to improve maintainability and professionalism.
 
 ### Changed
