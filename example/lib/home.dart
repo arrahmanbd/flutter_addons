@@ -18,7 +18,6 @@ class StoreHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: context.background,
       appBar: FacebookAppBar(
