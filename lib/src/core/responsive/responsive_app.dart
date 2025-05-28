@@ -15,8 +15,8 @@ class ResponsiveApp extends StatefulWidget {
     this.errorScreen,
     this.enableDebugLogging = false,
     this.errorScreenStyle = ErrorScreenStyle.dessert,
-    this.animatedTransition = true,
-    this.transition = ResponsiveTransition.rotation,
+    this.enableTransitionEffect = true,
+    this.transitionEffect = ResponsiveTransition.slide,
   });
 
   final ResponsiveBuilderType layoutBuilder;
@@ -28,8 +28,8 @@ class ResponsiveApp extends StatefulWidget {
   final FlutterExceptionHandler? onFlutterError;
   final Widget Function(FlutterErrorDetails error)? errorScreen;
   final ErrorScreenStyle errorScreenStyle;
-  final bool animatedTransition;
-  final ResponsiveTransition transition;
+  final bool enableTransitionEffect;
+  final ResponsiveTransition transitionEffect;
 
   @override
   State<ResponsiveApp> createState() => _ResponsiveAppState();
@@ -119,23 +119,14 @@ class _ResponsiveAppState extends State<ResponsiveApp>
                 maxTabletWidth: widget.maxTabletWidth,
                 debugLog: widget.enableDebugLogging,
               );
-              return widget.animatedTransition
+              return widget.enableTransitionEffect
                   ? AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 400),
+                    duration: const Duration(milliseconds: 300),
                     switchInCurve: Curves.easeInOut,
                     switchOutCurve: Curves.easeInOut,
-                    layoutBuilder: (currentChild, previousChildren) {
-                      return Stack(
-                        alignment: Alignment.center,
-                        children: <Widget>[
-                          ...previousChildren,
-                          if (currentChild != null) currentChild,
-                        ],
-                      );
-                    },
-                    transitionBuilder: (child, animation) {
-                      return FadeTransition(opacity: animation, child: child);
-                    },
+                    transitionBuilder: ResponsiveTransitionBuilder.resolve(
+                      ResponsiveTransition.slideScale,
+                    ),
                     key: ValueKey<Orientation>(orientation),
                     child: widget.layoutBuilder(
                       context,
