@@ -6,6 +6,20 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// Internal utility class for device and screen-related metrics.
 ///
 /// Should be initialized once before use.
+ class _ScreenTypeResolver {
+  static ScreenType resolve({
+    required double width,
+    required double maxMobileWidth,
+    double? maxTabletWidth,
+  }) {
+    if (width <= maxMobileWidth) return ScreenType.mobile;
+    if (maxTabletWidth == null || width <= maxTabletWidth) {
+      return ScreenType.tablet;
+    }
+    return ScreenType.desktop;
+  }
+}
+
 class _ScreenUtils {
   static late Size _screenSize;
   static late EdgeInsets _padding;

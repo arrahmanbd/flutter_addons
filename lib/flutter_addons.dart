@@ -55,6 +55,7 @@ part 'src/widgets/list_grid.dart';
 part 'src/core/responsive/responsive_app.dart';
 part 'src/core/spacing/responsive_space.dart';
 part 'src/core/responsive/screen_utils.dart';
+part 'src/core/responsive/responsive_transitions.dart';
 
 // Spacing
 part 'src/core/spacing/spacing_extensions.dart';

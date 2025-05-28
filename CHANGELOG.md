@@ -1,7 +1,11 @@
-# 2.0.0-alpha.3
+# 2.0.0-beta
 ### Added
 - `Frame.reversed` getter to automatically swap width and height for landscape orientation.
 - Dynamic design frame handling based on `MediaQuery.orientation` to ensure consistent scaling.
+- Improved SmartUnitUtils scaling calculations with orientation-aware design frame handling.
+- Refactored ResponsiveApp for cleaner separation of error handling and screen type resolution logic.
+- Enhanced debug logging for better insights on orientation and screen type changes.
+- General code cleanup to improve maintainability and professionalism.
 
 ### Changed
 - Scaling logic now adapts to screen orientation, reversing the design frame in landscape mode.

@@ -1,6 +1,6 @@
 name: flutter_addons
 description: "Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications."
-version: 2.0.0-alpha.3
+version: 2.0.0-beta
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons
 issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues
