@@ -18,6 +18,7 @@ class StoreHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: context.background,
       appBar: FacebookAppBar(
@@ -66,7 +67,7 @@ class StoreHomePage extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context) {
     return Container(
-      height: 28.ph,
+      height: 220.h,
       padding: 16.p,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(3.r),

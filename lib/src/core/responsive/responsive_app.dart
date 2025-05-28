@@ -60,28 +60,52 @@ class _ResponsiveAppState extends State<ResponsiveApp> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth == 0 || constraints.maxHeight == 0) {
-          return const SizedBox.shrink();
-        }
+    return WidgetsApp(
+      color: Kolors.neutral100,
+      builder:
+          (context, _) => Directionality(
+            textDirection: TextDirection.ltr,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth == 0 || constraints.maxHeight == 0) {
+                  return const SizedBox.shrink();
+                }
 
-        final orientation = MediaQuery.of(context).orientation;
-        final screenType = _resolveScreenType(constraints.maxWidth);
+                final orientation = MediaQuery.of(context).orientation;
+                final screenType = _resolveScreenType(constraints.maxWidth);
+                if (widget.enableDebugLogging) {
+                  debugPrint(
+                    '📱 Orientation: $orientation, '
+                    'Screen Type: $screenType, '
+                    'Width: ${constraints.maxWidth}, '
+                    'Height: ${constraints.maxHeight}',
+                  );
+                }
+                UnifiedScale().init(
+                  context: context,
+                  constraints: constraints,
+                  orientation: orientation,
+                  mode: widget.scaleMode,
+                  designSize:
+                      (widget.designFrame != null &&
+                              widget.designFrame!.width > 0 &&
+                              widget.designFrame!.height > 0)
+                          ? (orientation == Orientation.landscape
+                              ? widget.designFrame!.reversed
+                              : widget.designFrame!)
+                          : const Frame(
+                            width: 360,
+                            height: 800,
+                          ), // fallback or default
+                  maxMobileWidth: widget.maxMobileWidth,
+                  maxTabletWidth: widget.maxTabletWidth,
+                  debugLog: widget.enableDebugLogging,
+                );
 
-        UnifiedScale().init(
-          context: context,
-          constraints: constraints,
-          orientation: orientation,
-          mode: widget.scaleMode,
-          designSize: widget.designFrame,
-          maxMobileWidth: widget.maxMobileWidth,
-          maxTabletWidth: widget.maxTabletWidth,
-          debugLog: widget.enableDebugLogging,
-        );
-
-        return widget.layoutBuilder(context, orientation, screenType);
-      },
+                return widget.layoutBuilder(context, orientation, screenType);
+              },
+            ),
+          ),
     );
   }
 

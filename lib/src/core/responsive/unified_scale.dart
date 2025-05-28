@@ -3,10 +3,16 @@ part of 'package:flutter_addons/flutter_addons.dart';
 class Frame {
   final double width;
   final double height;
+
   const Frame({required this.width, required this.height});
+
+  /// Returns a new Frame with width and height swapped
+  Frame get reversed => Frame(width: height, height: width);
+
   @override
   String toString() => 'Frame(width: $width, height: $height)';
 }
+
 
 class UnifiedScale {
   static final UnifiedScale _instance = UnifiedScale._internal();
@@ -30,10 +36,10 @@ class UnifiedScale {
     double maxTabletWidth = 1024,
     bool debugLog = false,
   }) {
-    if (_initialized) {
-      if (debugLog) debugPrint('[UnifiedScale] Already initialized. Skipping.');
-      return;
-    }
+    // if (_initialized) {
+    //   if (debugLog) debugPrint('[UnifiedScale] Already initialized. Skipping.');
+    //   return;
+    // }
 
     _mode = mode;
     _debugLog = debugLog;
