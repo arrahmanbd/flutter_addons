@@ -64,7 +64,6 @@ Smooth scaling across devices. Use one mode globally for consistency.
 
 
 ### 💎 Effortless Theming with Soul —  Quickstart Guide
-
 1. **Create Custom Colors**  
    Extend `ThemeKolors` and override colors:
    ```dart

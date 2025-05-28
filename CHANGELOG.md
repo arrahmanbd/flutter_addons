@@ -1,21 +1,14 @@
 # 2.0.0
-### Added
-- Introduced `ResponsiveScope` as the root-level responsive layout wrapper.
-- Renamed NavigationExtension to NavigationContextExtensions for clarity.
-- `Frame.reversed` getter to automatically swap width and height for landscape orientation.
-- Dynamic design frame handling based on `MediaQuery.orientation` to ensure consistent scaling.
-- Improved SmartUnitUtils scaling calculations with orientation-aware design frame handling.
-- Refactored ResponsiveApp for cleaner separation of error handling and screen type resolution logic.
-- Enhanced debug logging for better insights on orientation and screen type changes.
-
-- Transition Effect for responsive widget on rebuild.
-
-- General code cleanup to improve maintainability and professionalism.
-
-### Changed
-- Scaling logic now adapts to screen orientation, reversing the design frame in landscape mode.
-- Fallback mechanism added to handle null or invalid `designFrame` values gracefully.
-
+- Added ResponsiveScope as root wrapper for responsive layouts
+- Renamed NavigationExtension to NavigationContextExtensions
+- Added Frame.reversed for orientation-aware frame swapping
+- Improved design frame handling with MediaQuery.orientation
+- Enhanced SmartUnitUtils scaling with orientation awareness
+- Refactored ResponsiveApp for better error handling and screen type logic
+- Improved debug logging for orientation and screen type changes
+- Added transition effects on responsive widget rebuild
+- Fixed fallback handling for invalid designFrame values
+- General code cleanup and maintenance
 
 ### 2.0.0-alpha.2
 
