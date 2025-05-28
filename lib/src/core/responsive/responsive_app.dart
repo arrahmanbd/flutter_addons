@@ -3,8 +3,8 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// A responsive wrapper widget with optional global error handling.
 ///  includes a BSOD-style fallback error screen.
 /// Responsive app wrapper with error handling and animated orientation switching.
-class ResponsiveApp extends StatefulWidget {
-  const ResponsiveApp({
+class ResponsiveScope extends StatefulWidget {
+  const ResponsiveScope({
     super.key,
     required this.layoutBuilder,
     this.designFrame,
@@ -32,10 +32,10 @@ class ResponsiveApp extends StatefulWidget {
   final ResponsiveTransition transitionEffect;
 
   @override
-  State<ResponsiveApp> createState() => _ResponsiveAppState();
+  State<ResponsiveScope> createState() => _ResponsiveScopeState();
 }
 
-class _ResponsiveAppState extends State<ResponsiveApp>
+class _ResponsiveScopeState extends State<ResponsiveScope>
     with WidgetsBindingObserver {
   bool _errorHandlersSet = false;
   Orientation? _lastOrientation;

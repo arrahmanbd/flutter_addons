@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveApp(
+    return ResponsiveScope(
       enableDebugLogging: true,
       designFrame: Frame(width: 320, height: 812),
       scaleMode: ScaleMode.design,

@@ -36,13 +36,13 @@ Flutter Addons is a collection of extensions and utilities designed to simplify 
 Wrap your root widget with `ResponsiveApp` to enable responsive scaling and theming:
 
 ```dart
-   ResponsiveApp( // 👈 VERY IMPORTANT
+   ResponsiveScope( // 👈 VERY IMPORTANT
       enableDebugLogging: true,
       layoutBuilder: : (context, orientation, screenType) {
       return const MyApp();
       },
       designFrame: Frame(width: 340, height: 812), //Refrence Figma/AdobeXD Frame
-      scaleMode: ScaleMode.design, //Unified scale unit
+      scaleMode: ScaleMode.design, //Unified scale unit based on design
       errorScreenStyle: ErrorScreenStyle.dessert, // Custom error UI
 );
 ```
@@ -76,7 +76,7 @@ Wrap your root widget with `ResponsiveApp` to enable responsive scaling and them
 | `.w`      | Width          | `16.w`  | Auto-scaled width                        |
 | `.h`      | Height         | `24.h`  | Auto-scaled height                       |
 | `.sp`     | Font size      | `14.sp` | Auto-scaled font size (like `sp`)        |
-| `.rs`     | Radius / Scale | `12.rs` | Based on shortest side (width vs height) |
+| `.r`     | Radius / Scale | `12.r` | Based on shortest side (width vs height) |
 
 ### 📐 Other Responsive Units
 
@@ -189,10 +189,9 @@ Now, use the typography in your theme:
 
 Initialize the theme using `ThemeMaker` with a predefined color palette and apply on your Material App.
 
-```javascript
-final  lightTheme = ThemeMaker.makeTheme(LightSoul(),MyTypo());
-
-final  darkTheme = ThemeMaker.makeTheme(DarkSoul(),MyTypo());
+```dart
+final  lightTheme = ThemeMaker.makeTheme(LightSoul(),typography: MyTypo());
+final  darkTheme = ThemeMaker.makeTheme(DarkSoul(),typography: MyTypo());
 
 ```
 

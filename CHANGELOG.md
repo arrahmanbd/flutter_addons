@@ -1,5 +1,7 @@
 # 2.0.0-beta
 ### Added
+- Introduced `ResponsiveScope` as the root-level responsive layout wrapper.
+- Renamed NavigationExtension to NavigationContextExtensions for clarity.
 - `Frame.reversed` getter to automatically swap width and height for landscape orientation.
 - Dynamic design frame handling based on `MediaQuery.orientation` to ensure consistent scaling.
 - Improved SmartUnitUtils scaling calculations with orientation-aware design frame handling.
