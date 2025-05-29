@@ -13,6 +13,7 @@ class _ScreenUtils {
   static late Orientation _orientation;
   static late double _devicePixelRatio;
 
+  // ignore: unused_field
   static late OSType _osType;
   static late ScreenType _screenType;
 

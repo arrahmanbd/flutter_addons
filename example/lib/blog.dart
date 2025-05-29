@@ -25,6 +25,7 @@ class BlogPage extends StatelessWidget {
       backgroundColor: context.background,
       appBar: FacebookAppBar(
         title: 'Flutter Addons',
+        // ignore: avoid_print
         onSearchTap: () => print('Search tapped'),
         onMessagesTap: () {},
         onNotificationsTap: () {},
@@ -154,6 +155,7 @@ class BlogPage extends StatelessWidget {
         FlatButton(
           label: "Save",
           icon: const Icon(Icons.save),
+          // ignore: avoid_print
           onPressed: () => print(context.isDark),
           variant: ButtonVariant.outline,
           size: ButtonSize.md,
@@ -203,7 +205,7 @@ class BlogPage extends StatelessWidget {
             selectedColor: Kolors.neutral200,
             backgroundColor: context.cardBackground,
             labelStyle: TextStyle(
-              color: isSelected ? Colors.white : context.bodyTextColor,
+              color:  context.bodyTextColor,
               fontWeight: FontWeight.w600,
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),

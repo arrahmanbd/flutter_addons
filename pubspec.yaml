@@ -1,5 +1,5 @@
 name: flutter_addons
-description: "Flutter Addons is a collection of extensions and utilities designed to simplify and accelerate the development of Flutter applications."
+description: "Flutter Addons is a powerful toolkit designed to streamline responsive Flutter development. It includes theme engines, layout utilities, scaling extensions, and animation helpers—everything you need to build polished, adaptive apps faster."
 version: 2.1.0
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons

@@ -19,7 +19,6 @@ class _SmartUnitUtils {
 
   late Orientation _orientation;
   late Brightness _brightness;
-  late Brightness _platformBrightness;
   late TextScaler _textScaler;
   late double _devicePixelRatio;
   late EdgeInsets _padding;
@@ -46,8 +45,7 @@ class _SmartUnitUtils {
     _designHeight = designHeight;
 
     _orientation = mq.orientation;
-    _brightness = mq.platformBrightness; // or Theme.of(context).brightness
-    _platformBrightness = mq.platformBrightness;
+    _brightness = mq.platformBrightness; 
     _textScaler = mq.textScaler;
     _devicePixelRatio = mq.devicePixelRatio;
     _padding = mq.padding;

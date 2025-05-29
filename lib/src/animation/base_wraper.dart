@@ -8,7 +8,6 @@ class _AnimatedWrapper extends StatefulWidget {
   final Widget Function(BuildContext, Animation<double>) builder;
 
   const _AnimatedWrapper({
-    super.key,
     required this.duration,
     required this.delay,
     required this.repeat,

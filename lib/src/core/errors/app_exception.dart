@@ -106,8 +106,6 @@ class _ErrorHandlerService {
     const bold = '\x1B[1m';
     const cyan = '\x1B[36m';
     const yellow = '\x1B[33m';
-    const green = '\x1B[32m';
-    const magenta = '\x1B[35m';
 
     // Styled box for motivational quote
     if (kDebugMode) {

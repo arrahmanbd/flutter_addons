@@ -32,7 +32,7 @@ class _LinuxMint extends ThemeKolors {
   Color get secondaryContent => const Color(0xFF555555); // Subtext or hints
 
   @override
-  Color get shadowColor => const Color(0xFF000000).withOpacity(0.05); // Light shadow
+  Color get shadowColor => const Color(0xFF000000).withValues(alpha: 0.05); // Light shadow
 }
 
 class _LinuxMintDark extends ThemeKolors {
@@ -58,7 +58,7 @@ class _LinuxMintDark extends ThemeKolors {
   Color get outlineColor => const Color(0xFF555555); // Outlines and borders
 
   @override
-  Color get primaryColor => const Color(0xFF87C293); // Mint green
+  Color get primaryColor => const Color(0xFF66BB6A); // Mint green
 
   @override
   Color get secondaryButton => const Color(0xFF444444); // Low emphasis button
@@ -67,5 +67,5 @@ class _LinuxMintDark extends ThemeKolors {
   Color get secondaryContent => const Color(0xFFB0B0B0); // Subtle text
 
   @override
-  Color get shadowColor => const Color(0xFF000000).withOpacity(0.3); // Shadow for elevation
+  Color get shadowColor => const Color(0xFF000000).withValues(alpha:0.3); // Shadow for elevation
 }

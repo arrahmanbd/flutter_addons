@@ -32,7 +32,7 @@ class _UbuntuColors extends ThemeKolors {
   Color get secondaryContent => const Color(0xFF666666); // Mid-gray
 
   @override
-  Color get shadowColor => const Color(0xFF000000).withOpacity(0.05);
+  Color get shadowColor => const Color(0xFF000000).withValues(alpha:0.05);
 }
 
 class _UbuntuDarkColors extends ThemeKolors {
@@ -67,5 +67,5 @@ class _UbuntuDarkColors extends ThemeKolors {
   Color get secondaryContent => const Color(0xFFA0A0A0); // Neutral muted text
 
   @override
-  Color get shadowColor => const Color(0xFF000000).withOpacity(0.3); // Richer shadows
+  Color get shadowColor => const Color(0xFF000000).withValues(alpha:0.3); // Richer shadows
 }
