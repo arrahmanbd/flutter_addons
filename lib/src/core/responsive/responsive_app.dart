@@ -1,8 +1,14 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// A responsive wrapper widget with optional global error handling.
-///  includes a BSOD-style fallback error screen.
-/// Responsive app wrapper with error handling and animated orientation switching.
+/// A responsive wrapper that sets up error handling, scaling, and adaptive design
+/// for your Flutter application.
+///
+/// This widget ensures that your app is displayed with consistent scaling across
+/// different screen sizes by initializing a unified scaling system after layout.
+///
+/// It also configures global error handling and provides fallback UI for situations
+/// where `MediaQuery` is unavailable.
+
 class ResponsiveScope extends StatefulWidget {
   const ResponsiveScope({
     super.key,
@@ -11,15 +17,14 @@ class ResponsiveScope extends StatefulWidget {
     this.scaleMode = ScaleMode.percent,
     this.maxMobileWidth = 599,
     this.maxTabletWidth = 1024,
+    this.screenLock = AppOrientationLock.none,
     this.onFlutterError,
     this.errorScreen,
-    this.enableDebugLogging = false,
     this.errorScreenStyle = ErrorScreenStyle.dessert,
-    this.enableTransitionEffect = true,
-    this.transitionEffect = ResponsiveTransition.slide,
+    this.enableDebugLogging = false,
   });
 
-  final ResponsiveBuilderType layoutBuilder;
+  final Widget Function(LayoutInfo layout) layoutBuilder;
   final ScaleMode scaleMode;
   final Frame? designFrame;
   final double maxMobileWidth;
@@ -28,8 +33,7 @@ class ResponsiveScope extends StatefulWidget {
   final FlutterExceptionHandler? onFlutterError;
   final Widget Function(FlutterErrorDetails error)? errorScreen;
   final ErrorScreenStyle errorScreenStyle;
-  final bool enableTransitionEffect;
-  final ResponsiveTransition transitionEffect;
+  final AppOrientationLock screenLock;
 
   @override
   State<ResponsiveScope> createState() => _ResponsiveScopeState();
@@ -37,13 +41,25 @@ class ResponsiveScope extends StatefulWidget {
 
 class _ResponsiveScopeState extends State<ResponsiveScope>
     with WidgetsBindingObserver {
+  Size? _lastScreenSize;
+  Timer? _resizeDebounce;
   bool _errorHandlersSet = false;
-  Orientation? _lastOrientation;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _setOrientation(widget.screenLock);
+  }
+
+  Future<void> _setOrientation(AppOrientationLock lock) async {
+    if (lock == AppOrientationLock.none) return;
+    try {
+      await SystemChrome.setPreferredOrientations(lock.orientations);
+    } catch (e, stackTrace) {
+      debugPrint('Failed to set orientation: $e');
+      debugPrintStack(stackTrace: stackTrace);
+    }
   }
 
   @override
@@ -61,108 +77,100 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   }
 
   @override
+  void didChangeMetrics() {
+    final contextSize = MediaQuery.of(context).size;
+    if (_lastScreenSize != contextSize) {
+      _resizeDebounce?.cancel();
+      _resizeDebounce = Timer(const Duration(milliseconds: 150), () {
+        _lastScreenSize = contextSize;
+        _initScale(context, MediaQuery.of(context).orientation);
+        if (mounted) setState(() {});
+      });
+    }
+  }
+
+  @override
   void dispose() {
+    _resizeDebounce?.cancel();
+    SystemChrome.setPreferredOrientations(AppOrientationLock.none.orientations);
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
-  /// Called when device metrics or orientation changes.
-  @override
-  void didChangeMetrics() {
-    final orientation = MediaQuery.of(context).orientation;
-    if (orientation != _lastOrientation) {
-      setState(() => _lastOrientation = orientation);
-    }
-  }
-
-  @override
   @override
   Widget build(BuildContext context) {
-    return WidgetsApp(
-      color: Kolors.neutral100,
-      builder: (context, _) {
-        final mediaQuery = MediaQuery.maybeOf(context);
-        final hasValidSize =
-            mediaQuery?.size.width != 0 && mediaQuery?.size.height != 0;
+    final mediaQuery = MediaQuery.maybeOf(context);
+    final hasValidMediaQuery =
+        mediaQuery != null &&
+        mediaQuery.size.width > 0 &&
+        mediaQuery.size.height > 0;
 
-        final child = Directionality(
-          textDirection: TextDirection.ltr,
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              if (constraints.maxWidth == 0 || constraints.maxHeight == 0) {
-                return const SizedBox.shrink();
-              }
+    final mediaQueryData =
+        hasValidMediaQuery ? mediaQuery : _fallbackMediaQuery(context);
 
-              final orientation = MediaQuery.of(context).orientation;
-              final screenType = _ScreenTypeResolver.resolve(
-                width: constraints.maxWidth,
-                maxMobileWidth: widget.maxMobileWidth,
-                maxTabletWidth: widget.maxTabletWidth,
-              );
+    final screenSize = mediaQueryData.size;
+    final orientation = mediaQueryData.orientation;
 
-              if (widget.enableDebugLogging) {
-                Debug.success(
-                  '📱 Orientation: $orientation, '
-                  'Screen Type: $screenType, '
-                  'Width: ${constraints.maxWidth}, '
-                  'Height: ${constraints.maxHeight}',
-                );
-              }
+    if (_lastScreenSize != screenSize) {
+      _lastScreenSize = screenSize;
+      _initScale(context, orientation);
+    }
 
-              _UnifiedScale().init(
-                context: context,
-                constraints: constraints,
-                orientation: orientation,
-                mode: widget.scaleMode,
-                designSize: _getDesignFrame(orientation),
-                maxMobileWidth: widget.maxMobileWidth,
-                maxTabletWidth: widget.maxTabletWidth,
-                debugLog: widget.enableDebugLogging,
-              );
-              return widget.enableTransitionEffect
-                  ? AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    switchInCurve: Curves.easeInOut,
-                    switchOutCurve: Curves.easeInOut,
-                    transitionBuilder: ResponsiveTransitionBuilder.resolve(
-                      ResponsiveTransition.slideScale,
-                    ),
-                    key: ValueKey<Orientation>(orientation),
-                    child: widget.layoutBuilder(
-                      context,
-                      orientation,
-                      screenType,
-                    ),
-                  )
-                  : widget.layoutBuilder(context, orientation, screenType);
-            },
-          ),
-        );
-
-        // If MediaQuery is missing or invalid, wrap with a fallback
-        if (mediaQuery == null || !hasValidSize) {
-          return MediaQuery(
-            data: const MediaQueryData(
-              size: Size(360, 800),
-              devicePixelRatio: 2.0,
-            ),
-            child: child,
+    return MediaQuery(
+      data: mediaQueryData,
+      child: WidgetsApp(
+        debugShowCheckedModeBanner: false,
+        color: Kolors.neutral100,
+        builder: (context, _) {
+          return Directionality(
+            textDirection: TextDirection.ltr,
+            child: widget.layoutBuilder(LayoutInfo.fromThis(context)),
           );
-        }
+        },
 
-        return child;
-      },
+        // widget.enableDebugLogging
+        //     ? Banner(
+        //       message: 'FlutterAddons',
+        //       location: BannerLocation.topEnd,
+        //       color: Kolors.cyan500,
+        //       textStyle: const TextStyle(
+        //         fontWeight: FontWeight.bold,
+        //         fontSize: 12,
+        //         letterSpacing: 1.5,
+        //         color: Colors.white,
+        //       ),
+        //       child: _buildMainUI(context),
+        //    )
+        //
+      ),
+    );
+  }
+
+  void _initScale(BuildContext context, Orientation orientation) {
+    _UnifiedScale().init(
+      context: context,
+      mode: widget.scaleMode,
+      designSize: _getDesignFrame(orientation),
+      maxMobileWidth: widget.maxMobileWidth,
+      maxTabletWidth: widget.maxTabletWidth,
+      debugLog: widget.enableDebugLogging,
     );
   }
 
   Frame _getDesignFrame(Orientation orientation) {
-    if (widget.designFrame != null &&
-        widget.designFrame!.width > 0 &&
-        widget.designFrame!.height > 0) {
-      return orientation == Orientation.landscape
-          ? widget.designFrame!.reversed
-          : widget.designFrame!;
+    final frame = widget.designFrame;
+    if (frame != null && frame.width > 0 && frame.height > 0) {
+      return orientation == Orientation.landscape ? frame.reversed : frame;
     }
     return const Frame(width: 360, height: 800);
+  }
+
+  MediaQueryData _fallbackMediaQuery(BuildContext context) {
+    final view = View.of(context);
+    final screenSize = view.physicalSize / view.devicePixelRatio;
+    return MediaQueryData(
+      size: screenSize,
+      devicePixelRatio: view.devicePixelRatio,
+    );
   }
 }

@@ -1,13 +1,13 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class AnimatedWrapper extends StatefulWidget {
+class _AnimatedWrapper extends StatefulWidget {
   final Duration duration;
   final Duration delay;
   final bool repeat;
   final bool inverse;
   final Widget Function(BuildContext, Animation<double>) builder;
 
-  const AnimatedWrapper({
+  const _AnimatedWrapper({
     super.key,
     required this.duration,
     required this.delay,
@@ -17,10 +17,10 @@ class AnimatedWrapper extends StatefulWidget {
   });
 
   @override
-  AnimatedWrapperState createState() => AnimatedWrapperState();
+  _AnimatedWrapperState createState() => _AnimatedWrapperState();
 }
 
-class AnimatedWrapperState extends State<AnimatedWrapper>
+class _AnimatedWrapperState extends State<_AnimatedWrapper>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

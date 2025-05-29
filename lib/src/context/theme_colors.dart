@@ -3,9 +3,9 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// [UI Helper Class] Easy design UI
 /// Apply on BuildContext
 extension ThemeExtension on BuildContext {
-  ThemeData get theme => Theme.of(this);
-  ColorScheme get kolorScheme => theme.colorScheme;
-  TextTheme get typography => theme.textTheme;
+  ThemeData get _theme => Theme.of(this);
+  ColorScheme get kolor => _theme.colorScheme;
+  TextTheme get text => _theme.textTheme;
 }
 
 extension ThemeColors on BuildContext {
@@ -16,8 +16,8 @@ extension ThemeColors on BuildContext {
   Color get background => Theme.of(this).scaffoldBackgroundColor;
 
   /// Text and icons color that appear on top of the background.
-  Color get forground =>
-      Theme.of(this).colorScheme.onPrimary; //IF DARK THEN WHITE ELSE BLACK
+  Color get forground => Theme.of(this).colorScheme.onPrimary;
+
   /// Card background color, used for cards and containers.
   Color get cardBackground => Theme.of(this).colorScheme.secondaryContainer;
   Color get surfaceContent => Theme.of(this).colorScheme.onSurface;
@@ -55,4 +55,10 @@ extension TextColor on BuildContext {
   Color get captionColor => Theme.of(this).colorScheme.outlineVariant;
   // Same as title for body text
   Color get titleInverse => Theme.of(this).colorScheme.onPrimary;
+}
+
+extension AdaptiveColor on BuildContext {
+  /// Returns a color depending on the current brightness.
+  Color adaptiveColor({required Color light, required Color dark}) =>
+      isDark ? dark : light;
 }

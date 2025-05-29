@@ -1,34 +1,33 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+/// Extension on [BuildContext] to provide convenient access
+/// to theme-related properties such as current theme mode.
 extension ThemeModeExtensions on BuildContext {
-  /// Gets the current ThemeMode based on the Theme's brightness and system.
+  /// Gets the current [ThemeMode] inferred from platform brightness.
   ///
-  /// This is a simple fallback assuming you don't store ThemeMode explicitly.
-  /// Override this if you manage themeMode in app state.
+  /// Note: This is a best-effort fallback and does not reflect
+  /// an explicitly set [ThemeMode] (e.g., from app settings).
   ThemeMode get themeMode {
-    // For example, if you have stored themeMode in a provider, read from there instead.
-    // Here, we just return ThemeMode.system to show isAuto logic.
-    return ThemeMode.system;
+    final brightness = MediaQuery.of(this).platformBrightness;
+    return brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light;
   }
 
-  /// Returns true if the app is currently in dark mode.
+  /// Returns `true` if the current theme is considered dark.
+  ///
+  /// This checks both explicit dark mode and inferred system dark mode.
   bool get isDark {
-    if (themeMode == ThemeMode.dark) return true;
-    if (themeMode == ThemeMode.system) {
-      return MediaQuery.of(this).platformBrightness == Brightness.dark;
-    }
-    return false;
+    final brightness = MediaQuery.of(this).platformBrightness;
+    return themeMode == ThemeMode.dark || brightness == Brightness.dark;
   }
 
-  /// Returns true if the app is currently in light mode.
+  /// Returns `true` if the current theme is considered light.
+  ///
+  /// This checks both explicit light mode and inferred system light mode.
   bool get isLight {
-    if (themeMode == ThemeMode.light) return true;
-    if (themeMode == ThemeMode.system) {
-      return MediaQuery.of(this).platformBrightness == Brightness.light;
-    }
-    return false;
+    final brightness = MediaQuery.of(this).platformBrightness;
+    return themeMode == ThemeMode.light || brightness == Brightness.light;
   }
 
-  /// Returns true if the app is using system brightness mode.
-  bool get isAuto => themeMode == ThemeMode.system;
+  /// Returns `true` if the app follows the system theme mode.
+  bool get isSystemTheme => themeMode == ThemeMode.system;
 }

@@ -7,7 +7,7 @@ extension AsyncUtilities<T> on Future<T> {
     try {
       return await this;
     } catch (e, stackTrace) {
-      dbug("Async Error: $e\n$stackTrace"); // Log error
+      debug("Async Error: $e\n$stackTrace"); // Log error
       return fallback;
     }
   }
@@ -92,7 +92,7 @@ class FutureUtils {
       try {
         results.add(await future);
       } catch (e) {
-        dbug("Ignoring error in Future.waitAll: $e");
+        debug("Ignoring error in Future.waitAll: $e");
       }
     }
     return results;

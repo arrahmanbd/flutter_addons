@@ -1,161 +1,186 @@
-# 2.0.0
-- Added ResponsiveScope as root wrapper for responsive layouts
-- Renamed NavigationExtension to NavigationContextExtensions
-- Added Frame.reversed for orientation-aware frame swapping
-- Improved design frame handling with MediaQuery.orientation
-- Enhanced SmartUnitUtils scaling with orientation awareness
-- Refactored ResponsiveApp for better error handling and screen type logic
-- Improved debug logging for orientation and screen type changes
-- Added transition effects on responsive widget rebuild
-- Fixed fallback handling for invalid designFrame values
-- General code cleanup and maintenance
 
-### 2.0.0-alpha.2
+# 2.1.0
 
-### ✨ Features
+### Fixes & Improvements
 
-* **Unified Scaling Extensions**: Introduced `.w`, `.h`, `.sp`, and `.rs` for simplified and auto-detected scaling across Smart, Design, and Percent modes.
-* **Unified Font Sizing**: Added `.usp()` for smart-aware and unified scalable text sizing.
-* **Safe Mode Execution**: Prevents crashes when required utilities are uninitialized (`_safe()` wrapper).
-* **Radius Shortcut**: Added `.rs` as a unified responsive radius shortcut based on mode.
-
-### 🧠 Modes Supported
-
-* `Smart`: Context-aware scaling using screen ratios and pixel density.
-* `Design`: Fixed mockup scaling via logical pixel-to-dp mapping.
-* `Percent`: Percentage-based scaling relative to screen dimensions.
-
-
-### 🛠️ Refactors
-
-* Improved extension method naming consistency and formatting.
-* Updated internal logic to enhance readability and maintainability.
-
-### ⚠️ BREAKING CHANGES
-
-* Replaced scattered utility access with `UnifiedScale().mode` for centralized control.
-* Some older `.scale` usages may need migration to `.sx`, `.sy`, `.su`, or `.w` / `.h`.
-
----
-### 1.3.1
-
-### 🛠 Fixes & Improvements
-
-- Fixed `SizeBox` shorthand to support **design reference-based sizing** instead of percentage, avoiding conflicts with older versions.
-----
-
-### 1.3.0
-### ✨ Preparing for 2.0.0
-
-- Upgraded Flutter SDK to 3.32 and Dart SDK to 3.8
-
-- Applied necessary fixes for breaking changes in Flutter/Dart APIs and ecosystem dependencies
-
-- This marks the last minor release (1.3.0) before 2.0.0, which will introduce breaking changes and drop compatibility with older Flutter versions
- 
----
-
-### 1.2.5
-
-#### ✨ Features:
-
-* **Responsive Layouts**: Implemented responsive scaling to adjust UI elements dynamically for different screen sizes and orientations.
-* **NavigatorManager**: Introduced a streamlined navigator manager to simplify navigation and improve app flow.
-
-#### Improvements:
-
-* Enhanced layout scaling for improved consistency and UI behavior across a variety of devices.
-
-#### Bug Fixes:
-
-* Addressed minor bugs related to layout rendering and app performance.
-
+1. Fixed the non-removable `debugShowCheckedModeBanner` flag.
+2. Fixed hot-rebuild issues triggered by orientation changes.
+3. Improved responsive logic to reduce unnecessary widget rebuilds in `ResponsiveScope`.
+4. Optimized fallback behavior for `MediaQuery` and scaling mechanisms.
+5. Updated and enhanced smart scaling logic for more accurate rendering.
+6. Improved overall performance and performed a full code cleanup.
+7. Introduced `FlatButton` again in Flutter.
+8. Added support for orientation lock via internal API.
+9. Introduced new `SoulThemes` with improved visual design.
+10. Added `ResponsiveBuilder` widget and several utility extensions to simplify responsive and UI development.
+11. Centeralized Default Colors in `PureSoul` class
 
 ---
 
-### 1.2.4
+## 2.0.0
 
-#### Fixed Conflict Class Names:
+### Major Features
 
-* Added Fake Data for testing purposes.
-* Removed conflicting class names that caused issues in previous versions.
+* Introduced `ResponsiveScope` as a new root-level widget for adaptive layouts.
+* Added `Frame.reversed` to support orientation-aware frame swapping.
+* Enhanced `SmartUnitUtils` with orientation-aware scaling capabilities.
+* Refined design frame handling using `MediaQuery.orientation`.
+* Implemented transition animations on responsive widget rebuilds.
+* Improved debug logging for orientation and screen type changes.
 
----
+### Refactor & Maintenance
 
-### 1.2.3
+* Renamed `NavigationExtension` to `NavigationContextExtensions`.
+* Refactored `ResponsiveApp` to improve error handling and screen-type detection.
+* Performed general code cleanup and restructuring.
 
-#### Theme Engine Enhancements:
+### Bug Fixes
 
-* Introduced the `ThemeManager` for centralized theme control across the application.
-* Improved theme structure to increase flexibility and maintainability.
-* Added dynamic theme registry to simplify seamless theme switching.
-* Optimized `ColorScheme` integration for better consistency.
-* Added `ThemeToggleButton` widget for effortless theme switching.
-
-#### Adaptive UI Improvements:
-
-* `getFrame()` now intelligently selects the appropriate design size based on the screen type.
-* Enhanced breakpoint detection (`context.isXs`, `context.isSm`, etc.) for more responsive layouts.
-
-#### Custom Borders Widget:
-
-* Made the `DottedBorder` widget reusable through an extension.
-* Expanded support for additional border types, including `Triangle`, `Rectangle`, `Dotted`, and `Dashed`.
-* Added functionality to show text as a border.
-
-#### General Fixes & Optimizations:
-
-* Improved error handling with fallback text themes.
-* Optimized typography, color schemes, and asset management.
-* Enhanced Flutter error reporting for better debugging.
+* Fixed improper fallback when using invalid `designFrame` values.
 
 ---
 
-### 1.2.2
+## 2.0.0-alpha.2
 
-#### Error Handling Improvements:
+### Features
 
-* Introduced `AppException` handler to automatically map specific errors.
-* Added the `ErrorMapper` utility to allow custom error mappings.
-* Enhanced error logging for easier debugging.
-* Optimized Flutter error reporting for better clarity.
-* Improved color, typography, and image handling for overall app optimization.
+* Added unified scaling extensions: `.w`, `.h`, `.sp`, and `.rs` for automatic context-aware scaling across Smart, Design, and Percent modes.
+* Introduced `.usp()` for unified font scaling with smart awareness.
+* Implemented `_safe()` execution wrapper to prevent runtime crashes during uninitialized scaling scenarios.
+* Added `.rs` as a shorthand for responsive radius computation.
 
----
+### Supported Modes
 
-### 1.2.1
+* **Smart**: Context-aware scaling based on screen ratios and device density.
+* **Design**: Logical pixel-to-dp mapping based on fixed mockup dimensions.
+* **Percent**: Percentage-based scaling relative to current screen size.
 
-#### Platform Support:
+### Refactors
 
-* Enhanced platform support, including native web support.
-* Improved pub.dev visibility by adding theme image and metadata.
+* Renamed and formatted internal extensions for naming consistency.
+* Enhanced readability and simplified logic for better maintenance.
 
----
+### Breaking Changes
 
-### 1.2.0
-
-#### Soul Theme Engine:
-
-* Launched the **Soul Theme Engine**, an advanced theming solution.
-* Included **10+ premade themes** for quick and easy customization.
-* Introduced **async extension** to handle asynchronous operations more efficiently.
+* Replaced scattered scaling access with centralized control via `UnifiedScale().mode`.
+* Deprecated some older `.scale` usages; migrate to `.sx`, `.sy`, `.su`, `.w`, or `.h`.
 
 ---
 
-### 1.1.0
+## 1.3.1
 
-#### Theme Engine:
+### Fixes
 
-* Improved support for structured theming with color palettes for better design consistency.
-* Added **Currency Format** utility for better number formatting.
+* Corrected `SizeBox` shorthand behavior to ensure scaling aligns with design reference instead of percentage.
 
 ---
 
-### 1.0.0
+## 1.3.0
 
-#### Initial Release:
+### Preparations for 2.0.0
 
-* Released the initial stable version of **Flutter Addons**.
-* Implemented core functionalities and features.
-* Added comprehensive documentation for setup and usage.
+* Upgraded Flutter SDK to 3.32 and Dart SDK to 3.8.
+* Addressed breaking changes in Flutter/Dart APIs and updated all dependencies accordingly.
+* Marked as the final pre-2.0.0 release, maintaining compatibility with older versions.
+
+---
+
+## 1.2.5
+
+### Features
+
+* Introduced responsive layout support to dynamically adjust UI components across screen sizes and orientations.
+* Added `NavigatorManager` for improved navigation flow and control.
+
+### Improvements
+
+* Enhanced layout scaling for consistency across devices.
+
+### Bug Fixes
+
+* Resolved minor layout rendering issues and optimized overall performance.
+
+---
+
+## 1.2.4
+
+### Fixes
+
+* Removed conflicting class names to prevent runtime clashes.
+* Added fake data for improved testing scenarios.
+
+---
+
+## 1.2.3
+
+### Theme Engine Enhancements
+
+* Added centralized `ThemeManager` for consistent theming.
+* Refined the theme structure for greater flexibility.
+* Introduced dynamic theme registry to support seamless theme switching.
+* Improved `ColorScheme` integration for better UI consistency.
+* Added `ThemeToggleButton` widget for theme interaction.
+
+### Adaptive UI
+
+* Enhanced `getFrame()` to better select design dimensions based on screen type.
+* Improved breakpoint detection with `context.isXs`, `context.isSm`, etc.
+
+### Custom Borders
+
+* Added reusable extension for `DottedBorder` and introduced support for new border types: `Triangle`, `Rectangle`, `Dotted`, `Dashed`.
+* Enabled displaying text within borders.
+
+### General Improvements
+
+* Improved fallback text handling for failed typography initialization.
+* Enhanced Flutter error reporting and asset optimization.
+
+---
+
+## 1.2.2
+
+### Error Handling
+
+* Introduced `AppException` and `ErrorMapper` for structured error control.
+* Improved error logging clarity.
+* Optimized image, typography, and color handling.
+
+---
+
+## 1.2.1
+
+### Platform Support
+
+* Extended native web support.
+* Improved pub.dev metadata and visual representation.
+
+---
+
+## 1.2.0
+
+### Soul Theme Engine
+
+* Released the first version of the `SoulThemeEngine`.
+* Included over 10 pre-built themes for easy customization.
+* Added asynchronous extensions to enhance workflow.
+
+---
+
+## 1.1.0
+
+### Improvements
+
+* Structured theming with color palettes for consistent UI.
+* Introduced `CurrencyFormat` utility for number formatting.
+
+---
+
+## 1.0.0
+
+### Initial Release
+
+* Launched the first stable version of **Flutter Addons**.
+* Included core functionality and responsive features.
+* Provided comprehensive documentation for usage and setup.
 

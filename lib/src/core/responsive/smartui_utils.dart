@@ -17,6 +17,15 @@ class _SmartUnitUtils {
   late double _designWidth;
   late double _designHeight;
 
+  late Orientation _orientation;
+  late Brightness _brightness;
+  late Brightness _platformBrightness;
+  late TextScaler _textScaler;
+  late double _devicePixelRatio;
+  late EdgeInsets _padding;
+  late EdgeInsets _viewInsets;
+  late bool _highContrast;
+
   bool _initialized = false;
 
   /// Initializes the utility with the current device context and design size.
@@ -31,12 +40,19 @@ class _SmartUnitUtils {
 
     _screenWidth = mq.size.width;
     _screenHeight = mq.size.height;
-
-    // Shortest side dynamically considers orientation.
     _shortestSide = _screenWidth < _screenHeight ? _screenWidth : _screenHeight;
 
     _designWidth = designWidth;
     _designHeight = designHeight;
+
+    _orientation = mq.orientation;
+    _brightness = mq.platformBrightness; // or Theme.of(context).brightness
+    _platformBrightness = mq.platformBrightness;
+    _textScaler = mq.textScaler;
+    _devicePixelRatio = mq.devicePixelRatio;
+    _padding = mq.padding;
+    _viewInsets = mq.viewInsets;
+    _highContrast = mq.highContrast;
 
     _initialized = true;
   }
@@ -45,30 +61,65 @@ class _SmartUnitUtils {
     assert(_initialized, 'SmartUnitUtils not initialized. Call init() first.');
   }
 
-  /// Scales a value based on the shortest side of the screen
-  /// relative to the design width.
   double scale(num value) {
     _assertInitialized();
     return value * _shortestSide / _designWidth;
   }
 
-  /// Scales font size considering device text scaling.
-  ///
-  /// [textScaleFactor] defaults to 1.0 (no additional scaling).
-  double sp(num fontSize, {double textScaleFactor = 1.0}) {
+  double scaleText(num fontSize) {
     _assertInitialized();
-    return scale(fontSize) * textScaleFactor;
+    return _textScaler.scale(scale(fontSize));
   }
 
-  /// Scales horizontally relative to design width.
   double scaleX(num value) {
     _assertInitialized();
     return value * _screenWidth / _designWidth;
   }
 
-  /// Scales vertically relative to design height.
   double scaleY(num value) {
     _assertInitialized();
     return value * _screenHeight / _designHeight;
+  }
+
+  // Additional getters
+
+  Brightness get brightness {
+    _assertInitialized();
+    return _brightness;
+  }
+
+  bool get isDarkMode {
+    _assertInitialized();
+    return _brightness == Brightness.dark;
+  }
+
+  Orientation get orientation {
+    _assertInitialized();
+    return _orientation;
+  }
+
+  double get devicePixelRatio {
+    _assertInitialized();
+    return _devicePixelRatio;
+  }
+
+  EdgeInsets get padding {
+    _assertInitialized();
+    return _padding;
+  }
+
+  EdgeInsets get viewInsets {
+    _assertInitialized();
+    return _viewInsets;
+  }
+
+  TextScaler get textScaler {
+    _assertInitialized();
+    return _textScaler;
+  }
+
+  bool get highContrast {
+    _assertInitialized();
+    return _highContrast;
   }
 }

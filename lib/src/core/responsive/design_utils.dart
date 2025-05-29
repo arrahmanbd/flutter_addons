@@ -1,7 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
 /// A utility class for responsive UI scaling based on a design frame (e.g., Figma/AdobeXD).
-///
 
 class _DesignUtils {
   static _DesignUtils? _instance;
@@ -15,16 +14,17 @@ class _DesignUtils {
   late double _scaleWidth;
   late double _scaleHeight;
 
+  bool _initialized = false;
+
   _DesignUtils._internal();
 
-  static _DesignUtils get instance {
-    return _instance ??= _DesignUtils._internal();
-  }
+  static _DesignUtils get instance => _instance ??= _DesignUtils._internal();
 
   void init({
     required double designWidth,
     required double designHeight,
     required MediaQueryData mediaQuery,
+    isLoggingEnabled = false,
   }) {
     assert(
       designWidth > 0 && designHeight > 0,
@@ -37,13 +37,28 @@ class _DesignUtils {
     _screenWidth = mediaQuery.size.width;
     _screenHeight = mediaQuery.size.height;
 
-    _scaleWidth = _screenWidth / _designWidth;
-    _scaleHeight = _screenHeight / _designHeight;
+    _scaleWidth = max(_screenWidth / _designWidth, 0.0001);
+    _scaleHeight = max(_screenHeight / _designHeight, 0.0001);
+
+    _initialized = true;
+
+    if (isLoggingEnabled) {
+      _LogUtiity.logDesignUtilsInit(
+        designWidth: designWidth,
+        designHeight: designHeight,
+        screenWidth: _screenWidth,
+        screenHeight: _screenHeight,
+        scaleWidth: _scaleWidth,
+        scaleHeight: _scaleHeight,
+      );
+    }
   }
 
   void _assertInitialized() {
-    if (_scaleWidth == 0 || _scaleHeight == 0) {
-      throw FlutterError('_DesignUtils is not initialized. Call init() first.');
+    if (!_initialized || _scaleWidth == 0 || _scaleHeight == 0) {
+      throw FlutterError(
+        '[DesignUtils] is not initialized. Call init() first.',
+      );
     }
   }
 

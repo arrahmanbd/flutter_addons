@@ -15,7 +15,7 @@ class AppDarkColors extends ThemeKolors {
   Color get dividerColor => Kolors.neutral700;
 
   @override
-  Color get forground => Kolors.neutral100; // corrected from 'forground'
+  Color get forground => Kolors.neutral100;
 
   @override
   Color get inputBackground => Kolors.neutral700;

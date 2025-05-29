@@ -19,6 +19,10 @@ class PostCard extends StatelessWidget {
             child: Image.network(
               'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Container(
+                color: Colors.grey[300],
+                child: Icon(Icons.broken_image, size: 48),
+              ),
             ),
           ),
           Padding(
@@ -36,13 +40,13 @@ class PostCard extends StatelessWidget {
                 SizedBox(height: 8.sp),
                 Text(
                   'Build beautiful and responsive blog cards easily with Flutter and flutter_addons.',
-                  style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
+                  style: TextStyle(fontSize: 14.sp, color: Kolors.stone600),
                 ),
                 SizedBox(height: 16.sp),
                 Row(
                   children: [
                     CircleAvatar(
-                      radius: 16.rs,
+                      radius: 16.r,
                       backgroundImage: NetworkImage(
                         'https://randomuser.me/api/portraits/men/32.jpg',
                       ),

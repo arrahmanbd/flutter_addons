@@ -415,7 +415,7 @@ class _SciFiErrorScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
-                onPressed: () => debugPrint(details.exception.toString()),
+                onPressed: () => Debug.warning(details.exception.toString()),
                 icon: const Icon(Icons.bug_report),
                 label: const Text("Analyze"),
                 style: ElevatedButton.styleFrom(
@@ -481,7 +481,7 @@ class _TheaterErrorScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   OutlinedButton.icon(
-                    onPressed: () => debugPrint(error),
+                    onPressed: () => Debug.warning(error),
                     icon: const Icon(Icons.bug_report, color: Colors.white),
                     label: const Text(
                       "Debug Info",
@@ -554,7 +554,7 @@ class _PixelArtErrorScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextButton(
-              onPressed: () => debugPrint(details.exception.toString()),
+              onPressed: () => Debug.warning(details.exception.toString()),
               style: TextButton.styleFrom(foregroundColor: Colors.redAccent),
               child: const Text("VIEW ERROR LOG"),
             ),
@@ -626,7 +626,7 @@ class _FrostErrorScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton.icon(
-                      onPressed: () => debugPrint(error),
+                      onPressed: () => Debug.warning(error),
                       icon: const Icon(Icons.refresh),
                       label: const Text("Retry"),
                       style: ElevatedButton.styleFrom(
@@ -694,7 +694,7 @@ class _CatHackerErrorScreen extends StatelessWidget {
                 "View Logs",
                 style: TextStyle(color: Colors.greenAccent),
               ),
-              onPressed: () => debugPrint(error),
+              onPressed: () => Debug.warning(error),
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: Colors.greenAccent),
               ),
@@ -764,7 +764,7 @@ class _ScrollErrorScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               OutlinedButton.icon(
-                onPressed: () => debugPrint(error),
+                onPressed: () => Debug.warning(error),
                 icon: const Icon(Icons.library_books, color: Colors.brown),
                 label: const Text(
                   "Log Error",
@@ -829,7 +829,7 @@ class _Desert404ErrorScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             OutlinedButton.icon(
-              onPressed: () => debugPrint(error),
+              onPressed: () => Debug.warning(error),
               icon: const Icon(Icons.refresh, color: Colors.brown),
               label: const Text("Retry", style: TextStyle(color: Colors.brown)),
               style: OutlinedButton.styleFrom(

@@ -1,82 +1,116 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// Log levels
-enum LogLevel { debug, info, warning, error, success }
-
 /// Global Debug utility
 class Debug {
-  static void log(Object? message, {LogLevel level = LogLevel.info}) {
-    if (kReleaseMode) return; // Avoid logging in release mode
+  /// If true, prints only raw messages (no emoji, no colors, no formatting)
+  static bool simple = false;
 
-    String emoji;
-    Color color;
+  /// If true, includes timestamp in log
+  static bool showTimestamp = false;
 
-    switch (level) {
-      case LogLevel.debug:
-        emoji = '🐞';
-        color = Colors.blue;
-        break;
-      case LogLevel.info:
-        emoji = '📢';
-        color = Colors.green;
-        break;
-      case LogLevel.warning:
-        emoji = '💡';
-        color = Colors.orange;
-        break;
-      case LogLevel.error:
-        emoji = '💥';
-        color = Colors.red;
-        break;
-      case LogLevel.success:
-        emoji = '🏆';
-        color = Colors.lightGreen;
-        break;
+  /// Logs a message with styling
+  static void log(
+    Object? message, {
+    LogLevel level = LogLevel.info,
+    String? tag,
+    String? emoji,
+    int? ansiColorCode,
+  }) {
+    if (kReleaseMode) return;
+
+    if (simple) {
+      debugPrint('$message');
+      return;
     }
 
-    debugPrint('\x1B[38;5;${_ansiColor(color)}m$emoji $message\x1B[0m');
+    final levelName = level.name.toUpperCase().padRight(7);
+    final label = tag != null ? '[$tag] ' : '';
+    final chosenEmoji =
+        level == LogLevel.custom ? (emoji ?? '') : _emoji(level);
+    final chosenColor =
+        level == LogLevel.custom ? (ansiColorCode ?? 15) : _ansiColor(level);
+
+    final timestamp = DateTime.now().toIso8601String();
+    final ts = showTimestamp ? '$timestamp ➤ ' : '';
+    final formatted =
+        '\x1B[38;5;${chosenColor}m'
+        '$chosenEmoji $levelName $label$ts$message'
+        '\x1B[0m';
+
+    debugPrint(formatted);
   }
 
-  /// Log debug message
-  static void bug(Object? message) => log(message, level: LogLevel.debug);
+  /// Log shortcuts
+  static void bug(Object? message, {String? tag}) =>
+      log(message, level: LogLevel.debug, tag: tag);
+  static void info(Object? message, {String? tag}) =>
+      log(message, level: LogLevel.info, tag: tag);
+  static void warning(Object? message, {String? tag}) =>
+      log(message, level: LogLevel.warning, tag: tag);
+  static void error(Object? message, {String? tag}) =>
+      log(message, level: LogLevel.error, tag: tag);
+  static void success(Object? message, {String? tag}) =>
+      log(message, level: LogLevel.success, tag: tag);
 
-  /// Log info message
-  static void info(Object? message) => log(message, level: LogLevel.info);
+  static void custom(
+    Object? message, {
+    required String emoji,
+    required int ansiColorCode,
+    String? tag,
+  }) => log(
+    message,
+    level: LogLevel.custom,
+    emoji: emoji,
+    ansiColorCode: ansiColorCode,
+    tag: tag,
+  );
 
-  /// Log warning message
-  static void warning(Object? message) => log(message, level: LogLevel.warning);
+  /// Emojis per level
+  static String _emoji(LogLevel level) {
+    switch (level) {
+      case LogLevel.debug:
+        return '🐞';
+      case LogLevel.info:
+        return 'ℹ️';
+      case LogLevel.warning:
+        return '💡';
+      case LogLevel.error:
+        return '💥';
+      case LogLevel.success:
+        return '✅';
+      case LogLevel.custom:
+        return '';
+    }
+  }
 
-  /// Log error message
-  static void error(Object? message) => log(message, level: LogLevel.error);
-
-  /// Log success message
-  static void success(Object? message) => log(message, level: LogLevel.success);
-
-  /// Convert MaterialColor to ANSI color code
-  static int _ansiColor(Color color) {
-    if (color == Colors.red) return 196;
-    if (color == Colors.green) return 46;
-    if (color == Colors.blue) return 21;
-    if (color == Colors.orange) return 214;
-    if (color == Colors.lightGreen) return 154;
-    return 15; // Default white
+  static int _ansiColor(LogLevel level) {
+    switch (level) {
+      case LogLevel.debug:
+        return 244; // Soft gray (subtle, less distracting)
+      case LogLevel.info:
+        return 38; // Medium cyan (cool and calm)
+      case LogLevel.warning:
+        return 208; // Orange (warning alert, but not harsh)
+      case LogLevel.error:
+        return 196; // Bright red (critical error alert)
+      case LogLevel.success:
+        return 82; // Lime green (fresh and positive)
+      case LogLevel.custom:
+        return 15; // White (default)
+    }
   }
 }
 
-/// Easy access
-void dbug(String? message) {
-  // Regular expression to match file paths (package:some_package/some_file.dart:line_number:column_number)
-  final filePathRegex = RegExp(r'(package:[\w\d_\-]+(?:/[\w\d_\-]+)+:\d+:\d+)');
-  final highlightedMessage = message?.replaceAllMapped(
+/// Log levels
+enum LogLevel { debug, info, warning, error, success, custom }
+
+void debug(String? message, {String? tag}) {
+  final filePathRegex = RegExp(r'(package:[\w\d_\-/]+\.dart:\d+:\d+)');
+
+  final highlighted = message?.replaceAllMapped(
     filePathRegex,
-    (match) => '\x1B[31m${match.group(0)}\x1B[0m',
-  ); // Red for the error location
-  return Debug.warning(highlightedMessage);
-}
+    (match) => '\x1B[31m${match.group(0)}\x1B[0m', // Red color
+  );
 
-///usage
-///Debug.bug("This is a bug message");
-// Debug.info("This is an info message");
-// Debug.warning("This is a warning message");
-// Debug.error("This is an error message");
-// Debug.success("This is a success message");
+  Debug.warning(highlighted, tag: tag ?? 'Debug');
+}

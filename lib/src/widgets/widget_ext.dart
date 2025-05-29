@@ -148,11 +148,24 @@ extension ScrollableWidget on Widget {
   Widget scrollable({
     Axis scrollDirection = Axis.vertical,
     bool reverse = false,
-    bool shrinkWrap = false,
+    EdgeInsetsGeometry? padding,
+    bool primary = false,
+    ScrollPhysics? physics,
+    ScrollController? controller,
+    Clip clipBehavior = Clip.hardEdge,
+    String? restorationId,
+    Key? key,
   }) {
     return SingleChildScrollView(
+      key: key,
       scrollDirection: scrollDirection,
       reverse: reverse,
+      padding: padding,
+      primary: primary,
+      physics: physics,
+      controller: controller,
+      clipBehavior: clipBehavior,
+      restorationId: restorationId,
       child: this,
     );
   }

@@ -2,7 +2,7 @@
 // Inspired by delicate pastel shades.
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class PastelLight extends ThemeKolors {
+class _AutumnLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -27,7 +27,7 @@ class PastelLight extends ThemeKolors {
   Color get secondaryButton => const Color(0xFFF0AB72);
 }
 
-class PastelDark extends ThemeKolors {
+class AutumnDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

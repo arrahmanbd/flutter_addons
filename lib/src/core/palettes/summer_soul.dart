@@ -2,7 +2,7 @@
 // Inspired by golden sunsets and twilight hues.
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class SummerLight extends ThemeKolors {
+class _SummerLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -27,7 +27,7 @@ class SummerLight extends ThemeKolors {
   Color get secondaryButton => const Color(0xFFFFB74D);
 }
 
-class SummerDark extends ThemeKolors {
+class _SummerDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

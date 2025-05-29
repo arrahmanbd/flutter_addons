@@ -48,8 +48,7 @@ extension SmartScalerExtension on num {
   double get sy => _SmartUnitUtils.instance.scaleY(this);
 
   /// Smart font scaling
-  double st([double textScaleFactor = 1.0]) =>
-      _SmartUnitUtils.instance.sp(this, textScaleFactor: textScaleFactor);
+  double get st => _SmartUnitUtils.instance.scaleText(this);
 
   // ------------------------
   // Unified extensions (auto-detect mode)
@@ -79,8 +78,10 @@ extension SmartScalerExtension on num {
     }
   }
 
-  // unified responsive radius
-  double get rs {
+  // ------------------------
+  // Unified radius
+  // ------------------------
+  double get r {
     switch (_UnifiedScale().mode) {
       case ScaleMode.smart:
         return min(sy, sx);
@@ -95,23 +96,11 @@ extension SmartScalerExtension on num {
     final mode = _UnifiedScale().mode;
     switch (mode) {
       case ScaleMode.smart:
-        return st();
+        return st;
       case ScaleMode.design:
         return dt;
       case ScaleMode.percent:
         return pt;
-    }
-  }
-
-  /// Unified scalable font size
-  double usp([double textScaleFactor = 1.0]) {
-    switch (_UnifiedScale().mode) {
-      case ScaleMode.smart:
-        return st(textScaleFactor);
-      case ScaleMode.design:
-        return dt * textScaleFactor;
-      case ScaleMode.percent:
-        return pt * textScaleFactor;
     }
   }
 
@@ -127,14 +116,41 @@ extension SmartScalerExtension on num {
       rethrow;
     }
   }
+}
 
-  // ------------------------
-  // Unified radius
-  // ------------------------
-  double get fs => sp; // fontSize shorthand
-  double get r => rs; // radius shorthand
-  DeviceType get device => _ScreenUtils.deviceType; // device type shorthand
-  Orientation get orientation =>
-      _ScreenUtils.orientation; // orientation shorthand
-  ScreenType get screen => _ScreenUtils.screenType; // screen type shorthand
+class UIContext {
+  /// Returns the current screen width.
+  static double get width => _ScreenUtils.width;
+
+  /// Returns the current screen height.
+  static double get height => _ScreenUtils.height;
+
+  /// Returns the current safe width (excluding system UI).
+  static double get safeWidth => _ScreenUtils.safeWidth;
+
+  /// Returns the current safe height (excluding system UI).
+  static double get safeHeight => _ScreenUtils.safeHeight;
+
+  /// Returns the current pixel ratio.
+  static double get pixelRatio => _ScreenUtils.pixelRatio;
+
+  /// Returns the current aspect ratio.
+  static double get aspectRatio => _ScreenUtils.aspectRatio;
+
+  static Orientation get orientation => _ScreenUtils.orientation;
+
+  static bool get isLandscape => orientation == Orientation.landscape;
+  static bool get isPortrait => orientation == Orientation.portrait;
+
+  /// Returns the current device type.
+  /// Returns the current screen type.
+  static ScreenType get deviceType => _ScreenUtils.screenType;
+  static OSType get osType => _ScreenUtils.osType;
+
+  /// Returns the current device pixel ratio.
+  static bool get isMobile => deviceType == ScreenType.mobile;
+  static bool get isTablet => deviceType == ScreenType.tablet;
+  static bool get isDesktop => deviceType == ScreenType.desktop;
+
+  /// Returns the current orientation.
 }

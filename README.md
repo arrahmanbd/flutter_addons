@@ -37,12 +37,13 @@
 ## ⚙️ **Initialization**
 
 ```dart
-ResponsiveScope(
-  enableDebugLogging: true,
-  layoutBuilder: (context, orientation, screenType) => const MyApp(),
-  designFrame: Frame(width: 340, height: 812),
-  scaleMode: ScaleMode.design,
-  errorScreenStyle: ErrorScreenStyle.dessert,
+ResponsiveScope( // 👈 Very important: wraps the material app for responsive behavior
+  screenLock: AppOrientationLock.portraitUp, // locks orientation to portrait
+  designFrame: Frame(width: 320, height: 812), // base design reference size
+  scaleMode: ScaleMode.design, // scales UI based on design frame
+  layoutBuilder: (LayoutInfo layout) => MaterialApp(), // injects layout info
+  enableDebugLogging: true, // enables debug output
+  errorScreenStyle: ErrorScreenStyle.dessert // shows styled error screen
 );
 ```
 

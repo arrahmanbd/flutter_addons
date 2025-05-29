@@ -6,19 +6,6 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// Internal utility class for device and screen-related metrics.
 ///
 /// Should be initialized once before use.
-class _ScreenTypeResolver {
-  static ScreenType resolve({
-    required double width,
-    required double maxMobileWidth,
-    double? maxTabletWidth,
-  }) {
-    if (width <= maxMobileWidth) return ScreenType.mobile;
-    if (maxTabletWidth == null || width <= maxTabletWidth) {
-      return ScreenType.tablet;
-    }
-    return ScreenType.desktop;
-  }
-}
 
 class _ScreenUtils {
   static late Size _screenSize;
@@ -26,7 +13,7 @@ class _ScreenUtils {
   static late Orientation _orientation;
   static late double _devicePixelRatio;
 
-  static late DeviceType _deviceType;
+  static late OSType _osType;
   static late ScreenType _screenType;
 
   /// Initializes the device metrics and screen classifications.
@@ -34,14 +21,42 @@ class _ScreenUtils {
   /// Must be called before accessing any properties.
   static void initialize({
     required MediaQueryData mediaQuery,
-    required Orientation orientation,
     required double maxMobileWidth,
     double? maxTabletWidth,
+    BuildContext? context,
   }) {
+    Size screenSize = mediaQuery.size;
+
+    // Fallback if MediaQuery size is invalid
+    if (screenSize.width == 0 || screenSize.height == 0) {
+      if (context != null) {
+        try {
+          final view = View.of(context);
+          screenSize = view.physicalSize / view.devicePixelRatio;
+        } catch (e) {
+          screenSize = const Size(360, 800); // fallback
+        }
+      } else {
+        try {
+          final dispatcher = PlatformDispatcher.instance;
+          final primaryView = dispatcher.views.first;
+          screenSize = primaryView.physicalSize / primaryView.devicePixelRatio;
+        } catch (e) {
+          screenSize = const Size(360, 800); // fallback
+        }
+      }
+    }
+
+    // Still fallback if it's zero after view checks
+    if (screenSize.width == 0 || screenSize.height == 0) {
+      screenSize = const Size(360, 800); // Safe default
+    }
+
     assert(
-      mediaQuery.size.width > 0 && mediaQuery.size.height > 0,
-      'MediaQuery size must be greater than zero.',
+      screenSize.width > 0 && screenSize.height > 0,
+      'Screen size must be greater than zero.',
     );
+
     assert(maxMobileWidth > 0, 'maxMobileWidth must be greater than zero.');
     if (maxTabletWidth != null) {
       assert(
@@ -50,12 +65,12 @@ class _ScreenUtils {
       );
     }
 
-    _screenSize = mediaQuery.size;
+    _screenSize = screenSize;
     _padding = mediaQuery.padding;
     _devicePixelRatio = mediaQuery.devicePixelRatio;
-    _orientation = orientation;
+    _orientation = mediaQuery.orientation;
 
-    _deviceType = _resolveDeviceType();
+    _osType = _resolveDeviceType();
     _screenType = _resolveScreenType(maxMobileWidth, maxTabletWidth);
   }
 
@@ -107,9 +122,9 @@ class _ScreenUtils {
     return _orientation;
   }
 
-  static DeviceType get deviceType {
+  static OSType get osType {
     _assertInitialized();
-    return _deviceType;
+    return _resolveDeviceType();
   }
 
   static ScreenType get screenType {
@@ -124,7 +139,7 @@ class _ScreenUtils {
       percent >= 0 && percent <= 100,
       'Percent must be between 0 and 100.',
     );
-    return width * (percent / 100);
+    return width * (percent.clamp(0, 100) / 100);
   }
 
   /// Returns height scaled by percentage (0-100).
@@ -134,7 +149,7 @@ class _ScreenUtils {
       percent >= 0 && percent <= 100,
       'Percent must be between 0 and 100.',
     );
-    return height * (percent / 100);
+    return height * (percent.clamp(0, 100) / 100);
   }
 
   /// Returns radius scaled by percentage of screen width (0-100).
@@ -145,7 +160,7 @@ class _ScreenUtils {
       'Percent must be between 0 and 100.',
     );
     // You can choose to scale radius by width or safeWidth here, I use safeWidth:
-    return safeWidth * (percent / 100);
+    return safeWidth * (percent.clamp(0, 100) / 100);
   }
 
   /// Returns scaled font size (sp) based on combined height, width, pixel ratio, and aspect ratio.
@@ -162,21 +177,21 @@ class _ScreenUtils {
     return size * scaledValue;
   }
 
-  static DeviceType _resolveDeviceType() {
-    if (kIsWeb) return DeviceType.web;
+  static OSType _resolveDeviceType() {
+    if (kIsWeb) return OSType.web;
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return DeviceType.android;
+        return OSType.android;
       case TargetPlatform.iOS:
-        return DeviceType.ios;
+        return OSType.ios;
       case TargetPlatform.windows:
-        return DeviceType.windows;
+        return OSType.windows;
       case TargetPlatform.macOS:
-        return DeviceType.mac;
+        return OSType.mac;
       case TargetPlatform.linux:
-        return DeviceType.linux;
+        return OSType.linux;
       case TargetPlatform.fuchsia:
-        return DeviceType.fuchsia;
+        return OSType.fuchsia;
     }
   }
 

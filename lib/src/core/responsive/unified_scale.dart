@@ -27,64 +27,48 @@ class _UnifiedScale {
 
   void init({
     required BuildContext context,
-    required BoxConstraints constraints,
-    required Orientation orientation,
     required ScaleMode mode,
     Frame? designSize,
     double maxMobileWidth = 600,
     double maxTabletWidth = 1024,
     bool debugLog = false,
   }) {
-    // if (_initialized) {
-    //   if (debugLog) debugPrint('[UnifiedScale] Already initialized. Skipping.');
-    //   return;
-    // }
-
     _mode = mode;
     _debugLog = debugLog;
 
-    _log('[UnifiedScale] Initializing all scale utilities');
-
-    // Initialize MediaQuery once
-    _mediaQuery = MediaQueryData.fromView(
-      WidgetsBinding.instance.platformDispatcher.views.first,
-    );
-    final orientation = _mediaQuery.orientation;
-    // Initialize DeviceUtils (percent scaling)
+    _log('[UnifiedScale] Initializing all scales');
+    _mediaQuery = MediaQuery.of(context);
     _ScreenUtils.initialize(
       mediaQuery: _mediaQuery,
-      orientation: orientation,
       maxMobileWidth: maxMobileWidth,
       maxTabletWidth: maxTabletWidth,
     );
-    _log('[UnifiedScale] Percent-based scaling initialized.');
-
-    // Initialize DesignScale (design scaling), if designSize is valid
+    _log('[UnifiedScale] Percent scaling initialized.');
+    _SmartUnitUtils.instance.init(
+      context: context,
+      designWidth: designSize?.width ?? 375,
+      designHeight: designSize?.height ?? 812,
+    );
+    _log('[UnifiedScale] Smart scaling initialized.');
+    if (debugLog) {
+      Debug.success(
+        '\nInitialization completed.\nActivated: $_mode,\n'
+        'DesignSize: ${designSize.toString()},\nMaxWidth: MT($maxMobileWidth x $maxTabletWidth)\nDevice Info: ${UIContext.osType.name} (${_mediaQuery.size.width} x ${_mediaQuery.size.height})',
+      );
+    }
     if (designSize != null && designSize.width > 0 && designSize.height > 0) {
       _DesignUtils.instance.init(
         designWidth: designSize.width,
         designHeight: designSize.height,
         mediaQuery: _mediaQuery,
-      );
-      _log(
-        '[UnifiedScale] Design-based scaling initialized with designSize: $designSize',
+        isLoggingEnabled: debugLog,
       );
     } else {
       _log(
         '[UnifiedScale] Design-based scaling skipped due to invalid designSize.',
       );
     }
-
-    // Initialize SmartUnitUtils (smart scaling)
-    _SmartUnitUtils.instance.init(
-      context: context,
-      designWidth: designSize?.width ?? 375,
-      designHeight: designSize?.height ?? 812,
-    );
-    _log('[UnifiedScale] Smart-based scaling initialized.');
-
     _initialized = true;
-    _log('[UnifiedScale] Initialization complete. Active mode: $_mode');
   }
 
   ScaleMode get mode {
@@ -107,6 +91,6 @@ class _UnifiedScale {
   }
 
   void _log(String message) {
-    if (_debugLog) Debug.info(message);
+    if (_debugLog) Debug.log(message);
   }
 }

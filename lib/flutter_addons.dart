@@ -13,6 +13,7 @@
 
 library;
 
+import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:core';
@@ -26,6 +27,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as service;
+import 'package:flutter/services.dart';
 
 // Import necessary parts of the package
 //
@@ -67,7 +69,7 @@ part 'src/routes/route_extension.dart';
 // Animation
 part 'src/animation/base_wraper.dart';
 part 'src/animation/basic_animation.dart';
-part 'src/animation/beizer_motion_effect.dart';
+part 'src/animation/beizer_motion.dart';
 part 'src/animation/collision_effect.dart';
 part 'src/animation/page_transitions.dart';
 
@@ -115,12 +117,16 @@ part 'src/core/themes/soul_component.dart';
 part 'src/core/palettes/soul_colors.dart';
 part 'src/core/palettes/forest_colors.dart';
 part 'src/core/palettes/aura_colors.dart';
-part 'src/core/palettes/mid_night_soul.dart';
+part 'src/core/palettes/lost_night.dart';
 part 'src/core/palettes/cyber_soul.dart';
 part 'src/core/palettes/retro_soul.dart';
 part 'src/core/palettes/ocean_soul.dart';
 part 'src/core/palettes/summer_soul.dart';
 part 'src/core/palettes/autumn_soul.dart';
+part 'src/core/palettes/apple.dart';
+part 'src/core/palettes/mint.dart';
+part 'src/core/palettes/ubuntu.dart';
+part 'src/core/palettes/pure_colors.dart';
 
 /// Typography
 part 'src/core/typography/base_styles.dart';
@@ -152,11 +158,11 @@ part 'src/decoration/border_box.dart';
 part 'src/core/responsive/design_utils.dart';
 part 'src/routes/navigator_manager.dart';
 
-part 'src/core/responsive/rs_extensions.dart';
+part 'src/core/responsive/smart_extensions.dart';
 part 'src/core/responsive/unified_scale.dart';
-part 'src/core/responsive/smart_utils.dart';
+part 'src/core/responsive/smartui_utils.dart';
 part 'src/core/responsive/unified_enums.dart';
-part 'src/core/responsive/layout_mixin.dart';
+part 'src/core/responsive/responsive_builder.dart';
 // Colors
 part 'src/core/colors/kolors.dart';
 part 'src/core/typography/text_weight.dart';
@@ -168,3 +174,9 @@ part 'src/core/colors/safe_colors.dart';
 // decoration
 part 'src/decoration/input_decoration.dart';
 part 'src/decoration/shapes.dart';
+
+// Responsive Utilities
+part 'src/core/responsive/summery_logger.dart';
+part 'src/core/responsive/media_info.dart';
+part 'src/core/responsive/orentaion_lock.dart';
+part 'src/animation/animate_proxy.dart';

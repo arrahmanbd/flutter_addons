@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'app_typo.dart';
+
 class Themer extends ThemeManager {
   static const _themeKey = 'selected_theme';
 
@@ -13,10 +15,12 @@ class Themer extends ThemeManager {
   }
 
   @override
-  ThemeData get lightTheme => ThemeMaker.makeTheme(AppLightColors());
+  ThemeData get lightTheme =>
+      ThemeMaker.makeTheme(AppLightColors(), typography: AppFonts());
 
   @override
-  ThemeData get darkTheme => ThemeMaker.makeTheme(AppDarkColors());
+  ThemeData get darkTheme =>
+      ThemeMaker.makeTheme(AppDarkColors(), typography: AppFonts());
 
   /// Save the theme mode when updated
   @override
@@ -24,7 +28,7 @@ class Themer extends ThemeManager {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_themeKey, themeMode == ThemeMode.dark);
 
-    dbug(
+    debug(
       "Current theme mode: ${themeMode == ThemeMode.dark ? 'Dark' : 'Light'}",
     );
   }

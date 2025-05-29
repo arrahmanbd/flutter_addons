@@ -11,6 +11,8 @@ class ResponsiveTransitionBuilder {
         return _scale;
       case ResponsiveTransition.slideScale:
         return _slideScale;
+      case ResponsiveTransition.flip:
+        return _flip;
       case ResponsiveTransition.rotation:
         return _rotation;
     }
@@ -52,6 +54,27 @@ class ResponsiveTransitionBuilder {
     return RotationTransition(
       turns: Tween<double>(begin: 0.97, end: 1.0).animate(animation),
       child: child,
+    );
+  }
+
+  static Widget _flip(Widget child, Animation<double> animation) {
+    return AnimatedBuilder(
+      animation: animation,
+      child: child,
+      builder: (context, child) {
+        final value = animation.value;
+        final isUnder = value > 0.5;
+        final rotationValue = isUnder ? (1 - value) * 3.14159 : value * 3.14159;
+
+        return Transform(
+          alignment: Alignment.center,
+          transform:
+              Matrix4.identity()
+                ..setEntry(3, 2, 0.001) // perspective
+                ..rotateY(rotationValue),
+          child: child,
+        );
+      },
     );
   }
 }

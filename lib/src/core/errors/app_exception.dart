@@ -26,7 +26,7 @@ class AppException implements Exception {
 
 class _ErrorHandlerService {
   static bool _initialized = false;
-
+  static final _random = Random();
   static void setup({
     FlutterExceptionHandler? onFlutterError,
     Widget Function(FlutterErrorDetails error)? errorScreen,
@@ -39,20 +39,16 @@ class _ErrorHandlerService {
     FlutterError.onError =
         onFlutterError ??
         (FlutterErrorDetails details) {
+          // Always show debug info, even if logging is disabled
+          _alwaysShowDebugInfo(details);
           FlutterError.presentError(details);
         };
 
     ErrorWidget.builder = (FlutterErrorDetails details) {
       Widget screen;
-
       if (errorScreen != null) {
         screen = errorScreen(details);
       } else {
-        if (enableDebugLogging) {
-          Debug.error('💥 Exception: ${details.exception}');
-          Debug.info('🔍 Help: ${_makeQuery(details.exception.toString())}');
-        }
-
         switch (errorScreenStyle) {
           case ErrorScreenStyle.pixelArt:
             screen = _PixelArtErrorScreen(details);
@@ -96,6 +92,52 @@ class _ErrorHandlerService {
         child: Material(color: Colors.transparent, child: screen),
       );
     };
+  }
+
+  static void _alwaysShowDebugInfo(FlutterErrorDetails details) {
+    final exception = details.exception.toString();
+    final stack = details.stack?.toString() ?? 'No stack trace available';
+    final quote =
+        AuthorSpeech.motivationalMessages[_random.nextInt(
+          AuthorSpeech.motivationalMessages.length,
+        )];
+
+    const reset = '\x1B[0m';
+    const bold = '\x1B[1m';
+    const cyan = '\x1B[36m';
+    const yellow = '\x1B[33m';
+    const green = '\x1B[32m';
+    const magenta = '\x1B[35m';
+
+    // Styled box for motivational quote
+    if (kDebugMode) {
+      print('''
+$bold$cyan━━━━━━━━━━━━━━━━━━━━━━[ Debug Motivation 💡 ]━━━━━━━━━━━━━━━━━━━━━━$reset
+$yellow$quote$reset
+$cyan━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$reset
+''');
+    }
+
+    // Error and stack (kept readable outside the box)
+    Debug.info('🚨 A Flutter error has occurred!');
+    Debug.info('🎯 Exception:');
+    Debug.error('   $exception\n');
+
+    Debug.info('🧱 Stack Trace Preview:');
+    Debug.warning('   ${_previewStack(stack)}\n');
+
+    Debug.info('💡 Need help debugging? Try this search:');
+    Debug.info('   🔍 ${_makeQuery(exception)}\n');
+
+    Debug.info(
+      '📘 Tip: Use try/catch or custom error boundaries to isolate this error.',
+    );
+  }
+
+  static String _previewStack(String stack, [int lines = 5]) {
+    final linesList = stack.split('\n');
+    return linesList.take(lines).join('\n   ') +
+        (linesList.length > lines ? '\n   ...' : '');
   }
 
   static String _makeQuery(String exception) {

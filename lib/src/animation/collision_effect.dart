@@ -1,20 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
 // Physics-Based Collision Effect (Gravity & Bounce)
-extension PhysicsCollision on Widget {
-  Widget bounce({
-    Duration duration = const Duration(milliseconds: 1200),
-    double gravity = 10,
-    double elasticity = 0.5,
-  }) {
-    return _PhysicsCollisionWrapper(
-      duration: duration,
-      gravity: gravity,
-      elasticity: elasticity,
-      child: this,
-    );
-  }
-}
 
 class _PhysicsCollisionWrapper extends StatefulWidget {
   final Duration duration;

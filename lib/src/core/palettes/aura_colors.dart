@@ -3,7 +3,7 @@
 
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class AuroraLight extends ThemeKolors {
+class _AuroraLight extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
   @override
@@ -28,7 +28,7 @@ class AuroraLight extends ThemeKolors {
   Color get secondaryButton => const Color(0xFFF5D48E);
 }
 
-class AuroraDark extends ThemeKolors {
+class _AuroraDark extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.dark;
   @override

@@ -26,7 +26,12 @@ extension NavigationExtension on BuildContext {
 /// Extension on Widget to simplify launching from context with animation.
 extension WidgetNavigationExtension on Widget {
   /// Launches the widget by pushing it onto the navigation stack with animation.
+  /// Checks if the given context is still mounted before navigation.
+  bool canLaunch(BuildContext context) => context.mounted;
   void launch(BuildContext context) {
+    if (!canLaunch(context)) {
+      throw Exception('Context is not mounted or invalid for navigation.');
+    }
     context.navigator.pushWithAnimation(this);
   }
 }
