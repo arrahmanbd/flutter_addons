@@ -9,6 +9,7 @@
 # Ignore IDE configuration files
 .idea/
 .vscode/
+swiftpay
 
 # Ignore OS-specific files
 .DS_Store

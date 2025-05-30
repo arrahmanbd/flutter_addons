@@ -1,14 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// A responsive wrapper that sets up error handling, scaling, and adaptive design
-/// for your Flutter application.
-///
-/// This widget ensures that your app is displayed with consistent scaling across
-/// different screen sizes by initializing a unified scaling system after layout.
-///
-/// It also configures global error handling and provides fallback UI for situations
-/// where `MediaQuery` is unavailable.
-
 class ResponsiveScope extends StatefulWidget {
   const ResponsiveScope({
     super.key,
@@ -17,11 +8,11 @@ class ResponsiveScope extends StatefulWidget {
     this.scaleMode = ScaleMode.percent,
     this.maxMobileWidth = 599,
     this.maxTabletWidth = 1024,
-    this.screenLock = AppOrientationLock.none,
     this.onFlutterError,
+    this.screenLock = AppOrientationLock.none,
     this.errorScreen,
-    this.errorScreenStyle = ErrorScreenStyle.dessert,
     this.enableDebugLogging = false,
+    this.errorScreenStyle = ErrorScreenStyle.dessert,
   });
 
   final Widget Function(LayoutInfo layout) layoutBuilder;
@@ -29,11 +20,11 @@ class ResponsiveScope extends StatefulWidget {
   final Frame? designFrame;
   final double maxMobileWidth;
   final double maxTabletWidth;
+  final AppOrientationLock screenLock;
   final bool enableDebugLogging;
   final FlutterExceptionHandler? onFlutterError;
   final Widget Function(FlutterErrorDetails error)? errorScreen;
   final ErrorScreenStyle errorScreenStyle;
-  final AppOrientationLock screenLock;
 
   @override
   State<ResponsiveScope> createState() => _ResponsiveScopeState();
@@ -41,15 +32,16 @@ class ResponsiveScope extends StatefulWidget {
 
 class _ResponsiveScopeState extends State<ResponsiveScope>
     with WidgetsBindingObserver {
-  Size? _lastScreenSize;
-  Timer? _resizeDebounce;
   bool _errorHandlersSet = false;
+  Orientation? _orientation;
+  ScreenType? _screenType;
+  Size? _screenSize;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
     _setOrientation(widget.screenLock);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   Future<void> _setOrientation(AppOrientationLock lock) async {
@@ -65,6 +57,9 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    // Safe place to access inherited widgets like MediaQuery
+    _updateScreenInfo();
+
     if (!_errorHandlersSet) {
       _ErrorHandlerService.setup(
         onFlutterError: widget.onFlutterError,
@@ -77,100 +72,109 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   }
 
   @override
-  void didChangeMetrics() {
-    final contextSize = MediaQuery.of(context).size;
-    if (_lastScreenSize != contextSize) {
-      _resizeDebounce?.cancel();
-      _resizeDebounce = Timer(const Duration(milliseconds: 150), () {
-        _lastScreenSize = contextSize;
-        _initScale(context, MediaQuery.of(context).orientation);
-        if (mounted) setState(() {});
-      });
-    }
-  }
-
-  @override
   void dispose() {
-    _resizeDebounce?.cancel();
     SystemChrome.setPreferredOrientations(AppOrientationLock.none.orientations);
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.maybeOf(context);
-    final hasValidMediaQuery =
-        mediaQuery != null &&
-        mediaQuery.size.width > 0 &&
-        mediaQuery.size.height > 0;
-
-    final mediaQueryData =
-        hasValidMediaQuery ? mediaQuery : _fallbackMediaQuery(context);
-
-    final screenSize = mediaQueryData.size;
-    final orientation = mediaQueryData.orientation;
-
-    if (_lastScreenSize != screenSize) {
-      _lastScreenSize = screenSize;
-      _initScale(context, orientation);
-    }
-
-    return MediaQuery(
-      data: mediaQueryData,
-      child: WidgetsApp(
-        debugShowCheckedModeBanner: false,
-        color: Kolors.neutral100,
-        builder: (context, _) {
-          return Directionality(
-            textDirection: TextDirection.ltr,
-            child: widget.layoutBuilder(LayoutInfo.fromThis(context)),
-          );
-        },
-
-        // widget.enableDebugLogging
-        //     ? Banner(
-        //       message: 'FlutterAddons',
-        //       location: BannerLocation.topEnd,
-        //       color: Kolors.cyan500,
-        //       textStyle: const TextStyle(
-        //         fontWeight: FontWeight.bold,
-        //         fontSize: 12,
-        //         letterSpacing: 1.5,
-        //         color: Colors.white,
-        //       ),
-        //       child: _buildMainUI(context),
-        //    )
-        //
-      ),
-    );
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    _updateScreenInfo();
   }
 
-  void _initScale(BuildContext context, Orientation orientation) {
-    _UnifiedScale().init(
-      context: context,
-      mode: widget.scaleMode,
-      designSize: _getDesignFrame(orientation),
-      maxMobileWidth: widget.maxMobileWidth,
-      maxTabletWidth: widget.maxTabletWidth,
-      debugLog: widget.enableDebugLogging,
+  void _updateScreenInfo() {
+    final mq = MediaQuery.maybeOf(context);
+    if (mq == null || mq.size.width == 0 || mq.size.height == 0) return;
+
+    final newOrientation = mq.orientation;
+    final newScreenType = _resolveScreenType(
+      mq.size.width,
+      widget.maxMobileWidth,
+      widget.maxTabletWidth,
     );
+
+    if (newOrientation != _orientation ||
+        newScreenType != _screenType ||
+        _screenSize != mq.size) {
+      setState(() {
+        _orientation = newOrientation;
+        _screenType = newScreenType;
+        _screenSize = mq.size;
+      });
+
+      if (widget.enableDebugLogging) {
+        Debug.warning(
+          '📱 Orientation: $_orientation, '
+          'Screen Type: $_screenType, '
+          'Width: ${mq.size.width}, '
+          'Height: ${mq.size.height}',
+        );
+      }
+
+      // Init scaling (you can add your own logic)
+      _UnifiedScale().init(
+        context: context,
+        mode: widget.scaleMode,
+        designSize: _getDesignFrame(_orientation!),
+        maxMobileWidth: widget.maxMobileWidth,
+        maxTabletWidth: widget.maxTabletWidth,
+        debugLog: widget.enableDebugLogging,
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mq = MediaQuery.maybeOf(context);
+    final hasValidSize = mq != null && mq.size.width > 0 && mq.size.height > 0;
+
+    final isLayoutReady =
+        _orientation != null &&
+        _screenSize != null &&
+        _screenType != null &&
+        hasValidSize;
+
+    final layoutWidget =
+        isLayoutReady
+            ? widget.layoutBuilder(LayoutInfo.fromThis(context))
+            : const SizedBox(); // Or a splash/loading screen
+
+    final wrapped = Directionality(
+      textDirection: TextDirection.ltr,
+      child: layoutWidget,
+    );
+
+    // Use default fallback media query if needed
+    if (!hasValidSize) {
+      return MediaQuery(
+        data: const MediaQueryData(size: Size(360, 800), devicePixelRatio: 2.0),
+        child: wrapped,
+      );
+    }
+
+    return wrapped;
   }
 
   Frame _getDesignFrame(Orientation orientation) {
-    final frame = widget.designFrame;
-    if (frame != null && frame.width > 0 && frame.height > 0) {
-      return orientation == Orientation.landscape ? frame.reversed : frame;
+    if (widget.designFrame != null &&
+        widget.designFrame!.width > 0 &&
+        widget.designFrame!.height > 0) {
+      return orientation == Orientation.landscape
+          ? widget.designFrame!.reversed
+          : widget.designFrame!;
     }
     return const Frame(width: 360, height: 800);
   }
 
-  MediaQueryData _fallbackMediaQuery(BuildContext context) {
-    final view = View.of(context);
-    final screenSize = view.physicalSize / view.devicePixelRatio;
-    return MediaQueryData(
-      size: screenSize,
-      devicePixelRatio: view.devicePixelRatio,
-    );
+  static ScreenType _resolveScreenType(
+    double width,
+    double maxMobileWidth,
+    double maxTabletWidth,
+  ) {
+    if (width <= maxMobileWidth) return ScreenType.mobile;
+    if (width <= maxTabletWidth) return ScreenType.tablet;
+    return ScreenType.desktop;
   }
 }
