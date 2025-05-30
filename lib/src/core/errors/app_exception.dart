@@ -30,7 +30,7 @@ class _ErrorHandlerService {
   static void setup({
     FlutterExceptionHandler? onFlutterError,
     Widget Function(FlutterErrorDetails error)? errorScreen,
-    required ErrorScreenStyle errorScreenStyle,
+    required ErrorScreen errorScreenStyle,
     required bool enableDebugLogging,
   }) {
     if (_initialized) return;
@@ -50,37 +50,37 @@ class _ErrorHandlerService {
         screen = errorScreen(details);
       } else {
         switch (errorScreenStyle) {
-          case ErrorScreenStyle.pixelArt:
+          case ErrorScreen.pixelArt:
             screen = _PixelArtErrorScreen(details);
             break;
-          case ErrorScreenStyle.catHacker:
+          case ErrorScreen.catHacker:
             screen = _CatHackerErrorScreen(details);
             break;
-          case ErrorScreenStyle.frost:
+          case ErrorScreen.frost:
             screen = _FrostErrorScreen(details);
             break;
-          case ErrorScreenStyle.blueCrash:
+          case ErrorScreen.blueCrash:
             screen = _BlueScreenOfDeath(details);
             break;
-          case ErrorScreenStyle.brokenRobot:
+          case ErrorScreen.brokenRobot:
             screen = _AssistantErrorScreen(details);
             break;
-          case ErrorScreenStyle.simple:
+          case ErrorScreen.simple:
             screen = _AppErrorScreen(details);
             break;
-          case ErrorScreenStyle.sifi:
+          case ErrorScreen.sifi:
             screen = _SciFiErrorScreen(details);
             break;
-          case ErrorScreenStyle.theater:
+          case ErrorScreen.theater:
             screen = _TheaterErrorScreen(details);
             break;
-          case ErrorScreenStyle.dessert:
+          case ErrorScreen.dessert:
             screen = _Desert404ErrorScreen(details);
             break;
-          case ErrorScreenStyle.book:
+          case ErrorScreen.book:
             screen = _ScrollErrorScreen(details);
             break;
-          case ErrorScreenStyle.codeTerminal:
+          case ErrorScreen.codeTerminal:
             screen = _TerminalErrorScreen(details);
             break;
         }

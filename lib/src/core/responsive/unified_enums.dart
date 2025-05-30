@@ -17,7 +17,7 @@ typedef ResponsiveBuilderType =
     );
 
 /// error page design
-enum ErrorScreenStyle {
+enum ErrorScreen {
   pixelArt,
   catHacker,
   frost,

@@ -37,14 +37,25 @@
 ## ⚙️ **Initialization**
 
 ```dart
-ResponsiveScope( // 👈 Very important: wraps the material app for responsive behavior
-  screenLock: AppOrientationLock.portraitUp, // locks orientation to portrait
-  designFrame: Frame(width: 320, height: 812), // base design reference size
-  scaleMode: ScaleMode.design, // scales UI based on design frame
-  layoutBuilder: (LayoutInfo layout) => MaterialApp(), // injects layout info
-  enableDebugLogging: true, // enables debug output
-  errorScreenStyle: ErrorScreenStyle.dessert // shows styled error screen
+
+ResponsiveScope( // 👈  ResponsiveScope — VERY Important: Manages layout scaling, orientation lock, and global error handling
+  enableDebugLogging: true, // Enable debug logs for responsive layout changes
+  screenLock: AppOrientationLock.none, // No orientation restriction
+  errorScreen: ErrorScreen.blueCrash, // Custom error screen for uncaught Flutter errors
+  designFrame: const Frame(width: 390, height: 844), // Base design frame for scaling (e.g., iPhone 13)
+  scaleMode: ScaleMode.design, // Use design-based scaling for consistent UI
+  layoutBuilder: (ui) {
+    // Handle layout changes based on screen size/orientation
+    if (ui.isLandscape) {
+      throw UnimplementedError(
+        'Landscape layout is not implemented yet. '
+        'Please handle different screen orientations.',
+      );
+    }
+    return const MobileApp();
+  },
 );
+
 ```
 
 

@@ -1,5 +1,8 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+/// A widget that adapts its layout responsively based on screen size, orientation,
+/// and scale mode. It also handles screen orientation locking, error screens,
+/// and unified scaling logic.
 class ResponsiveScope extends StatefulWidget {
   const ResponsiveScope({
     super.key,
@@ -10,21 +13,40 @@ class ResponsiveScope extends StatefulWidget {
     this.maxTabletWidth = 1024,
     this.onFlutterError,
     this.screenLock = AppOrientationLock.none,
-    this.errorScreen,
+    this.ownErrorScreen,
     this.enableDebugLogging = false,
-    this.errorScreenStyle = ErrorScreenStyle.dessert,
+    this.errorScreen = ErrorScreen.dessert,
   });
 
+  /// Builds the layout using provided layout information.
   final Widget Function(LayoutInfo layout) layoutBuilder;
+
+  /// Defines how the UI should scale.
   final ScaleMode scaleMode;
+
+  /// Design reference frame for scaling.
   final Frame? designFrame;
+
+  /// Maximum width threshold for mobile layout.
   final double maxMobileWidth;
+
+  /// Maximum width threshold for tablet layout.
   final double maxTabletWidth;
+
+  /// Orientation lock mode.
   final AppOrientationLock screenLock;
+
+  /// Enables debug logging during screen updates.
   final bool enableDebugLogging;
+
+  /// Flutter error handler override.
   final FlutterExceptionHandler? onFlutterError;
-  final Widget Function(FlutterErrorDetails error)? errorScreen;
-  final ErrorScreenStyle errorScreenStyle;
+
+  /// Widget builder for custom error screen UI.
+  final Widget Function(FlutterErrorDetails error)? ownErrorScreen;
+
+  /// Styling configuration for the error screen.
+  final ErrorScreen errorScreen;
 
   @override
   State<ResponsiveScope> createState() => _ResponsiveScopeState();
@@ -32,39 +54,40 @@ class ResponsiveScope extends StatefulWidget {
 
 class _ResponsiveScopeState extends State<ResponsiveScope>
     with WidgetsBindingObserver {
-  bool _errorHandlersSet = false;
   Orientation? _orientation;
   ScreenType? _screenType;
   Size? _screenSize;
 
+  bool _errorHandlersSet = false;
+  Timer? _resizeDebounce;
+
   @override
   void initState() {
     super.initState();
-    _setOrientation(widget.screenLock);
+    _setOrientationLock(widget.screenLock);
     WidgetsBinding.instance.addObserver(this);
   }
 
-  Future<void> _setOrientation(AppOrientationLock lock) async {
+  Future<void> _setOrientationLock(AppOrientationLock lock) async {
     if (lock == AppOrientationLock.none) return;
     try {
       await SystemChrome.setPreferredOrientations(lock.orientations);
-    } catch (e, stackTrace) {
-      debugPrint('Failed to set orientation: $e');
-      debugPrintStack(stackTrace: stackTrace);
+    } catch (e, stack) {
+      Debug.error(' Failed to set orientation: $e');
+      debugPrintStack(stackTrace: stack);
     }
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Safe place to access inherited widgets like MediaQuery
-    _updateScreenInfo();
+    _updateScreenInfo(); // Initial update
 
     if (!_errorHandlersSet) {
       _ErrorHandlerService.setup(
         onFlutterError: widget.onFlutterError,
-        errorScreen: widget.errorScreen,
-        errorScreenStyle: widget.errorScreenStyle,
+        errorScreen: widget.ownErrorScreen,
+        errorScreenStyle: widget.errorScreen,
         enableDebugLogging: widget.enableDebugLogging,
       );
       _errorHandlersSet = true;
@@ -72,21 +95,26 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   }
 
   @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations(AppOrientationLock.none.orientations);
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    _resizeDebounce?.cancel();
+    _resizeDebounce = Timer(
+      const Duration(milliseconds: 150),
+      _updateScreenInfo,
+    );
   }
 
   @override
-  void didChangeMetrics() {
-    super.didChangeMetrics();
-    _updateScreenInfo();
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _resizeDebounce?.cancel();
+    SystemChrome.setPreferredOrientations(AppOrientationLock.none.orientations);
+    super.dispose();
   }
 
   void _updateScreenInfo() {
     final mq = MediaQuery.maybeOf(context);
-    if (mq == null || mq.size.width == 0 || mq.size.height == 0) return;
+    if (mq == null || mq.size.isEmpty) return;
 
     final newOrientation = mq.orientation;
     final newScreenType = _resolveScreenType(
@@ -95,9 +123,11 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
       widget.maxTabletWidth,
     );
 
+    final screenSizeChanged = _screenSize != mq.size;
+
     if (newOrientation != _orientation ||
         newScreenType != _screenType ||
-        _screenSize != mq.size) {
+        screenSizeChanged) {
       setState(() {
         _orientation = newOrientation;
         _screenType = newScreenType;
@@ -113,11 +143,10 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
         );
       }
 
-      // Init scaling (you can add your own logic)
       _UnifiedScale().init(
         context: context,
         mode: widget.scaleMode,
-        designSize: _getDesignFrame(_orientation!),
+        designSize: _getDesignFrame(newOrientation),
         maxMobileWidth: widget.maxMobileWidth,
         maxTabletWidth: widget.maxTabletWidth,
         debugLog: widget.enableDebugLogging,
@@ -131,22 +160,18 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
     final hasValidSize = mq != null && mq.size.width > 0 && mq.size.height > 0;
 
     final isLayoutReady =
-        _orientation != null &&
-        _screenSize != null &&
-        _screenType != null &&
-        hasValidSize;
+        _orientation != null && _screenSize != null && _screenType != null;
 
     final layoutWidget =
-        isLayoutReady
+        isLayoutReady && hasValidSize
             ? widget.layoutBuilder(LayoutInfo.fromThis(context))
-            : const SizedBox(); // Or a splash/loading screen
+            : const SizedBox();
 
     final wrapped = Directionality(
       textDirection: TextDirection.ltr,
       child: layoutWidget,
     );
 
-    // Use default fallback media query if needed
     if (!hasValidSize) {
       return MediaQuery(
         data: const MediaQueryData(size: Size(360, 800), devicePixelRatio: 2.0),
@@ -158,12 +183,9 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   }
 
   Frame _getDesignFrame(Orientation orientation) {
-    if (widget.designFrame != null &&
-        widget.designFrame!.width > 0 &&
-        widget.designFrame!.height > 0) {
-      return orientation == Orientation.landscape
-          ? widget.designFrame!.reversed
-          : widget.designFrame!;
+    final frame = widget.designFrame;
+    if (frame != null && frame.width > 0 && frame.height > 0) {
+      return orientation == Orientation.landscape ? frame.reversed : frame;
     }
     return const Frame(width: 360, height: 800);
   }
