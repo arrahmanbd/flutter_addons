@@ -45,7 +45,7 @@ class _SmartUnitUtils {
     _designHeight = designHeight;
 
     _orientation = mq.orientation;
-    _brightness = mq.platformBrightness; 
+    _brightness = mq.platformBrightness;
     _textScaler = mq.textScaler;
     _devicePixelRatio = mq.devicePixelRatio;
     _padding = mq.padding;

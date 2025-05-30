@@ -1,5 +1,10 @@
+# 2.1.1
+### Hotfix
+1. Resolved lag issues and fixed crashes caused by complex widget trees.
+3. Improved overall performance and stability.
 
-# 2.1.0
+
+## 2.1.0
 
 ### Fixes & Improvements
 
@@ -12,7 +17,7 @@
 7. Introduced `FlatButton` again in Flutter.
 8. Added support for orientation lock via internal API.
 9. Introduced new `SoulThemes` with improved visual design.
-10. Added `ResponsiveBuilder` widget and several utility extensions to simplify responsive and UI development.
+10. Added `Responsive` widget and several utility extensions to simplify responsive and UI development.
 11. Centeralized Default Colors in `PureSoul` class
 
 ---

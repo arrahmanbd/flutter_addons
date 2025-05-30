@@ -205,7 +205,7 @@ class BlogPage extends StatelessWidget {
             selectedColor: Kolors.neutral200,
             backgroundColor: context.cardBackground,
             labelStyle: TextStyle(
-              color:  context.bodyTextColor,
+              color: context.bodyTextColor,
               fontWeight: FontWeight.w600,
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),

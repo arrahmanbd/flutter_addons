@@ -1,6 +1,6 @@
 name: flutter_addons
-description: "Flutter Addons is a powerful toolkit designed to streamline responsive Flutter development. It includes theme engines, layout utilities, scaling extensions, and animation helpers—everything you need."
-version: 2.1.0
+description: "Supercharge your development workflow with Flutter Addons — the ultimate toolkit for building sleek, responsive Flutter apps effortlessly. Packed with powerful theme engines, seamless scaling tools, and thousands of extensions to accelerate development."
+version: 2.1.1
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons
 issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues
@@ -8,17 +8,17 @@ documentation: https://github.com/arrahmanbd/flutter_addons/wiki
 screenshots:
   - description: 'Flutter Addons Icon'
     path: images/icon.png
-  - description: 'Flutter Addons Theme Image'
+  - description: 'Flutter Addons cover Image'
     path: images/cover.jpg
   - description: 'Flutter Addons global design'
     path: images/global.jpg
 
 topics:
+  - responsive
   - theme
   - utils
   - extensions
-  - responsive
-  - spacing
+  - master
 environment:
   sdk: ">=3.7.2 <4.0.0"
   flutter: ">=3.0.0"

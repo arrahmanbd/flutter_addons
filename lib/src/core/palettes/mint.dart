@@ -67,5 +67,5 @@ class _LinuxMintDark extends ThemeKolors {
   Color get secondaryContent => const Color(0xFFB0B0B0); // Subtle text
 
   @override
-  Color get shadowColor => const Color(0xFF000000).withValues(alpha:0.3); // Shadow for elevation
+  Color get shadowColor => const Color(0xFF000000).withValues(alpha: 0.3); // Shadow for elevation
 }

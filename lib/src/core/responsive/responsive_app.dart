@@ -19,7 +19,7 @@ class ResponsiveScope extends StatefulWidget {
   });
 
   /// Builds the layout using provided layout information.
-  final Widget Function(LayoutInfo layout) layoutBuilder;
+  final Widget Function(MediaInfo layout) layoutBuilder;
 
   /// Defines how the UI should scale.
   final ScaleMode scaleMode;
@@ -164,7 +164,7 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
 
     final layoutWidget =
         isLayoutReady && hasValidSize
-            ? widget.layoutBuilder(LayoutInfo.fromThis(context))
+            ? widget.layoutBuilder(MediaInfo.fromThis(context))
             : const SizedBox();
 
     final wrapped = Directionality(

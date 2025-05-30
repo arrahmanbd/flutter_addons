@@ -11,16 +11,16 @@ class Responsive extends StatefulWidget {
   final ResponsiveTransition transition;
   final Duration duration;
 
-  /// Builder provides a [LayoutInfo] object with full responsive info.
-  final Widget Function(LayoutInfo data) builder;
+  /// Builder provides a [MediaInfo] object with full responsive info.
+  final Widget Function(MediaInfo ui) builder;
 
   @override
   State<Responsive> createState() => _ResponsiveState();
 }
 
 class _ResponsiveState extends State<Responsive> {
-  late LayoutInfo _layoutData;
-  String _generateKey(LayoutInfo data) {
+  late MediaInfo _layoutData;
+  String _generateKey(MediaInfo data) {
     return '${data.isMobile
             ? "mobile"
             : data.isTablet
@@ -32,12 +32,12 @@ class _ResponsiveState extends State<Responsive> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _layoutData = LayoutInfo.fromThis(context);
+    _layoutData = MediaInfo.fromThis(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    _layoutData = LayoutInfo.fromThis(context);
+    _layoutData = MediaInfo.fromThis(context);
 
     return AnimatedSwitcher(
       duration: widget.duration,
@@ -61,7 +61,7 @@ class _ResponsiveState extends State<Responsive> {
 }
 
 class SliverResponsive extends StatelessWidget {
-  final Widget Function(LayoutInfo media) builder;
+  final Widget Function(MediaInfo media) builder;
   final Duration duration;
   final ResponsiveTransition transition;
 
@@ -74,7 +74,7 @@ class SliverResponsive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final media = LayoutInfo.fromThis(context);
+    final media = MediaInfo.fromThis(context);
     return SliverToBoxAdapter(
       child: AnimatedSwitcher(
         duration: duration,

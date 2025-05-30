@@ -3,7 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 // Functional widget that provides responsive metadata (device, orientation, screen)
 /// and allows building adaptive layouts with a single builder function.
 
-class LayoutInfo {
+class MediaInfo {
   final BuildContext context;
   final bool isLandscape;
   final bool isPortrait;
@@ -11,7 +11,7 @@ class LayoutInfo {
   final bool isTablet;
   final bool isDesktop;
 
-  const LayoutInfo({
+  const MediaInfo({
     required this.context,
     required this.isLandscape,
     required this.isPortrait,
@@ -19,11 +19,11 @@ class LayoutInfo {
     required this.isTablet,
     required this.isDesktop,
   });
-  factory LayoutInfo.fromBaseContext(BuildContext context) {
+  factory MediaInfo.fromBaseContext(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final orientation = mediaQuery.orientation;
     final width = mediaQuery.size.width;
-    return LayoutInfo(
+    return MediaInfo(
       context: context,
       isLandscape: orientation == Orientation.landscape,
       isPortrait: orientation == Orientation.portrait,
@@ -33,8 +33,8 @@ class LayoutInfo {
     );
   }
 
-  factory LayoutInfo.fromThis(BuildContext context) {
-    return LayoutInfo(
+  factory MediaInfo.fromThis(BuildContext context) {
+    return MediaInfo(
       context: context, // Context is not available here
       isLandscape: _ScreenUtils.orientation == Orientation.landscape,
       isPortrait: _ScreenUtils.orientation == Orientation.portrait,

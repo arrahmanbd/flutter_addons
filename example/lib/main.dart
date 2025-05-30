@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       screenLock: AppOrientationLock.portraitUp,
       designFrame: Frame(width: 320, height: 812),
       scaleMode: ScaleMode.design,
-      layoutBuilder: (LayoutInfo layout) => SoulApp(),
+      layoutBuilder: (MediaInfo layout) => SoulApp(),
       enableDebugLogging: true,
     );
   }
