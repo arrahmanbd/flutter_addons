@@ -2,7 +2,7 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-2.0.0-yellow)
+![Version](https://img.shields.io/badge/Version-2.1.2-red)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)

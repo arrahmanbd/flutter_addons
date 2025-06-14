@@ -12,4 +12,5 @@
 
 # Ignore OS-specific files
 .DS_Store
+projects
 Thumbs.db

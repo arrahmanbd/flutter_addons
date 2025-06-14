@@ -48,10 +48,10 @@ part 'src/context/theme_colors.dart';
 part 'src/context/theme_mode.dart';
 
 // Widgets
-part 'src/widgets/widget_ext.dart';
-part 'src/widgets/row_column.dart';
-part 'src/widgets/stacking.dart';
-part 'src/widgets/list_grid.dart';
+part 'src/widget/widget_ext.dart';
+part 'src/widget/row_column.dart';
+part 'src/widget/stacking.dart';
+part 'src/widget/list_grid.dart';
 
 // Responsive
 part 'src/core/responsive/responsive_app.dart';
@@ -92,6 +92,7 @@ part 'src/utility/time_format.dart';
 part 'src/utility/focus_node.dart';
 part 'src/utility/image_provider.dart';
 part 'src/utility/network_utils.dart';
+part 'src/utility/valodator.dart';
 
 // Fake Data
 part 'src/data/fake_data.dart';
@@ -133,7 +134,7 @@ part 'src/core/typography/base_styles.dart';
 part 'src/core/typography/fallback_typo.dart';
 
 /// FallBack View
-part 'src/components/error_page.dart';
+part 'src/components/ui/error_page.dart';
 part 'src/utility/author_speech.dart';
 
 /// Errors
@@ -147,11 +148,11 @@ part 'src/core/errors/common_exception.dart';
 
 /// Components
 /// Alert , Snackbar, Toaster, Dialog, Theme Toggler
-part 'src/components/alart.dart';
-part 'src/components/snackbar.dart';
-part 'src/components/toaster.dart';
-part 'src/components/dialog.dart';
-part 'src/components/theme_toggler.dart';
+part 'src/components/basic/alart.dart';
+part 'src/components/basic/snackbar.dart';
+part 'src/components/basic/toaster.dart';
+part 'src/components/basic/dialog.dart';
+part 'src/components/widgets/theme_toggler.dart';
 part 'src/decoration/border_box.dart';
 
 //responsive helper
@@ -167,8 +168,8 @@ part 'src/core/responsive/responsive_builder.dart';
 part 'src/core/colors/kolors.dart';
 part 'src/core/typography/text_weight.dart';
 part 'src/core/typography/text_size.dart';
-part 'src/components/label.dart';
-part 'src/components/button.dart';
+part 'src/components/widgets/label.dart';
+part 'src/components/component/button.dart';
 part 'src/core/colors/safe_colors.dart';
 
 // decoration
@@ -180,3 +181,10 @@ part 'src/core/responsive/summery_logger.dart';
 part 'src/core/responsive/media_info.dart';
 part 'src/core/responsive/orentaion_lock.dart';
 part 'src/animation/animate_proxy.dart';
+
+//components
+part 'src/components/component/appbar_addon.dart';
+part 'src/components/component/avatar_circle.dart';
+part 'src/components/component/page_indicator.dart';
+part 'src/components/ui/mini_progress.dart';
+part 'src/components/shape/box_kit.dart';

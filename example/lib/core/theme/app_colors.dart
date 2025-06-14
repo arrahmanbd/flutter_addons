@@ -68,5 +68,5 @@ class AppLightColors extends ThemeKolors {
   Color get secondaryContent => Kolors.neutral600;
 
   @override
-  Color get shadowColor => Kolors.neutral900.withOpacity(0.08); // Subtle shadow
+  Color get shadowColor => Kolors.neutral900.withValues(alpha: 0.08); // Subtle shadow
 }

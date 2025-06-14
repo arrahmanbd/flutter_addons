@@ -1,10 +1,24 @@
-# 2.1.1
+
+
+# 2.1.2 – Updates & Enhancements
+
+**What’s New:**
+
+* Introduced a redesigned, customizable **AppBar** for improved UI consistency.
+* Enhanced the **CircleButton** widget with improved styling and responsiveness.
+* Added a reusable **AvatarCircle** widget for displaying user avatars and icons.
+* Included a clean and minimal **PageIndicator** widget for onboarding and carousel screens.
+* Implemented a set of **Common Validators** for consistent and efficient form validation.
+* Introduced a flexible **CustomTextField** with built-in validation and optional visibility toggle.
+
+
+### 2.1.1
 ### Hotfix
 1. Resolved lag issues and fixed crashes caused by complex widget trees.
 3. Improved overall performance and stability.
 
 
-## 2.1.0
+### 2.1.0
 
 ### Fixes & Improvements
 

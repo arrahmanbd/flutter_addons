@@ -32,7 +32,7 @@ class _Apple extends ThemeKolors {
   Color get secondaryContent => Kolors.gray500;
 
   @override
-  Color get shadowColor => Kolors.neutral950.withOpacity(0.1); // Subtle card shadow
+  Color get shadowColor => Kolors.neutral950.withValues(alpha: 0.1); // Subtle card shadow
 }
 
 class _AppleDark extends ThemeKolors {
@@ -67,5 +67,5 @@ class _AppleDark extends ThemeKolors {
   Color get secondaryContent => Kolors.gray400;
 
   @override
-  Color get shadowColor => Kolors.neutral950.withOpacity(0.4); // Slight elevation
+  Color get shadowColor => Kolors.neutral950.withValues(alpha: 0.4); // Slight elevation
 }
