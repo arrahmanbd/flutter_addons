@@ -13,7 +13,7 @@ class _LightSoul extends ThemeKolors {
 
   @override
   /// Foreground text and icon color for dark text elements
-  Color get forground => const Color(0xFF282828);
+  Color get foreground => const Color(0xFF282828);
 
   @override
   /// Background color for scaffold and major surfaces
@@ -59,7 +59,7 @@ class _DarkSoul extends ThemeKolors {
 
   @override
   /// Foreground text and icon color for light text elements
-  Color get forground => const Color(0xFFFFFFFF);
+  Color get foreground => const Color(0xFFFFFFFF);
 
   @override
   /// Background color for scaffold and major surfaces

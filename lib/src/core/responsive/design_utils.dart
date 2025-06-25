@@ -74,15 +74,24 @@ class _DesignUtils {
     return height * _scaleHeight;
   }
 
-  double setFont(num size) {
+  double setFont(num size, {double minScale = 0.9, double maxScale = 1.2}) {
     _assertInitialized();
     if (size < 0) throw ArgumentError('Font size must be positive.');
-    return size * min(_scaleWidth, _scaleHeight);
+
+    final scale = _scaleWidth / _designWidth;
+    return size * scale.clamp(minScale, maxScale);
   }
 
-  double setRadius(num radius) {
+  // double setRadius(num radius) {
+  //   _assertInitialized();
+  //   if (radius < 0) throw ArgumentError('Radius must be positive.');
+  //   return radius * _scaleWidth;
+  // }
+  double setRadius(num radius, {double minScale = 0.9, double maxScale = 1.2}) {
     _assertInitialized();
     if (radius < 0) throw ArgumentError('Radius must be positive.');
-    return radius * _scaleWidth;
+
+    final scale = _scaleWidth / _designWidth;
+    return radius * scale.clamp(minScale, maxScale);
   }
 }

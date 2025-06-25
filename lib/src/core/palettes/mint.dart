@@ -14,7 +14,7 @@ class _LinuxMint extends ThemeKolors {
   Color get dividerColor => const Color(0xFFE0E0E0); // Light divider
 
   @override
-  Color get forground => const Color(0xFF1B1B1B); // Dark text
+  Color get foreground => const Color(0xFF1B1B1B); // Dark text
 
   @override
   Color get inputBackground => const Color(0xFFF0F0F0); // Light input fields
@@ -49,7 +49,7 @@ class _LinuxMintDark extends ThemeKolors {
   Color get dividerColor => const Color(0xFF3A3A3A); // Subtle divider
 
   @override
-  Color get forground => const Color(0xFFEAEAEA); // Soft white for text
+  Color get foreground => const Color(0xFFEAEAEA); // Soft white for text
 
   @override
   Color get inputBackground => const Color(0xFF2E2E2E); // Form fields background

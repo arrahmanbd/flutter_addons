@@ -8,7 +8,7 @@ class _SummerLight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFFF9800);
   @override
-  Color get forground => const Color(0xFF4E342E);
+  Color get foreground => const Color(0xFF4E342E);
   @override
   Color get background => const Color(0xFFFFF3E0);
   @override
@@ -33,7 +33,7 @@ class _SummerDark extends ThemeKolors {
   @override
   Color get primaryColor => const ui.Color.fromARGB(255, 226, 103, 66);
   @override
-  Color get forground => const Color(0xFFFFFFFF);
+  Color get foreground => const Color(0xFFFFFFFF);
   @override
   Color get background => const Color(0xFF161005);
   @override

@@ -1,7 +1,7 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class Responsive extends StatefulWidget {
-  const Responsive({
+class ResponsiveBuilder extends StatefulWidget {
+  const ResponsiveBuilder({
     super.key,
     required this.builder,
     this.transition = ResponsiveTransition.fade,
@@ -15,10 +15,10 @@ class Responsive extends StatefulWidget {
   final Widget Function(MediaInfo ui) builder;
 
   @override
-  State<Responsive> createState() => _ResponsiveState();
+  State<ResponsiveBuilder> createState() => _ResponsiveBuilderState();
 }
 
-class _ResponsiveState extends State<Responsive> {
+class _ResponsiveBuilderState extends State<ResponsiveBuilder> {
   late MediaInfo _layoutData;
   String _generateKey(MediaInfo data) {
     return '${data.isMobile
@@ -60,12 +60,12 @@ class _ResponsiveState extends State<Responsive> {
   }
 }
 
-class SliverResponsive extends StatelessWidget {
+class ResponsiveSliver extends StatelessWidget {
   final Widget Function(MediaInfo media) builder;
   final Duration duration;
   final ResponsiveTransition transition;
 
-  const SliverResponsive({
+  const ResponsiveSliver({
     super.key,
     required this.builder,
     this.duration = const Duration(milliseconds: 300),

@@ -21,7 +21,7 @@ enum ErrorScreen {
   pixelArt,
   catHacker,
   frost,
-  blueCrash,
+  winDeath,
   brokenRobot,
   simple,
   codeTerminal,

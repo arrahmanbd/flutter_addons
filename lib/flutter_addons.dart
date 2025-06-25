@@ -54,7 +54,7 @@ part 'src/widget/stacking.dart';
 part 'src/widget/list_grid.dart';
 
 // Responsive
-part 'src/core/responsive/responsive_app.dart';
+part 'src/core/responsive/scope.dart';
 part 'src/core/spacing/responsive_space.dart';
 part 'src/core/responsive/screen_utils.dart';
 part 'src/core/responsive/responsive_effects.dart';
@@ -127,7 +127,7 @@ part 'src/core/palettes/autumn_soul.dart';
 part 'src/core/palettes/apple.dart';
 part 'src/core/palettes/mint.dart';
 part 'src/core/palettes/ubuntu.dart';
-part 'src/core/palettes/pure_colors.dart';
+part 'src/core/palettes/soul_themes.dart';
 
 /// Typography
 part 'src/core/typography/base_styles.dart';
@@ -141,10 +141,8 @@ part 'src/utility/author_speech.dart';
 part 'src/core/errors/screen_of_death.dart';
 
 /// App Exception
-part 'src/core/errors/default_error_maper.dart';
-part 'src/core/errors/error_maper.dart';
-part 'src/core/errors/app_exception.dart';
-part 'src/core/errors/common_exception.dart';
+part 'src/core/errors/error_scope.dart';
+part 'src/core/errors/retry_mechanism.dart';
 
 /// Components
 /// Alert , Snackbar, Toaster, Dialog, Theme Toggler
@@ -188,3 +186,9 @@ part 'src/components/component/avatar_circle.dart';
 part 'src/components/component/page_indicator.dart';
 part 'src/components/ui/mini_progress.dart';
 part 'src/components/shape/box_kit.dart';
+
+// state management
+part 'src/core/state/app_error.dart';
+part 'src/core/state/app_state.dart';
+part 'src/core/state/exception.dart';
+part 'src/core/state/functional.dart';

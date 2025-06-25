@@ -8,7 +8,7 @@ class _LostHerNight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFF7A5DCC);
   @override
-  Color get forground => const Color(0xFF3A3A3A);
+  Color get foreground => const Color(0xFF3A3A3A);
   @override
   Color get background => const Color(0xFFF5F0FA);
   @override
@@ -33,7 +33,7 @@ class _LostHerDark extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFA078D1);
   @override
-  Color get forground => const Color(0xFFEAEAEA);
+  Color get foreground => const Color(0xFFEAEAEA);
   @override
   Color get background => const Color(0xFF191925);
   @override

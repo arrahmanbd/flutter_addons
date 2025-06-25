@@ -19,10 +19,11 @@ class PostCard extends StatelessWidget {
             child: Image.network(
               'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                color: Colors.grey[300],
-                child: Icon(Icons.broken_image, size: 48),
-              ),
+              errorBuilder:
+                  (context, error, stackTrace) => Container(
+                    color: Colors.grey[300],
+                    child: Icon(Icons.broken_image, size: 48),
+                  ),
             ),
           ),
           Padding(

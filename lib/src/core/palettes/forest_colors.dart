@@ -8,7 +8,7 @@ class _ForestLight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFF4A8F4F);
   @override
-  Color get forground => const Color(0xFF2C5E2A);
+  Color get foreground => const Color(0xFF2C5E2A);
   @override
   Color get background => const Color(0xFFEEF6ED);
   @override
@@ -33,7 +33,7 @@ class _ForestDark extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFF3E7741);
   @override
-  Color get forground => const Color(0xFFE2E2E2);
+  Color get foreground => const Color(0xFFE2E2E2);
   @override
   Color get background => const Color(0xFF212725);
   @override

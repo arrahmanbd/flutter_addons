@@ -4,14 +4,14 @@ import 'package:flutter_addons/flutter_addons.dart';
 class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onSearchTap;
-  final VoidCallback? onMessagesTap;
+  final VoidCallback? onPrfileTap;
   final VoidCallback? onNotificationsTap;
 
   const FacebookAppBar({
     super.key,
     this.title = '',
     this.onSearchTap,
-    this.onMessagesTap,
+    this.onPrfileTap,
     this.onNotificationsTap,
   });
 
@@ -49,18 +49,21 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
                 tooltip: 'Search',
               ),
 
-              // Messages icon
-              IconButton(
-                icon: const Icon(Icons.message_outlined, color: Colors.white),
-                onPressed: onMessagesTap,
-                tooltip: 'Messages',
-              ),
-
               // Notifications icon
               IconButton(
                 icon: const Icon(Icons.notifications_none, color: Colors.white),
                 onPressed: onNotificationsTap,
                 tooltip: 'Notifications',
+              ),
+
+              // Messages icon
+              IconButton(
+                icon: const Icon(
+                  Icons.verified_user_outlined,
+                  color: Colors.white,
+                ),
+                onPressed: onPrfileTap,
+                tooltip: 'Messages',
               ),
             ],
           ),

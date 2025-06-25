@@ -14,14 +14,14 @@ abstract class Palette {
 abstract class ThemeKolors extends Palette {
   const ThemeKolors();
 
-  /// Defines the brightness of the theme
+  /// Defines the brightness of the theme.
   Brightness get themeMode;
 
   /// The primary brand color used for emphasis.
   Color get primaryColor;
 
   /// The default foreground color, typically used for text.
-  Color get forground;
+  Color get foreground;
 
   /// The background color of the app.
   Color get background;
@@ -47,25 +47,17 @@ abstract class ThemeKolors extends Palette {
   /// The shadow color used to create depth.
   Color get shadowColor;
 
-  /// The color used for inactive elements, such as disabled buttons and icons.
-  //Color get inactiveColor;
-
   /// Generates a [ColorScheme] based on the defined theme colors.
-  ///
-  /// This scheme is useful for Material components that require a standardized
-  /// color palette.
   @override
   ColorScheme get colorScheme => ColorScheme(
     brightness: themeMode,
     primary: primaryColor,
-    onPrimary: themeMode == Brightness.dark ? forground : background,
-    secondary: primaryColor.withValues(alpha: .35),
+    onPrimary: themeMode == Brightness.dark ? foreground : background,
+    secondary: primaryColor.withValues(alpha: 0.35),
     onSecondary: secondaryContent,
     surface: background,
-    // High contrast Text (Black/White)
-    onSurface: forground,
-    surfaceContainer: cardBackground,
-    onSurfaceVariant: secondaryContent,
+    onSurface: foreground,
+    surfaceContainerHighest: secondaryContent,
     primaryContainer: primaryColor.withValues(alpha: 0.1),
     onPrimaryContainer: primaryColor,
     secondaryContainer: cardBackground,
@@ -75,7 +67,7 @@ abstract class ThemeKolors extends Palette {
     onError: Colors.white,
     outline: outlineColor,
     shadow: shadowColor,
-    surfaceContainerLow: inputBackground,
+    surfaceTint: inputBackground,
     surfaceDim: dividerColor,
     inverseSurface: dividerColor,
     outlineVariant: outlineColor,

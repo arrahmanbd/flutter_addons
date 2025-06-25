@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class PureSoul {
+class SoulTheme {
   // Apple
   static final apple = _Apple();
   static final appleDark = _AppleDark();

@@ -1,6 +1,25 @@
+# 2.2.0 – Updates & Enhancements
+
+**What’s New:**
+
+### Added
+- Introduced a `Result<T, E>` type for functional-style success and error handling.
+- Added `AppState<T>` for representing loading, success, and failure states in UI.
+- Implemented `ExceptionHandler` to standardize exception-to-error conversion across layers.
+- Created extension methods for retrying failed futures and guarding async operations.
+- New SizedBox Spacing `sy` `sx`
+- New Frames added on designFrame, etc.
+### Fixed
+- Fix font scaling on large screens by basing scale on reference width and clamping values
+- Prevent fonts from shrinking below original size on desktop resolutions
 
 
-# 2.1.2 – Updates & Enhancements
+### Improved
+- Enhanced error handling consistency across layers.
+- Refactored data flow to follow clean architecture and functional principles.
+- Simplified async logic through reusable extensions and state modeling.
+- Improved terminal readability with minimal formatting
+# 2.1.2 
 
 **What’s New:**
 

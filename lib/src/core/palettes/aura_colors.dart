@@ -9,7 +9,7 @@ class _AuroraLight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFEE7674);
   @override
-  Color get forground => const Color(0xFF444444);
+  Color get foreground => const Color(0xFF444444);
   @override
   Color get background => const Color(0xFFFEF9E7);
   @override
@@ -34,7 +34,7 @@ class _AuroraDark extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFDC5B89);
   @override
-  Color get forground => const Color(0xFFEDEDED);
+  Color get foreground => const Color(0xFFEDEDED);
   @override
   Color get background => const Color(0xFF1A1A1A);
   @override

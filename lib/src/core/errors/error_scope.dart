@@ -1,29 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class AppException implements Exception {
-  final String message;
-  final StackTrace? stackTrace;
-  final ErrorMapper errorMapper;
-
-  AppException(this.message, [this.stackTrace, ErrorMapper? errorMapper])
-    : errorMapper = errorMapper ?? DefaultErrorMapper();
-
-  @override
-  String toString() {
-    return message;
-  }
-
-  // Factory constructor to create an AppException based on the error and stack trace
-  factory AppException.fromError(
-    Exception error, {
-    StackTrace? stackTrace,
-    required ErrorMapper errorMapper,
-  }) {
-    final message = errorMapper.mapError(error, stackTrace);
-    return AppException(message, stackTrace, errorMapper);
-  }
-}
-
 class _ErrorHandlerService {
   static bool _initialized = false;
   static final _random = Random();
@@ -59,8 +35,8 @@ class _ErrorHandlerService {
           case ErrorScreen.frost:
             screen = _FrostErrorScreen(details);
             break;
-          case ErrorScreen.blueCrash:
-            screen = _BlueScreenOfDeath(details);
+          case ErrorScreen.winDeath:
+            screen = _WinDeath(details);
             break;
           case ErrorScreen.brokenRobot:
             screen = _AssistantErrorScreen(details);
@@ -117,18 +93,23 @@ $cyan━━━━━━━━━━━━━━━━━━━━━━━━━
     }
 
     // Error and stack (kept readable outside the box)
-    Debug.info('🚨 A Flutter error has occurred!');
-    Debug.info('🎯 Exception:');
-    Debug.error('   $exception\n');
+    Debug.info(
+      '────────────────────── Flutter Addons Error Report ───────────────────────',
+    );
+    Debug.info('Exception:');
+    Debug.error('  $exception\n');
 
-    Debug.info('🧱 Stack Trace Preview:');
-    Debug.warning('   ${_previewStack(stack)}\n');
+    Debug.info('Stack Trace (first 5 lines):');
+    Debug.warning('  ${_previewStack(stack)}\n');
 
-    Debug.info('💡 Need help debugging? Try this search:');
-    Debug.info('   🔍 ${_makeQuery(exception)}\n');
+    Debug.success('✅  Search suggestion:');
+    Debug.info('  ${_makeQuery(exception)}\n');
 
     Debug.info(
-      '📘 Tip: Use try/catch or custom error boundaries to isolate this error.',
+      ' 💡 Tip: Use try/catch or custom error boundaries to gracefully handle this.',
+    );
+    Debug.info(
+      '───────────────────────────────────────────────────────────────────────────────',
     );
   }
 

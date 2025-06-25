@@ -8,7 +8,7 @@ class _OceanLight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFF1783B5);
   @override
-  Color get forground => const Color(0xFF2E3A47);
+  Color get foreground => const Color(0xFF2E3A47);
   @override
   Color get background => const Color(0xFFE3F2FD);
   @override
@@ -33,7 +33,7 @@ class _OceanDark extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFF147A9E);
   @override
-  Color get forground => const Color(0xFFE3E6EB);
+  Color get foreground => const Color(0xFFE3E6EB);
   @override
   Color get background => const Color(0xFF0D2538);
   @override

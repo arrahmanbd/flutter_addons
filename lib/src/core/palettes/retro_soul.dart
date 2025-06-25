@@ -9,7 +9,7 @@ class _RetroLight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFFF4081); // Neon Pink
   @override
-  Color get forground => const Color(0xFF212121); // Dark Gray for Text
+  Color get foreground => const Color(0xFF212121); // Dark Gray for Text
   @override
   Color get background => const Color(0xFFFFF9C4); // Soft Yellow
   @override
@@ -34,7 +34,7 @@ class _RetroDark extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFF00E5FF); // Neon Cyan
   @override
-  Color get forground => const Color(0xFFFFFFFF); // White Text
+  Color get foreground => const Color(0xFFFFFFFF); // White Text
   @override
   Color get background => const Color(0xFF263238); // Deep Blue-Gray
   @override

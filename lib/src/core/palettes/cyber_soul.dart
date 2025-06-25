@@ -8,7 +8,7 @@ class _CyberLight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFE9457A);
   @override
-  Color get forground => const Color(0xFF2A2A2A);
+  Color get foreground => const Color(0xFF2A2A2A);
   @override
   Color get background => const Color(0xFFF6EBF5);
   @override
@@ -33,7 +33,7 @@ class _CyberDark extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFD84575);
   @override
-  Color get forground => const Color(0xFFEDEDED);
+  Color get foreground => const Color(0xFFEDEDED);
   @override
   Color get background => const Color(0xFF1A1A1A);
   @override

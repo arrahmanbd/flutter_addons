@@ -14,7 +14,7 @@ class _UbuntuColors extends ThemeKolors {
   Color get dividerColor => const Color(0xFFE0E0E0);
 
   @override
-  Color get forground => const Color(0xFF2C2C2C); // Ubuntu dark gray text
+  Color get foreground => const Color(0xFF2C2C2C); // Ubuntu dark gray text
 
   @override
   Color get inputBackground => const Color(0xFFF2F2F2);
@@ -49,7 +49,7 @@ class _UbuntuDarkColors extends ThemeKolors {
   Color get dividerColor => const Color(0xFF3A3A3A); // Muted neutral gray
 
   @override
-  Color get forground => const Color(0xFFF6F6F6); // Light text
+  Color get foreground => const Color(0xFFF6F6F6); // Light text
 
   @override
   Color get inputBackground => const Color(0xFF2E2E2E); // Input field dark

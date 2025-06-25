@@ -14,7 +14,7 @@ class _Apple extends ThemeKolors {
   Color get dividerColor => Kolors.gray200;
 
   @override
-  Color get forground => Kolors.gray900; // Rich black text
+  Color get foreground => Kolors.gray900; // Rich black text
 
   @override
   Color get inputBackground => Kolors.gray100;
@@ -49,7 +49,7 @@ class _AppleDark extends ThemeKolors {
   Color get dividerColor => Kolors.gray700;
 
   @override
-  Color get forground => Kolors.gray100;
+  Color get foreground => Kolors.gray100;
 
   @override
   Color get inputBackground => Kolors.gray900;

@@ -8,7 +8,7 @@ class _AutumnLight extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFF8B6C1);
   @override
-  Color get forground => const Color(0xFF4A322F);
+  Color get foreground => const Color(0xFF4A322F);
   @override
   Color get background => const Color(0xFFFFFAF0);
   @override
@@ -33,7 +33,7 @@ class AutumnDark extends ThemeKolors {
   @override
   Color get primaryColor => const Color(0xFFE89AAE);
   @override
-  Color get forground => const Color(0xFFEDEDED);
+  Color get foreground => const Color(0xFFEDEDED);
   @override
   Color get background => const Color(0xFF252525);
   @override

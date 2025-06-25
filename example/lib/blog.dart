@@ -1,6 +1,7 @@
 import 'package:example_app/core/theme/theme_provider.dart';
 import 'package:example_app/core/widgets/appbar.dart';
 import 'package:example_app/core/widgets/post_card.dart';
+import 'package:example_app/users.dart';
 import 'package:example_app/details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
@@ -27,7 +28,9 @@ class BlogPage extends StatelessWidget {
         title: 'Flutter Addons',
         // ignore: avoid_print
         onSearchTap: () => print('Search tapped'),
-        onMessagesTap: () {},
+        onPrfileTap: () {
+          context.push(UserScreen());
+        },
         onNotificationsTap: () {},
       ),
       body: Padding(
@@ -42,7 +45,7 @@ class BlogPage extends StatelessWidget {
             SizedBox(height: 16.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Responsive(
+              child: ResponsiveBuilder(
                 builder: (screen) {
                   if (screen.isLandscape) {
                     return GridView.builder(
@@ -55,10 +58,11 @@ class BlogPage extends StatelessWidget {
                         crossAxisSpacing: 8,
                         childAspectRatio: aspectRatio,
                       ),
-                      itemBuilder: (context, index) => PostCard().onTap(() {
-                        // Dummy post example
-                        dummyPost.launch(context);
-                      }),
+                      itemBuilder:
+                          (context, index) => PostCard().onTap(() {
+                            // Dummy post example
+                            dummyPost.launch(context);
+                          }),
                     );
                   }
                   return GridView.builder(
@@ -71,10 +75,11 @@ class BlogPage extends StatelessWidget {
                       crossAxisSpacing: 8,
                       childAspectRatio: aspectRatio,
                     ),
-                    itemBuilder: (context, index) => PostCard().onTap(() {
-                      // Dummy post example
-                      dummyPost.launch(context);
-                    }),
+                    itemBuilder:
+                        (context, index) => PostCard().onTap(() {
+                          // Dummy post example
+                          dummyPost.launch(context);
+                        }),
                   );
                 },
               ),
@@ -131,7 +136,7 @@ class BlogPage extends StatelessWidget {
               child: Consumer(
                 builder: (context, ref, _) {
                   final manager = ref.watch(themeProvider);
-                  return ThemeToggleButton(manager: manager, iconSize: 24.r);
+                  return ThemeToggleButton(manager: manager, iconSize: 24.sp);
                 },
               ),
             ),

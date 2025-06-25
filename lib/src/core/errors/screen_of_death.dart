@@ -6,9 +6,9 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// I have no idea why I made this, but it looks cool.
 /// *****************************************************************************
 
-class _BlueScreenOfDeath extends StatelessWidget {
+class _WinDeath extends StatelessWidget {
   final FlutterErrorDetails details;
-  const _BlueScreenOfDeath(this.details);
+  const _WinDeath(this.details);
 
   @override
   Widget build(BuildContext context) {

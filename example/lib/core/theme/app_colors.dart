@@ -15,7 +15,7 @@ class AppDarkColors extends ThemeKolors {
   Color get dividerColor => Kolors.neutral700;
 
   @override
-  Color get forground => Kolors.neutral100;
+  Color get foreground => Kolors.neutral100;
 
   @override
   Color get inputBackground => Kolors.neutral700;
@@ -50,7 +50,7 @@ class AppLightColors extends ThemeKolors {
   Color get dividerColor => Kolors.neutral300;
 
   @override
-  Color get forground => Kolors.neutral900; // Dark text for light background
+  Color get foreground => Kolors.neutral900; // Dark text for light background
 
   @override
   Color get inputBackground => Kolors.neutral100; // Input fields match background

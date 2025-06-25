@@ -86,10 +86,10 @@ Smooth scaling across devices. Use one mode globally for consistency.
    }```
 
 2. **Create Custom Typography**
-   Extend `Typography` and define text styles:
+   Extend `AppTypo` and define text styles:
 
    ```dart
-   class CustomTypography extends Typography {
+   class CustomTypography extends AppTypo {
      @override
      String get fontFamily => 'Montserrat';
      @override
@@ -102,10 +102,9 @@ Smooth scaling across devices. Use one mode globally for consistency.
    Use `ThemeMaker.makeTheme` with your custom classes:
 
    ```dart
-   final ThemeData lightTheme = ThemeMaker.makeTheme(
-     CustomColors(),
-     typography: CustomTypography(),
-   );
+   ThemeData get lightTheme =>
+      ThemeMaker.makeTheme(AppLightColors(), typography: AppFonts());
+
    ```
 
 ## 🎨 Apply the Theme
@@ -113,7 +112,23 @@ Smooth scaling across devices. Use one mode globally for consistency.
 Use your custom theme in `MaterialApp`. By Extending `ThemeManager` create your own controller that handles theme state and switching logic more easily. See the example app.
 
 
+ ```dart
+ class Themer extends ThemeManager {
+  static const _themeKey = 'selected_theme';
 
+  Themer() {
+    _loadThemeFromPrefs(); // Load theme on initialization
+  }
+
+  @override
+  ThemeData get lightTheme =>
+      ThemeMaker.makeTheme(AppLightColors(), typography: AppFonts());
+
+  @override
+  ThemeData get darkTheme =>
+      ThemeMaker.makeTheme(AppDarkColors(), typography: AppFonts());
+ }
+```
 ---
 
 #### 1. Applying Text Styles

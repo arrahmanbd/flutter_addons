@@ -7,7 +7,7 @@ class ResponsiveScope extends StatefulWidget {
   const ResponsiveScope({
     super.key,
     required this.layoutBuilder,
-    this.designFrame,
+    this.designSize,
     this.scaleMode = ScaleMode.percent,
     this.maxMobileWidth = 599,
     this.maxTabletWidth = 1024,
@@ -15,7 +15,7 @@ class ResponsiveScope extends StatefulWidget {
     this.screenLock = AppOrientationLock.none,
     this.ownErrorScreen,
     this.enableDebugLogging = false,
-    this.errorScreen = ErrorScreen.dessert,
+    this.errorScreen = ErrorScreen.winDeath,
   });
 
   /// Builds the layout using provided layout information.
@@ -25,7 +25,7 @@ class ResponsiveScope extends StatefulWidget {
   final ScaleMode scaleMode;
 
   /// Design reference frame for scaling.
-  final Frame? designFrame;
+  final Frame? designSize;
 
   /// Maximum width threshold for mobile layout.
   final double maxMobileWidth;
@@ -142,15 +142,18 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
           'Height: ${mq.size.height}',
         );
       }
-
-      _UnifiedScale().init(
-        context: context,
-        mode: widget.scaleMode,
-        designSize: _getDesignFrame(newOrientation),
-        maxMobileWidth: widget.maxMobileWidth,
-        maxTabletWidth: widget.maxTabletWidth,
-        debugLog: widget.enableDebugLogging,
-      );
+      try {
+        _UnifiedScale().init(
+          context: context,
+          mode: widget.designSize != null ? ScaleMode.design : widget.scaleMode,
+          designFrame: _getDesignFrame(newOrientation),
+          maxMobileWidth: widget.maxMobileWidth,
+          maxTabletWidth: widget.maxTabletWidth,
+          debugLog: widget.enableDebugLogging,
+        );
+      } catch (e) {
+        Debug.error(e);
+      }
     }
   }
 
@@ -183,7 +186,7 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   }
 
   Frame _getDesignFrame(Orientation orientation) {
-    final frame = widget.designFrame;
+    final frame = widget.designSize;
     if (frame != null && frame.width > 0 && frame.height > 0) {
       return orientation == Orientation.landscape ? frame.reversed : frame;
     }
