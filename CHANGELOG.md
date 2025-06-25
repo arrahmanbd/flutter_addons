@@ -1,4 +1,10 @@
-# 2.2.0 – Updates & Enhancements
+# 2.2.1
+
+**What’s New:**
+- Introduced `ResponsivePage` class.
+- Fixed extension conflict issue.
+- Fixed breaking change issue.
+# 2.2.0 
 
 **What’s New:**
 

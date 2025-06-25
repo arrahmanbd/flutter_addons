@@ -1,6 +1,6 @@
 name: flutter_addons
 description: "Supercharge your development workflow with Flutter Addons — the ultimate toolkit for building sleek, responsive Flutter apps effortlessly. Packed with powerful theme engines, seamless scaling tools, and thousands of extensions to accelerate development."
-version: 2.2.0
+version: 2.2.1
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons
 issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues

@@ -21,7 +21,7 @@ extension ResponsiveSpacing on num {
   double get pt => this * inches / 72;
 
   /// Converts the value to pixels (px). Default unit.
-  double get px => toDouble();
+  // double get px => toDouble();
 
   /// Converts the value to a percentage of the available height after `SafeArea`.
   double get sh => this * _ScreenUtils.safeHeight / 100;

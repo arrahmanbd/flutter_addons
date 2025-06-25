@@ -7,7 +7,7 @@ class ResponsiveScope extends StatefulWidget {
   const ResponsiveScope({
     super.key,
     required this.layoutBuilder,
-    this.designSize,
+    this.designFrame,
     this.scaleMode = ScaleMode.percent,
     this.maxMobileWidth = 599,
     this.maxTabletWidth = 1024,
@@ -25,7 +25,7 @@ class ResponsiveScope extends StatefulWidget {
   final ScaleMode scaleMode;
 
   /// Design reference frame for scaling.
-  final Frame? designSize;
+  final Frame? designFrame;
 
   /// Maximum width threshold for mobile layout.
   final double maxMobileWidth;
@@ -145,7 +145,8 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
       try {
         _UnifiedScale().init(
           context: context,
-          mode: widget.designSize != null ? ScaleMode.design : widget.scaleMode,
+          mode:
+              widget.designFrame != null ? ScaleMode.design : widget.scaleMode,
           designFrame: _getDesignFrame(newOrientation),
           maxMobileWidth: widget.maxMobileWidth,
           maxTabletWidth: widget.maxTabletWidth,
@@ -186,7 +187,7 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   }
 
   Frame _getDesignFrame(Orientation orientation) {
-    final frame = widget.designSize;
+    final frame = widget.designFrame;
     if (frame != null && frame.width > 0 && frame.height > 0) {
       return orientation == Orientation.landscape ? frame.reversed : frame;
     }

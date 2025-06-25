@@ -162,6 +162,7 @@ part 'src/core/responsive/unified_scale.dart';
 part 'src/core/responsive/smartui_utils.dart';
 part 'src/core/responsive/unified_enums.dart';
 part 'src/core/responsive/responsive_builder.dart';
+part 'src/core/responsive/base_scaffold.dart';
 // Colors
 part 'src/core/colors/kolors.dart';
 part 'src/core/typography/text_weight.dart';
