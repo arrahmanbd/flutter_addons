@@ -63,18 +63,18 @@ Color? colorTW(List<String> params) {
 
     // If the color name is not in the tailwindColors map, continue
     String colorName = input.split('-').first;
-    if (!tailwindColors.containsKey(colorName)) {
+    if (!tailwindSafeColors.containsKey(colorName)) {
       continue;
     }
 
     // Return if the color is not a shade
     if (!input.contains('-')) {
-      return ColorExtensions.fromHex(tailwindColors[colorName]);
+      return ColorExtensions.fromHex(tailwindSafeColors[colorName]);
     }
 
     // Return color with shade
     int colorShade = int.parse(input.split('-').last);
-    return ColorExtensions.fromHex(tailwindColors[colorName][colorShade]);
+    return ColorExtensions.fromHex(tailwindSafeColors[colorName][colorShade]);
   }
 
   return null;

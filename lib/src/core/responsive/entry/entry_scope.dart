@@ -143,7 +143,7 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
         );
       }
       try {
-        _UnifiedScale().init(
+        _CoreScale().init(
           context: context,
           mode:
               widget.designFrame != null ? ScaleMode.design : widget.scaleMode,
@@ -188,10 +188,10 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
 
   Frame _getDesignFrame(Orientation orientation) {
     final frame = widget.designFrame;
-    if (frame != null && frame.width > 0 && frame.height > 0) {
+    if (frame != null && frame.w > 0 && frame.h > 0) {
       return orientation == Orientation.landscape ? frame.reversed : frame;
     }
-    return const Frame(width: 360, height: 800);
+    return const Frame(w: 360, h: 800);
   }
 
   static ScreenType _resolveScreenType(

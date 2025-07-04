@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-Map<String, dynamic> tailwindColors = {
+Map<String, dynamic> tailwindSafeColors = {
   'black': '#000000',
   'white': '#ffffff',
   'slate': {

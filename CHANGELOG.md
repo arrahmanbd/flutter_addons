@@ -1,10 +1,22 @@
-# 2.2.1
+
+# 2.3.0
+
+**What’s New:**
+
+- Introduced `State` addons.
+- Introduced `Functional Programming` addons.
+- Refactor Frame(w,h).
+- Fixed breaking change issue.
+- Fixed responsive DFlex and Wraping.
+- Preaping `UI` componnets on V3.0
+
+## 2.2.1
 
 **What’s New:**
 - Introduced `ResponsivePage` class.
 - Fixed extension conflict issue.
 - Fixed breaking change issue.
-# 2.2.0 
+## 2.2.0 
 
 **What’s New:**
 

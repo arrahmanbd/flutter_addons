@@ -33,7 +33,7 @@ extension BoolExtensions on bool {
   /// ```dart
   /// bool flag = true;
   /// flag.whenTrue(() => print("Flag is true"));
-  /// // Output: Flag is true
+  // Output: Flag is true
   /// ```
   void whenTrue(void Function() action) {
     if (this) action();
@@ -45,7 +45,7 @@ extension BoolExtensions on bool {
   /// ```dart
   /// bool flag = false;
   /// flag.whenFalse(() => print("Flag is false"));
-  /// // Output: Flag is false
+  /// Output: Flag is false
   /// ```
   void whenFalse(void Function() action) {
     if (!this) action();

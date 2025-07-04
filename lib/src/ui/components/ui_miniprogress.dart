@@ -8,15 +8,16 @@ class MiniProgressBar extends StatefulWidget {
   final Color? background;
 
   const MiniProgressBar({
-    Key? key,
+    super.key,
     this.duration = const Duration(seconds: 5),
     this.onComplete,
     this.height = 10.0,
     this.color,
     this.background,
-  }) : super(key: key);
+  });
 
   @override
+  // ignore: library_private_types_in_public_api
   _MiniProgressBarState createState() => _MiniProgressBarState();
 }
 

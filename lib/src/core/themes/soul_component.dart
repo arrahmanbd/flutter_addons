@@ -48,6 +48,18 @@ class SoulComponentThemes {
     ),
   );
 
+  /// Returns a configured SnackBar theme.
+  SnackBarThemeData get snackBarTheme => SnackBarThemeData(
+    backgroundColor: colorScheme.inverseSurface,
+    contentTextStyle: textTheme.bodyMedium?.copyWith(
+      color: colorScheme.onPrimary,
+    ),
+    actionTextColor: colorScheme.primary,
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    elevation: 2,
+  );
+
   /// Returns a configured Card theme.
   CardThemeData get cardTheme => CardThemeData(
     color: colorScheme.surfaceContainer,
@@ -84,13 +96,6 @@ class SoulComponentThemes {
     ),
     contentTextStyle: textTheme.bodyMedium?.copyWith(
       color: colorScheme.onSurface,
-    ),
-  );
-
-  SnackBarThemeData get snackBarTheme => SnackBarThemeData(
-    backgroundColor: colorScheme.inverseSurface,
-    contentTextStyle: textTheme.bodyMedium?.copyWith(
-      color: colorScheme.onPrimary,
     ),
   );
 

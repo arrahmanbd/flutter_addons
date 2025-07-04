@@ -5,30 +5,32 @@ part of 'package:flutter_addons/flutter_addons.dart';
 class _DesignUtils {
   static _DesignUtils? _instance;
 
-  late double _designWidth;
-  late double _designHeight;
+  late final double _designWidth;
+  late final double _designHeight;
 
-  late double _screenWidth;
-  late double _screenHeight;
+  late final double _screenWidth;
+  late final double _screenHeight;
 
-  late double _scaleWidth;
-  late double _scaleHeight;
+  late final double _scaleWidth;
+  late final double _scaleHeight;
 
   bool _initialized = false;
 
   _DesignUtils._internal();
 
+  /// Singleton instance accessor
   static _DesignUtils get instance => _instance ??= _DesignUtils._internal();
 
+  /// Initialize with design dimensions and current screen info
   void init({
     required double designWidth,
     required double designHeight,
     required MediaQueryData mediaQuery,
-    isLoggingEnabled = false,
+    bool isLoggingEnabled = false,
   }) {
     assert(
       designWidth > 0 && designHeight > 0,
-      'Design size must be greater than 0.',
+      'Design width and height must be greater than zero.',
     );
 
     _designWidth = designWidth;
@@ -37,6 +39,7 @@ class _DesignUtils {
     _screenWidth = mediaQuery.size.width;
     _screenHeight = mediaQuery.size.height;
 
+    // Use max with small epsilon to avoid division by zero or zero scale
     _scaleWidth = max(_screenWidth / _designWidth, 0.0001);
     _scaleHeight = max(_screenHeight / _designHeight, 0.0001);
 
@@ -55,43 +58,46 @@ class _DesignUtils {
   }
 
   void _assertInitialized() {
-    if (!_initialized || _scaleWidth == 0 || _scaleHeight == 0) {
+    if (!_initialized) {
       throw FlutterError(
-        '[DesignUtils] is not initialized. Call init() first.',
+        '[DesignUtils] is not initialized. Please call init() before using it.',
       );
     }
   }
 
+  /// Scale width based on design width and actual screen width
   double setWidth(num width) {
     _assertInitialized();
-    if (width < 0) throw ArgumentError('Width must be positive.');
+    if (width < 0) throw ArgumentError('Width must be non-negative.');
     return width * _scaleWidth;
   }
 
+  /// Scale height based on design height and actual screen height
   double setHeight(num height) {
     _assertInitialized();
-    if (height < 0) throw ArgumentError('Height must be positive.');
+    if (height < 0) throw ArgumentError('Height must be non-negative.');
     return height * _scaleHeight;
   }
 
+  /// Scale font size using average scale of width and height and clamp for min/max limits
   double setFont(num size, {double minScale = 0.9, double maxScale = 1.2}) {
     _assertInitialized();
-    if (size < 0) throw ArgumentError('Font size must be positive.');
+    if (size < 0) throw ArgumentError('Font size must be non-negative.');
 
-    final scale = _scaleWidth / _designWidth;
-    return size * scale.clamp(minScale, maxScale);
+    final averageScale = (_scaleWidth + _scaleHeight) / 2;
+    final scale = averageScale.clamp(minScale, maxScale);
+
+    return size * scale;
   }
 
-  // double setRadius(num radius) {
-  //   _assertInitialized();
-  //   if (radius < 0) throw ArgumentError('Radius must be positive.');
-  //   return radius * _scaleWidth;
-  // }
+  /// Scale radius using average scale of width and height and clamp for min/max limits
   double setRadius(num radius, {double minScale = 0.9, double maxScale = 1.2}) {
     _assertInitialized();
-    if (radius < 0) throw ArgumentError('Radius must be positive.');
+    if (radius < 0) throw ArgumentError('Radius must be non-negative.');
 
-    final scale = _scaleWidth / _designWidth;
-    return radius * scale.clamp(minScale, maxScale);
+    final averageScale = (_scaleWidth + _scaleHeight) / 2;
+    final scale = averageScale.clamp(minScale, maxScale);
+
+    return radius * scale;
   }
 }

@@ -1,6 +1,6 @@
 name: flutter_addons
-description: "Supercharge your development workflow with Flutter Addons — the ultimate toolkit for building sleek, responsive Flutter apps effortlessly. Packed with powerful theme engines, seamless scaling tools, and thousands of extensions to accelerate development."
-version: 2.2.1
+description: "Supercharge your development workflow with Flutter Addons — the ultimate toolkit for building responsive Flutter apps effortlessly. Packed with powerful theme engines and thousands of extensions."
+version: 2.3.0
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons
 issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues
@@ -26,7 +26,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:

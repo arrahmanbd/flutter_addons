@@ -4,6 +4,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 ///
 /// Better use in repository
 ///  Example
+// ignore: unintended_html_in_doc_comment
 /// Future< Result<User, AppError>> getUser() async {
 //   try {
 //     final data = await api.getUser();

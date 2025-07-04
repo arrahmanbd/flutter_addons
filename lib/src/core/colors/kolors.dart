@@ -2,7 +2,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 class Kolors {
   static Color getHex(String color, int shade) =>
-      ColorExtensions.fromHex(tailwindColors[color][shade]);
+      ColorExtensions.fromHex(tailwindSafeColors[color][shade]);
 
   ///* slate: 500 (Default)
   ///

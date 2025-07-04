@@ -56,7 +56,7 @@ extension SmartScalerExtension on num {
 
   /// Unified width/radius/text-size depending on current active ScaleMode
   double get w {
-    switch (_UnifiedScale().mode) {
+    switch (_CoreScale().mode) {
       case ScaleMode.smart:
         return sx;
       case ScaleMode.design:
@@ -68,7 +68,7 @@ extension SmartScalerExtension on num {
 
   // unified height
   double get h {
-    switch (_UnifiedScale().mode) {
+    switch (_CoreScale().mode) {
       case ScaleMode.smart:
         return sy;
       case ScaleMode.design:
@@ -82,7 +82,7 @@ extension SmartScalerExtension on num {
   // Unified radius
   // ------------------------
   double get r {
-    switch (_UnifiedScale().mode) {
+    switch (_CoreScale().mode) {
       case ScaleMode.smart:
         return min(sy, sx);
       case ScaleMode.design:
@@ -93,7 +93,7 @@ extension SmartScalerExtension on num {
   }
 
   double get sp {
-    final mode = _UnifiedScale().mode;
+    final mode = _CoreScale().mode;
     switch (mode) {
       case ScaleMode.smart:
         return st;
