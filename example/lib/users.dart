@@ -80,40 +80,44 @@ class UserScreen extends ConsumerWidget {
       appBar: AppBar(title: const Text('User Profile')),
       body: state.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        data: (user) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '👤 ${user.name}',
-                style: Theme.of(context).textTheme.titleLarge,
+        data:
+            (user) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '👤 ${user.name}',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Text('📧 ${user.email}'),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed:
+                        () =>
+                            ref.read(userNotifierProvider.notifier).loadUser(),
+                    child: const Text('Reload'),
+                  ),
+                ],
               ),
-              Text('📧 ${user.email}'),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () =>
-                    ref.read(userNotifierProvider.notifier).loadUser(),
-                child: const Text('Reload'),
+            ),
+        failure:
+            (error) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '❌ ${error.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                  ElevatedButton(
+                    onPressed:
+                        () =>
+                            ref.read(userNotifierProvider.notifier).loadUser(),
+                    child: const Text('Retry'),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        failure: (error) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '❌ ${error.error}',
-                style: const TextStyle(color: Colors.red),
-              ),
-              ElevatedButton(
-                onPressed: () =>
-                    ref.read(userNotifierProvider.notifier).loadUser(),
-                child: const Text('Retry'),
-              ),
-            ],
-          ),
-        ),
+            ),
       ),
     );
   }

@@ -1,3 +1,6 @@
+# 2.3.1
+
+- Fix: LateInitializationError
 
 # 2.3.0
 

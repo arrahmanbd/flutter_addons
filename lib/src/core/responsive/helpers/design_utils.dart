@@ -62,7 +62,6 @@ class _DesignUtils {
     }
   }
 
-
   /// Scale width based on design width and actual screen width
   double setWidth(num width) {
     _assertInitialized();

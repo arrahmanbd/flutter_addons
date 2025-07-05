@@ -58,10 +58,11 @@ class BlogPage extends StatelessWidget {
                         crossAxisSpacing: 8,
                         childAspectRatio: aspectRatio,
                       ),
-                      itemBuilder: (context, index) => PostCard().onTap(() {
-                        // Dummy post example
-                        dummyPost.launch(context);
-                      }),
+                      itemBuilder:
+                          (context, index) => PostCard().onTap(() {
+                            // Dummy post example
+                            dummyPost.launch(context);
+                          }),
                     );
                   }
                   return GridView.builder(
@@ -74,10 +75,11 @@ class BlogPage extends StatelessWidget {
                       crossAxisSpacing: 8,
                       childAspectRatio: aspectRatio,
                     ),
-                    itemBuilder: (context, index) => PostCard().onTap(() {
-                      // Dummy post example
-                      dummyPost.launch(context);
-                    }),
+                    itemBuilder:
+                        (context, index) => PostCard().onTap(() {
+                          // Dummy post example
+                          dummyPost.launch(context);
+                        }),
                   );
                 },
               ),
