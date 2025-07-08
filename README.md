@@ -67,6 +67,7 @@ Smooth scaling across devices. Use one mode globally for consistency.
 
 | Extension | Purpose        | Example | Description                              |
 | --------- | -------------- | ------- | ---------------------------------------- |
+| `.ph`,  `.pw`      | Percent         | `24.ph`  | Auto-scaled height                       |
 | `.h`      | Height         | `24.h`  | Auto-scaled height                       |
 | `.r`      | Radius / Scale | `12.r`  | Based on shortest side (width vs height) |
 | `.sp`     | Font size      | `14.sp` | Auto-scaled font size (like `sp`)        |

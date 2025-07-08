@@ -26,5 +26,3 @@ enum ErrorScreen {
 }
 
 enum ResponsiveTransition { fade, slide, scale, slideScale, rotation, flip }
-
-/// Defines the orientation of the device.

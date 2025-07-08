@@ -48,13 +48,22 @@ class _DesignUtils {
     _initialized = true;
 
     if (isLoggingEnabled) {
-      debugPrint(
-        '[DesignUtils] Initialized with:\n'
-        'Design: $_designWidth x $_designHeight\n'
-        'Screen: $_screenWidth x $_screenHeight\n'
-        'Scale Width: $_scaleWidth\n'
-        'Scale Height: $_scaleHeight',
+      _LogUtility.logDesignUtilsInit(
+        designWidth: _designWidth,
+        designHeight: _designHeight,
+        screenWidth: _screenWidth,
+        screenHeight: _screenHeight,
+        scaleWidth: _scaleWidth,
+        scaleHeight: _scaleHeight,
+        mode: 'Design',
       );
+      // debugPrint(
+      //   '[DesignUtils] Initialized with:\n'
+      //   'Design: $_designWidth x $_designHeight\n'
+      //   'Screen: $_screenWidth x $_screenHeight\n'
+      //   'Scale Width: $_scaleWidth\n'
+      //   'Scale Height: $_scaleHeight',
+      // );
     }
   }
 
