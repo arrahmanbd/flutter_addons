@@ -1,7 +1,7 @@
 /// *****************************************************************************
 /// 🧩 **Flutter Addons Library**
 /// 👨🏻‍💻 **Author:** AR Rahman
-/// 🌟 **Version:** 2.4.0
+/// 🌟 **Version:** 2.4.1
 /// 📅 **Updated:** Jul 8, 2025
 /// 📅 **Created:** March 20, 2025
 /// 📜 **License:** Apache License 2.0
@@ -219,7 +219,6 @@ part 'src/ui/feedback/alart.dart';
 part 'src/ui/feedback/snackbar.dart';
 part 'src/ui/feedback/toaster.dart';
 part 'src/ui/feedback/dialog.dart';
-part 'src/ui/feedback/service/feedback.dart';
 
 /// -- Error/Fallback Screens
 part 'src/ui/screens/error_page.dart';

@@ -43,6 +43,19 @@ class BlogPage extends StatelessWidget {
             SizedBox(height: 24.h),
             _buildCategoryList(context),
             SizedBox(height: 16.h),
+            //Bootstrap Styles
+            Section(
+              children: [
+                SectionItem(
+                  sizes: 'lg-6 md-12 sm-0',
+                  child: Text('Will take 50% PC'),
+                ),
+                SectionItem(
+                  sizes: 'lg-6 md-12 sm-0',
+                  child: Text('Will take 50% PC'),
+                ),
+              ],
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: ResponsiveBuilder(

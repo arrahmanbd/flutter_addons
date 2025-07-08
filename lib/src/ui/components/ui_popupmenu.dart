@@ -26,7 +26,7 @@ enum UiPopupMenuPlacement { left, right, top, bottom }
 
 typedef HideFn = void Function(Function hideFn);
 
-class UiPopupMenu extends StatefulWidget {
+class UIPopupMenu extends StatefulWidget {
   final Widget menu;
   final ValueChanged<bool> onChange;
   final WidgetBuilder menuBuilder;
@@ -37,7 +37,7 @@ class UiPopupMenu extends StatefulWidget {
   final bool show;
   final HideFn? hideFn;
 
-  const UiPopupMenu({
+  const UIPopupMenu({
     super.key,
     required this.menu,
     required this.onChange,
@@ -53,10 +53,10 @@ class UiPopupMenu extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _UiPopupMenuState createState() => _UiPopupMenuState();
+  _UIPopupMenuState createState() => _UIPopupMenuState();
 }
 
-class _UiPopupMenuState extends State<UiPopupMenu>
+class _UIPopupMenuState extends State<UIPopupMenu>
     with SingleTickerProviderStateMixin {
   late GlobalKey _key;
   bool isMenuOpen = false;

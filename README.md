@@ -2,7 +2,7 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-2.4.0-blue)
+![Version](https://img.shields.io/badge/Version-2.4.1-blue)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
@@ -42,16 +42,7 @@ ResponsiveScope( // 👈  ResponsiveScope — VERY Important: Manages layout sca
   errorScreen: ErrorScreen.blueCrash, // Custom error screen for uncaught Flutter errors
   designFrame: const Frame(width: 390, height: 844), // Base design frame for scaling (e.g., iPhone 13)
   scaleMode: ScaleMode.design, // Use design-based scaling for consistent UI
-  layoutBuilder: (ui) {
-    // Handle layout changes based on screen size/orientation
-    if (ui.isLandscape) {
-      throw UnimplementedError(
-        'Landscape layout is not implemented yet. '
-        'Please handle different screen orientations.',
-      );
-    }
-    return const MobileApp();
-  },
+  layoutBuilder: (ui)=>  MobileApp(),
 );
 
 ```
@@ -62,19 +53,23 @@ ResponsiveScope( // 👈  ResponsiveScope — VERY Important: Manages layout sca
 
 
 
-### 📐 Unified Responsive UX
+### 📐 Responsive Units
 Smooth scaling across devices. Use one mode globally for consistency.
 
 | Extension | Purpose        | Example | Description                              |
 | --------- | -------------- | ------- | ---------------------------------------- |
-| `.ph`,  `.pw`      | Percent         | `24.ph`  | Auto-scaled height                       |
+| `.ph`,  `.pw`      | Percent         | `24.ph`  | Percent Based                       |
 | `.h`      | Height         | `24.h`  | Auto-scaled height                       |
 | `.r`      | Radius / Scale | `12.r`  | Based on shortest side (width vs height) |
 | `.sp`     | Font size      | `14.sp` | Auto-scaled font size (like `sp`)        |
 | `.w`      | Width          | `16.w`  | Auto-scaled width                        |
 
+> ⚡ Check out the example app for a quick understanding: [View Example App](/example/lib/main.dart).
+
+
 
 ### 💎 Effortless Theming with Soul —  Quickstart Guide
+
 1. **Create Custom Colors**  
    Extend `ThemeKolors` and override colors:
    ```dart

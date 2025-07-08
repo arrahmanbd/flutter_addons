@@ -1,6 +1,6 @@
 name: flutter_addons
-description: "A productivity-boosting micro-extension framework for Flutter.Boost your development speed by over 7x with a robust set of micro-extensions that help you build fully responsive, theme-aware Flutter apps effortlessly."
-version: 2.4.0
+description: "A productivity-boosting micro-extension framework for Flutter. Build responsive, theme-aware apps up to 7x faster with easy, reusable add-ons."
+version: 2.4.1
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons
 issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues

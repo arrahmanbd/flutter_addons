@@ -1,5 +1,9 @@
+# 2.4.1
 
-# 2.4.0
+- Removed conflicted component
+- Updated documentation
+
+## 2.4.0
 
 - Reorganized project folder structure for better scalability and upcoming phase.
 - Clean separation of widgets, helpers, and theme constants.

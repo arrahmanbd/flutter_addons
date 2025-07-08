@@ -1,18 +1,43 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+/// A circular avatar widget with optional border, tap handling, and status badge.
+///
+/// Example usage:
+/// ```dart
+/// AvatarCircle(
+///   image: NetworkImage('https://example.com/avatar.jpg'),
+///   radius: 32,
+///   borderColor: Colors.blueAccent,
+///   onTap: () { print('Avatar tapped'); },
+///   showBadge: true,
+/// )
+/// ```
 class AvatarCircle extends StatelessWidget {
+  /// The image to display inside the avatar.
   final ImageProvider image;
+
+  /// The radius of the avatar.
   final double radius;
+
+  /// Optional border color around the avatar.
   final Color borderColor;
+
+  /// Callback when the avatar is tapped.
   final VoidCallback? onTap;
+
+  /// Whether to show the status badge.
   final bool showBadge;
+
+  /// Optional custom badge widget.
   final Widget? customBadge;
+
+  /// Optional size override.
   final Size? size;
 
-  /// Badge alignment from the center
+  /// Alignment for the badge relative to the avatar.
   final Alignment badgeAlignment;
 
-  /// Badge offset for fine-tuning
+  /// Fine-tuning offset for the badge position.
   final Offset badgeOffset;
 
   const AvatarCircle({
@@ -21,30 +46,30 @@ class AvatarCircle extends StatelessWidget {
     required this.radius,
     this.borderColor = Colors.transparent,
     this.onTap,
-    this.showBadge = true,
+    this.showBadge = false,
     this.customBadge,
     this.size,
     this.badgeAlignment = Alignment.topRight,
-    this.badgeOffset = const Offset(0, 0),
+    this.badgeOffset = Offset.zero,
   });
 
   @override
   Widget build(BuildContext context) {
-    final badge =
-        customBadge ??
-        Container(
-          width: 14,
-          height: 14,
-          decoration: BoxDecoration(
-            color: Colors.green,
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 2),
-          ),
-        );
+    final double avatarSize = radius * 2;
+
+    final Widget defaultBadge = Container(
+      width: 12,
+      height: 12,
+      decoration: BoxDecoration(
+        color: Colors.green,
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white, width: 2),
+      ),
+    );
 
     return SizedBox(
-      width: size?.width ?? radius,
-      height: size?.height ?? radius,
+      width: size?.width ?? avatarSize,
+      height: size?.height ?? avatarSize,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -54,15 +79,22 @@ class AvatarCircle extends StatelessWidget {
             child: InkWell(
               onTap: onTap,
               customBorder: const CircleBorder(),
-              splashColor: context.primaryColor.withValues(alpha: 0.2),
+              splashColor: Theme.of(context).primaryColor.withOpacity(0.2),
               child: Container(
-                width: radius * 2,
-                height: radius * 2,
+                width: avatarSize,
+                height: avatarSize,
                 padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: borderColor, width: 2),
-                  image: DecorationImage(image: image, fit: BoxFit.cover),
+                ),
+                child: ClipOval(
+                  child: Image(
+                    image: image,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
                 ),
               ),
             ),
@@ -70,7 +102,10 @@ class AvatarCircle extends StatelessWidget {
           if (showBadge)
             Align(
               alignment: badgeAlignment,
-              child: Transform.translate(offset: badgeOffset, child: badge),
+              child: Transform.translate(
+                offset: badgeOffset,
+                child: customBadge ?? defaultBadge,
+              ),
             ),
         ],
       ),
