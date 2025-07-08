@@ -2,7 +2,7 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-2.1.2-red)
+![Version](https://img.shields.io/badge/Version-2.4.0-blue)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
@@ -11,28 +11,26 @@
 [![Stand With Palestine](https://github.com/arrahmanbd/bangla_pdf_fixer/raw/master/images/StandWithPalestine.svg)](https://pub.dev/packages/bangla_pdf_fixer)
 
 
-**Flutter Addons** is a powerful toolkit designed to streamline responsive Flutter development. It includes theming engines, layout utilities, scaling extensions, and animation helpers—everything you need to build polished, adaptive apps faster. Whether you're working with Figma designs or coding pixel-perfect UIs, Flutter Addons keeps your code clean, consistent, and scalable.
+**Flutter Addons** is a powerful micro-extension framework built to accelerate Flutter app development. Designed with responsiveness, theming, and developer productivity in mind, it lets you build scalable, pixel-perfect, and theme-aware applications with minimal boilerplate.
 
-> ⚡ Supercharge your Flutter workflow and become **10x more productive** with the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons).
+By providing intuitive extensions, responsive layout tools, and advanced theming capabilities, Flutter Addons helps you reduce development time by up to **7×**, so you can focus on delivering beautiful user experiences faster.
 
-
----
-
-## 🚀 **Key Features**
-* **⚡ Easy Integration:** Just wrap with `ResponsiveScope` and enjoy.
-* **Soul Theme Engine:** Structured colors & typography for cohesive UI.
-* **Dart Extensions:** Helpers for `String`, `Map`, `bool`, `int`, etc.
-* **Context Helpers:** Easy access to theme, media, and text styles.
-* **Prebuilt Widgets:** Rows, columns, grids, stacks—flexible layouts.
-* **Routing &  Animations:** Smooth navigation with rich effects.
-* **Utilities:** Network, debug, error handling, and UI tools.
-* **Math & Time:** Formatting, delays, calculations simplified.
-* **Image & Color:** Extract colors, filters, image processing.
-* **Responsive Scaling:** Based on design frames with device/orientation detection.
-* **Error Screens & DPI:** Stylish fallbacks and density-aware layouts.
-
+> ⚡ Boost your Flutter workflow and unlock greater productivity with the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons).
 
 ---
+
+## Key Features
+
+* **Seamless Responsiveness:** Effortlessly adapt your UI across devices with `ResponsiveScope` and smart scaling utilities.
+* **Powerful Theming:** Define consistent colors, typography, and style systems with the Soul Theme Engine.
+* **Dart Extensions:** Clean and readable syntax helpers for common types like `String`, `Map`, `bool`, and more.
+* **Context Helpers:** Easy access to media queries, theme data, text styles, and more from the BuildContext.
+* **Flexible Layout Widgets:** Ready-to-use rows, columns, grids, and stacks that simplify complex UI arrangements.
+* **Smooth Navigation & Animations:** Built-in routing helpers paired with elegant transition effects.
+* **Utility Toolkit:** Debugging aids, network helpers, error handling, math & time utilities all in one place.
+* **Image & Color Processing:** Extract dominant colors, apply filters, and manipulate images effortlessly.
+* **Error & DPI Awareness:** Customizable error screens and density-aware layouts for flawless rendering.
+
 
 ## ⚙️ **Initialization**
 

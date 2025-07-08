@@ -24,31 +24,19 @@ extension SmartScalerExtension on num {
   // ------------------------
 
   /// Design-mode responsive width
-  double get dw => _safe(() => _DesignUtils.instance.setWidth(this));
+  double get dw => _safe(() => _DesignUtils.instance.scaleWidth(this));
 
   /// Design-mode responsive height
-  double get dh => _safe(() => _DesignUtils.instance.setHeight(this));
+  double get dh => _safe(() => _DesignUtils.instance.scaleHeight(this));
 
   /// Design-mode responsive font size
-  double get dt => _safe(() => _DesignUtils.instance.setFont(this));
+  double get dt => _safe(() => _DesignUtils.instance.scaleFont(this));
 
   /// Design-mode responsive radius
-  double get dr => _safe(() => _DesignUtils.instance.setRadius(this));
+  double get dr => _safe(() => _DesignUtils.instance.scaleRadius(this));
 
   /// Responsive scale (min of width/height)
   // double get rs => min(dw, dh);
-
-  // ------------------------
-  // Smart-based extensions
-  // ------------------------
-
-  /// Smart unit scale based on shortest side
-  double get su => _SmartUnitUtils.instance.scale(this);
-  double get sx => _SmartUnitUtils.instance.scaleX(this);
-  double get sy => _SmartUnitUtils.instance.scaleY(this);
-
-  /// Smart font scaling
-  double get st => _SmartUnitUtils.instance.scaleText(this);
 
   // ------------------------
   // Unified extensions (auto-detect mode)
@@ -56,9 +44,7 @@ extension SmartScalerExtension on num {
 
   /// Unified width/radius/text-size depending on current active ScaleMode
   double get w {
-    switch (_CoreScale().mode) {
-      case ScaleMode.smart:
-        return sx;
+    switch (CoreScale.instance.mode) {
       case ScaleMode.design:
         return dw;
       case ScaleMode.percent:
@@ -68,9 +54,7 @@ extension SmartScalerExtension on num {
 
   // unified height
   double get h {
-    switch (_CoreScale().mode) {
-      case ScaleMode.smart:
-        return sy;
+    switch (CoreScale.instance.mode) {
       case ScaleMode.design:
         return dh;
       case ScaleMode.percent:
@@ -82,9 +66,7 @@ extension SmartScalerExtension on num {
   // Unified radius
   // ------------------------
   double get r {
-    switch (_CoreScale().mode) {
-      case ScaleMode.smart:
-        return min(sy, sx);
+    switch (CoreScale.instance.mode) {
       case ScaleMode.design:
         return min(dw, dh);
       case ScaleMode.percent:
@@ -93,10 +75,8 @@ extension SmartScalerExtension on num {
   }
 
   double get sp {
-    final mode = _CoreScale().mode;
+    final mode = CoreScale.instance.mode;
     switch (mode) {
-      case ScaleMode.smart:
-        return st;
       case ScaleMode.design:
         return dt;
       case ScaleMode.percent:

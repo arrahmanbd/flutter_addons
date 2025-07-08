@@ -10,6 +10,7 @@ PreferredSize buildNewAppBar(
   double height = 60.0,
   Color? statusBarColor,
   Brightness? statusBarIconBrightness,
+  bool? blur = false,
 }) {
   final double topPadding =
       applySafeAreaPadding ? context.viewPadding.top : 0.0;
@@ -31,7 +32,16 @@ PreferredSize buildNewAppBar(
     preferredSize: Size.fromHeight(height.h),
     child: AnnotatedRegion<SystemUiOverlayStyle>(
       value: style,
-      child: Container(margin: EdgeInsets.only(top: topPadding), child: child),
+      child: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+          child: Container(
+            color: Colors.white.withValues(alpha: 0.7),
+            margin: EdgeInsets.only(top: topPadding),
+            child: child,
+          ),
+        ),
+      ),
     ),
   );
 }

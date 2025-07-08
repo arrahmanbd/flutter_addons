@@ -22,95 +22,97 @@ class Section extends StatelessWidget {
   });
 
   EdgeInsets getPadding(int index, int length) {
-    double space = spacing ?? flexSpacing;
-    return contentPadding
-        ? EdgeInsets.symmetric(horizontal: space / 2)
-        : EdgeInsets.fromLTRB(
-          index == 0 ? 0 : space / 2,
-          0,
-          index == length - 1 ? 0 : space / 2,
-          0,
-        );
+    final space = spacing ?? flexSpacing;
+    if (contentPadding) {
+      return EdgeInsets.symmetric(horizontal: space / 2);
+    }
+    return EdgeInsets.fromLTRB(
+      index == 0 ? 0 : space / 2,
+      0,
+      index == length - 1 ? 0 : space / 2,
+      0,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return DFlex(
+    return DisplayFlex(
       builder: (context, constraints, screenType) {
-        double width = constraints.maxWidth;
-        List<Widget> list = [];
+        final width = constraints.maxWidth;
 
-        for (List<SectionItem> rowItems in getGrouped(screenType)) {
-          list.addAll(
-            rowItems.asMap().entries.map((entry) {
-              int index = entry.key;
-              SectionItem col = entry.value;
+        final List<Widget> items = [];
 
-              return Visibility(
-                visible: col.isVisible(screenType),
-                child: Container(
-                  width: getWidthFromFlex(
-                    width,
-                    col.flex[screenType] ??
-                        DflexScreenMedia.flexColumns.toDouble(),
-                    rowItems.length,
-                    spacing ?? flexSpacing,
-                  ),
-                  padding: getPadding(index, rowItems.length),
-                  child: col,
-                ),
-              );
-            }),
-          );
+        final grouped = _groupItemsByRow(screenType);
+
+        for (final rowItems in grouped) {
+          for (var i = 0; i < rowItems.length; i++) {
+            final item = rowItems[i];
+
+            if (!item.isVisible(screenType)) continue;
+
+            final flex =
+                item.flex[screenType] ??
+                DisplayFlexMedia.flexColumns.toDouble();
+            final itemWidth = _calculateItemWidth(
+              width,
+              flex,
+              spacing ?? flexSpacing,
+            );
+
+            items.add(
+              Container(
+                width: itemWidth,
+                padding: getPadding(i, rowItems.length),
+                child: item,
+              ),
+            );
+          }
         }
 
         return Wrap(
-          crossAxisAlignment: wrapCrossAlignment,
           alignment: wrapAlignment,
+          crossAxisAlignment: wrapCrossAlignment,
           runAlignment: runAlignment,
-          runSpacing: runSpacing ?? flexSpacing,
           spacing: spacing ?? 0,
-          children: list,
+          runSpacing: runSpacing ?? flexSpacing,
+          children: items,
         );
       },
     );
   }
 
-  List<List<SectionItem>> getGrouped(DflexType type) {
-    List<List<SectionItem>> groupedItems = [];
-    List<SectionItem> currentRow = [];
-    double flexCount = 0;
+  List<List<SectionItem>> _groupItemsByRow(BreakpointMapper screenType) {
+    final grouped = <List<SectionItem>>[];
+    final row = <SectionItem>[];
+    double flexSum = 0;
 
-    for (SectionItem item in children) {
-      if (item.isVisible(type)) {
-        double flex =
-            item.flex[type] ?? DflexScreenMedia.flexColumns.toDouble();
+    for (final item in children) {
+      if (!item.isVisible(screenType)) continue;
 
-        if (flexCount + flex <= DflexScreenMedia.flexColumns) {
-          currentRow.add(item);
-          flexCount += flex;
-        } else {
-          groupedItems.add(List.of(currentRow));
-          currentRow.clear();
-          currentRow.add(item);
-          flexCount = flex;
-        }
+      final flex =
+          item.flex[screenType] ?? DisplayFlexMedia.flexColumns.toDouble();
+      if (flexSum + flex <= DisplayFlexMedia.flexColumns) {
+        row.add(item);
+        flexSum += flex;
+      } else {
+        if (row.isNotEmpty) grouped.add(List.from(row));
+        row.clear();
+        row.add(item);
+        flexSum = flex;
       }
     }
 
-    if (currentRow.isNotEmpty) {
-      groupedItems.add(currentRow);
+    if (row.isNotEmpty) {
+      grouped.add(row);
     }
-    return groupedItems;
+
+    return grouped;
   }
 
-  double getWidthFromFlex(
-    double width,
-    double flex,
-    int items,
-    double spacing,
-  ) {
-    return (width * flex / DflexScreenMedia.flexColumns).floorToDouble();
+  double _calculateItemWidth(double totalWidth, double flex, double spacing) {
+    final columns = DisplayFlexMedia.flexColumns.toDouble();
+    final itemWidth = totalWidth * (flex / columns);
+    return itemWidth.floorToDouble();
   }
 }
 
@@ -133,11 +135,11 @@ class SectionItem extends StatelessWidget {
   });
 
   /// Extracts flex values for different screen sizes based on the `sizes` string.
-  Map<DflexType, double> get flex =>
-      DflexScreenMedia.getFlexedDataFromString(sizes);
+  Map<BreakpointMapper, double> get flex =>
+      DisplayFlexMedia.getFlexedDataFromString(sizes);
 
   /// Determines if this section item should be visible for a given screen type.
-  bool isVisible(DflexType type) {
+  bool isVisible(BreakpointMapper type) {
     return flex[type] != 0;
   }
 
@@ -148,16 +150,16 @@ class SectionItem extends StatelessWidget {
   }
 }
 
-class DFlex extends StatelessWidget {
-  final Widget Function(BuildContext, BoxConstraints, DflexType) builder;
+class DisplayFlex extends StatelessWidget {
+  final Widget Function(BuildContext, BoxConstraints, BreakpointMapper) builder;
 
-  const DFlex({super.key, required this.builder});
+  const DisplayFlex({super.key, required this.builder});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final screenType = DflexScreenMedia.getTypeFromWidth(
+        final screenType = DisplayFlexMedia.getTypeFromWidth(
           MediaQuery.of(context).size.width,
         );
         return builder(context, constraints, screenType);

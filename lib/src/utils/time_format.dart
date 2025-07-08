@@ -4,14 +4,12 @@ class TimeFormatter {
   /// Returns a human-readable "time ago" string from a timestamp.
   static String formatTime(int timestamp) {
     final int difference = DateTime.now().millisecondsSinceEpoch - timestamp;
-
     if (difference < _minute) return _formatSeconds(difference);
     if (difference < _hour) return _formatMinutes(difference);
     if (difference < _day) return _formatHours(difference);
     if (difference < _week) return _formatDays(difference);
     if (difference < _month) return _formatWeeks(difference);
     if (difference < _year) return _formatMonths(difference);
-
     return _formatYears(difference);
   }
 

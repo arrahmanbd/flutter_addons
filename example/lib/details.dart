@@ -43,67 +43,63 @@ class PostDetailsScreen extends StatelessWidget {
         // iconTheme: IconThemeData(color: context.primaryColor),
       ),
       backgroundColor: context.background,
-      body:
-          Padding(
-            padding: EdgeInsets.all(16.w),
-            child: Column(
+      body: Padding(
+        padding: EdgeInsets.all(16.w),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12.r),
+              child: Image.network(
+                coverImage,
+                width: double.infinity,
+                height: 180.h,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 16.h),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 22.sp,
+                fontWeight: FontWeight.w700,
+                color: context.primaryColor,
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12.r),
-                  child: Image.network(
-                    coverImage,
-                    width: double.infinity,
-                    height: 180.h,
-                    fit: BoxFit.cover,
+                Icon(
+                  Icons.person,
+                  size: 16.sp,
+                  color: context.secondaryContent,
+                ),
+                SizedBox(width: 4.w),
+                Text(
+                  author,
+                  style: context.bodyMedium.copyWith(
+                    color: context.secondaryContent,
                   ),
                 ),
-                SizedBox(height: 16.h),
+                SizedBox(width: 16.w),
+                Icon(
+                  Icons.access_time,
+                  size: 16.sp,
+                  color: context.secondaryContent,
+                ),
+                SizedBox(width: 4.w),
                 Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w700,
-                    color: context.primaryColor,
+                  time,
+                  style: context.bodyMedium.copyWith(
+                    color: context.secondaryContent,
                   ),
-                ),
-                SizedBox(height: 8.h),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      size: 16.sp,
-                      color: context.secondaryContent,
-                    ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      author,
-                      style: context.bodyMedium.copyWith(
-                        color: context.secondaryContent,
-                      ),
-                    ),
-                    SizedBox(width: 16.w),
-                    Icon(
-                      Icons.access_time,
-                      size: 16.sp,
-                      color: context.secondaryContent,
-                    ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      time,
-                      style: context.bodyMedium.copyWith(
-                        color: context.secondaryContent,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-                Text(
-                  content,
-                  style: context.bodyLarge.copyWith(fontSize: 16.sp),
                 ),
               ],
             ),
-          ).scrollable(),
+            SizedBox(height: 16.h),
+            Text(content, style: context.bodyLarge.copyWith(fontSize: 16.sp)),
+          ],
+        ),
+      ).scrollable(),
     );
   }
 }

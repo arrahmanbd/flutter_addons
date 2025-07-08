@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class FlexableSpacing {
+class FlexSpacing {
   static EdgeInsets zero = EdgeInsets.zero;
 
   static EdgeInsets only({
@@ -18,16 +18,11 @@ class FlexableSpacing {
     double right,
     double bottom,
   ) {
-    return FlexableSpacing.only(
-      bottom: bottom,
-      top: top,
-      right: right,
-      left: left,
-    );
+    return FlexSpacing.only(bottom: bottom, top: top, right: right, left: left);
   }
 
   static EdgeInsets all(double spacing) {
-    return FlexableSpacing.only(
+    return FlexSpacing.only(
       bottom: spacing,
       top: spacing,
       right: spacing,
@@ -36,47 +31,47 @@ class FlexableSpacing {
   }
 
   static EdgeInsets left(double spacing) {
-    return FlexableSpacing.only(left: spacing);
+    return FlexSpacing.only(left: spacing);
   }
 
   static EdgeInsets nLeft(double spacing) {
-    return FlexableSpacing.only(top: spacing, bottom: spacing, right: spacing);
+    return FlexSpacing.only(top: spacing, bottom: spacing, right: spacing);
   }
 
   static EdgeInsets top(double spacing) {
-    return FlexableSpacing.only(top: spacing);
+    return FlexSpacing.only(top: spacing);
   }
 
   static EdgeInsets nTop(double spacing) {
-    return FlexableSpacing.only(left: spacing, bottom: spacing, right: spacing);
+    return FlexSpacing.only(left: spacing, bottom: spacing, right: spacing);
   }
 
   static EdgeInsets right(double spacing) {
-    return FlexableSpacing.only(right: spacing);
+    return FlexSpacing.only(right: spacing);
   }
 
   static EdgeInsets nRight(double spacing) {
-    return FlexableSpacing.only(top: spacing, bottom: spacing, left: spacing);
+    return FlexSpacing.only(top: spacing, bottom: spacing, left: spacing);
   }
 
   static EdgeInsets bottom(double spacing) {
-    return FlexableSpacing.only(bottom: spacing);
+    return FlexSpacing.only(bottom: spacing);
   }
 
   static EdgeInsets nBottom(double spacing) {
-    return FlexableSpacing.only(top: spacing, left: spacing, right: spacing);
+    return FlexSpacing.only(top: spacing, left: spacing, right: spacing);
   }
 
   static EdgeInsets horizontal(double spacing) {
-    return FlexableSpacing.only(left: spacing, right: spacing);
+    return FlexSpacing.only(left: spacing, right: spacing);
   }
 
   static EdgeInsets x(double spacing) {
-    return FlexableSpacing.only(left: spacing, right: spacing);
+    return FlexSpacing.only(left: spacing, right: spacing);
   }
 
   static EdgeInsets xy(double xSpacing, double ySpacing) {
-    return FlexableSpacing.only(
+    return FlexSpacing.only(
       left: xSpacing,
       right: xSpacing,
       top: ySpacing,
@@ -85,15 +80,15 @@ class FlexableSpacing {
   }
 
   static EdgeInsets y(double spacing) {
-    return FlexableSpacing.only(top: spacing, bottom: spacing);
+    return FlexSpacing.only(top: spacing, bottom: spacing);
   }
 
   static EdgeInsets vertical(double spacing) {
-    return FlexableSpacing.only(top: spacing, bottom: spacing);
+    return FlexSpacing.only(top: spacing, bottom: spacing);
   }
 
   static EdgeInsets symmetric({double vertical = 0, double horizontal = 0}) {
-    return FlexableSpacing.only(
+    return FlexSpacing.only(
       top: vertical,
       right: horizontal,
       left: horizontal,

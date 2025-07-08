@@ -1,6 +1,6 @@
 name: flutter_addons
-description: "Supercharge your development workflow with Flutter Addons — the ultimate toolkit for building responsive Flutter apps effortlessly. Packed with powerful theme engines and thousands of extensions."
-version: 2.3.1
+description: "A productivity-boosting micro-extension framework for Flutter.Boost your development speed by over 7x with a robust set of micro-extensions that help you build fully responsive, theme-aware Flutter apps effortlessly."
+version: 2.4.0
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons
 issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues
@@ -12,13 +12,16 @@ screenshots:
     path: images/cover.jpg
   - description: 'Flutter Addons global design'
     path: images/global.jpg
+  - description: 'Flutter Addons components'
+    path: images/components.jpg
 
 topics:
   - responsive
-  - theme
+  - soului
   - utils
   - extensions
   - master
+
 environment:
   sdk: ">=3.7.2 <4.0.0"
   flutter: ">=3.0.0"

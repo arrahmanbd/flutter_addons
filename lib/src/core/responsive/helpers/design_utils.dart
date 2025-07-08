@@ -1,9 +1,15 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// A utility class for responsive UI scaling based on a design frame (e.g., Figma/AdobeXD).
-
+/// A design scaling utility to adapt your UI to different screen sizes.
+///
+/// Call [_DesignUtils.instance.init] once, preferably in your root widget tree.
 class _DesignUtils {
-  static _DesignUtils? _instance;
+  static final _DesignUtils _instance = _DesignUtils._internal();
+
+  factory _DesignUtils() => _instance;
+  static _DesignUtils get instance => _instance;
+
+  _DesignUtils._internal();
 
   late double _designWidth;
   late double _designHeight;
@@ -16,15 +22,14 @@ class _DesignUtils {
 
   bool _initialized = false;
 
-  _DesignUtils._internal();
-
-  static _DesignUtils get instance => _instance ??= _DesignUtils._internal();
-
+  /// Initialize the scaling factors with a reference design frame.
+  ///
+  /// Example: `DesignUtils.instance.init(designWidth: 375, designHeight: 812, mediaQuery: MediaQuery.of(context))`
   void init({
     required double designWidth,
     required double designHeight,
     required MediaQueryData mediaQuery,
-    isLoggingEnabled = false,
+    bool isLoggingEnabled = false,
   }) {
     assert(
       designWidth > 0 && designHeight > 0,
@@ -43,58 +48,75 @@ class _DesignUtils {
     _initialized = true;
 
     if (isLoggingEnabled) {
-      _LogUtiity.logDesignUtilsInit(
-        designWidth: designWidth,
-        designHeight: designHeight,
-        screenWidth: _screenWidth,
-        screenHeight: _screenHeight,
-        scaleWidth: _scaleWidth,
-        scaleHeight: _scaleHeight,
+      debugPrint(
+        '[DesignUtils] Initialized with:\n'
+        'Design: $_designWidth x $_designHeight\n'
+        'Screen: $_screenWidth x $_screenHeight\n'
+        'Scale Width: $_scaleWidth\n'
+        'Scale Height: $_scaleHeight',
       );
     }
   }
 
   void _assertInitialized() {
-    if (!_initialized || _scaleWidth == 0 || _scaleHeight == 0) {
-      throw FlutterError(
-        '[DesignUtils] is not initialized. Call init() first.',
-      );
+    assert(
+      _initialized,
+      '[DesignUtils] not initialized. Call init() before using scaling methods.',
+    );
+  }
+
+  /// Scale width based on design width and current screen width.
+  double scaleWidth(num width) {
+    _assertInitialized();
+    if (width < 0) {
+      throw RangeError('Width must be non-negative.');
     }
+    return width.toDouble() * _scaleWidth;
   }
 
-  /// Scale width based on design width and actual screen width
-  double setWidth(num width) {
+  /// Scale height based on design height and current screen height.
+  double scaleHeight(num height) {
     _assertInitialized();
-    if (width < 0) throw ArgumentError('Width must be non-negative.');
-    return width * _scaleWidth;
+    if (height < 0) {
+      throw RangeError('Height must be non-negative.');
+    }
+    return height.toDouble() * _scaleHeight;
   }
 
-  /// Scale height based on design height and actual screen height
-  double setHeight(num height) {
+  /// Scale font size using the average scale and clamp within optional bounds.
+  double scaleFont(num size, {double minScale = 0.9, double maxScale = 1.2}) {
     _assertInitialized();
-    if (height < 0) throw ArgumentError('Height must be non-negative.');
-    return height * _scaleHeight;
-  }
-
-  /// Scale font size using average scale of width and height and clamp for min/max limits
-  double setFont(num size, {double minScale = 0.9, double maxScale = 1.2}) {
-    _assertInitialized();
-    if (size < 0) throw ArgumentError('Font size must be non-negative.');
-
+    if (size < 0) {
+      throw RangeError('Font size must be non-negative.');
+    }
     final averageScale = (_scaleWidth + _scaleHeight) / 2;
     final scale = averageScale.clamp(minScale, maxScale);
-
-    return size * scale;
+    return size.toDouble() * scale;
   }
 
-  /// Scale radius using average scale of width and height and clamp for min/max limits
-  double setRadius(num radius, {double minScale = 0.9, double maxScale = 1.2}) {
+  /// Scale radius using the average scale and clamp within optional bounds.
+  double scaleRadius(
+    num radius, {
+    double minScale = 0.9,
+    double maxScale = 1.2,
+  }) {
     _assertInitialized();
-    if (radius < 0) throw ArgumentError('Radius must be non-negative.');
-
+    if (radius < 0) {
+      throw RangeError('Radius must be non-negative.');
+    }
     final averageScale = (_scaleWidth + _scaleHeight) / 2;
     final scale = averageScale.clamp(minScale, maxScale);
+    return radius.toDouble() * scale;
+  }
 
-    return radius * scale;
+  /// Exposed for debugging/testing.
+  double get scaleWidthFactor {
+    _assertInitialized();
+    return _scaleWidth;
+  }
+
+  double get scaleHeightFactor {
+    _assertInitialized();
+    return _scaleHeight;
   }
 }

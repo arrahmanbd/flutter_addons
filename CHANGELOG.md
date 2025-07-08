@@ -1,8 +1,24 @@
-# 2.3.1
 
-- Fix: LateInitializationError
+# 2.4.0
 
-# 2.3.0
+- Reorganized project folder structure for better scalability and upcoming phase.
+- Clean separation of widgets, helpers, and theme constants.
+- Ensure CoreScale re-initializes properly on every screen size/orientation change.
+- Add check to only initialize or update design-based scaling when ScaleMode is `design` and a valid design frame is provided.
+- Prevents redundant design scaling in other modes, improving performance and clarity.
+- Enhances ResponsiveScope to rely on ScreenUtils for consistent screen type resolution.
+- Adds safer asserts and logging for better debugging when resizing windows or using dynamic layouts.
+- Optimizing core features for breaking changes
+- Ensure SectionItem widgets have bounded heights to avoid overflow when used with Wrap layouts.
+- Rewrote Section grouping logic for robust flex calculation per breakpoint.
+- Replaced unsafe maxHeight usage with calculated viewport-based heights.
+- Also documented safe usage patterns for flexible sidebar layouts.
+
+## 2.3.1
+
+-  Fix: Resolved `LateInitializationError` during initialization.
+
+## 2.3.0
 
 **What’s New:**
 
