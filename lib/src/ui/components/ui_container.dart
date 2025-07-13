@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class FxContainer extends StatelessWidget {
+class UiContainer extends StatelessWidget {
   // Core configurable props
   final Widget? child;
   final double? width, height;
@@ -19,7 +19,7 @@ class FxContainer extends StatelessWidget {
   final Color? splashColor;
   final Clip clip;
 
-  const FxContainer({
+  const UiContainer({
     super.key,
     this.child,
     this.width,
@@ -37,12 +37,12 @@ class FxContainer extends StatelessWidget {
   });
 
   /// Transparent box
-  factory FxContainer.transparent({
+  factory UiContainer.transparent({
     Key? key,
     Widget? child,
     EdgeInsetsGeometry padding = const EdgeInsets.all(16),
     EdgeInsetsGeometry margin = EdgeInsets.zero,
-  }) => FxContainer(
+  }) => UiContainer(
     key: key,
     color: Colors.transparent,
     padding: padding,
@@ -51,7 +51,7 @@ class FxContainer extends StatelessWidget {
   );
 
   /// Bordered box
-  factory FxContainer.bordered({
+  factory UiContainer.bordered({
     Key? key,
     Widget? child,
     Color? color,
@@ -59,7 +59,7 @@ class FxContainer extends StatelessWidget {
     double radius = 12,
     EdgeInsetsGeometry padding = const EdgeInsets.all(16),
     EdgeInsetsGeometry margin = EdgeInsets.zero,
-  }) => FxContainer(
+  }) => UiContainer(
     key: key,
     color: color,
     radius: radius,
@@ -70,14 +70,14 @@ class FxContainer extends StatelessWidget {
   );
 
   /// Circular avatar-style box
-  factory FxContainer.rounded({
+  factory UiContainer.rounded({
     Key? key,
     Widget? child,
     Color? color,
     double size = 48,
     EdgeInsetsGeometry padding = const EdgeInsets.all(8),
     GestureTapCallback? onTap,
-  }) => FxContainer(
+  }) => UiContainer(
     key: key,
     width: size,
     height: size,
@@ -90,7 +90,7 @@ class FxContainer extends StatelessWidget {
   );
 
   /// Fluent helper to derive variants
-  FxContainer copyWith({
+  UiContainer copyWith({
     Widget? child,
     double? width,
     double? height,
@@ -104,7 +104,7 @@ class FxContainer extends StatelessWidget {
     GestureTapCallback? onTap,
     Color? splashColor,
     Clip? clip,
-  }) => FxContainer(
+  }) => UiContainer(
     width: width ?? this.width,
     height: height ?? this.height,
     alignment: alignment ?? this.alignment,

@@ -22,7 +22,7 @@ class CoreScale {
   /// Initializes CoreScale once at app startup.
   /// Sets mode, design frame, and enables logging if needed.
   void init({
-    required BuildContext context,
+    required BuildContext rootContext,
     required ScaleMode mode,
     Frame? designFrame,
     bool debugLog = false,
@@ -36,9 +36,9 @@ class CoreScale {
     _debugLog = debugLog;
     _designFrame = designFrame;
 
-    _mediaQuery = MediaQuery.of(context);
+    _mediaQuery = MediaQuery.of(rootContext);
     _log('[CoreScale] Initializing with mode: $_mode');
-
+    ThemeHelper.init(rootContext);
     // Initialize percent-based scaling
     _ScreenUtils.initialize(mediaQuery: _mediaQuery);
 

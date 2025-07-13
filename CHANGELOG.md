@@ -1,4 +1,17 @@
-# 2.4.1
+# 2.4.2
+
+- Added `UiListview` ui component
+- Added `toStackedAvatars` for goup of circle avaters
+- Grouping UIComponets as `Ui` prefix
+- Fixed Responsive Spacing units
+- Fix some validation logic.
+- Supports max number for phone validation
+- Introduced ThemeHelper singleton to initialize ThemeData, TextTheme, ColorScheme, and MediaQuery at app root
+- Added Ui class as a global design system access point for theme, text styles, and colors without passing BuildContext
+- Ensures consistent and convenient styling throughout the app
+- Added documentation and usage examples for clarity
+
+## 2.4.1
 
 - Removed conflicted component
 - Updated documentation

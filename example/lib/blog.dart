@@ -44,17 +44,20 @@ class BlogPage extends StatelessWidget {
             _buildCategoryList(context),
             SizedBox(height: 16.h),
             //Bootstrap Styles
-            Section(
-              children: [
-                SectionItem(
-                  sizes: 'lg-6 md-12 sm-0',
-                  child: Text('Will take 50% PC'),
-                ),
-                SectionItem(
-                  sizes: 'lg-6 md-12 sm-0',
-                  child: Text('Will take 50% PC'),
-                ),
-              ],
+            Container(
+              color: Ui.theme.primaryColor,
+              child: Section(
+                children: [
+                  SectionItem(
+                    sizes: 'lg-6 md-12 sm-0',
+                    child: Text('Will take 50% PC', style: context.bodyLarge),
+                  ),
+                  SectionItem(
+                    sizes: 'lg-6 md-12 sm-0',
+                    child: Text('Will take 50% PC'),
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),

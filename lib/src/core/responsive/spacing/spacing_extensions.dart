@@ -1,30 +1,68 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-/// Unified spacing extensions using responsive scale units:
-/// - `r` = uniform responsive unit (e.g., diagonal or average scale)
-/// - `w` = responsive width unit
-/// - `h` = responsive height unit
+/// Provides convenient spacing extensions on [num] for unified margin, padding,
+/// and sized box creation using a fixed unit.
 extension UnifiedMarginPadding on num {
-  // Margin
-  EdgeInsets get m => EdgeInsets.symmetric(horizontal: w, vertical: h);
-  EdgeInsets get mt => EdgeInsets.only(top: h);
-  EdgeInsets get mb => EdgeInsets.only(bottom: h);
-  EdgeInsets get ml => EdgeInsets.only(left: w);
-  EdgeInsets get mr => EdgeInsets.only(right: w);
-  EdgeInsets get mx => EdgeInsets.symmetric(horizontal: w);
-  EdgeInsets get my => EdgeInsets.symmetric(vertical: h);
+  // ---------------------------
+  // Margin extensions
+  // ---------------------------
 
-  // Padding
-  EdgeInsets get p => EdgeInsets.symmetric(horizontal: w, vertical: h);
-  EdgeInsets get pt => EdgeInsets.only(top: h);
-  EdgeInsets get pb => EdgeInsets.only(bottom: h);
-  EdgeInsets get pl => EdgeInsets.only(left: w);
-  EdgeInsets get pr => EdgeInsets.only(right: w);
-  EdgeInsets get px => EdgeInsets.symmetric(horizontal: w);
-  EdgeInsets get py => EdgeInsets.symmetric(vertical: h);
+  /// All sides margin: `m`
+  EdgeInsets get m => EdgeInsets.all(toDouble());
 
-  // SizedBox
-  SizedBox get sx => SizedBox(width: w);
-  SizedBox get sy => SizedBox(height: h);
-  SizedBox get s => SizedBox(height: h); // safer to pick vertical default
+  /// Margin top only: `mt`
+  EdgeInsets get mt => EdgeInsets.only(top: toDouble());
+
+  /// Margin bottom only: `mb`
+  EdgeInsets get mb => EdgeInsets.only(bottom: toDouble());
+
+  /// Margin left only: `ml`
+  EdgeInsets get ml => EdgeInsets.only(left: toDouble());
+
+  /// Margin right only: `mr`
+  EdgeInsets get mr => EdgeInsets.only(right: toDouble());
+
+  /// Margin horizontal (left & right): `mx`
+  EdgeInsets get mx => EdgeInsets.symmetric(horizontal: toDouble());
+
+  /// Margin vertical (top & bottom): `my`
+  EdgeInsets get my => EdgeInsets.symmetric(vertical: toDouble());
+
+  // ---------------------------
+  // Padding extensions
+  // ---------------------------
+
+  /// All sides padding: `p`
+  EdgeInsets get p => EdgeInsets.all(toDouble());
+
+  /// Padding top only: `pt`
+  EdgeInsets get pt => EdgeInsets.only(top: toDouble());
+
+  /// Padding bottom only: `pb`
+  EdgeInsets get pb => EdgeInsets.only(bottom: toDouble());
+
+  /// Padding left only: `pl`
+  EdgeInsets get pl => EdgeInsets.only(left: toDouble());
+
+  /// Padding right only: `pr`
+  EdgeInsets get pr => EdgeInsets.only(right: toDouble());
+
+  /// Padding horizontal (left & right): `px`
+  EdgeInsets get px => EdgeInsets.symmetric(horizontal: toDouble());
+
+  /// Padding vertical (top & bottom): `py`
+  EdgeInsets get py => EdgeInsets.symmetric(vertical: toDouble());
+
+  // ---------------------------
+  // SizedBox extensions
+  // ---------------------------
+
+  /// Horizontal space: `sx`
+  SizedBox get sx => SizedBox(width: toDouble());
+
+  /// Vertical space: `sy`
+  SizedBox get sy => SizedBox(height: toDouble());
+
+  /// Square space: `s` (width & height)
+  SizedBox get s => SizedBox(width: toDouble(), height: toDouble());
 }

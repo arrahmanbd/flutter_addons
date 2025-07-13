@@ -40,7 +40,7 @@ part 'src/extension/base/boolean_extension.dart';
 part 'src/extension/base/int_extension.dart';
 part 'src/extension/base/map_extension.dart';
 part 'src/extension/base/string_extension.dart';
-part 'src/extension/base/dart_extension.dart';
+part 'src/extension/base/list_extension.dart';
 part 'src/extension/base/reg_patterns.dart';
 part 'src/extension/base/flutter_widgets.dart';
 
@@ -159,6 +159,7 @@ part 'src/core/themes/theme_maker.dart';
 part 'src/core/themes/theme_engine.dart';
 part 'src/core/themes/theme_manager.dart';
 part 'src/core/themes/soul_component.dart';
+part 'src/core/themes/theme_helper.dart';
 
 /// -- Color Palettes
 part 'src/core/palettes/soul_colors.dart';
@@ -186,7 +187,7 @@ part 'src/core/typography/text_size.dart';
 /// -----------------------
 part 'src/core/errors/screen_of_death.dart';
 part 'src/core/errors/error_scope.dart';
-part 'src/core/errors/retry_mechanism.dart';
+part 'src/extension/functions/retry_mechanism.dart';
 
 /// -----------------------
 /// ⚙️ State Management
@@ -207,12 +208,13 @@ part 'src/ui/basic/theme_toggler.dart';
 part 'src/ui/basic/appbar_addon.dart';
 part 'src/ui/basic/avatar_circle.dart';
 part 'src/ui/basic/page_indicator.dart';
-part 'src/ui/basic/fx_container.dart';
+part 'src/ui/components/ui_container.dart';
 
 /// -- Advanced Components
 part 'src/ui/components/ui_borderbox.dart';
 part 'src/ui/components/ui_popupmenu.dart';
 part 'src/ui/components/ui_miniprogress.dart';
+part 'src/ui/components/ui_listview.dart';
 
 /// -- Feedback Components
 part 'src/ui/feedback/alart.dart';

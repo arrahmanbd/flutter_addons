@@ -14,8 +14,7 @@ class Validator {
   /// Validates if the input is a valid email address.
   static String? email(String? value) {
     if (value == null || value.isEmpty) return 'Email is required';
-    final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
-    return emailRegex.hasMatch(value) ? null : 'Invalid email address';
+    return Patterns.email.hasMatch(value) ? null : 'Invalid email address';
   }
 
   /// Validates a strong password with optional rules.
@@ -42,12 +41,13 @@ class Validator {
   }
 
   /// Validates that the input is a valid phone number.
-  static String? phone(String? value) {
+  static String? phone(String? value, {int max = 15}) {
     if (value == null || value.trim().isEmpty) {
       return 'Phone number is required';
+    } else if (value.length >= max) {
+      return 'Phone number must $max digit';
     }
-    final phoneRegex = RegExp(r'^\+?[0-9]{7,15}$');
-    return phoneRegex.hasMatch(value) ? null : 'Invalid phone number';
+    return Patterns.phone.hasMatch(value) ? null : 'Invalid phone number';
   }
 
   /// Validates that the input is a number.
@@ -93,7 +93,6 @@ class Validator {
   /// Validates that the input is a valid URL.
   static String? url(String? value) {
     if (value == null || value.isEmpty) return 'URL is required';
-    final urlRegex = RegExp(r'^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$');
-    return urlRegex.hasMatch(value) ? null : 'Invalid URL';
+    return Patterns.url.hasMatch(value) ? null : 'Invalid URL';
   }
 }

@@ -30,17 +30,13 @@ extension StringExt on String {
 
   /// Checks if the string is a valid email.
   bool isEmail() {
-    final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
-    return emailRegex.hasMatch(this);
+    return Patterns.email.hasMatch(this);
   }
 
   /// Checks if the string is a valid phone number.
   /// (Supports international formats)
   bool isPhoneNumber() {
-    final phoneRegex = RegExp(
-      r'^\+?(\d{1,4})?[\s.-]?(\d{3,4})[\s.-]?(\d{4,7})$',
-    );
-    return phoneRegex.hasMatch(this);
+    return Patterns.phone.hasMatch(this);
   }
 
   /// Masks part of a string (e.g., credit card or password).

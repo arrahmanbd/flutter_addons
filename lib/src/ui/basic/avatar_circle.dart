@@ -79,7 +79,9 @@ class AvatarCircle extends StatelessWidget {
             child: InkWell(
               onTap: onTap,
               customBorder: const CircleBorder(),
-              splashColor: Theme.of(context).primaryColor.withOpacity(0.2),
+              splashColor: Theme.of(
+                context,
+              ).primaryColor.withValues(alpha: 0.2),
               child: Container(
                 width: avatarSize,
                 height: avatarSize,
@@ -108,6 +110,25 @@ class AvatarCircle extends StatelessWidget {
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+extension StackAvatars on List<Widget> {
+  /// Stacks widgets with horizontal overlap — like a group of circle avatars.
+  Widget toStackedAvatars({
+    double overlap = 16.0,
+    Alignment alignment = Alignment.centerLeft,
+    double height = 40.0,
+  }) {
+    return SizedBox(
+      height: height,
+      child: Stack(
+        alignment: alignment,
+        children: List.generate(length, (index) {
+          return Positioned(left: index * overlap, child: this[index]);
+        }),
       ),
     );
   }

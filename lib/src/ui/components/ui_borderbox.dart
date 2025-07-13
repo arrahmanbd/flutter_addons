@@ -4,7 +4,7 @@ enum BorderShape { rectangle, circle }
 
 enum BorderStyleType { solid, dashed, dotted, text }
 
-class BorderBox extends StatelessWidget {
+class UiBorderBox extends StatelessWidget {
   /// Color for the border.
   final Color color;
 
@@ -32,7 +32,7 @@ class BorderBox extends StatelessWidget {
   /// Child widget inside the border.
   final Widget child;
 
-  const BorderBox({
+  const UiBorderBox({
     super.key,
     required this.color,
     this.dashWidth = 8.0,
