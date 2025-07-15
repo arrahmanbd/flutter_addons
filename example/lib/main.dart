@@ -15,11 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveScope(
+      app: SoulApp(),
       screenLock: AppOrientationLock.portraitUp,
       designFrame: Frame(w: 320, h: 812),
       scaleMode: ScaleMode.design,
-      layoutBuilder: (MediaInfo layout) => SoulApp(),
       enableDebugLogging: true,
+      // this will be removed soon
+      layoutBuilder: (MediaInfo layout) => SizedBox(),
     );
   }
 }

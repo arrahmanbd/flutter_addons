@@ -49,12 +49,18 @@ class BlogPage extends StatelessWidget {
               child: Section(
                 children: [
                   SectionItem(
-                    sizes: 'lg-6 md-12 sm-0',
-                    child: Text('Will take 50% PC', style: context.bodyLarge),
+                    sizes: 'lg-4 md-8 sm-12',
+                    child: Text(
+                      'Will take full on sm',
+                      style: context.bodyLarge,
+                    ),
                   ),
                   SectionItem(
-                    sizes: 'lg-6 md-12 sm-0',
-                    child: Text('Will take 50% PC'),
+                    sizes: 'lg-8 md-4 sm-0',
+                    child: Text(
+                      'Will take hidden on phone',
+                      style: context.bodyLarge,
+                    ),
                   ),
                 ],
               ),

@@ -3,6 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 class ResponsiveScope extends StatefulWidget {
   const ResponsiveScope({
     super.key,
+    this.app,
     required this.layoutBuilder,
     this.designFrame,
     this.scaleMode = ScaleMode.percent,
@@ -10,7 +11,7 @@ class ResponsiveScope extends StatefulWidget {
     this.screenLock = AppOrientationLock.none,
     this.ownErrorScreen,
     this.enableDebugLogging = false,
-    this.errorScreen = ErrorScreen.codeTerminal,
+    this.errorScreen = ErrorScreen.brokenRobot,
   });
 
   /// **[DEPRECATED]**: `layoutBuilder` will be removed in 3.0 update.
@@ -18,6 +19,8 @@ class ResponsiveScope extends StatefulWidget {
   /// Note: The current implementation causes route restarts on responsive changes.
   /// Builds the layout using the provided layout info (media, screen type, orientation).
   final Widget Function(MediaInfo layout) layoutBuilder;
+  //Alternativly working on this.[Beta]
+  final Widget? app;
 
   /// Defines how the UI should scale.
   final ScaleMode scaleMode;
@@ -155,10 +158,10 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
     final isLayoutReady =
         _orientation != null && _screenSize != null && _screenType != null;
 
-    final layoutWidget =
-        isLayoutReady && hasValidSize
-            ? widget.layoutBuilder(MediaInfo.fromThis(context))
-            : const SizedBox();
+    final Widget layoutWidget =
+        (widget.app != null && isLayoutReady && hasValidSize)
+            ? widget.app!
+            : widget.layoutBuilder.call(MediaInfo.fromThis(context));
 
     final wrapped = Directionality(
       textDirection: TextDirection.ltr,
