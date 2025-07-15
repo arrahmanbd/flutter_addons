@@ -196,6 +196,7 @@ part 'src/core/state/app_error.dart';
 part 'src/core/state/app_state.dart';
 part 'src/core/state/exception.dart';
 part 'src/core/state/functional.dart';
+part 'src/core/state/lifecycle.dart';
 
 /// -----------------------
 /// 📱 UI Components & Elements
