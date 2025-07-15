@@ -1,3 +1,8 @@
+# 2.4.3
+
+- Added `LifecycleManager` for managing app lifecycle.
+- Trying to remove layoutbuilder
+
 # 2.4.2
 
 - Added `UiListview` ui component
