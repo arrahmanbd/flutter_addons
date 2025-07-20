@@ -14,9 +14,6 @@ class ResponsiveScope extends StatefulWidget {
     this.errorScreen = ErrorScreen.brokenRobot,
   });
 
-  /// **[DEPRECATED]**: `layoutBuilder` will be removed in 3.0 update.
-  /// Please migrate to the new responsive system once it becomes available.
-  /// Note: The current implementation causes route restarts on responsive changes.
   /// Builds the layout using the provided layout info (media, screen type, orientation).
   final Widget Function(MediaInfo layout) layoutBuilder;
   //Alternativly working on this.[Beta]

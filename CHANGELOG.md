@@ -1,7 +1,7 @@
 # 2.4.3
 
 - Added `LifecycleManager` for managing app lifecycle.
-- Trying to remove layoutbuilder
+- Added Keyboard visbility Controller.
 
 # 2.4.2
 
