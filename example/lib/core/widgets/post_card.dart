@@ -7,6 +7,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: context.cardBackground,
       elevation: .5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       clipBehavior: Clip.antiAlias,
@@ -26,7 +27,7 @@ class PostCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(16.0.sp),
+            padding: 16.p,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

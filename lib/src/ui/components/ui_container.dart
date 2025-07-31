@@ -1,160 +1,213 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
 class UiContainer extends StatelessWidget {
-  // Core configurable props
   final Widget? child;
+  final BorderRadius? borderRadius;
+  final double? borderRadiusAll, paddingAll, marginAll;
+  final EdgeInsetsGeometry? padding, margin;
+  final Color? color;
+  final Color? borderColor;
+  final bool bordered;
+  final Border? border;
+  final Clip? clipBehavior;
+  final BoxShape shape;
   final double? width, height;
   final AlignmentGeometry? alignment;
-
-  // Styling
-  final Color? color;
-  final double radius;
-  final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry margin;
-  final BoxShape shape;
-  final BoxBorder? border;
-
-  // Interactivity
   final GestureTapCallback? onTap;
   final Color? splashColor;
-  final Clip clip;
+  final bool enableBorderRadius;
+
+  static const double _defaultRadius = 12.0;
+  static const double _defaultPadding = 16.0;
+  static const double _defaultMargin = 0.0;
 
   const UiContainer({
     super.key,
     this.child,
+    this.borderRadius,
+    this.padding,
+    this.borderRadiusAll,
+    this.paddingAll,
+    this.border,
+    this.bordered = false,
+    this.clipBehavior,
+    this.color,
+    this.shape = BoxShape.rectangle,
     this.width,
     this.height,
     this.alignment,
-    this.color,
-    this.radius = 12,
-    this.padding = const EdgeInsets.all(16),
-    this.margin = EdgeInsets.zero,
-    this.shape = BoxShape.rectangle,
-    this.border,
+    this.enableBorderRadius = true,
     this.onTap,
+    this.marginAll,
+    this.margin,
     this.splashColor,
-    this.clip = Clip.none,
+    this.borderColor,
   });
 
-  /// Transparent box
-  factory UiContainer.transparent({
-    Key? key,
-    Widget? child,
-    EdgeInsetsGeometry padding = const EdgeInsets.all(16),
-    EdgeInsetsGeometry margin = EdgeInsets.zero,
-  }) => UiContainer(
-    key: key,
-    color: Colors.transparent,
-    padding: padding,
-    margin: margin,
-    child: child,
-  );
+  const UiContainer.transparent({
+    super.key,
+    this.child,
+    this.borderRadius,
+    this.padding,
+    this.borderRadiusAll,
+    this.paddingAll,
+    this.border,
+    this.bordered = false,
+    this.clipBehavior,
+    this.color = Colors.transparent,
+    this.shape = BoxShape.rectangle,
+    this.width,
+    this.height,
+    this.alignment,
+    this.enableBorderRadius = true,
+    this.onTap,
+    this.marginAll,
+    this.margin,
+    this.splashColor,
+    this.borderColor,
+  });
 
-  /// Bordered box
-  factory UiContainer.bordered({
-    Key? key,
-    Widget? child,
-    Color? color,
-    Color borderColor = Colors.grey,
-    double radius = 12,
-    EdgeInsetsGeometry padding = const EdgeInsets.all(16),
-    EdgeInsetsGeometry margin = EdgeInsets.zero,
-  }) => UiContainer(
-    key: key,
-    color: color,
-    radius: radius,
-    padding: padding,
-    margin: margin,
-    border: Border.all(color: borderColor),
-    child: child,
-  );
+  const UiContainer.none({
+    super.key,
+    this.child,
+    this.borderRadius,
+    this.padding,
+    this.borderRadiusAll = 0,
+    this.paddingAll = 0,
+    this.border,
+    this.bordered = false,
+    this.clipBehavior,
+    this.enableBorderRadius = true,
+    this.color,
+    this.shape = BoxShape.rectangle,
+    this.width,
+    this.height,
+    this.alignment,
+    this.onTap,
+    this.marginAll,
+    this.margin,
+    this.splashColor,
+    this.borderColor,
+  });
 
-  /// Circular avatar-style box
-  factory UiContainer.rounded({
-    Key? key,
-    Widget? child,
-    Color? color,
-    double size = 48,
-    EdgeInsetsGeometry padding = const EdgeInsets.all(8),
-    GestureTapCallback? onTap,
-  }) => UiContainer(
-    key: key,
-    width: size,
-    height: size,
-    shape: BoxShape.circle,
-    color: color,
-    padding: padding,
-    onTap: onTap,
-    clip: Clip.antiAlias,
-    child: child,
-  );
+  const UiContainer.bordered({
+    super.key,
+    this.child,
+    this.borderRadius,
+    this.padding,
+    this.borderRadiusAll,
+    this.paddingAll,
+    this.border,
+    this.bordered = true,
+    this.enableBorderRadius = true,
+    this.clipBehavior,
+    this.color,
+    this.shape = BoxShape.rectangle,
+    this.width,
+    this.height,
+    this.alignment,
+    this.onTap,
+    this.marginAll,
+    this.margin,
+    this.splashColor,
+    this.borderColor,
+  });
 
-  /// Fluent helper to derive variants
-  UiContainer copyWith({
-    Widget? child,
-    double? width,
-    double? height,
-    AlignmentGeometry? alignment,
-    Color? color,
-    double? radius,
-    EdgeInsetsGeometry? padding,
-    EdgeInsetsGeometry? margin,
-    BoxShape? shape,
-    BoxBorder? border,
-    GestureTapCallback? onTap,
-    Color? splashColor,
-    Clip? clip,
-  }) => UiContainer(
-    width: width ?? this.width,
-    height: height ?? this.height,
-    alignment: alignment ?? this.alignment,
-    color: color ?? this.color,
-    radius: radius ?? this.radius,
-    padding: padding ?? this.padding,
-    margin: margin ?? this.margin,
-    shape: shape ?? this.shape,
-    border: border ?? this.border,
-    onTap: onTap ?? this.onTap,
-    splashColor: splashColor ?? this.splashColor,
-    clip: clip ?? this.clip,
-    child: child ?? this.child,
-  );
+  const UiContainer.roundBordered({
+    super.key,
+    this.child,
+    this.borderRadius,
+    this.padding,
+    this.borderRadiusAll,
+    this.enableBorderRadius = true,
+    this.paddingAll,
+    this.border,
+    this.bordered = true,
+    this.clipBehavior,
+    this.color,
+    this.shape = BoxShape.circle,
+    this.width,
+    this.height,
+    this.alignment,
+    this.onTap,
+    this.marginAll,
+    this.margin,
+    this.splashColor,
+    this.borderColor,
+  });
+
+  const UiContainer.rounded({
+    super.key,
+    this.child,
+    this.borderRadius,
+    this.padding,
+    this.borderRadiusAll,
+    this.enableBorderRadius = true,
+    this.paddingAll,
+    this.border,
+    this.bordered = false,
+    this.clipBehavior = Clip.antiAliasWithSaveLayer,
+    this.color,
+    this.shape = BoxShape.circle,
+    this.width,
+    this.height,
+    this.alignment,
+    this.onTap,
+    this.marginAll,
+    this.margin,
+    this.splashColor,
+    this.borderColor,
+  });
+
+  BorderRadius? get _effectiveBorderRadius {
+    if (!enableBorderRadius) return null;
+    if (shape == BoxShape.circle) return null;
+    return borderRadius ??
+        BorderRadius.all(
+          Radius.circular(borderRadiusAll ?? _defaultRadius),
+        );
+  }
+
+  EdgeInsetsGeometry get _effectivePadding =>
+      padding ?? EdgeInsets.all(paddingAll ?? _defaultPadding);
+
+  EdgeInsetsGeometry get _effectiveMargin =>
+      margin ?? EdgeInsets.all(marginAll ?? _defaultMargin);
 
   @override
   Widget build(BuildContext context) {
-    final box = Container(
+    final base = Container(
       width: width,
       height: height,
       alignment: alignment,
-      padding: padding,
-      margin: margin,
-      clipBehavior: clip,
+      margin: _effectiveMargin,
+      padding: _effectivePadding,
+      clipBehavior: clipBehavior ?? Clip.none,
       decoration: BoxDecoration(
         color: color ?? Theme.of(context).cardColor,
         shape: shape,
-        borderRadius:
-            shape == BoxShape.rectangle ? BorderRadius.circular(radius) : null,
-        border: border,
+        borderRadius: _effectiveBorderRadius,
+        border: bordered
+            ? border ??
+                Border.all(
+                  color: borderColor ?? Theme.of(context).dividerColor,
+                  width: 1,
+                )
+            : null,
       ),
       child: child,
     );
 
-    if (onTap == null) return box;
-
-    return Material(
-      color: Colors.transparent,
-      shape:
-          shape == BoxShape.circle
-              ? const CircleBorder()
-              : RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-              ),
-      clipBehavior: clip,
-      child: InkWell(
+    if (onTap != null) {
+      return InkWell(
+        borderRadius: _effectiveBorderRadius,
         onTap: onTap,
-        splashColor: splashColor ?? Theme.of(context).splashColor,
-        child: box,
-      ),
-    );
+        splashColor: splashColor ?? Colors.transparent,
+        highlightColor: splashColor ?? Colors.transparent,
+        child: base,
+      );
+    }
+
+    return base;
   }
 }

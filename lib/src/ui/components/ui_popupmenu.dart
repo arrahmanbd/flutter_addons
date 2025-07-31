@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-// PopupMenu
+// ContextMenu
 // Inspired by TailwindPopup
 abstract class Screen {
   static MediaQueryData get mediaQuery =>
@@ -22,22 +22,22 @@ abstract class Screen {
   static double get bottomBar => mediaQuery.padding.bottom;
 }
 
-enum UiPopupMenuPlacement { left, right, top, bottom }
+enum UiContextMenuPlacement { left, right, top, bottom }
 
 typedef HideFn = void Function(Function hideFn);
 
-class UiPopupMenu extends StatefulWidget {
+class UiContextMenu extends StatefulWidget {
   final Widget menu;
   final ValueChanged<bool> onChange;
   final WidgetBuilder menuBuilder;
   final int selectedIndex;
-  final UiPopupMenuPlacement placement;
+  final UiContextMenuPlacement placement;
   final double offsetX, offsetY;
   final bool backdrop;
   final bool show;
   final HideFn? hideFn;
 
-  const UiPopupMenu({
+  const UiContextMenu({
     super.key,
     required this.menu,
     required this.onChange,
@@ -45,7 +45,7 @@ class UiPopupMenu extends StatefulWidget {
     this.selectedIndex = 0,
     this.backdrop = false,
     this.show = true,
-    this.placement = UiPopupMenuPlacement.bottom,
+    this.placement = UiContextMenuPlacement.bottom,
     this.offsetX = 0,
     this.hideFn,
     this.offsetY = 0,
@@ -53,10 +53,10 @@ class UiPopupMenu extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _UiPopupMenuState createState() => _UiPopupMenuState();
+  _UiContextMenuState createState() => _UiContextMenuState();
 }
 
-class _UiPopupMenuState extends State<UiPopupMenu>
+class _UiContextMenuState extends State<UiContextMenu>
     with SingleTickerProviderStateMixin {
   late GlobalKey _key;
   bool isMenuOpen = false;
@@ -123,10 +123,10 @@ class _UiPopupMenuState extends State<UiPopupMenu>
 
   OverlayEntry _overlayEntryBuilder() {
     double left = 0, top = 0;
-    if (widget.placement == UiPopupMenuPlacement.bottom) {
+    if (widget.placement == UiContextMenuPlacement.bottom) {
       top = buttonPosition.dy + buttonSize.height + widget.offsetY;
       left = buttonPosition.dx + widget.offsetX;
-    } else if (widget.placement == UiPopupMenuPlacement.right) {
+    } else if (widget.placement == UiContextMenuPlacement.right) {
       top = buttonPosition.dy + widget.offsetY;
       left = buttonPosition.dx + buttonSize.width + widget.offsetX;
     }

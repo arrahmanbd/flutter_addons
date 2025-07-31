@@ -2,6 +2,9 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Provides convenient spacing extensions on [num] for unified margin, padding,
 /// and sized box creation using a fixed unit.
+/// 
+// SpacingExtensions class removed as all extensions are provided via UnifiedMarginPadding on num.
+
 extension UnifiedMarginPadding on num {
   // ---------------------------
   // Margin extensions

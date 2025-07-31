@@ -1,6 +1,7 @@
 import 'package:example_app/core/theme/theme_provider.dart';
 import 'package:example_app/core/widgets/appbar.dart';
 import 'package:example_app/core/widgets/post_card.dart';
+import 'package:example_app/ui.dart';
 import 'package:example_app/users.dart';
 import 'package:example_app/details.dart';
 import 'package:flutter/material.dart';
@@ -21,77 +22,39 @@ class BlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final aspectRatio = 1.15;
+    final aspectRatio = context.isMobile? .78 : 1.12;
     return Scaffold(
       backgroundColor: context.background,
       appBar: FacebookAppBar(
         title: 'Flutter Addons',
         // ignore: avoid_print
-        onSearchTap: () => print('Search tapped'),
+        onSearchTap: () {
+          context.push(UiExamples());
+        },
         onPrfileTap: () {
           context.push(UserScreen());
         },
         onNotificationsTap: () {},
       ),
       body: Padding(
-        padding: EdgeInsets.only(bottom: 24.h),
+        padding: 24.p,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 24.h),
             _buildHeader(context),
             SizedBox(height: 24.h),
             _buildCategoryList(context),
             SizedBox(height: 16.h),
-            //Bootstrap Styles
-            Container(
-              color: Ui.theme.primaryColor,
-              child: Section(
-                children: [
-                  SectionItem(
-                    sizes: 'lg-4 md-8 sm-12',
-                    child: Text(
-                      'Will take full on sm',
-                      style: context.bodyLarge,
-                    ),
-                  ),
-                  SectionItem(
-                    sizes: 'lg-8 md-4 sm-0',
-                    child: Text(
-                      'Will take hidden on phone',
-                      style: context.bodyLarge,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: ResponsiveBuilder(
-                builder: (screen) {
-                  if (screen.isLandscape) {
-                    return GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 8, // or dynamic
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        childAspectRatio: aspectRatio,
-                      ),
-                      itemBuilder: (context, index) => PostCard().onTap(() {
-                        // Dummy post example
-                        dummyPost.launch(context);
-                      }),
-                    );
-                  }
+          
+            ResponsiveBuilder(
+              builder: (screen) {
+                if (screen.isLandscape) {
                   return GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 8, // or dynamic
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
+                      crossAxisCount: 2,
                       mainAxisSpacing: 8,
                       crossAxisSpacing: 8,
                       childAspectRatio: aspectRatio,
@@ -101,8 +64,23 @@ class BlogPage extends StatelessWidget {
                       dummyPost.launch(context);
                     }),
                   );
-                },
-              ),
+                }
+                return GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 8, // or dynamic
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: aspectRatio,
+                  ),
+                  itemBuilder: (context, index) => PostCard().onTap(() {
+                    // Dummy post example
+                    dummyPost.launch(context);
+                  }),
+                );
+              },
             ),
           ],
         ),
@@ -111,83 +89,82 @@ class BlogPage extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Container(
-        height: 220.h,
-        padding: 16.p,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
-          gradient: LinearGradient(
-            colors: [Kolors.slate200, Kolors.violet200],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+    return Container(
+      height: 250.h,
+      padding: 16.p,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16.r),
+        gradient: LinearGradient(
+          colors: [Kolors.slate200, Kolors.violet200],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Welcome to Flutter Addons!",
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    color: context.primaryColor,
-                  ),
+      ),
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Welcome to Flutter Addons!",
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: context.primaryColor,
                 ),
-                SizedBox(height: 8.h),
-                Text(
-                  "Explore top deals and new arrivals.",
-                  style: context.bodyLarge.copyWith(
-                    color: context.secondaryContent,
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                _buildButtons(context),
-                SizedBox(height: 20.h),
-                _buildSearchBar(context),
-              ],
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Consumer(
-                builder: (context, ref, _) {
-                  final manager = ref.watch(themeProvider);
-                  return ThemeToggleButton(manager: manager, iconSize: 24.sp);
-                },
               ),
+              SizedBox(height: 8.h),
+              Text(
+                "Explore top deals and new arrivals.",
+                style: context.bodyLarge.copyWith(
+                  color: context.secondaryContent,
+                ),
+              ),
+              SizedBox(height: 16.h),
+              _buildButtons(context),
+              SizedBox(height: 20.h),
+              _buildSearchBar(context),
+            ],
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Consumer(
+              builder: (context, ref, _) {
+                final manager = ref.watch(themeProvider);
+                return ThemeToggleButton(manager: manager, iconSize: 24.sp);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildButtons(BuildContext context) {
     return Row(
+      spacing: 12,
       children: [
-        FlatButton(
-          icon: Icon(Icons.arrow_right_alt_outlined, size: 24.sp),
+        UiFlatButton(
           label: "Primary",
+          icon: Icon(Icons.arrow_right_alt_outlined, size: 24.sp),
           onPressed: () => dummyPost.launch(context),
-          variant: ButtonVariant.primary,
-          background: context.primaryColor,
+          backgroundColor: context.primaryColor,
         ),
-        SizedBox(width: 12.w),
-        FlatButton(
+        UiFlatButton.outlined(
           label: "Save",
-          icon: const Icon(Icons.save),
-          // ignore: avoid_print
-          onPressed: () => print(context.isDark),
-          variant: ButtonVariant.outline,
-          size: ButtonSize.md,
-          isRounded: true,
-          elevation: 0,
+          icon: const Icon(Icons.save_alt),
+          onPressed: () => print("Outlined clicked"),
+        ),
+
+        UiFlatButton.text(
+          label: "Cancel",
+          onPressed: () => print("Text clicked"),
         ),
       ],
+    ).scrollable(
+      scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
     );
   }
 

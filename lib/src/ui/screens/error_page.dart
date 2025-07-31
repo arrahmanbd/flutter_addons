@@ -1,9 +1,9 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class ErrorPage extends StatelessWidget {
+class UiErrorPage extends StatelessWidget {
   final String message;
 
-  const ErrorPage(this.message, {super.key});
+  const UiErrorPage(this.message, {super.key});
 
   static Widget _buildSadFace() {
     return Text(
