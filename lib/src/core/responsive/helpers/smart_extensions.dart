@@ -16,7 +16,7 @@ extension SmartScalerExtension on num {
   double get pr => _ScreenUtils.percentRadius(toDouble());
 
   /// Responsive font size based on pixelRatio and aspectRatio
-  double get pt => _ScreenUtils.percentFontSize(toDouble());
+  double get psp => _ScreenUtils.percentFontSize(toDouble());
 
   // double get prs => min(_ScreenUtils.percentSafeHeight(toDouble())/ _ScreenUtils.percentSafeWidth(toDouble()), 1.0) * toDouble();
   // ------------------------
@@ -80,7 +80,7 @@ extension SmartScalerExtension on num {
       case ScaleMode.design:
         return dt;
       case ScaleMode.percent:
-        return pt;
+        return psp;
     }
   }
 

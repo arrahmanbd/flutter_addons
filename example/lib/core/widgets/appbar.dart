@@ -44,7 +44,10 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
 
               // Search icon (tap to open search)
               IconButton(
-                icon: const Icon(Icons.settings_input_component_outlined, color: Colors.white),
+                icon: const Icon(
+                  Icons.settings_input_component_outlined,
+                  color: Colors.white,
+                ),
                 onPressed: onSearchTap,
                 tooltip: 'Search',
               ),

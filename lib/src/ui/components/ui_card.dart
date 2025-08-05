@@ -1,8 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
-
-
 class UiProductCard extends StatelessWidget {
   final String imageUrl;
   final String title;
@@ -64,140 +61,157 @@ class UiProductCard extends StatelessWidget {
           borderRadius: borderRadiusValue,
           boxShadow: [
             BoxShadow(
-              color: theme.shadowColor.withOpacity(0.08),
+              color: theme.shadowColor.withValues(alpha: 0.08),
               blurRadius: 6,
               offset: const Offset(0, 2),
             ),
           ],
         ),
-        child: isHorizontal
-            ? Row(
-                children: [
-                  // Image
-                  ClipRRect(
-                    borderRadius: borderRadiusValue,
-                    child: Image.network(
-                      imageUrl,
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) =>
-                          const Icon(Icons.broken_image, size: 48),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  // Content
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
-                        ),
-                        if (subtitle != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4),
-                            child: Text(
-                              subtitle!,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
-                            ),
-                          ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              price,
-                              style: theme.textTheme.titleMedium?.copyWith(
-                                color: theme.colorScheme.primary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            if (onAction != null)
-                              TextButton(
-                                onPressed: onAction,
-                                style: TextButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                                  visualDensity: VisualDensity.compact,
-                                ),
-                                child: Text(actionLabel),
-                              )
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Image
-                  ClipRRect(
-                    borderRadius: borderRadiusValue,
-                    child: AspectRatio(
-                      aspectRatio: 1,
+        child:
+            isHorizontal
+                ? Row(
+                  children: [
+                    // Image
+                    ClipRRect(
+                      borderRadius: borderRadiusValue,
                       child: Image.network(
                         imageUrl,
+                        width: 100,
+                        height: 100,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) =>
-                            const Center(child: Icon(Icons.broken_image)),
+                        errorBuilder:
+                            (_, __, ___) =>
+                                const Icon(Icons.broken_image, size: 48),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Title
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
-                  ),
-
-                  // Subtitle
-                  if (subtitle != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        subtitle!,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
+                    const SizedBox(width: 12),
+                    // Content
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          if (subtitle != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Text(
+                                subtitle!,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: theme.hintColor,
+                                ),
+                              ),
+                            ),
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                price,
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  color: theme.colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              if (onAction != null)
+                                TextButton(
+                                  onPressed: onAction,
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 4,
+                                    ),
+                                    visualDensity: VisualDensity.compact,
+                                  ),
+                                  child: Text(actionLabel),
+                                ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-
-                  const SizedBox(height: 8),
-
-                  // Price + Action Row
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        price,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          color: theme.colorScheme.primary,
-                          fontWeight: FontWeight.bold,
+                  ],
+                )
+                : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Image
+                    ClipRRect(
+                      borderRadius: borderRadiusValue,
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder:
+                              (_, __, ___) =>
+                                  const Center(child: Icon(Icons.broken_image)),
                         ),
                       ),
-                      if (onAction != null)
-                        TextButton(
-                          onPressed: onAction,
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                            visualDensity: VisualDensity.compact,
+                    ),
+                    const SizedBox(height: 12),
+
+                    // Title
+                    Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+
+                    // Subtitle
+                    if (subtitle != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          subtitle!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.hintColor,
                           ),
-                          child: Text(actionLabel),
-                        )
-                    ],
-                  ),
-                ],
-              ),
+                        ),
+                      ),
+
+                    const SizedBox(height: 8),
+
+                    // Price + Action Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          price,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: theme.colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        if (onAction != null)
+                          TextButton(
+                            onPressed: onAction,
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 4,
+                              ),
+                              visualDensity: VisualDensity.compact,
+                            ),
+                            child: Text(actionLabel),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
       ),
     );
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 
@@ -34,8 +33,9 @@ class AppDarkColors extends ThemeKolors {
   Color get secondaryContent => const Color(0xFF9CA3AF); // Muted text
 
   @override
-  Color get shadowColor => Colors.black.withOpacity(0.4); // Elevated UI shadow
+  Color get shadowColor => Colors.black; // Elevated UI shadow
 }
+
 class AppLightColors extends ThemeKolors {
   @override
   Brightness get themeMode => Brightness.light;
@@ -68,5 +68,5 @@ class AppLightColors extends ThemeKolors {
   Color get secondaryContent => const Color(0xFF6B7280); // Muted text
 
   @override
-  Color get shadowColor => Colors.black.withOpacity(0.08); // Light UI elevation
+  Color get shadowColor => Colors.black.withValues(alpha: 0.08); // Light UI elevation
 }

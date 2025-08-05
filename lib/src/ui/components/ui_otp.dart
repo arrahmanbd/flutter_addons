@@ -2,6 +2,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// A professional and customizable OTP input field.
 typedef ResendButtonBuilder = Widget Function(VoidCallback onTap, int seconds);
+
 class OtpDecoration {
   final Color borderColor;
   final Color focusBorderColor;
@@ -68,7 +69,10 @@ class _UiOtpFieldState extends State<UiOtpField>
   @override
   void initState() {
     super.initState();
-    _controllers = List.generate(widget.pinLength, (_) => TextEditingController());
+    _controllers = List.generate(
+      widget.pinLength,
+      (_) => TextEditingController(),
+    );
     _focusNodes = List.generate(widget.pinLength, (_) => FocusNode());
 
     _shakeController = AnimationController(
@@ -76,9 +80,10 @@ class _UiOtpFieldState extends State<UiOtpField>
       vsync: this,
     );
 
-    _offsetAnimation = Tween(begin: 0.0, end: 8.0)
-        .chain(CurveTween(curve: Curves.elasticIn))
-        .animate(_shakeController);
+    _offsetAnimation = Tween(
+      begin: 0.0,
+      end: 8.0,
+    ).chain(CurveTween(curve: Curves.elasticIn)).animate(_shakeController);
 
     _startResendTimer();
   }
@@ -124,8 +129,12 @@ class _UiOtpFieldState extends State<UiOtpField>
 
   @override
   void dispose() {
-    for (final c in _controllers) c.dispose();
-    for (final f in _focusNodes) f.dispose();
+    for (final c in _controllers) {
+      c.dispose();
+    }
+    for (final f in _focusNodes) {
+      f.dispose();
+    }
     _resendTimer?.cancel();
     _shakeController.dispose();
     super.dispose();
@@ -140,10 +149,11 @@ class _UiOtpFieldState extends State<UiOtpField>
       children: [
         AnimatedBuilder(
           animation: _offsetAnimation,
-          builder: (_, child) => Transform.translate(
-            offset: Offset(_offsetAnimation.value, 0),
-            child: child,
-          ),
+          builder:
+              (_, child) => Transform.translate(
+                offset: Offset(_offsetAnimation.value, 0),
+                child: child,
+              ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(widget.pinLength, (i) {

@@ -22,7 +22,7 @@ class BlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final aspectRatio = context.isMobile? .78 : 1.12;
+    final aspectRatio = context.isMobile ? .78 : 1.12;
     return Scaffold(
       backgroundColor: context.background,
       appBar: FacebookAppBar(
@@ -45,7 +45,7 @@ class BlogPage extends StatelessWidget {
             SizedBox(height: 24.h),
             _buildCategoryList(context),
             SizedBox(height: 16.h),
-          
+
             ResponsiveBuilder(
               builder: (screen) {
                 if (screen.isLandscape) {

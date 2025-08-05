@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 
 class UiExamples extends StatefulWidget {
-  const UiExamples({Key? key}) : super(key: key);
+  const UiExamples({super.key});
 
   @override
   State<UiExamples> createState() => _UiExamplesState();
@@ -13,17 +13,17 @@ class _UiExamplesState extends State<UiExamples> {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = TextEditingController();
+    final controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(title: const Text('')),
       body: Padding(
-        padding: 24.p,
+        padding: 24.pt,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 16.h),
             UiTextField.filled(
-              controller: _controller,
+              controller: controller,
               borderColor: context.primaryColor,
               label: 'Email',
               hintText: 'Enter your email',
@@ -138,7 +138,7 @@ class _UiExamplesState extends State<UiExamples> {
             UiCheckbox.group(
               options: ['Singing', 'Writing', 'Photography'],
               onChanged: (updated) => {},
-              errorText: selectedGender!.isEmpty
+              errorText: selectedGender.isEmpty
                   ? 'Please select at least one'
                   : null,
               selectedValues: ['Singing', 'Photography'],

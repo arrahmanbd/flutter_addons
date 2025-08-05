@@ -2,7 +2,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Provides convenient spacing extensions on [num] for unified margin, padding,
 /// and sized box creation using a fixed unit.
-/// 
+///
 // SpacingExtensions class removed as all extensions are provided via UnifiedMarginPadding on num.
 
 extension UnifiedMarginPadding on num {
@@ -59,13 +59,16 @@ extension UnifiedMarginPadding on num {
   // ---------------------------
   // SizedBox extensions
   // ---------------------------
-
-  /// Horizontal space: `sx`
-  SizedBox get sx => SizedBox(width: toDouble());
-
-  /// Vertical space: `sy`
-  SizedBox get sy => SizedBox(height: toDouble());
-
   /// Square space: `s` (width & height)
   SizedBox get s => SizedBox(width: toDouble(), height: toDouble());
+
+  // Added gap
+  /// Gap space: `g` (width & height)
+  SizedBox get gap => SizedBox(width: toDouble(), height: toDouble());
+
+  /// Horizontal space: `width` gap
+  SizedBox get gapX => SizedBox(width: toDouble());
+
+  /// Vertical space: `height` gap
+  SizedBox get gapY => SizedBox(height: toDouble());
 }

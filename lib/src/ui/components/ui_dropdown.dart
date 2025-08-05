@@ -49,7 +49,9 @@ class UiDropdown<T> extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 6.0),
             child: Text(
               labelText!,
-              style: theme.textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
+              style: theme.textTheme.labelLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         DecoratedBox(
@@ -57,14 +59,18 @@ class UiDropdown<T> extends StatelessWidget {
             color: backgroundColor ?? theme.cardColor,
             borderRadius: BorderRadius.circular(borderRadius),
             border: Border.all(
-              color: borderColor ?? (errorText != null ? theme.colorScheme.error : theme.dividerColor),
+              color:
+                  borderColor ??
+                  (errorText != null
+                      ? theme.colorScheme.error
+                      : theme.dividerColor),
             ),
             boxShadow: [
               BoxShadow(
-                color: shadowColor ?? Colors.black.withOpacity(0.05),
+                color: shadowColor ?? Colors.black.withValues(alpha: 0.05),
                 blurRadius: 6,
                 offset: const Offset(0, 3),
-              )
+              ),
             ],
           ),
           child: Padding(
@@ -89,7 +95,9 @@ class UiDropdown<T> extends StatelessWidget {
             padding: const EdgeInsets.only(top: 6),
             child: Text(
               errorText!,
-              style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.error),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.error,
+              ),
             ),
           ),
       ],

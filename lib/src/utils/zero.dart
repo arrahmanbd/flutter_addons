@@ -1,6 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
 class Zero {
   const Zero._();
 

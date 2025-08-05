@@ -109,7 +109,7 @@ class UiLabel extends StatelessWidget {
 
   const UiLabel(
     this.text, {
-    Key? key,
+    super.key,
     this.textType = UiLabelTextType.bodyMedium,
     this.color,
     this.textAlign,
@@ -119,7 +119,7 @@ class UiLabel extends StatelessWidget {
     this.fontWeight,
     this.letterSpacing,
     this.decoration = TextDecoration.none,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

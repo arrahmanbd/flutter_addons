@@ -3,7 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 enum _UiButtonType { elevated, outlined, text, icon, circle }
 
 class UiButton extends StatelessWidget {
-  static const Color primary = Color(0xFF3B82F6); 
+  static const Color primary = Color(0xFF3B82F6);
   static const Color white = Color(0xFFFFFFFF);
   final Widget? icon;
   final String? label;
@@ -188,7 +188,7 @@ class UiButton extends StatelessWidget {
       case _UiButtonType.circle:
         return ElevatedButton(onPressed: onPressed, style: style, child: child);
       case _UiButtonType.elevated:
-      return ElevatedButton(onPressed: onPressed, style: style, child: child);
+        return ElevatedButton(onPressed: onPressed, style: style, child: child);
     }
   }
 }

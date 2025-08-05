@@ -1,6 +1,5 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-
 abstract class YaruProgressIndicator extends StatefulWidget {
   const YaruProgressIndicator({
     super.key,
@@ -13,8 +12,8 @@ abstract class YaruProgressIndicator extends StatefulWidget {
     this.trackStrokeWidth,
     this.semanticsLabel,
     this.semanticsValue,
-  })  : assert(strokeWidth == null || strokeWidth > 0),
-        assert(trackStrokeWidth == null || trackStrokeWidth > 0);
+  }) : assert(strokeWidth == null || strokeWidth > 0),
+       assert(trackStrokeWidth == null || trackStrokeWidth > 0);
 
   final double? value;
 
@@ -64,7 +63,9 @@ abstract class YaruProgressIndicator extends StatefulWidget {
 }
 
 abstract class YaruProgressIndicatorThemeData<
-    T extends YaruProgressIndicatorThemeData<T>> extends theme.ThemeExtension<T> {
+  T extends YaruProgressIndicatorThemeData<T>
+>
+    extends theme.ThemeExtension<T> {
   YaruProgressIndicatorThemeData(
     this.color,
     this.trackColor,
@@ -82,8 +83,8 @@ abstract class YaruProgressIndicatorThemeData<
 }
 
 class YaruCircularProgressIndicatorThemeData
-    extends YaruProgressIndicatorThemeData<
-        YaruCircularProgressIndicatorThemeData> {
+    extends
+        YaruProgressIndicatorThemeData<YaruCircularProgressIndicatorThemeData> {
   YaruCircularProgressIndicatorThemeData(
     super.color,
     super.trackColor,
@@ -108,7 +109,8 @@ class YaruCircularProgressIndicatorThemeData
 
   @override
   theme.ThemeExtension<YaruCircularProgressIndicatorThemeData> lerp(
-    covariant theme.ThemeExtension<YaruCircularProgressIndicatorThemeData>? other,
+    covariant theme.ThemeExtension<YaruCircularProgressIndicatorThemeData>?
+    other,
     double t,
   ) {
     final o = other as YaruCircularProgressIndicatorThemeData?;
@@ -131,8 +133,11 @@ class YaruCircularProgressIndicatorTheme extends InheritedWidget {
   final YaruCircularProgressIndicatorThemeData data;
 
   static YaruCircularProgressIndicatorThemeData? of(BuildContext context) {
-    final t = context.dependOnInheritedWidgetOfExactType<
-        YaruCircularProgressIndicatorTheme>();
+    final t =
+        context
+            .dependOnInheritedWidgetOfExactType<
+              YaruCircularProgressIndicatorTheme
+            >();
     return t?.data ??
         Theme.of(context).extension<YaruCircularProgressIndicatorThemeData>();
   }
@@ -181,9 +186,7 @@ class _YaruCircularProgressIndicatorState extends State<Orkitt>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-    );
+    _controller = AnimationController(vsync: this);
     _updateControllerState();
   }
 
@@ -205,15 +208,17 @@ class _YaruCircularProgressIndicatorState extends State<Orkitt>
 
   void _updateControllerState() async {
     if (widget.value == null) {
-      _controller.duration =
-          const Duration(milliseconds: _kIndeterminateInitialAnimationDuration);
+      _controller.duration = const Duration(
+        milliseconds: _kIndeterminateInitialAnimationDuration,
+      );
       await _controller.forward();
       setState(() {
         _initialAnimation = false;
       });
 
-      _controller.duration =
-          const Duration(milliseconds: _kIndeterminateAnimationDuration);
+      _controller.duration = const Duration(
+        milliseconds: _kIndeterminateAnimationDuration,
+      );
       await _controller.repeat();
     }
   }
@@ -223,18 +228,22 @@ class _YaruCircularProgressIndicatorState extends State<Orkitt>
     final theme = Theme.of(context);
     final progressTheme = YaruCircularProgressIndicatorTheme.of(context);
 
-    final color = widget.valueColor?.value ??
+    final color =
+        widget.valueColor?.value ??
         widget.color ??
         progressTheme?.color ??
         theme.colorScheme.primary;
-    final trackColor = widget.trackValueColor?.value ??
+    final trackColor =
+        widget.trackValueColor?.value ??
         widget.trackColor ??
         progressTheme?.trackColor ??
-        color.withOpacity(_kDefaultTrackColorOpacity);
-    final strokeWidth = widget.strokeWidth ??
+        color.withValues(alpha: _kDefaultTrackColorOpacity);
+    final strokeWidth =
+        widget.strokeWidth ??
         progressTheme?.strokeWidth ??
         _kDefaultStrokeWidth;
-    final trackStrokeWidth = widget.trackStrokeWidth ??
+    final trackStrokeWidth =
+        widget.trackStrokeWidth ??
         progressTheme?.trackStrokeWidth ??
         strokeWidth;
 
@@ -246,9 +255,7 @@ class _YaruCircularProgressIndicatorState extends State<Orkitt>
             minWidth: _kMinCircularProgressIndicatorSize,
             minHeight: _kMinCircularProgressIndicatorSize,
           ),
-          child: RepaintBoundary(
-            child: child,
-          ),
+          child: RepaintBoundary(child: child),
         ),
       );
     }
@@ -277,21 +284,23 @@ class _YaruCircularProgressIndicatorState extends State<Orkitt>
         late double rotationProgress;
 
         if (_initialAnimation) {
-          barSizeProgress =
-              CurveTween(curve: Curves.easeInOut).transform(progress);
+          barSizeProgress = CurveTween(
+            curve: Curves.easeInOut,
+          ).transform(progress);
           spacingProgress = 0;
           rotationProgress = 0;
         } else {
           barSizeProgress = 1.0;
-          spacingProgress = 1 -
+          spacingProgress =
+              1 -
               Tween<double>(begin: -1.0, end: 1.0)
                   .chain(CurveTween(curve: _kIndeterminateAnimationCurve))
                   .transform(progress)
                   .abs();
           rotationProgress = Tween<double>(
-            begin: 0.0,
-            end: _turn * _kIndeterminateAnimationTurns,
-          )
+                begin: 0.0,
+                end: _turn * _kIndeterminateAnimationTurns,
+              )
               .chain(CurveTween(curve: _kIndeterminateAnimationCurve))
               .transform(progress);
         }
@@ -337,10 +346,11 @@ class _IndeterminateYaruCircularProgressIndicatorPainter extends CustomPainter {
 
     const circleThird = _turn / 3;
 
-    final strokePaint = Paint()
-      ..color = color
-      ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke;
+    final strokePaint =
+        Paint()
+          ..color = color
+          ..strokeWidth = strokeWidth
+          ..style = PaintingStyle.stroke;
 
     final center = Offset(size.width / 2, size.height / 2);
     final radius =
@@ -352,26 +362,19 @@ class _IndeterminateYaruCircularProgressIndicatorPainter extends CustomPainter {
 
     for (var i = 0; i < 3; i++) {
       final realSweepAngle = sweepAngle * barSizeProgress;
-      final startAngle = align +
+      final startAngle =
+          align +
           circleThird * i -
           (realSweepAngle / 2 * barSizeProgress) +
           rotationProgress;
-      canvas.drawArc(
-        rect,
-        startAngle,
-        realSweepAngle,
-        false,
-        strokePaint,
-      );
+      canvas.drawArc(rect, startAngle, realSweepAngle, false, strokePaint);
     }
 
     canvas.restore();
   }
 
   @override
-  bool shouldRepaint(
-    _IndeterminateYaruCircularProgressIndicatorPainter _,
-  ) {
+  bool shouldRepaint(_IndeterminateYaruCircularProgressIndicatorPainter _) {
     return true;
   }
 }
@@ -395,9 +398,10 @@ class _DeterminateYaruCircularProgressIndicatorPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final revisedValue = value >= 0 && value <= 1
-        ? value
-        : value < 0
+    final revisedValue =
+        value >= 0 && value <= 1
+            ? value
+            : value < 0
             ? 0
             : 1;
     final center = Offset(size.width / 2, size.height / 2);
@@ -406,14 +410,16 @@ class _DeterminateYaruCircularProgressIndicatorPainter extends CustomPainter {
     final sweepAngle = _turn * revisedValue;
     final rect = Rect.fromCircle(center: center, radius: radius);
 
-    final strokePaint = Paint()
-      ..color = color
-      ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke;
-    final trackStrokePaint = Paint()
-      ..color = trackColor
-      ..strokeWidth = trackStrokeWidth
-      ..style = PaintingStyle.stroke;
+    final strokePaint =
+        Paint()
+          ..color = color
+          ..strokeWidth = strokeWidth
+          ..style = PaintingStyle.stroke;
+    final trackStrokePaint =
+        Paint()
+          ..color = trackColor
+          ..strokeWidth = trackStrokeWidth
+          ..style = PaintingStyle.stroke;
 
     if (textDirection == TextDirection.rtl) {
       canvas.scale(-1, 1);

@@ -1,6 +1,4 @@
-
 part of 'package:flutter_addons/flutter_addons.dart';
-
 
 //  Reusable UiCheckbox with UiCheckbox.group
 class UiCheckbox extends StatelessWidget {
@@ -28,7 +26,7 @@ class UiCheckbox extends StatelessWidget {
         InkWell(
           onTap: isDisabled ? null : () => onChanged(!value),
           borderRadius: BorderRadius.circular(6),
-          splashColor: theme.primaryColor.withOpacity(0.1),
+          splashColor: theme.primaryColor.withValues(alpha: 0.1),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -36,12 +34,11 @@ class UiCheckbox extends StatelessWidget {
                 value: value,
                 onChanged: isDisabled ? null : (val) => onChanged(val!),
                 activeColor: Colors.blue,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
               ),
-              Text(
-                label,
-                style: theme.textTheme.bodyMedium,
-              ),
+              Text(label, style: theme.textTheme.bodyMedium),
             ],
           ),
         ),
@@ -52,7 +49,7 @@ class UiCheckbox extends StatelessWidget {
               errorText!,
               style: theme.textTheme.bodySmall?.copyWith(color: Colors.red),
             ),
-          )
+          ),
       ],
     );
   }
@@ -71,28 +68,26 @@ class UiCheckbox extends StatelessWidget {
         Wrap(
           spacing: 12,
           runSpacing: 8,
-          children: options.map((option) {
-            final isSelected = selectedValues.contains(option);
-            return UiCheckbox(
-              label: option,
-              value: isSelected,
-              isDisabled: isDisabled,
-              onChanged: (checked) {
-                final updated = List<String>.from(selectedValues);
-                checked ? updated.add(option) : updated.remove(option);
-                onChanged(updated);
-              },
-            );
-          }).toList(),
+          children:
+              options.map((option) {
+                final isSelected = selectedValues.contains(option);
+                return UiCheckbox(
+                  label: option,
+                  value: isSelected,
+                  isDisabled: isDisabled,
+                  onChanged: (checked) {
+                    final updated = List<String>.from(selectedValues);
+                    checked ? updated.add(option) : updated.remove(option);
+                    onChanged(updated);
+                  },
+                );
+              }).toList(),
         ),
         if (errorText != null)
           Padding(
             padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              errorText,
-              style: const TextStyle(color: Colors.red),
-            ),
-          )
+            child: Text(errorText, style: const TextStyle(color: Colors.red)),
+          ),
       ],
     );
   }
@@ -126,7 +121,7 @@ class UiRadioButton<T> extends StatelessWidget {
         InkWell(
           onTap: isDisabled ? null : () => onChanged(value),
           borderRadius: BorderRadius.circular(20),
-          splashColor: theme.primaryColor.withOpacity(0.1),
+          splashColor: theme.primaryColor.withValues(alpha: 0.1),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -137,10 +132,7 @@ class UiRadioButton<T> extends StatelessWidget {
                 activeColor: Colors.blue,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              Text(
-                label,
-                style: theme.textTheme.bodyMedium,
-              ),
+              Text(label, style: theme.textTheme.bodyMedium),
             ],
           ),
         ),
@@ -151,7 +143,7 @@ class UiRadioButton<T> extends StatelessWidget {
               errorText!,
               style: theme.textTheme.bodySmall?.copyWith(color: Colors.red),
             ),
-          )
+          ),
       ],
     );
   }
@@ -171,24 +163,22 @@ class UiRadioButton<T> extends StatelessWidget {
         Wrap(
           spacing: 12,
           runSpacing: 8,
-          children: options.map((option) {
-            return UiRadioButton<T>(
-              value: option,
-              groupValue: selectedValue,
-              label: labelBuilder(option),
-              onChanged: onChanged,
-              isDisabled: isDisabled,
-            );
-          }).toList(),
+          children:
+              options.map((option) {
+                return UiRadioButton<T>(
+                  value: option,
+                  groupValue: selectedValue,
+                  label: labelBuilder(option),
+                  onChanged: onChanged,
+                  isDisabled: isDisabled,
+                );
+              }).toList(),
         ),
         if (errorText != null)
           Padding(
             padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              errorText,
-              style: const TextStyle(color: Colors.red),
-            ),
-          )
+            child: Text(errorText, style: const TextStyle(color: Colors.red)),
+          ),
       ],
     );
   }

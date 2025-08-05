@@ -188,9 +188,9 @@ extension ColorExtensions on Color {
   /// Example:
   /// ```dart
   /// Color color = Color(0xFF42A5F5);
-  /// Color semiTransparent = color.withOpacityFactor(0.5); // 50% opacity
+  /// Color semiTransparent = color.withValues(opacity: 0.5); // 50% opacity
   /// ```
-  Color withOpacityFactor(double opacity) {
+  Color withValues({required double opacity}) {
     assert(
       opacity >= 0.0 && opacity <= 1.0,
       'Opacity must be between 0.0 and 1.0',

@@ -163,9 +163,7 @@ class UiContainer extends StatelessWidget {
     if (!enableBorderRadius) return null;
     if (shape == BoxShape.circle) return null;
     return borderRadius ??
-        BorderRadius.all(
-          Radius.circular(borderRadiusAll ?? _defaultRadius),
-        );
+        BorderRadius.all(Radius.circular(borderRadiusAll ?? _defaultRadius));
   }
 
   EdgeInsetsGeometry get _effectivePadding =>
@@ -187,13 +185,14 @@ class UiContainer extends StatelessWidget {
         color: color ?? Theme.of(context).cardColor,
         shape: shape,
         borderRadius: _effectiveBorderRadius,
-        border: bordered
-            ? border ??
-                Border.all(
-                  color: borderColor ?? Theme.of(context).dividerColor,
-                  width: 1,
-                )
-            : null,
+        border:
+            bordered
+                ? border ??
+                    Border.all(
+                      color: borderColor ?? Theme.of(context).dividerColor,
+                      width: 1,
+                    )
+                : null,
       ),
       child: child,
     );

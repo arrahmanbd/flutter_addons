@@ -6,11 +6,13 @@ class UiDivider extends StatelessWidget {
   final double dashWidth;
   final double dashSpace;
 
-  const UiDivider(
-      {super.key, this.height = 1,
-      this.color = Colors.black,
-      this.dashWidth = 10,
-      this.dashSpace = 10});
+  const UiDivider({
+    super.key,
+    this.height = 1,
+    this.color = Colors.black,
+    this.dashWidth = 10,
+    this.dashSpace = 10,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +28,7 @@ class UiDivider extends StatelessWidget {
             return SizedBox(
               width: dashWidth,
               height: dashHeight,
-              child: DecoratedBox(
-                decoration: BoxDecoration(color: color),
-              ),
+              child: DecoratedBox(decoration: BoxDecoration(color: color)),
             );
           }),
         );

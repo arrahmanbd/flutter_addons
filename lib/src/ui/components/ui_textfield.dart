@@ -58,7 +58,10 @@ class UiTextField extends StatefulWidget {
     String? Function(String?)? validator,
     Color fillColor = const Color(0xFFF5F5F5),
     Color borderColor = Colors.transparent,
-    EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+    EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 14,
+    ),
     bool enabled = true,
     TextStyle? textStyle,
     TextStyle? hintStyle,
@@ -106,7 +109,10 @@ class UiTextField extends StatefulWidget {
     Widget? suffixIcon,
     String? Function(String?)? validator,
     Color borderColor = Colors.grey,
-    EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+    EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 14,
+    ),
     bool enabled = true,
     TextStyle? textStyle,
     TextStyle? hintStyle,
@@ -153,7 +159,10 @@ class UiTextField extends StatefulWidget {
     Widget? prefixIcon,
     Widget? suffixIcon,
     String? Function(String?)? validator,
-    EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
+    EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(
+      horizontal: 0,
+      vertical: 12,
+    ),
     bool enabled = true,
     TextStyle? textStyle,
     TextStyle? hintStyle,
@@ -216,12 +225,15 @@ class _UiTextFieldState extends State<UiTextField> {
         hintText: widget.hintText,
         hintStyle: widget.hintStyle,
         prefixIcon: widget.prefixIcon,
-        suffixIcon: widget.obscureText
-            ? IconButton(
-                icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility),
-                onPressed: () => setState(() => _obscure = !_obscure),
-              )
-            : widget.suffixIcon,
+        suffixIcon:
+            widget.obscureText
+                ? IconButton(
+                  icon: Icon(
+                    _obscure ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () => setState(() => _obscure = !_obscure),
+                )
+                : widget.suffixIcon,
         filled: widget.filled,
         fillColor: widget.fillColor,
         border: widget.border,

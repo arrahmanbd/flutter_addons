@@ -18,7 +18,7 @@ extension ResponsiveSpacing on num {
   double get pc => this * 16;
 
   /// Converts the value to points (pt), where 1 pt = 1/72 inch.
-  double get pt => this * inches / 72;
+  /// double get pt => this * inches / 72;
 
   /// Converts the value to pixels (px). Default unit.
   // double get px => toDouble();
