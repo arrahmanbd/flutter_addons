@@ -1,8 +1,8 @@
 /// *****************************************************************************
 /// 🧩 **Flutter Addons Library**
 /// 👨🏻‍💻 **Author:** AR Rahman
-/// 🌟 **Version:** 2.4.4
-/// 📅 **Updated:** Jul 8, 2025
+/// 🌟 **Version:** 2.4.5
+/// 📅 **Updated:** Aug 8, 2025
 /// 📅 **Created:** March 20, 2025
 /// 📜 **License:** Apache License 2.0
 /// 💡 Boost your development speed by over 7x with a robust set of micro-extensions that help you build fully responsive, theme-aware Flutter apps effortlessly.!
