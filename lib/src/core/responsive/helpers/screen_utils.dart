@@ -182,9 +182,3 @@ class _ScreenUtils {
     return ScreenType.desktop;
   }
 }
-
-/// Enum for OS type.
-enum OSType { android, ios, web, windows, mac, linux, fuchsia }
-
-/// Enum for screen type.
-enum ScreenType { mobile, tablet, desktop }

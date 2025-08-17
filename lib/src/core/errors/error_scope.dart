@@ -15,8 +15,9 @@ class _ErrorHandlerService {
     FlutterError.onError =
         onFlutterError ??
         (FlutterErrorDetails details) {
-          // Always show debug info, even if logging is disabled
-          _alwaysShowDebugInfo(details);
+          if (enableDebugLogging) {
+            _showDebugInfo(details);
+          }
           FlutterError.presentError(details);
         };
 
@@ -70,47 +71,42 @@ class _ErrorHandlerService {
     };
   }
 
-  static void _alwaysShowDebugInfo(FlutterErrorDetails details) {
+  static void _showDebugInfo(FlutterErrorDetails details) {
+    if (!kDebugMode) return; // Only in debug mode
+
     final exception = details.exception.toString();
     final stack = details.stack?.toString() ?? 'No stack trace available';
+
+    // Pick a random motivational quote
     final quote =
         AuthorSpeech.motivationalMessages[_random.nextInt(
           AuthorSpeech.motivationalMessages.length,
         )];
 
-    const reset = '\x1B[0m';
-    const bold = '\x1B[1m';
-    const cyan = '\x1B[36m';
-    const yellow = '\x1B[33m';
+    // Header
+    _printDivider('💡 DEBUG MOTIVATION', emoji: '💡', length: 80);
+    Debug.log('💬 Quote: $quote');
+    _printDivider('', emoji: '💡', length: 80);
 
-    // Styled box for motivational quote
-    if (kDebugMode) {
-      print('''
-$bold$cyan━━━━━━━━━━━━━━━━━━━━━━[ Debug Motivation 💡 ]━━━━━━━━━━━━━━━━━━━━━━$reset
-$yellow$quote$reset
-$cyan━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$reset
-''');
-    }
+    // Exception
+    print('🚨 Exception:');
+    print('  $exception\n');
 
-    // Error and stack (kept readable outside the box)
-    Debug.info(
-      '────────────────────── Flutter Addons Error Report ───────────────────────',
+    // Stack preview (first 5 lines)
+    print('📝 Stack Trace (first 5 lines):');
+    print('  ${_previewStack(stack)}\n');
+
+    // Suggested search link
+    print('🔍 Quick Search Suggestion:');
+    print('  ${_makeQuery(exception)}\n');
+
+    // Tip
+    print(
+      '💡 Tip: Use try/catch or custom error boundaries to gracefully handle errors.\n',
     );
-    Debug.info('Exception:');
-    Debug.error('  $exception\n');
 
-    Debug.info('Stack Trace (first 5 lines):');
-    Debug.warning('  ${_previewStack(stack)}\n');
-
-    Debug.success('✅  Search suggestion:');
-    Debug.info('  ${_makeQuery(exception)}\n');
-
-    Debug.info(
-      ' 💡 Tip: Use try/catch or custom error boundaries to gracefully handle this.',
-    );
-    Debug.info(
-      '───────────────────────────────────────────────────────────────────────────────',
-    );
+    // Footer
+    _printDivider('🏁 END OF ERROR REPORT', emoji: '🏁', length: 80);
   }
 
   static String _previewStack(String stack, [int lines = 5]) {
@@ -123,5 +119,15 @@ $cyan━━━━━━━━━━━━━━━━━━━━━━━━━
     var cleaned = exception.replaceAll(RegExp(r'\s+'), ' ').trim();
     if (cleaned.length > 50) cleaned = cleaned.substring(0, 50);
     return "https://www.google.com/search?q=${Uri.encodeComponent('$cleaned in Flutter')}";
+  }
+
+  static void _printDivider(
+    String title, {
+    String emoji = '─',
+    int length = 60,
+  }) {
+    final lineLength = ((length - title.length - 2) ~/ 2).clamp(0, length);
+    final line = emoji * lineLength;
+    print('$line $title $line');
   }
 }

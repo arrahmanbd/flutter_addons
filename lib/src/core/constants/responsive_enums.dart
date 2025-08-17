@@ -1,5 +1,13 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
+/// Enum for OS type.
+enum OSType { android, ios, web, windows, mac, linux, fuchsia }
+
+enum UiMessageType { snackbar, alert, bottomSheet }
+
+/// Enum for screen type.
+enum ScreenType { mobile, tablet, desktop }
+
 enum ScaleMode { design, percent }
 
 /// unified widget function

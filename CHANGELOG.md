@@ -1,4 +1,19 @@
-# 2.4.4
+# 2.5.0
+
+### Added
+- `UiAvatar` widget for circular avatars with optional status indicators.
+- `UiAccordion` widget for expandable/collapsible panels.
+- `UiDrawer` widget for modern navigation drawer.
+- Updated documentation for navigation extensions.
+
+### Changed
+- Renamed `Frame` class to `DesignFrame` for clarity.
+- Optimized code across widgets and extensions for performance and readability.
+
+### Fixed
+ - Minor layout and ui issues in entrypoint and other ui components.
+
+## 2.4.5
 
 - Add `UI` Components.
 - Added `UIFlatButton` components.

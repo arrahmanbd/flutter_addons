@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveScope(
       app: SoulApp(),
       screenLock: AppOrientationLock.portraitUp,
-      designFrame: Frame(w: 320, h: 812),
+      designFrame: DesignFrame(width: 320, height: 812),
       scaleMode: ScaleMode.design,
       enableDebugLogging: true,
       // this will be removed soon

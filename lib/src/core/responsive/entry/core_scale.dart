@@ -17,14 +17,14 @@ class CoreScale {
   bool _debugLog = false;
   late MediaQueryData _mediaQuery;
 
-  Frame? _designFrame;
+  DesignFrame? _designFrame;
 
   /// Initializes CoreScale once at app startup.
   /// Sets mode, design frame, and enables logging if needed.
   void init({
     required BuildContext rootContext,
     required ScaleMode mode,
-    Frame? designFrame,
+    DesignFrame? designFrame,
     bool debugLog = false,
   }) {
     if (_initialized) {
@@ -46,11 +46,11 @@ class CoreScale {
     // and the current mode is ScaleMode.design
     if (_mode == ScaleMode.design &&
         _designFrame != null &&
-        _designFrame!.w > 0 &&
-        _designFrame!.h > 0) {
+        _designFrame!.width > 0 &&
+        _designFrame!.height > 0) {
       _DesignUtils.instance.init(
-        designWidth: _designFrame!.w,
-        designHeight: _designFrame!.h,
+        designWidth: _designFrame!.width,
+        designHeight: _designFrame!.height,
         mediaQuery: _mediaQuery,
         isLoggingEnabled: _debugLog,
       );
@@ -85,10 +85,12 @@ class CoreScale {
     _ScreenUtils.initialize(mediaQuery: _mediaQuery);
 
     // Update DesignUtils scaling if design frame exists
-    if (_designFrame != null && _designFrame!.w > 0 && _designFrame!.h > 0) {
+    if (_designFrame != null &&
+        _designFrame!.width > 0 &&
+        _designFrame!.height > 0) {
       _DesignUtils.instance.init(
-        designWidth: _designFrame!.w,
-        designHeight: _designFrame!.h,
+        designWidth: _designFrame!.width,
+        designHeight: _designFrame!.height,
         mediaQuery: _mediaQuery,
         isLoggingEnabled: _debugLog,
       );

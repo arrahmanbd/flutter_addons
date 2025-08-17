@@ -30,6 +30,7 @@ import 'package:flutter/material.dart' as theme show ThemeExtension;
 /// Flutter SDK
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart' as service;
 import 'package:flutter/services.dart';
 
@@ -69,6 +70,7 @@ part 'src/ui/widget/list_grid.dart';
 /// 📱 Responsive Core
 /// -----------------------
 part 'src/core/responsive/entry/entry_scope.dart';
+part 'src/core/responsive/entry/scope_wrapper.dart';
 part 'src/core/responsive/spacing/extended_units.dart';
 part 'src/core/responsive/helpers/screen_utils.dart';
 part 'src/core/responsive/helpers/design_utils.dart';
@@ -165,7 +167,7 @@ part 'src/core/themes/theme_maker.dart';
 part 'src/core/themes/theme_engine.dart';
 part 'src/core/themes/theme_manager.dart';
 part 'src/core/themes/soul_component.dart';
-part 'src/core/themes/theme_helper.dart';
+part 'src/ui/ui_helper.dart';
 
 /// -- Color Palettes
 part 'src/core/palettes/soul_colors.dart';
@@ -221,10 +223,13 @@ part 'src/ui/components/ui_label.dart';
 part 'src/ui/components/ui_button.dart';
 part 'src/ui/components/ui_textfield.dart';
 part 'src/ui/components/ui_otp.dart';
-part 'src/ui/components/form_ui.dart';
+part 'src/ui/components/ui_form.dart';
 part 'src/ui/components/ui_dropdown.dart';
 part 'src/ui/components/ui_loader.dart';
 part 'src/ui/components/ui_flatbutton.dart';
+part 'src/ui/components/ui_accoridion.dart';
+part 'src/ui/components/ui_avater.dart';
+part 'src/ui/components/ui_drawer.dart';
 
 /// -- Advanced Components
 part 'src/ui/components/ui_borderbox.dart';

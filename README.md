@@ -2,13 +2,13 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-2.4.1-blue)
+![Version](https://img.shields.io/badge/Version-2.5.0-white)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
 ![Stars](https://img.shields.io/github/stars/arrahmanbd/flutter_addons)
 ![Contributors](https://img.shields.io/github/contributors/arrahmanbd/flutter_addons)
-[![Stand With Palestine](https://github.com/arrahmanbd/bangla_pdf_fixer/raw/master/images/StandWithPalestine.svg)](https://pub.dev/packages/bangla_pdf_fixer)
+[![Stand With Palestine](https://github.com/arrahmanbd/bangla_pdf_fixer/raw/master/images/StandWithPalestine.svg)](https://pub.dev/packages/flutter_addons)
 
 
 **Flutter Addons** is a powerful micro-extension framework built to accelerate Flutter app development. Designed with responsiveness, theming, and developer productivity in mind, it lets you build scalable, pixel-perfect, and theme-aware applications with minimal boilerplate.
@@ -40,7 +40,7 @@ ResponsiveScope( // 👈  ResponsiveScope — VERY Important: Manages layout sca
   enableDebugLogging: true, // Enable debug logs for responsive layout changes
   screenLock: AppOrientationLock.none, // No orientation restriction
   errorScreen: ErrorScreen.blueCrash, // Custom error screen for uncaught Flutter errors
-  designFrame: const Frame(width: 390, height: 844), // Base design frame for scaling (e.g., iPhone 13)
+  designFrame: const DesignFrame(width: 390, height: 844), // Base design frame for scaling (e.g., iPhone 13)
   scaleMode: ScaleMode.design, // Use design-based scaling for consistent UI
   layoutBuilder: (ui)=>  MobileApp(),
 );
@@ -222,20 +222,20 @@ The `Spacing` extension provides quick, expressive syntax for margins, paddings,
 enum AnimationType { fade, slideFromRight, slideFromLeft, scale, rotate,rotatescale }
 ```
 
+# Navigation Extensions
 
-
-| Method/Property                | Description                                             | Example Usage                 |
-| ------------------------------ | ------------------------------------------------------- | ----------------------------- |
-| `_navigator`                   | Gets the NavigatorState for the current context         | `context._navigator`          |
-| `navigator`                    | Provides NavigatorHelperAddons with animations          | `context.navigator`           |
-| `go(Widget page)`              | Pushes a widget page with animation                     | `context.go(MyPage())`        |
-| `goName(String name)`          | Pushes a named route with animation                     | `context.goName('/home')`     |
-| `goReplace(Widget page)`       | Replaces current route with widget page with animation  | `context.goReplace(MyPage())` |
-| `pop()`                        | Pops current route if possible                          | `context.pop()`               |
-| `popToRoot()`                  | Pops all routes until the root                          | `context.popToRoot()`         |
-| `launch(BuildContext context)` | Pushes this widget onto navigation stack with animation | `MyWidget().launch(context)`  |
-
----
+| Function | Description |
+|----------|-------------|
+| `push(Widget page)` | Pushes a new page with animation. |
+| `pushName(String name)` | Pushes a named route with animation. |
+| `pushReplaced(Widget page)` | Replaces current route with a new page with animation. |
+| `pop()` | Pops the current route if possible. |
+| `popToRoot()` | Pops all routes until the first route. |
+| `pushReplacementNamed(String routeName, {Object? arguments})` | Replaces current route with a named route. |
+| `canLaunch(BuildContext context)` | Checks if the context is mounted. |
+| `launch(BuildContext context)` | Pushes the widget with animation if context is mounted. |
+| `goAndRemoveUntil(Widget page, [RoutePredicate? predicate])` | Pushes a page and removes previous routes until predicate is true. |
+| `goNamedAndRemoveUntil(String routeName, [RoutePredicate? predicate])` | Pushes a named route and removes previous routes until predicate is true. |
 
 
 

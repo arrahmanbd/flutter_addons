@@ -1,60 +1,74 @@
-import 'package:flutter/material.dart';
+part of 'package:flutter_addons/flutter_addons.dart';
 
 // Still in experimental phase, not yet part of the public API.
 // This code is subject to change in future releases [3.0.0].
+class _ScopeWrapper extends StatelessWidget {
+  const _ScopeWrapper({required this.wrapped});
 
-class ScopeWrapper extends StatelessWidget {
-  final Widget child;
-
-  const ScopeWrapper({required this.child, super.key});
+  final Directionality wrapped;
 
   @override
   Widget build(BuildContext context) {
     return WidgetsApp(
-      color: const Color(0xFF2196F3), // primary color (required)
-      debugShowCheckedModeBanner: false, // disable default banner
+      debugShowCheckedModeBanner: true, // hide default banner
       onGenerateRoute:
           (settings) => PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => child,
+            pageBuilder: (context, animation, secondaryAnimation) => wrapped,
           ),
       builder: (context, widget) {
-        // Wrap with Directionality and your custom banner
-        return Directionality(
-          textDirection: TextDirection.ltr,
-          child: Stack(
-            children: [
-              if (widget != null) widget,
-              // Custom banner overlay, conditionally visible
-              Positioned(top: 0, left: 0, right: 0, child: _CustomBanner()),
-            ],
-          ),
+        return Stack(
+          fit: StackFit.expand, // Make the Stack fill the parent
+          clipBehavior: Clip.none, // Allow overlays to overflow if needed
+          children: [
+            // Main widget fills the entire available space
+            if (widget != null) Positioned.fill(child: widget),
+            // Custom banner overlay, conditionally visible
+            Positioned(top: 25, right: -30, child: _CustomDebugBanner()),
+          ],
         );
       },
-      // Add other properties as needed, like locale, navigatorObservers, etc.
+      color: Colors.white,
     );
   }
 }
 
-// Example of a simple custom banner widget
-class _CustomBanner extends StatelessWidget {
+class _CustomDebugBanner extends StatelessWidget {
+  final String text;
+  final Color backgroundColor;
+  final TextStyle? textStyle;
+
+  const _CustomDebugBanner({
+    Key? key,
+    this.text = 'F-ADDON',
+    this.backgroundColor = Colors.blue,
+    this.textStyle,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    // Show banner only in debug mode (optional)
     bool showBanner = false;
     assert(() {
       showBanner = true;
       return true;
     }());
-
     if (!showBanner) return const SizedBox.shrink();
 
-    return Container(
-      color: const Color(0xAAFF0000),
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      child: const Text(
-        '🚧 Custom Debug Banner',
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
+    return Transform.rotate(
+      angle: math.pi / 4, // 45 degrees
+      child: Container(
+        color: backgroundColor,
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 4),
+        child: Text(
+          text,
+          style:
+              textStyle ??
+              const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 10,
+                letterSpacing: 1.5,
+              ),
+        ),
       ),
     );
   }
