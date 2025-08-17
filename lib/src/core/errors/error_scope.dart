@@ -89,18 +89,25 @@ class _ErrorHandlerService {
     _printDivider('', emoji: '💡', length: 80);
 
     // Exception
+    // ignore: avoid_print
     print('🚨 Exception:');
+    // ignore: avoid_print
     print('  $exception\n');
 
     // Stack preview (first 5 lines)
+    // ignore: avoid_print
     print('📝 Stack Trace (first 5 lines):');
+    // ignore: avoid_print
     print('  ${_previewStack(stack)}\n');
 
     // Suggested search link
+    // ignore: avoid_print
     print('🔍 Quick Search Suggestion:');
+    // ignore: avoid_print
     print('  ${_makeQuery(exception)}\n');
 
     // Tip
+    // ignore: avoid_print
     print(
       '💡 Tip: Use try/catch or custom error boundaries to gracefully handle errors.\n',
     );
@@ -128,6 +135,7 @@ class _ErrorHandlerService {
   }) {
     final lineLength = ((length - title.length - 2) ~/ 2).clamp(0, length);
     final line = emoji * lineLength;
+    // ignore: avoid_print
     print('$line $title $line');
   }
 }

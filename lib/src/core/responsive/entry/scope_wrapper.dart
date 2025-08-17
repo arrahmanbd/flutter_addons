@@ -1,7 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'package:flutter_addons/flutter_addons.dart';
 
 // Still in experimental phase, not yet part of the public API.
 // This code is subject to change in future releases [3.0.0].
+// ignore: unused_element
 class _ScopeWrapper extends StatelessWidget {
   const _ScopeWrapper({required this.wrapped});
 
@@ -23,7 +25,11 @@ class _ScopeWrapper extends StatelessWidget {
             // Main widget fills the entire available space
             if (widget != null) Positioned.fill(child: widget),
             // Custom banner overlay, conditionally visible
-            Positioned(top: 25, right: -30, child: _CustomDebugBanner()),
+            Positioned(
+              top: 25,
+              right: -30,
+              child: _CustomDebugBanner(text: 'F-Addons'),
+            ),
           ],
         );
       },
@@ -34,15 +40,14 @@ class _ScopeWrapper extends StatelessWidget {
 
 class _CustomDebugBanner extends StatelessWidget {
   final String text;
-  final Color backgroundColor;
-  final TextStyle? textStyle;
+  //final Color backgroundColor;
+  //final TextStyle? textStyle;
 
   const _CustomDebugBanner({
-    Key? key,
-    this.text = 'F-ADDON',
-    this.backgroundColor = Colors.blue,
-    this.textStyle,
-  }) : super(key: key);
+    required this.text,
+    //this.backgroundColor = Colors.blue,
+    //this.textStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,18 +61,16 @@ class _CustomDebugBanner extends StatelessWidget {
     return Transform.rotate(
       angle: math.pi / 4, // 45 degrees
       child: Container(
-        color: backgroundColor,
+        color: Colors.red,
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 4),
         child: Text(
           text,
-          style:
-              textStyle ??
-              const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 10,
-                letterSpacing: 1.5,
-              ),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 10,
+            letterSpacing: 1.5,
+          ),
         ),
       ),
     );
