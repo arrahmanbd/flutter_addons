@@ -1,6 +1,26 @@
-# 2.5.0
+# 3.0-dev1
+
+## Added
+
+- `UiListTile` widget: fully customizable list tile with `.standard` and `.compact` variants.
+- `PixelPerfectGridOverlay`: visual grid overlay for design debugging.
+- `_ScopeWrapper` enhancements: optional debug grid and improved debug banner.
+
+## Changed
+
+- Refactored widgets and extensions for improved performance, readability, and maintainability.
+- Core widgets now support optional debug tools for faster UI testing.
+
+## Fixed
+
+- Grid overlay painting issues in debug mode.
+- Proper initialization of screen and layout info in `ResponsiveScope`.
+
+
+## 2.5.0
 
 ### Added
+
 - `UiAvatar` widget for circular avatars with optional status indicators.
 - `UiAccordion` widget for expandable/collapsible panels.
 - `UiDrawer` widget for modern navigation drawer.

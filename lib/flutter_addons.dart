@@ -1,7 +1,7 @@
 /// *****************************************************************************
 /// 🧩 **Flutter Addons Library**
 /// 👨🏻‍💻 **Author:** AR Rahman
-/// 🌟 **Version:** 2.4.5
+/// 🌟 **Version:** 2.5.0
 /// 📅 **Updated:** Aug 8, 2025
 /// 📅 **Created:** March 20, 2025
 /// 📜 **License:** Apache License 2.0
@@ -230,6 +230,7 @@ part 'src/ui/components/ui_flatbutton.dart';
 part 'src/ui/components/ui_accoridion.dart';
 part 'src/ui/components/ui_avater.dart';
 part 'src/ui/components/ui_drawer.dart';
+part 'src/ui/components/ui_listtile.dart';
 
 /// -- Advanced Components
 part 'src/ui/components/ui_borderbox.dart';
@@ -257,3 +258,4 @@ part 'src/core/responsive/bootstrap/breadcrums.dart';
 part 'src/core/responsive/bootstrap/display_flex_media.dart';
 part 'src/core/responsive/bootstrap/bootstrap_section.dart';
 part 'src/core/responsive/bootstrap/flaxable_spacing.dart';
+part 'src/core/responsive/entry/pixel_wrapper.dart';

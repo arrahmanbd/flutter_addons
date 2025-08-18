@@ -19,19 +19,19 @@ class MediaInfo {
     required this.isTablet,
     required this.isDesktop,
   });
-  // factory MediaInfo.fromBaseContext(BuildContext context) {
-  //   final mediaQuery = MediaQuery.of(context);
-  //   final orientation = mediaQuery.orientation;
-  //   final width = mediaQuery.size.width;
-  //   return MediaInfo(
-  //     context: context,
-  //     isLandscape: orientation == Orientation.landscape,
-  //     isPortrait: orientation == Orientation.portrait,
-  //     isMobile: width < 600, // Mobile if width < 600
-  //     isTablet: width >= 600 && width < 1200, // Tablet if 600 <= width < 1200
-  //     isDesktop: width >= 1200, // Desktop if width >= 1200
-  //   );
-  // }
+  factory MediaInfo.fromBaseContext(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final orientation = mediaQuery.orientation;
+    final width = mediaQuery.size.width;
+    return MediaInfo(
+      context: context,
+      isLandscape: orientation == Orientation.landscape,
+      isPortrait: orientation == Orientation.portrait,
+      isMobile: width < 600, // Mobile if width < 600
+      isTablet: width >= 600 && width < 1200, // Tablet if 600 <= width < 1200
+      isDesktop: width >= 1200, // Desktop if width >= 1200
+    );
+  }
 
   factory MediaInfo.fromThis(BuildContext context) {
     return MediaInfo(

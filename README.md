@@ -41,6 +41,7 @@ ResponsiveScope( // 👈  ResponsiveScope — VERY Important: Manages layout sca
   screenLock: AppOrientationLock.none, // No orientation restriction
   errorScreen: ErrorScreen.blueCrash, // Custom error screen for uncaught Flutter errors
   designFrame: const DesignFrame(width: 390, height: 844), // Base design frame for scaling (e.g., iPhone 13)
+  pixelDebug: true, // for pixel perfect debugging
   scaleMode: ScaleMode.design, // Use design-based scaling for consistent UI
   layoutBuilder: (ui)=>  MobileApp(),
 );

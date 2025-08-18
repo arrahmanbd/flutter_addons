@@ -5,31 +5,47 @@ part of 'package:flutter_addons/flutter_addons.dart';
 // This code is subject to change in future releases [3.0.0].
 // ignore: unused_element
 class _ScopeWrapper extends StatelessWidget {
-  const _ScopeWrapper({required this.wrapped});
+  const _ScopeWrapper({
+    required this.wrapped,
+    required this.debugBanner,
+    required this.showGrid,
+    required this.columnCount,
+  });
 
   final Directionality wrapped;
+  final bool debugBanner;
+  final bool showGrid;
+  final int columnCount;
 
   @override
   Widget build(BuildContext context) {
+    Widget content =
+        showGrid
+            ? PixelPerfectGridOverlay(
+              visible: true,
+              columns: columnCount,
+              child: wrapped,
+            )
+            : wrapped;
+
     return WidgetsApp(
-      debugShowCheckedModeBanner: true, // hide default banner
+      debugShowCheckedModeBanner: false, // hide default banner
       onGenerateRoute:
           (settings) => PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => wrapped,
+            pageBuilder: (context, animation, secondaryAnimation) => content,
           ),
       builder: (context, widget) {
         return Stack(
-          fit: StackFit.expand, // Make the Stack fill the parent
-          clipBehavior: Clip.none, // Allow overlays to overflow if needed
+          fit: StackFit.expand,
+          clipBehavior: Clip.none,
           children: [
-            // Main widget fills the entire available space
             if (widget != null) Positioned.fill(child: widget),
-            // Custom banner overlay, conditionally visible
-            Positioned(
-              top: 25,
-              right: -30,
-              child: _CustomDebugBanner(text: 'F-Addons'),
-            ),
+            if (debugBanner)
+              Positioned(
+                top: 16,
+                right: -48,
+                child: _CustomDebugBanner(text: 'DEV', version: '3.0.0-dev'),
+              ),
           ],
         );
       },
@@ -40,14 +56,9 @@ class _ScopeWrapper extends StatelessWidget {
 
 class _CustomDebugBanner extends StatelessWidget {
   final String text;
-  //final Color backgroundColor;
-  //final TextStyle? textStyle;
+  final String version;
 
-  const _CustomDebugBanner({
-    required this.text,
-    //this.backgroundColor = Colors.blue,
-    //this.textStyle,
-  });
+  const _CustomDebugBanner({required this.text, required this.version});
 
   @override
   Widget build(BuildContext context) {
@@ -60,16 +71,54 @@ class _CustomDebugBanner extends StatelessWidget {
 
     return Transform.rotate(
       angle: math.pi / 4, // 45 degrees
-      child: Container(
-        color: Colors.red,
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 4),
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 10,
-            letterSpacing: 1.5,
+      child: SizedBox(
+        width: 150,
+        height: 24,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Kolors.red700,
+            borderRadius: BorderRadius.circular(2),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 4,
+                offset: const Offset(0, 2),
+              ),
+            ],
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Kolors.red800,
+                Color.lerp(Kolors.red700, Colors.black, 0.1)!,
+              ],
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  text,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 10,
+                    letterSpacing: 1.5,
+                    height: 1.2,
+                  ),
+                ),
+                Text(
+                  version,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 8,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
