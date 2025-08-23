@@ -239,6 +239,7 @@ part 'src/ui/components/ui_popupmenu.dart';
 part 'src/ui/components/ui_miniprogress.dart';
 part 'src/ui/components/ui_listview.dart';
 part 'src/ui/components/ui_feedback.dart';
+part 'src/ui/components/ui_langselector.dart';
 /// -- Feedback Components
 part 'src/ui/feedback/alart.dart';
 part 'src/ui/feedback/snackbar.dart';
