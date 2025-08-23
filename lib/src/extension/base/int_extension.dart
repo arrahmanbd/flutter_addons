@@ -22,7 +22,7 @@ extension IntExtensions on int? {
 
   /// Returns microseconds duration
   /// 5.microseconds
-  Duration get ms => Duration(microseconds: validate());
+  Duration get mcs => Duration(microseconds: validate());
 
   /// Returns milliseconds duration
   /// ```dart

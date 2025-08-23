@@ -12,7 +12,7 @@ class ResponsiveScope extends StatefulWidget {
     this.screenLock = AppOrientationLock.none,
     this.ownErrorScreen,
     this.enableDebugLogging = false,
-    this.errorScreen = ErrorScreen.catHacker,
+    this.errorScreen = ErrorScreen.sifi,
     this.pixelDebug = false,
     this.gridCount = 12,
   });

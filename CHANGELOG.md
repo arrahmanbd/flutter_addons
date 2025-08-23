@@ -1,3 +1,28 @@
+# 3.0-preview
+
+-  RTL detection (important for Arabic, Hebrew, Urdu)
+-  Formatted names like English (EN)
+- Country info (fallback if not provided)
+- Central registry for easier scalability
+- Easily extensible for more languages
+- supportedLocales() helper for MaterialApp
+- enableSystemMode → toggle icon cycles Light ↔ Dark ↔ System or just Light ↔ Dark.
+- Full system mode support for icon toggle.
+
+Improved:
+
+- Reactive updates with AnimatedBuilder.
+- Icon and switch stay in sync.
+- Smooth transitions with AnimatedSwitcher.
+- Improved  `blurEffect` extension.
+
+
+Fixed:
+
+- Icon & switch not updating correctly.
+- Theme cycling inconsistencies.
+- Extension confilct for `animate` resolved with `animated` 
+
 # 3.0.0-dev
 
 ## Added

@@ -1,4 +1,62 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'package:flutter_addons/flutter_addons.dart';
+
+/// Model class to configure TextField borders easily
+class UiTextFieldBorder {
+  /// Default border color
+  final Color color;
+
+  /// Border width
+  final double width;
+
+  /// Border radius
+  final double radius;
+
+  /// Color when focused
+  final Color focusedColor;
+
+  /// Color when error occurs
+  final Color errorColor;
+
+  /// Optional disabled color
+  final Color? disabledColor;
+
+  const UiTextFieldBorder({
+    this.color = const Color(0xFFD0D7DE),
+    this.width = 1,
+    this.radius = 6,
+    this.focusedColor = const Color(0xFF0969DA),
+    this.errorColor = Colors.red,
+    this.disabledColor,
+  });
+
+  /// Returns normal enabled border
+  OutlineInputBorder get enabled => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(radius),
+    borderSide: BorderSide(color: color, width: width),
+  );
+
+  /// Returns focused border
+  OutlineInputBorder get focused => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(radius),
+    borderSide: BorderSide(color: focusedColor, width: width),
+  );
+
+  /// Returns error border
+  OutlineInputBorder get error => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(radius),
+    borderSide: BorderSide(color: errorColor, width: width),
+  );
+
+  /// Returns disabled border
+  OutlineInputBorder get disabled => OutlineInputBorder(
+    borderRadius: BorderRadius.circular(radius),
+    borderSide: BorderSide(
+      color: disabledColor ?? color.withValues(alpha: 0.5),
+      width: width,
+    ),
+  );
+}
 
 class UiTextField extends StatefulWidget {
   final TextEditingController? controller;
@@ -30,10 +88,11 @@ class UiTextField extends StatefulWidget {
   final double borderRadius;
   final Color borderColor;
   final double borderWidth;
+  final UiTextFieldBorder? borderConfig;
 
   /// ✅ Default constructor (usable directly)
   const UiTextField({
-    super.key,
+    Key? key,
     this.controller,
     this.label,
     this.hintText,
@@ -63,7 +122,8 @@ class UiTextField extends StatefulWidget {
     this.borderRadius = 8,
     this.borderColor = Colors.grey,
     this.borderWidth = 1,
-  });
+    this.borderConfig,
+  }) : super(key: key);
 
   /// ✅ Filled variant
   factory UiTextField.filled({
@@ -80,10 +140,11 @@ class UiTextField extends StatefulWidget {
     String? Function(String?)? validator,
     Color fillColor = const Color(0xFFF5F5F5),
     Color borderColor = Colors.transparent,
+    UiTextFieldBorder? borderConfig,
     double borderRadius = 8,
     EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(
       horizontal: 16,
-      vertical: 14,
+      vertical: 8,
     ),
     bool enabled = true,
     TextStyle? textStyle,
@@ -124,6 +185,9 @@ class UiTextField extends StatefulWidget {
       borderColor: borderColor,
       borderRadius: borderRadius,
       borderWidth: 1,
+      borderConfig:
+          borderConfig ??
+          UiTextFieldBorder(color: borderColor, radius: borderRadius, width: 1),
     );
   }
 
@@ -145,7 +209,7 @@ class UiTextField extends StatefulWidget {
     double borderWidth = 1,
     EdgeInsetsGeometry contentPadding = const EdgeInsets.symmetric(
       horizontal: 16,
-      vertical: 14,
+      vertical: 8,
     ),
     bool enabled = true,
     TextStyle? textStyle,
@@ -157,6 +221,7 @@ class UiTextField extends StatefulWidget {
     String? errorText,
     String? helperText,
     FocusNode? focusNode,
+    UiTextFieldBorder? borderConfig,
   }) {
     return UiTextField(
       key: key,
@@ -185,6 +250,13 @@ class UiTextField extends StatefulWidget {
       borderColor: borderColor,
       borderRadius: borderRadius,
       borderWidth: borderWidth,
+      borderConfig:
+          borderConfig ??
+          UiTextFieldBorder(
+            color: borderColor,
+            radius: borderRadius,
+            width: borderWidth,
+          ),
     );
   }
 
@@ -279,7 +351,9 @@ class _UiTextFieldState extends State<UiTextField> {
       autofocus: widget.autoFocus,
       maxLines: widget.obscureText ? 1 : widget.maxLines,
       minLines: widget.obscureText ? 1 : widget.minLines,
-      style: widget.textStyle,
+      style: widget.textStyle?? TextStyle(
+        fontSize: 16,
+      ),
       inputFormatters: widget.inputFormatters,
       focusNode: widget.focusNode,
       decoration: InputDecoration(
@@ -298,13 +372,28 @@ class _UiTextFieldState extends State<UiTextField> {
                 : widget.suffixIcon,
         filled: widget.filled,
         fillColor: widget.fillColor,
-        border: effectiveBorder,
-        enabledBorder: effectiveBorder,
-        focusedBorder: effectiveBorder,
-        disabledBorder: effectiveBorder,
+        border: widget.borderConfig?.enabled ?? effectiveBorder,
+        enabledBorder: widget.borderConfig?.enabled ?? effectiveBorder,
+        focusedBorder: widget.borderConfig?.focused ?? effectiveBorder,
+        errorBorder: widget.borderConfig?.error ?? effectiveBorder,
+        focusedErrorBorder: widget.borderConfig?.focused ?? effectiveBorder,
+        disabledBorder: widget.borderConfig?.disabled ?? effectiveBorder,
         contentPadding: widget.contentPadding,
         errorText: widget.errorText,
         helperText: widget.helperText,
+        errorStyle: TextStyle(
+          color: widget.borderConfig?.errorColor ?? Colors.red,
+          fontSize: 12,
+        ),
+        labelStyle: TextStyle(
+          color: widget.borderConfig?.focusedColor ?? Colors.blue,
+          fontSize: 14,
+        ),
+        helperStyle: TextStyle(
+          color: widget.borderConfig?.focusedColor ?? Colors.blue,
+          fontSize: 12,
+        ),
+        
       ),
     );
   }

@@ -244,51 +244,71 @@ extension RoundedWidget on Widget {
 // Usage:
 // Image.network("https://example.com/image.jpg").rounded(borderRadius: 20);
 
-// 18. Extension to Apply Blur Effect with Border Outline
+/// Extension to easily apply a blur/glass effect around any widget.
+///
+/// Example:
+/// ```dart
+/// Text("Hello").blurEffect(
+///   blur: 12,
+///   borderRadius: 20,
+///   tint: Colors.white.withOpacity(0.1),
+///   border: Border.all(color: Colors.white24, width: 1.5),
+///   shadow: [BoxShadow(blurRadius: 12, color: Colors.black26)],
+/// );
+/// ```
 extension BlurEffectWidget on Widget {
-  Widget blur({
-    double blurRadius = 0.0, // Default blur radius
-    double borderWidth = 2.0, // Default border width
-    Color borderColor = Colors.white, // Border color
-    double borderRadius = 2.0, // Border radius for rounded corners
-    Color backgroundColor = Colors.black54, // Background color (transparent)
-    double opacity = 0.3, // Opacity for the background blur
+  Widget blurEffect({
+    double blur = 10.0, // Gaussian blur radius
+    double borderRadius = 12.0,
+    Border? border,
+    Color? tint,
+    Gradient? gradient,
+    List<BoxShadow>? shadow,
+    Clip clipBehavior = Clip.antiAlias,
+    EdgeInsetsGeometry? padding,
   }) {
     return ClipRRect(
-      clipBehavior: Clip.antiAlias,
-      borderRadius: BorderRadius.circular(borderRadius), // Apply border radius
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
-          border: Border.all(color: borderColor, width: borderWidth),
-        ),
-        child: Stack(
-          children: [
-            // BackdropFilter to create the blur effect
-            BackdropFilter(
-              filter: ui.ImageFilter.blur(
-                sigmaX: blurRadius,
-                sigmaY: blurRadius,
+      borderRadius: BorderRadius.circular(borderRadius),
+      clipBehavior: clipBehavior,
+      child: Stack(
+        fit: StackFit.passthrough,
+        children: [
+          // Blur layer
+          BackdropFilter(
+            filter: ui.ImageFilter.blur(sigmaX: blur, sigmaY: blur),
+            child: Container(
+              decoration: BoxDecoration(
+                color: tint, // optional solid tint
+                gradient: gradient, // optional gradient overlay
+                border: border,
+                boxShadow: shadow,
               ),
-              child: Container(
-                color: backgroundColor.withValues(
-                  alpha: opacity,
-                ), // Semi-transparent background
-              ),
+              padding: padding,
             ),
-            this, // The actual widget that will have the blur effect applied
-          ],
-        ),
+          ),
+
+          // Foreground child
+          this,
+        ],
       ),
     );
   }
 }
 
-// Usage:
-// Text("Hello with blur effect").blur(
-//   blurRadius: 10,
-//   borderWidth: 4,
-//   borderColor: Colors.blue,
-//   backgroundColor: Colors.black,
-//   opacity: 0.4,
-// );
+/// Example
+/// ```dart
+// Text("Frosted")
+//     .blurEffect(blur: 8, tint: Colors.white.withOpacity(0.1));
+
+// Glass card
+// Container(height: 100, width: 200)
+//     .blurEffect(
+//       blur: 20,
+//       borderRadius: 20,
+//       border: Border.all(color: Colors.white24, width: 1.2),
+//       shadow: [BoxShadow(blurRadius: 12, color: Colors.black26)],
+//       gradient: LinearGradient(
+//         colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+//       ),
+//     );
+/// ```

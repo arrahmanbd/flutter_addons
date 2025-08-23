@@ -132,7 +132,7 @@ class BlogPage extends StatelessWidget {
             child: Consumer(
               builder: (context, ref, _) {
                 final manager = ref.watch(themeProvider);
-                return ThemeToggleButton(manager: manager, iconSize: 24.sp);
+                return UiThemeSwitch(manager: manager, iconSize: 24.sp);
               },
             ),
           ),

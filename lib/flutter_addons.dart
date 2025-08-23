@@ -212,7 +212,7 @@ part 'src/core/state/lifecycle.dart';
 
 /// -- Basic Elements
 part 'src/ui/basic/label.dart';
-part 'src/ui/basic/theme_toggler.dart';
+part 'src/ui/components/ui_theme_switch.dart';
 part 'src/ui/basic/appbar_addon.dart';
 part 'src/ui/basic/avatar_circle.dart';
 part 'src/ui/basic/page_indicator.dart';
@@ -231,13 +231,14 @@ part 'src/ui/components/ui_accoridion.dart';
 part 'src/ui/components/ui_avater.dart';
 part 'src/ui/components/ui_drawer.dart';
 part 'src/ui/components/ui_listtile.dart';
+part 'src/ui/components/ui_blur.dart';
 
 /// -- Advanced Components
 part 'src/ui/components/ui_borderbox.dart';
 part 'src/ui/components/ui_popupmenu.dart';
 part 'src/ui/components/ui_miniprogress.dart';
 part 'src/ui/components/ui_listview.dart';
-
+part 'src/ui/components/ui_feedback.dart';
 /// -- Feedback Components
 part 'src/ui/feedback/alart.dart';
 part 'src/ui/feedback/snackbar.dart';
@@ -259,3 +260,10 @@ part 'src/core/responsive/bootstrap/display_flex_media.dart';
 part 'src/core/responsive/bootstrap/bootstrap_section.dart';
 part 'src/core/responsive/bootstrap/flaxable_spacing.dart';
 part 'src/core/responsive/entry/pixel_wrapper.dart';
+
+/// -----------------------
+/// 🌐 Internationalization (i18n) & Localization (l10n )
+/// -----------------------
+part 'src/l10n/language_data.dart';
+part 'src/l10n/rtl_languages.dart';
+part 'src/l10n/language_utils.dart';  
