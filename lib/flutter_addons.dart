@@ -1,14 +1,16 @@
 /// *****************************************************************************
-/// 🧩 **Flutter Addons Library**
-/// 👨🏻‍💻 **Author:** AR Rahman
-/// 🌟 **Version:** 2.5.0
-/// 📅 **Updated:** Aug 8, 2025
-/// 📅 **Created:** March 20, 2025
-/// 📜 **License:** Apache License 2.0
-/// 💡 Boost your development speed by over 7x with a robust set of micro-extensions that help you build fully responsive, theme-aware Flutter apps effortlessly.!
-
+/// Flutter Addons Library v3.0.0
+/// Developed by AR Rahman
+/// 
+/// Copyright (c) 2025 - Licensed under Apache License 2.0
+/// Initial Release: March 20, 2025 | Last Update: October 8, 2025
+/// 
+/// A curated suite of professional Flutter extensions and UI components
+/// engineered to enhance productivity and ensure code consistency across
+/// responsive, theme-compliant application development.
 /// *****************************************************************************
-
+/// 
+/// 
 library;
 
 /// Dart Core Libraries
@@ -30,7 +32,6 @@ import 'package:flutter/material.dart' as theme show ThemeExtension;
 /// Flutter SDK
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart' as service;
 import 'package:flutter/services.dart';
 
@@ -55,8 +56,7 @@ part 'src/extension/base/flutter_widgets.dart';
 part 'src/extension/context/typo_graphy.dart';
 part 'src/extension/context/quick_typo.dart';
 part 'src/extension/context/responsive.dart';
-part 'src/extension/context/theme_colors.dart';
-part 'src/extension/context/theme_mode.dart';
+part 'src/extension/context/brand_extension.dart';
 
 /// -----------------------
 /// 🧱 Widget Utilities
@@ -77,7 +77,7 @@ part 'src/core/responsive/helpers/design_utils.dart';
 part 'src/animation/responsive_effects.dart';
 part 'src/core/constants/responsive_enums.dart';
 part 'src/core/responsive/helpers/smart_extensions.dart';
-part 'src/core/responsive/helpers/summery_logger.dart';
+part 'src/core/responsive/helpers/console_logger.dart';
 part 'src/core/responsive/entry/core_scale.dart';
 part 'src/core/responsive/entry/responsive_builder.dart';
 part 'src/core/responsive/entry/base_scaffold.dart';
@@ -157,6 +157,7 @@ part 'src/ui/decoration/box_kit.dart';
 
 /// -- Color Models
 part 'src/core/colors/base_theme.dart';
+part 'src/core/colors/branding.dart';
 part 'src/core/colors/seed.dart';
 part 'src/core/colors/swatch.dart';
 part 'src/core/colors/kolors.dart';
@@ -170,19 +171,13 @@ part 'src/core/themes/soul_component.dart';
 part 'src/ui/ui_helper.dart';
 
 /// -- Color Palettes
-part 'src/core/palettes/soul_colors.dart';
-part 'src/core/palettes/forest_colors.dart';
-part 'src/core/palettes/aura_colors.dart';
-part 'src/core/palettes/lost_night.dart';
-part 'src/core/palettes/cyber_soul.dart';
-part 'src/core/palettes/retro_soul.dart';
-part 'src/core/palettes/ocean_soul.dart';
-part 'src/core/palettes/summer_soul.dart';
-part 'src/core/palettes/autumn_soul.dart';
-part 'src/core/palettes/apple.dart';
-part 'src/core/palettes/mint.dart';
-part 'src/core/palettes/ubuntu.dart';
-part 'src/core/palettes/soul_themes.dart';
+part 'src/core/palettes/twitter_colors.dart';
+part 'src/core/palettes/material_color.dart';
+part 'src/core/palettes/tailwind_colors.dart';
+part 'src/core/palettes/bootstrap_purple.dart';
+part 'src/core/palettes/ios_color.dart';
+part 'src/core/palettes/default_plates.dart';
+part 'src/core/palettes/ui_themes.dart';
 
 /// -- Typography
 part 'src/core/typography/base_styles.dart';
@@ -211,10 +206,10 @@ part 'src/core/state/lifecycle.dart';
 /// -----------------------
 
 /// -- Basic Elements
-part 'src/ui/basic/label.dart';
+part 'src/ui/basic/label_styles.dart';
 part 'src/ui/components/ui_theme_switch.dart';
 part 'src/ui/basic/appbar_addon.dart';
-part 'src/ui/basic/avatar_circle.dart';
+part 'src/ui/components/ui_avatar_circle.dart';
 part 'src/ui/basic/page_indicator.dart';
 part 'src/ui/components/ui_container.dart';
 part 'src/ui/components/ui_card.dart';
@@ -240,8 +235,10 @@ part 'src/ui/components/ui_miniprogress.dart';
 part 'src/ui/components/ui_listview.dart';
 part 'src/ui/components/ui_feedback.dart';
 part 'src/ui/components/ui_langselector.dart';
+part 'src/ui/components/ui_iconbutton.dart';
+
 /// -- Feedback Components
-part 'src/ui/feedback/alart.dart';
+part 'src/ui/feedback/ui_alart.dart';
 part 'src/ui/feedback/snackbar.dart';
 part 'src/ui/feedback/toaster.dart';
 part 'src/ui/feedback/dialog.dart';
@@ -267,4 +264,4 @@ part 'src/core/responsive/entry/pixel_wrapper.dart';
 /// -----------------------
 part 'src/l10n/language_data.dart';
 part 'src/l10n/rtl_languages.dart';
-part 'src/l10n/language_utils.dart';  
+part 'src/l10n/language_utils.dart';

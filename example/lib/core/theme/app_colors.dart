@@ -1,72 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 
-class AppDarkColors extends ThemeKolors {
-  @override
-  Brightness get themeMode => Brightness.dark;
+/// ==============================
+/// ☀️ Soul Light Theme
+/// ==============================
+class AppLightColors extends BrandKolors {
+  const AppLightColors();
 
   @override
-  Color get background => const Color(0xFF0D1117); // Soft black
+  Brightness get brightness => Brightness.light;
 
   @override
-  Color get cardBackground => const Color(0xFF161B22); // Card contrast
+  Color get primary => const Color(0xFF4A90E2);
+  @override
+  Color get secondary => const Color(0xFF6C63FF);
+  @override
+  Color get accent => const Color(0xFFFF6B6B);
 
   @override
-  Color get dividerColor => const Color(0xFF30363D); // Low contrast divider
+  Color get background => const Color(0xFFF9FAFB);
+  @override
+  Color get surface => const Color(0xFFFFFFFF);
+  @override
+  Color get surfaceVariant => const Color(0xFFF3F4F6);
 
   @override
-  Color get foreground => const Color(0xFFF0F6FC); // Soft white text
-
+  Color get textPrimary => const Color(0xFF111827);
   @override
-  Color get inputBackground => const Color(0xFF1C2128); // Input fields
-
+  Color get textSecondary => const Color(0xFF374151);
   @override
-  Color get outlineColor => const Color(0xFF3E4C5A); // Focus border, subtle
-
-  @override
-  Color get primaryColor => const Color(0xFF10B981); // Emerald green (used by GitHub)
-
-  @override
-  Color get secondaryButton => const Color(0xFF374151); // Muted button background
-
-  @override
-  Color get secondaryContent => const Color(0xFF9CA3AF); // Muted text
-
-  @override
-  Color get shadowColor => Colors.black; // Elevated UI shadow
+  Color get textTertiary => const Color(0xFF9CA3AF);
 }
 
-class AppLightColors extends ThemeKolors {
-  @override
-  Brightness get themeMode => Brightness.light;
+/// ==============================
+/// 🌙 Soul Dark Theme
+/// ==============================
+class AppDarkColors extends BrandKolors {
+  const AppDarkColors();
 
   @override
-  Color get background => const Color(0xFFF9FAFB); // Off-white
+  Brightness get brightness => Brightness.dark;
 
   @override
-  Color get cardBackground => const Color(0xFFFFFFFF); // Pure white cards
+  Color get primary => const Color(0xFF60A5FA);
+  @override
+  Color get secondary => const Color(0xFF818CF8);
+  @override
+  Color get accent => const Color(0xFFF87171);
 
   @override
-  Color get dividerColor => const Color(0xFFE5E7EB); // Tailwind neutral-200
+  Color get background => const Color(0xFF0F172A);
+  @override
+  Color get surface => const Color(0xFF1E293B);
+  @override
+  Color get surfaceVariant => const Color(0xFF334155);
 
   @override
-  Color get foreground => const Color(0xFF111827); // Strong readable text
-
+  Color get textPrimary => const Color(0xFFF9FAFB);
   @override
-  Color get inputBackground => const Color(0xFFF3F4F6); // Slight gray for input
-
+  Color get textSecondary => const Color(0xFFD1D5DB);
   @override
-  Color get outlineColor => const Color(0xFFCBD5E1); // Subtle borders
-
-  @override
-  Color get primaryColor => const Color(0xFF2563EB); // Tailwind blue-600
-
-  @override
-  Color get secondaryButton => const Color(0xFFE2E8F0); // Light neutral button
-
-  @override
-  Color get secondaryContent => const Color(0xFF6B7280); // Muted text
-
-  @override
-  Color get shadowColor => Colors.black.withValues(alpha: 0.08); // Light UI elevation
+  Color get textTertiary => const Color(0xFF94A3B8);
 }

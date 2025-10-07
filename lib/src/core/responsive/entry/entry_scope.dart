@@ -4,31 +4,30 @@ part of 'package:flutter_addons/flutter_addons.dart';
 class ResponsiveScope extends StatefulWidget {
   const ResponsiveScope({
     super.key,
-    this.app,
-    required this.layoutBuilder,
+    required this.appBuilder,
     this.designFrame,
     this.scaleMode = ScaleMode.percent,
     this.onFlutterError,
-    this.screenLock = AppOrientationLock.none,
+    this.orientation = AppOrientationLock.none,
     this.ownErrorScreen,
     this.enableDebugLogging = false,
     this.errorScreen = ErrorScreen.sifi,
     this.pixelDebug = false,
     this.gridCount = 12,
+    this.version = '3.0.0',
   });
 
-  final Widget Function(MediaInfo layout) layoutBuilder;
-  final Widget? app;
+  final Widget Function(MediaInfo layout) appBuilder;
   final ScaleMode scaleMode;
   final DesignFrame? designFrame;
-  final AppOrientationLock screenLock;
+  final AppOrientationLock orientation;
   final bool enableDebugLogging;
   final FlutterExceptionHandler? onFlutterError;
   final Widget Function(FlutterErrorDetails error)? ownErrorScreen;
   final ErrorScreen errorScreen;
   final bool pixelDebug;
   final int gridCount;
-
+  final String version;
   @override
   State<ResponsiveScope> createState() => _ResponsiveScopeState();
 }
@@ -45,7 +44,7 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
   @override
   void initState() {
     super.initState();
-    _setOrientationLock(widget.screenLock);
+    _setOrientationLock(widget.orientation);
     WidgetsBinding.instance.addObserver(this);
 
     _ErrorHandlerService.setup(
@@ -157,18 +156,26 @@ class _ResponsiveScopeState extends State<ResponsiveScope>
       return const SizedBox.shrink();
     }
 
-    final Widget layoutWidget =
-        widget.app ?? widget.layoutBuilder(MediaInfo.fromThis(context));
+    final Widget layoutWidget = widget.appBuilder(MediaInfo.fromThis(context));
 
     final dir = Directionality.maybeOf(context) ?? TextDirection.ltr;
     final wrapped = Directionality(textDirection: dir, child: layoutWidget);
 
     // Wrap in WidgetsApp + Theme + ScaffoldMessenger + Grid
-    return _ScopeWrapper(
-      wrapped: wrapped,
-      debugBanner: widget.enableDebugLogging,
-      showGrid: widget.pixelDebug,
-      columnCount: widget.gridCount,
-    );
+    /// 🔒 PRODUCTION SAFETY GUARANTEE
+    ///
+    /// This component is specifically engineered for production reliability:
+    ///
+    /// •  **Production**: Returns wrapper only - zero localization errors
+    /// •  **Debug**: Temporarily disable `enableDebugLog` if alerts shows error
+    return widget.enableDebugLogging
+        ? _ScopeWrapper(
+          wrapped: wrapped,
+          debugBanner: widget.enableDebugLogging,
+          showGrid: widget.pixelDebug,
+          columnCount: widget.gridCount,
+          version: widget.version,
+        )
+        : wrapped;
   }
 }

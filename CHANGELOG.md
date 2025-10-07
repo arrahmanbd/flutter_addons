@@ -1,4 +1,72 @@
-# 3.0-preview
+# 3.0.0
+
+The **3.0.0 Final Release** marks a major evolution in design consistency, theming flexibility, and framework stability. This version transforms the UI experience with a **complete brand-based color and typography system**, smarter localization, and robust production-ready optimizations.
+
+---
+
+### New: Brand-Based Theming
+
+* **BrandColor System** – Introduced a **12-color scalable palette** built around your brand identity for consistent, modern UI design.
+* **BrandTypo** – Unified typography system for readable, elegant, and scalable text styles across all components.
+* **Adaptive Color Harmony** – Automatic light/dark tone adjustments with smooth transitions.
+* **Input & Surface Refinement** – Updated visual hierarchy using the new palette for backgrounds, surfaces, and interactive states.
+
+---
+
+### Localization & Internationalization
+
+* **Intelligent RTL Detection**
+  Automatic layout mirroring for Arabic, Hebrew, Urdu, and other right-to-left languages.
+
+* **Localized Naming Format**
+  Improved locale naming such as “English (EN)” for cleaner presentation.
+
+* **Country Info Fallbacks**
+  Fallback logic for missing locale data ensures consistent global coverage.
+
+* **Centralized Locale Registry**
+  Unified management system for adding or maintaining language packs.
+
+* **`supportedLocales()` Helper**
+  Simplified setup for `MaterialApp` localization integration.
+
+---
+
+### Theming & System Behavior
+
+* **Enhanced Theme Toggle**
+  `enableSystemMode` now cycles between **Light ↔ Dark ↔ System**, fully synchronized with system preferences.
+
+* **Reactive Theme Animation**
+  Built-in reactivity via `AnimatedBuilder` and `AnimatedSwitcher` for smooth transitions.
+
+* **Improved `blurEffect` Extension**
+  More natural depth and blur performance across devices.
+
+---
+
+### Developer Experience
+
+* **Extensible Architecture**
+  Modular design makes it easier to add new locales, themes, or color sets.
+* **Debug Session Clarity**
+  During development, disable `enableDebugLog` when testing alerts — it’s **safe and stable in production**.
+* **Production Wrapper Optimization**
+  The production build now returns only the core wrapper, eliminating location and binding errors entirely.
+
+---
+
+### Fixes
+
+* Theme and icon synchronization issues resolved.
+* Extension name conflict (`animate` → `animated`) fixed.
+* RTL layout and theme transition glitches patched.
+* Overall performance and reactivity improvements.
+
+
+
+
+# 3.0.0-preview
 
 -  RTL detection (important for Arabic, Hebrew, Urdu)
 -  Formatted names like English (EN)

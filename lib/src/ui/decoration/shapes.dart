@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-class Shapes {
+class UiShapes {
   /// Rounded rectangle with customizable corner radius.
   static RoundedRectangleBorder roundedRect({double radius = 12}) {
     return RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));

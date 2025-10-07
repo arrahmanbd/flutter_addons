@@ -3,7 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// A customizable AppBar widget with support for safe area padding,
 /// transparency, status bar styling, and height configuration.
 
-PreferredSize buildNewAppBar(
+PreferredSize customAppBar(
   BuildContext context, {
   required Widget child,
   bool applySafeAreaPadding = true,

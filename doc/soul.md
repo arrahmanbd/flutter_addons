@@ -8,17 +8,17 @@ It enables **dynamic theming** (light/dark mode) and supports **custom theme ext
 
 - **Material-based Theming**: Uses `ColorScheme` to align with Material 3.
 - **Light & Dark Modes**: Supports switching between light and dark themes.
-- **Customizable Palettes**: An extendable `ThemeKolors` class that allows for custom themes, supporting primary color `Seed` values or Material `Swatch` colors for flexible theming.
+- **Customizable Palettes**: An extendable `BrandKolors` class that allows for custom themes, supporting primary color `Seed` values or Material `Swatch` colors for flexible theming.
 - **Consistent UI Styling**: Defines colors, typography, and component themes globally.
 
 ---
 
-## Extending `ThemeKolors`
+## Extending `BrandKolors`
 
-To create a custom color palette, extend `ThemeKolors` and define your colors:
+To create a custom color palette, extend `BrandKolors` and define your colors:
 
 ```dart
-class CustomTheme extends ThemeKolors {
+class CustomTheme extends BrandKolors {
   @override
   Color get primaryColor => const Color(0xFF6200EE);
 
@@ -36,12 +36,12 @@ Now, use the custom theme:
 final customTheme = ThemeMaker.makeTheme(CustomTheme());
 ```
 
-## Extending `Typography`
+## Extending `BrandTypo`
 
-To create a custom typography, extend `Typography` and define your different textStyles:
+To create a custom typography, extend `BrandTypo` and define your different textStyles:
 
 ```dart
-class MyTypography extends Typography {
+class MyTypography extends BrandTypo {
   @override
   String get fontFamily => 'Roboto';
 

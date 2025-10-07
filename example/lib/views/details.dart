@@ -62,7 +62,7 @@ class PostDetailsScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w700,
-                color: context.primaryColor,
+                color: context.brandPrimary,
               ),
             ),
             SizedBox(height: 8.h),
@@ -71,26 +71,26 @@ class PostDetailsScreen extends StatelessWidget {
                 Icon(
                   Icons.person,
                   size: 16.sp,
-                  color: context.secondaryContent,
+                  color: context.textSecondary,
                 ),
                 SizedBox(width: 4.w),
                 Text(
                   author,
                   style: context.bodyMedium.copyWith(
-                    color: context.secondaryContent,
+                    color: context.textSecondary,
                   ),
                 ),
                 SizedBox(width: 16.w),
                 Icon(
                   Icons.access_time,
                   size: 16.sp,
-                  color: context.secondaryContent,
+                  color: context.textSecondary,
                 ),
                 SizedBox(width: 4.w),
                 Text(
                   time,
                   style: context.bodyMedium.copyWith(
-                    color: context.secondaryContent,
+                    color: context.textSecondary,
                   ),
                 ),
               ],

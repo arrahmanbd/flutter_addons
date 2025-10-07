@@ -1,12 +1,13 @@
 import 'package:example_app/core/theme/theme_provider.dart';
 import 'package:example_app/core/widgets/appbar.dart';
 import 'package:example_app/core/widgets/post_card.dart';
-import 'package:example_app/ui.dart';
-import 'package:example_app/users.dart';
-import 'package:example_app/details.dart';
+import 'package:example_app/widgets/ui.dart';
+import 'package:example_app/widgets/users.dart';
+import 'package:example_app/views/details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 class BlogPage extends StatelessWidget {
   const BlogPage({super.key});
@@ -22,22 +23,22 @@ class BlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final aspectRatio = context.isMobile ? .78 : 1.12;
+    final aspectRatio = context.isMobile ? .98 : 1.12;
     return Scaffold(
       backgroundColor: context.background,
       appBar: FacebookAppBar(
         title: 'Flutter Addons',
         // ignore: avoid_print
         onSearchTap: () {
-          context.push(UiExamples());
+          context.shiftInto(UiExamples());
         },
         onPrfileTap: () {
-          context.push(UserScreen());
+          context.shiftInto(UserScreen());
         },
         onNotificationsTap: () {},
       ),
       body: Padding(
-        padding: 24.p,
+        padding: 12.px+24.py,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -57,7 +58,7 @@ class BlogPage extends StatelessWidget {
                       crossAxisCount: 2,
                       mainAxisSpacing: 8,
                       crossAxisSpacing: 8,
-                      childAspectRatio: aspectRatio,
+                     childAspectRatio: aspectRatio,
                     ),
                     itemBuilder: (context, index) => PostCard().onTap(() {
                       // Dummy post example
@@ -71,7 +72,7 @@ class BlogPage extends StatelessWidget {
                   itemCount: 8, // or dynamic
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
-                    mainAxisSpacing: 8,
+                    mainAxisSpacing: 16,
                     crossAxisSpacing: 8,
                     childAspectRatio: aspectRatio,
                   ),
@@ -94,11 +95,7 @@ class BlogPage extends StatelessWidget {
       padding: 16.p,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
-        gradient: LinearGradient(
-          colors: [Kolors.slate200, Kolors.violet200],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        gradient: context.surfaceGradient
       ),
       child: Stack(
         children: [
@@ -110,14 +107,14 @@ class BlogPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
-                  color: context.primaryColor,
+                  color: context.brandPrimary,
                 ),
               ),
               SizedBox(height: 8.h),
               Text(
                 "Explore top deals and new arrivals.",
                 style: context.bodyLarge.copyWith(
-                  color: context.secondaryContent,
+                  color: context.brandSecondary,
                 ),
               ),
               SizedBox(height: 16.h),
@@ -149,10 +146,12 @@ class BlogPage extends StatelessWidget {
           label: "Primary",
           icon: Icon(Icons.arrow_right_alt_outlined, size: 24.sp),
           onPressed: () => dummyPost.launch(context),
-          backgroundColor: context.primaryColor,
+          backgroundColor: context.brandPrimary,
         ),
         UiFlatButton.outlined(
+          borderColor: context.border,
           label: "Save",
+          textColor: context.textInverse,
           icon: const Icon(Icons.save_alt),
           onPressed: () => print("Outlined clicked"),
         ),
@@ -178,7 +177,7 @@ class BlogPage extends StatelessWidget {
         hintText: 'Search articles, topics...',
         prefixIcon: const Icon(Icons.search),
         filled: true,
-        fillColor: context.cardBackground,
+        fillColor: context.surface,
         contentPadding: 8.py,
         border: outline,
         enabledBorder: outline,
@@ -205,9 +204,9 @@ class BlogPage extends StatelessWidget {
             selected: isSelected,
             onSelected: (_) {},
             selectedColor: Kolors.neutral200,
-            backgroundColor: context.cardBackground,
+            backgroundColor: context.surface,
             labelStyle: TextStyle(
-              color: context.bodyTextColor,
+              color: context.textPrimary,
               fontWeight: FontWeight.w600,
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),

@@ -6,213 +6,144 @@ part of 'package:flutter_addons/flutter_addons.dart';
 enum ToastAnimation { fade, slide, scale, rotation }
 
 /// Toast utility class for displaying messages
-class GlassToaster {
-  static const int lengthShort = 1;
-  static const int lengthLong = 2;
-  static const int bottom = 0;
-  static const int center = 1;
-  static const int top = 2;
-
-  /// Displays a toast message
-  static void show(
-    String msg,
-    BuildContext context, {
-    int duration = lengthShort,
-    int position = bottom,
-    ToastAnimation animation = ToastAnimation.fade,
-    Color? backgroundColor,
-    TextStyle textStyle = const TextStyle(fontSize: 16, color: Colors.white),
-    double backgroundRadius = 8.0,
-    Border? border,
-    bool? rootNavigator,
-  }) {
-    _FlutterToastrView.dismiss();
-    _FlutterToastrView.createView(
-      msg,
-      context,
-      duration,
-      position,
-      animation,
-      backgroundColor ?? context.background.withValues(alpha: .25),
-      textStyle,
-      backgroundRadius,
-      border,
-      rootNavigator,
-    );
-  }
-}
-
-class _FlutterToastrView {
-  static OverlayEntry? _overlayEntry;
-  static bool _isVisible = false;
-
-  static void createView(
-    String msg,
-    BuildContext context,
-    int duration,
-    int position,
-    ToastAnimation animation,
-    Color backgroundColor,
-    TextStyle textStyle,
-    double backgroundRadius,
-    Border? border,
-    bool? rootNavigator,
-  ) {
-    final overlayState = Overlay.of(
-      context,
-      rootOverlay: rootNavigator ?? false,
-    );
-
-    _overlayEntry = OverlayEntry(
-      builder:
-          (context) => _FlutterToastrWidget(
-            message: msg,
-            position: position,
-            animation: animation,
-            backgroundColor: backgroundColor,
-            textStyle: textStyle,
-            backgroundRadius: backgroundRadius,
-            border: border,
-          ),
-    );
-
-    _isVisible = true;
-    overlayState.insert(_overlayEntry!);
-
-    Future.delayed(Duration(seconds: duration), () => dismiss());
-  }
-
-  /// Dismisses the toast
-  static void dismiss() {
-    if (!_isVisible) return;
-    _isVisible = false;
-    _overlayEntry?.remove();
-  }
-}
-
-/// Toast Widget with Multiple Animations
-class _FlutterToastrWidget extends StatefulWidget {
+class _ToastWidget extends StatefulWidget {
   final String message;
-  final int position;
-  final ToastAnimation animation;
-  final Color backgroundColor;
-  final TextStyle textStyle;
-  final double backgroundRadius;
-  final Border? border;
+  final String? title;
+  final NotificationType type;
+  final Duration duration;
+  final ToastPosition position;
+  final VoidCallback onDismiss;
 
-  const _FlutterToastrWidget({
+  const _ToastWidget({
     required this.message,
+    required this.title,
+    required this.type,
+    required this.duration,
     required this.position,
-    required this.animation,
-    required this.backgroundColor,
-    required this.textStyle,
-    required this.backgroundRadius,
-    this.border,
+    required this.onDismiss,
   });
 
   @override
-  _FlutterToastrWidgetState createState() => _FlutterToastrWidgetState();
+  State<_ToastWidget> createState() => _ToastWidgetState();
 }
 
-class _FlutterToastrWidgetState extends State<_FlutterToastrWidget>
+class _ToastWidgetState extends State<_ToastWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
-  late Animation<Offset> _slideAnimation;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _rotationAnimation;
+  late Animation<Offset> _offsetAnimation;
+  late Animation<double> _opacityAnimation;
 
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
 
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
-
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.1),
+    _offsetAnimation = Tween<Offset>(
+      begin: const Offset(0, -1),
       end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOutCubic,
+    ));
 
-    _scaleAnimation = Tween<double>(
-      begin: 0.7,
-      end: 1.0,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
-
-    _rotationAnimation = Tween<double>(
-      begin: -0.2,
-      end: 0.0,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+    _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOut,
+      ),
+    );
 
     _controller.forward();
+    _startDismissTimer();
   }
 
-  Widget _buildAnimation(Widget child) {
-    switch (widget.animation) {
-      case ToastAnimation.fade:
-        return FadeTransition(opacity: _fadeAnimation, child: child);
-      case ToastAnimation.slide:
-        return SlideTransition(position: _slideAnimation, child: child);
-      case ToastAnimation.scale:
-        return ScaleTransition(scale: _scaleAnimation, child: child);
-      case ToastAnimation.rotation:
-        return RotationTransition(turns: _rotationAnimation, child: child);
-    }
+  void _startDismissTimer() {
+    Future.delayed(widget.duration, () {
+      if (mounted) {
+        _controller.reverse().then((_) {
+          widget.onDismiss();
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top:
-          widget.position == GlassToaster.top
-              ? MediaQuery.of(context).viewInsets.top + 50
-              : null,
-      bottom:
-          widget.position == GlassToaster.bottom
-              ? MediaQuery.of(context).viewInsets.bottom + 50
-              : null,
-      child: _buildAnimation(
-        Material(
-          color: Colors.transparent,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            width: MediaQuery.of(context).size.width * 0.9,
-            alignment: Alignment.center,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(widget.backgroundRadius),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: widget.backgroundColor,
-                    borderRadius: BorderRadius.circular(
-                      widget.backgroundRadius,
-                    ),
-                    border: widget.border,
-                    boxShadow: [
-                      BoxShadow(
-                        color: context.shadow.withValues(alpha: .20),
-                        offset: Offset(3, 0),
-                        blurRadius: 16,
-                      ),
-                    ],
-                  ),
+    final service = NotificationService();
+    
+    return SafeArea(
+      child: Align(
+        alignment: _getAlignment(),
+        child: SlideTransition(
+          position: _offsetAnimation,
+          child: FadeTransition(
+            opacity: _opacityAnimation,
+            child: Container(
+              margin: const EdgeInsets.all(16),
+              child: Material(
+                elevation: 8,
+                borderRadius: BorderRadius.circular(12),
+                color: service._getBackgroundColor(widget.type),
+                child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
-                    vertical: 12,
+                    vertical: 14,
                   ),
-                  child: Text(
-                    widget.message,
-                    softWrap: true,
-                    style: widget.textStyle,
-                    textAlign: TextAlign.center,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        service._getDefaultIcon(widget.type),
+                        color: service._getIconColor(widget.type),
+                        size: 20,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (widget.title != null)
+                              Text(
+                                widget.title!,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            Text(
+                              widget.message,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                              ),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      IconButton(
+                        icon: const Icon(Icons.close, size: 16),
+                        color: Colors.white,
+                        onPressed: () {
+                          _controller.reverse().then((_) {
+                            widget.onDismiss();
+                          });
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -223,9 +154,14 @@ class _FlutterToastrWidgetState extends State<_FlutterToastrWidget>
     );
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  Alignment _getAlignment() {
+    switch (widget.position) {
+      case ToastPosition.top:
+        return Alignment.topCenter;
+      case ToastPosition.center:
+        return Alignment.center;
+      case ToastPosition.bottom:
+        return Alignment.bottomCenter;
+    }
   }
 }

@@ -251,7 +251,7 @@ extension RoundedWidget on Widget {
 /// Text("Hello").blurEffect(
 ///   blur: 12,
 ///   borderRadius: 20,
-///   tint: Colors.white.withOpacity(0.1),
+///   tint: Colors.white.withValues(alpha:0.1),
 ///   border: Border.all(color: Colors.white24, width: 1.5),
 ///   shadow: [BoxShadow(blurRadius: 12, color: Colors.black26)],
 /// );
@@ -298,7 +298,7 @@ extension BlurEffectWidget on Widget {
 /// Example
 /// ```dart
 // Text("Frosted")
-//     .blurEffect(blur: 8, tint: Colors.white.withOpacity(0.1));
+//     .blurEffect(blur: 8, tint: Colors.white.withValues(alpha:0.1));
 
 // Glass card
 // Container(height: 100, width: 200)
@@ -308,7 +308,7 @@ extension BlurEffectWidget on Widget {
 //       border: Border.all(color: Colors.white24, width: 1.2),
 //       shadow: [BoxShadow(blurRadius: 12, color: Colors.black26)],
 //       gradient: LinearGradient(
-//         colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+//         colors: [Colors.white.withValues(alpha:0.1), Colors.white.withValues(alpha:0.05)],
 //       ),
 //     );
 /// ```

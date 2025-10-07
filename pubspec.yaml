@@ -1,6 +1,6 @@
 name: flutter_addons
 description: "A productivity-boosting micro-extension framework for Flutter. Build responsive, theme-aware apps up to 7x faster with easy, reusable add-ons."
-version: 3.0.0-preview.1
+version: 3.0.0
 homepage: https://github.com/arrahmanbd/flutter_addons
 repository: https://github.com/arrahmanbd/flutter_addons
 issue_tracker: https://github.com/arrahmanbd/flutter_addons/issues
@@ -28,6 +28,8 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
 dev_dependencies:

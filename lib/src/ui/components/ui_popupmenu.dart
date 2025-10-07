@@ -1,162 +1,265 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-// ContextMenu
-// Inspired by TailwindPopup
-abstract class Screen {
-  static MediaQueryData get mediaQuery =>
-      MediaQueryData.fromView(PlatformDispatcher.instance.views.first);
+enum CarrotDirection { up, down }
 
-  /// screen width
-  static double get width => mediaQuery.size.width;
+/// Model for each menu item
+class UiInlinePopupItem {
+  final String label;
+  final IconData icon;
+  final VoidCallback? onTap;
 
-  // /screen height
-  static double get height => mediaQuery.size.height;
-
-  /// dp
-  static double get scale => mediaQuery.devicePixelRatio;
-
-  /// top
-  static double get statusBar => mediaQuery.padding.top;
-
-  /// bottom
-  static double get bottomBar => mediaQuery.padding.bottom;
+  UiInlinePopupItem({
+    required this.label,
+    required this.icon,
+    this.onTap,
+  });
 }
 
-enum UiContextMenuPlacement { left, right, top, bottom }
+class UiInlinePopup extends StatefulWidget {
+  final List<UiInlinePopupItem> items;
+  final double width;
+  final Color backgroundColor;
+  final Widget trigger;
+  final void Function(String label)? onItemSelected;
 
-typedef HideFn = void Function(Function hideFn);
-
-class UiContextMenu extends StatefulWidget {
-  final Widget menu;
-  final ValueChanged<bool> onChange;
-  final WidgetBuilder menuBuilder;
-  final int selectedIndex;
-  final UiContextMenuPlacement placement;
-  final double offsetX, offsetY;
-  final bool backdrop;
-  final bool show;
-  final HideFn? hideFn;
-
-  const UiContextMenu({
+  const UiInlinePopup({
     super.key,
-    required this.menu,
-    required this.onChange,
-    required this.menuBuilder,
-    this.selectedIndex = 0,
-    this.backdrop = false,
-    this.show = true,
-    this.placement = UiContextMenuPlacement.bottom,
-    this.offsetX = 0,
-    this.hideFn,
-    this.offsetY = 0,
+    required this.items,
+    required this.trigger,
+    this.width = 180,
+    this.backgroundColor = Colors.white,
+    this.onItemSelected,
   });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _UiContextMenuState createState() => _UiContextMenuState();
+  State<UiInlinePopup> createState() => _UiInlinePopupState();
 }
 
-class _UiContextMenuState extends State<UiContextMenu>
-    with SingleTickerProviderStateMixin {
-  late GlobalKey _key;
-  bool isMenuOpen = false;
-  late Offset buttonPosition;
-  late Size buttonSize;
+class _UiInlinePopupState extends State<UiInlinePopup> {
+  final LayerLink _layerLink = LayerLink();
+  final GlobalKey _triggerKey = GlobalKey();
   OverlayEntry? _overlayEntry;
-  OverlayEntry? _overlayEntry1;
 
-  @override
-  void initState() {
-    _key = LabeledGlobalKey("popup-addon");
-    super.initState();
-    if (widget.hideFn != null) {
-      widget.hideFn!(closeMenu);
+  late CarrotDirection _carrotDirection;
+  late double _carrotOffsetX;
+
+  void _toggleMenu() {
+    if (_overlayEntry != null) {
+      _closeMenu();
+    } else {
+      _showMenu();
     }
   }
 
-  findButton() {
-    RenderBox? renderBox =
-        _key.currentContext!.findRenderObject() as RenderBox?;
-    buttonSize = renderBox!.size;
-    buttonPosition = renderBox.localToGlobal(Offset.zero);
-  }
+  void _showMenu() {
+    _calculateCarrotPosition();
 
-  closeMenu() {
-    _overlayEntry?.remove();
-    _overlayEntry1?.remove();
-    // if(_animationController.)
-    // _animationController.reverse();
-    isMenuOpen = false;
-  }
+    _overlayEntry = OverlayEntry(
+      builder: (context) => Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(
+              onTap: _closeMenu,
+              behavior: HitTestBehavior.opaque,
+              child: Container(color: Colors.transparent),
+            ),
+          ),
+          Positioned(
+            child: CompositedTransformFollower(
+              link: _layerLink,
+              showWhenUnlinked: false,
+              offset: _calculateMenuOffset(context),
+              child: Material(
+                color: Colors.transparent,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: _carrotDirection == CarrotDirection.down
+                      ? [
+                          _buildCarrotIndicator(),
+                          _buildMenuContainer(),
+                        ]
+                      : [
+                          _buildMenuContainer(),
+                          _buildCarrotIndicator(),
+                        ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
 
-  openMenu() {
-    findButton();
-    _overlayEntry = _overlayEntryBuilder();
-    _overlayEntry1 = _overlayEntryBuilder1();
-    Overlay.of(context).insert(_overlayEntry1!);
     Overlay.of(context).insert(_overlayEntry!);
-    isMenuOpen = true;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  void _closeMenu() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  void _calculateCarrotPosition() {
+    final buttonSize = _getTriggerSize();
+    final buttonPosition = _getTriggerPosition();
+    final screenSize = MediaQuery.of(context).size;
+
+    const menuHeight = 200.0; // approximate max height
+    _carrotDirection = CarrotDirection.down;
+
+    // Flip if menu would go off the bottom
+    if (buttonPosition.dy + buttonSize.height + menuHeight > screenSize.height) {
+      _carrotDirection = CarrotDirection.up;
+    }
+
+    // Align carrot horizontally with trigger center, but prevent overflow
+    double centerX = buttonPosition.dx + buttonSize.width / 2;
+    _carrotOffsetX = centerX - buttonPosition.dx;
+    if (_carrotOffsetX < 12) _carrotOffsetX = 12; // min padding
+    if (_carrotOffsetX > widget.width - 12) _carrotOffsetX = widget.width - 12;
+  }
+
+  Offset _calculateMenuOffset(BuildContext context) {
+    final buttonSize = _getTriggerSize();
+    final screenSize = MediaQuery.of(context).size;
+    final buttonPosition = _getTriggerPosition();
+
+    double offsetX = 0;
+    double offsetY = buttonSize.height;
+
+    // horizontal adjustment if menu overflows
+    if (buttonPosition.dx + widget.width > screenSize.width) {
+      offsetX = buttonSize.width - widget.width;
+    }
+
+    // vertical adjustment if menu appears above
+    if (_carrotDirection == CarrotDirection.up) {
+      offsetY = -200; // approximate menu height
+    }
+
+    return Offset(offsetX, offsetY);
+  }
+
+  Widget _buildCarrotIndicator() {
+    return CustomPaint(
+      size: const Size(16, 8),
+      painter: _CarrotPainter(
+        direction: _carrotDirection,
+        offsetX: _carrotOffsetX,
+        color: widget.backgroundColor,
+      ),
+    );
+  }
+
+  Widget _buildMenuContainer() {
     return Container(
-      key: _key,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onTap: () {
-            if (isMenuOpen) {
-              closeMenu();
-              widget.onChange(false);
-            } else {
-              openMenu();
-              widget.onChange(true);
-            }
-          },
-          child: widget.menu,
+      width: widget.width,
+      decoration: BoxDecoration(
+        color: widget.backgroundColor,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: widget.items.map((item) => _buildMenuItem(item)).toList(),
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(UiInlinePopupItem item) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          item.onTap?.call();
+          widget.onItemSelected?.call(item.label);
+          _closeMenu();
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            children: [
+              Icon(item.icon, size: 18, color: Theme.of(context).colorScheme.onSurface),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(item.label, style: Theme.of(context).textTheme.bodyMedium),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  OverlayEntry _overlayEntryBuilder() {
-    double left = 0, top = 0;
-    if (widget.placement == UiContextMenuPlacement.bottom) {
-      top = buttonPosition.dy + buttonSize.height + widget.offsetY;
-      left = buttonPosition.dx + widget.offsetX;
-    } else if (widget.placement == UiContextMenuPlacement.right) {
-      top = buttonPosition.dy + widget.offsetY;
-      left = buttonPosition.dx + buttonSize.width + widget.offsetX;
+  Offset _getTriggerPosition() {
+    final renderBox = _triggerKey.currentContext?.findRenderObject() as RenderBox?;
+    return renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
+  }
+
+  Size _getTriggerSize() {
+    final renderBox = _triggerKey.currentContext?.findRenderObject() as RenderBox?;
+    return renderBox?.size ?? Size.zero;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CompositedTransformTarget(
+      link: _layerLink,
+      child: GestureDetector(
+        key: _triggerKey,
+        onTap: _toggleMenu,
+        child: widget.trigger,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _closeMenu();
+    super.dispose();
+  }
+}
+
+/// Carrot painter that supports flipping
+class _CarrotPainter extends CustomPainter {
+  final CarrotDirection direction;
+  final double offsetX;
+  final Color color;
+
+  _CarrotPainter({
+    required this.direction,
+    required this.offsetX,
+    required this.color,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = color;
+    final path = Path();
+
+    const halfWidth = 8.0;
+
+    if (direction == CarrotDirection.down) {
+      // Menu above -> carrot points down
+      path.moveTo(offsetX - halfWidth, 0);
+      path.lineTo(offsetX, size.height);
+      path.lineTo(offsetX + halfWidth, 0);
+    } else {
+      // Menu below -> carrot points up
+      path.moveTo(offsetX - halfWidth, size.height);
+      path.lineTo(offsetX, 0);
+      path.lineTo(offsetX + halfWidth, size.height);
     }
 
-    return OverlayEntry(
-      builder: (context) {
-        return Positioned(
-          top: top,
-          left: left,
-          child: widget.menuBuilder(context),
-        );
-      },
-    );
+    path.close();
+    canvas.drawPath(path, paint);
   }
 
-  OverlayEntry _overlayEntryBuilder1() {
-    return OverlayEntry(
-      builder: (context) {
-        return GestureDetector(
-          onTap: () => {closeMenu()},
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            color:
-                widget.backdrop
-                    ? context.kolors.onSurface.withAlpha(12)
-                    : Colors.transparent,
-          ),
-        );
-      },
-    );
-  }
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

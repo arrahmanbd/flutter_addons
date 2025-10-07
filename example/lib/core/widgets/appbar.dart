@@ -22,7 +22,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 0,
-      color: context.primaryColor,
+      color: context.brandPrimary,
       child: SafeArea(
         bottom: false,
         child: Container(
@@ -33,7 +33,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
               // Logo or Title
               Text(
                 title,
-                style: context.titleSmall.copyWith(
+                style: context.titleMedium.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   //letterSpacing: 1.2,

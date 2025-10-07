@@ -45,7 +45,7 @@ class UiBlur extends StatelessWidget {
   /// Optional tint overlay color (use transparent for no tint).
   final Color tintColor;
 
-  /// Optional border (e.g., Border.all(color.withOpacity(.2))).
+  /// Optional border (e.g., Border.all(color.withValues(alpha:.2))).
   final BoxBorder? border;
 
   /// Optional shadow(s) for elevation feel.

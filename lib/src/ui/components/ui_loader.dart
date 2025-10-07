@@ -160,8 +160,8 @@ const _kStartAngle = -math.pi / 2;
 const _kMinGap = 0.2;
 const _kMaxGap = 0.5;
 
-class Orkitt extends YaruProgressIndicator {
-  const Orkitt({
+class YaruLoader extends YaruProgressIndicator {
+  const YaruLoader({
     super.key,
     super.value,
     super.strokeWidth,
@@ -175,10 +175,10 @@ class Orkitt extends YaruProgressIndicator {
   });
 
   @override
-  State<Orkitt> createState() => _YaruCircularProgressIndicatorState();
+  State<YaruLoader> createState() => _YaruCircularProgressIndicatorState();
 }
 
-class _YaruCircularProgressIndicatorState extends State<Orkitt>
+class _YaruCircularProgressIndicatorState extends State<YaruLoader>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   bool _initialAnimation = true;
@@ -197,7 +197,7 @@ class _YaruCircularProgressIndicatorState extends State<Orkitt>
   }
 
   @override
-  void didUpdateWidget(Orkitt oldWidget) {
+  void didUpdateWidget(YaruLoader oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.value == null && !_controller.isAnimating) {
       _controller.repeat();

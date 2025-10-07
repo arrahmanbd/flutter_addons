@@ -7,7 +7,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: context.cardBackground,
+      color: context.surfaceElevated,
       elevation: .5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       clipBehavior: Clip.antiAlias,
@@ -41,7 +41,7 @@ class PostCard extends StatelessWidget {
                 SizedBox(height: 8.sp),
                 Text(
                   'Build beautiful and responsive blog cards easily with Flutter and flutter_addons.',
-                  style: TextStyle(fontSize: 14.sp, color: Kolors.stone600),
+                  style: context.bodyMedium,
                 ),
                 SizedBox(height: 16.sp),
                 Row(

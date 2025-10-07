@@ -1,6 +1,6 @@
 part of 'package:flutter_addons/flutter_addons.dart';
 
-// ✅ Extensions on Container for chaining styles
+// Extensions on Container for chaining styles
 extension ContainerDSL on Container {
   Container paddingAll(double value) =>
       copyWith(padding: EdgeInsets.all(value));

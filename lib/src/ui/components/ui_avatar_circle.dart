@@ -4,7 +4,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 ///
 /// Example usage:
 /// ```dart
-/// AvatarCircle(
+/// UiAvatarCircle(
 ///   image: NetworkImage('https://example.com/avatar.jpg'),
 ///   radius: 32,
 ///   borderColor: Colors.blueAccent,
@@ -12,7 +12,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 ///   showBadge: true,
 /// )
 /// ```
-class AvatarCircle extends StatelessWidget {
+class UiAvatarCircle extends StatelessWidget {
   /// The image to display inside the avatar.
   final ImageProvider image;
 
@@ -40,7 +40,7 @@ class AvatarCircle extends StatelessWidget {
   /// Fine-tuning offset for the badge position.
   final Offset badgeOffset;
 
-  const AvatarCircle({
+  const UiAvatarCircle({
     super.key,
     required this.image,
     required this.radius,

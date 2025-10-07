@@ -1,8 +1,8 @@
 ![Logo Image](https://raw.githubusercontent.com/arrahmanbd/flutter_addons/master/images/new_logo.png)
 
-![Flutter](https://img.shields.io/badge/Flutter-3.32.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-3.35.0-blue?logo=flutter&logoColor=white)![Dart](https://img.shields.io/badge/Dart-3.8.0-blue?logo=dart&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache2.0-green)
-![Version](https://img.shields.io/badge/Version-2.5.0-white)
+![Version](https://img.shields.io/badge/Version-3.0.0-red)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 ![Issues](https://img.shields.io/github/issues/arrahmanbd/flutter_addons)
 ![Forks](https://img.shields.io/github/forks/arrahmanbd/flutter_addons)
@@ -13,7 +13,7 @@
 
 **Flutter Addons** is a powerful micro-extension framework built to accelerate Flutter app development. Designed with responsiveness, theming, and developer productivity in mind, it lets you build scalable, pixel-perfect, and theme-aware applications with minimal boilerplate.
 
-By providing intuitive extensions, responsive layout tools, and advanced theming capabilities, Flutter Addons helps you reduce development time by up to **7×**, so you can focus on delivering beautiful user experiences faster.
+By providing intuitive extensions, responsive layout tools, and advanced theming capabilities, Flutter Addons helps you reduce development time by up to **10×**, so you can focus on delivering beautiful user experiences faster.
 
 > ⚡ Boost your Flutter workflow and unlock greater productivity with the [Flutter Addons VS Code Extension](https://marketplace.visualstudio.com/items?itemName=arrahmanbd.flutter-addons).
 
@@ -38,12 +38,12 @@ By providing intuitive extensions, responsive layout tools, and advanced theming
 
 ResponsiveScope( // 👈  ResponsiveScope — VERY Important: Manages layout scaling, orientation lock, and global error handling
   enableDebugLogging: true, // Enable debug logs for responsive layout changes
-  screenLock: AppOrientationLock.none, // No orientation restriction
-  errorScreen: ErrorScreen.blueCrash, // Custom error screen for uncaught Flutter errors
+  orientation: AppOrientationLock.none, // No orientation restriction
+  errorScreen: ErrorScreen.sifi,, // Custom error screen for uncaught Flutter errors
   designFrame: const DesignFrame(width: 390, height: 844), // Base design frame for scaling (e.g., iPhone 13)
   pixelDebug: true, // for pixel perfect debugging
   scaleMode: ScaleMode.design, // Use design-based scaling for consistent UI
-  layoutBuilder: (ui)=>  MobileApp(),
+  appBuilder: (layout)=>  MobileApp(),
 );
 
 ```
@@ -59,7 +59,8 @@ Smooth scaling across devices. Use one mode globally for consistency.
 
 | Extension | Purpose        | Example | Description                              |
 | --------- | -------------- | ------- | ---------------------------------------- |
-| `.ph`,  `.pw`      | Percent         | `24.ph`  | Percent Based                       |
+| `.ph`   | Percent  Height      | `24.ph`  | Percent Based Height 
+| `.pw`   | Percent Width        | `24.pw`  | Percent Based  Width                     |
 | `.h`      | Height         | `24.h`  | Auto-scaled height                       |
 | `.r`      | Radius / Scale | `12.r`  | Based on shortest side (width vs height) |
 | `.sp`     | Font size      | `14.sp` | Auto-scaled font size (like `sp`)        |
@@ -71,20 +72,20 @@ Smooth scaling across devices. Use one mode globally for consistency.
 
 ### 💎 Effortless Theming with Soul —  Quickstart Guide
 
-1. **Create Custom Colors**  
-   Extend `ThemeKolors` and override colors:
+1. **Use Own Brand Colors**  
+   Extend `BrandKolors` and override colors:
    ```dart
-   class CustomColors extends ThemeKolors {
+   class CustomColors extends BrandKolors {
      @override
      Color get primaryColor => Color(0xFF4A90E2);
      // override other colors...
    }```
 
-2. **Create Custom Typography**
-   Extend `AppTypo` and define text styles:
+2. **Create Brand Typography**
+   Extend `BrandTypo` and define text styles:
 
    ```dart
-   class CustomTypography extends AppTypo {
+   class CustomTypography extends BrandTypo {
      @override
      String get fontFamily => 'Montserrat';
      @override
@@ -98,7 +99,7 @@ Smooth scaling across devices. Use one mode globally for consistency.
 
    ```dart
    ThemeData get lightTheme =>
-      ThemeMaker.makeTheme(AppLightColors(), typography: AppFonts());
+      ThemeMaker.makeTheme(BrandLightColors(), typography: MyBrandFonts());
 
    ```
 
@@ -117,11 +118,11 @@ Use your custom theme in `MaterialApp`. By Extending `ThemeManager` create your 
 
   @override
   ThemeData get lightTheme =>
-      ThemeMaker.makeTheme(AppLightColors(), typography: AppFonts());
+      ThemeMaker.makeTheme(BrandLightColors(), typography: MyBrandFonts());
 
   @override
   ThemeData get darkTheme =>
-      ThemeMaker.makeTheme(AppDarkColors(), typography: AppFonts());
+      ThemeMaker.makeTheme(BrandDarkColors(), typography: MyBrandFonts());
  }
 ```
 ---
@@ -133,7 +134,7 @@ You can use the extension on `num` to apply various text styles directly.
 ```dart
 Text(
   "Hello, World!",
-  style: 16.t.bold.italic.k(Colors.blue),
+  style: 16.t.bold.italic.withColor(Colors.blue),
 );
 ```
 
@@ -258,10 +259,10 @@ Using a structured logging system allows better control and visibility over your
 
 ## 📚 Learn More
 
-- [🎨 Soul Theme Engine](doc/soul.md) – Custom theming, typography, and dynamic themes.
-- [📐 Responsive System](doc/responsive.md) – Scale UI across devices based on design frame.
-- [🎞️ Animation Utils](doc/animation.md) – Physics, curves, transitions, and more.
-- [🧩 Widget Extensions](doc/widget.md) – Margin, padding, size, and layout extensions.
+- [🎨 Soul Theme Engine](https://github.com/arrahmanbd/flutter_addons/blob/master/doc/soul.md) – Custom theming, typography, and dynamic themes.
+- [📐 Responsive System](https://github.com/arrahmanbd/flutter_addons/blob/master/doc/responsive.md) – Scale UI across devices based on design frame.
+- [🎞️ Animation Utils](https://github.com/arrahmanbd/flutter_addons/blob/master/doc/animation.md) – Physics, curves, transitions, and more.
+- [🧩 Widget Extensions](https://github.com/arrahmanbd/flutter_addons/blob/master/doc/widget.md) – Margin, padding, size, and layout extensions.
 
 
 ## 📬 **Contributions & Support**

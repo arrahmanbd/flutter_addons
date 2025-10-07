@@ -68,7 +68,7 @@ class UiDrawer extends StatelessWidget {
                       subtitle,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white.withOpacity(0.85),
+                        color: Colors.white.withValues(alpha: 0.85),
                       ),
                     ),
                 ],

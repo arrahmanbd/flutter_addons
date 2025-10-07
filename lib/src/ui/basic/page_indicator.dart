@@ -2,7 +2,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 enum IndicatorShape { circle, roundedRect }
 
-class PageIndicator extends StatelessWidget {
+class UiPageIndicator extends StatelessWidget {
   final int currentIndex;
   final int length;
   final Duration animationDuration;
@@ -16,7 +16,7 @@ class PageIndicator extends StatelessWidget {
   final MainAxisAlignment alignment;
   final void Function(int index)? onTap;
 
-  const PageIndicator({
+  const UiPageIndicator({
     super.key,
     required this.currentIndex,
     required this.length,

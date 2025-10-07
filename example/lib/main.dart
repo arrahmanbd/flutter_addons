@@ -1,4 +1,4 @@
-import 'package:example_app/blog.dart';
+import 'package:example_app/views/blog.dart';
 import 'package:example_app/core/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
@@ -15,13 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveScope(
-      app: SoulApp(),
-      screenLock: AppOrientationLock.portraitUp,
+      //orientation: AppOrientationLock.portraitUp,
       designFrame: DesignFrame(width: 320, height: 812),
       scaleMode: ScaleMode.design,
+      pixelDebug: false,
+      gridCount: 12,
       enableDebugLogging: true,
-      // this will be removed soon
-      layoutBuilder: (MediaInfo layout) => SizedBox(),
+      errorScreen: ErrorScreen.sifi,
+      version: '2.0',
+      appBuilder: (MediaInfo layout) => SoulApp(),
     );
   }
 }
@@ -33,7 +35,7 @@ class SoulApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Addons Example',
       theme: theme.lightTheme,
       darkTheme: theme.darkTheme,

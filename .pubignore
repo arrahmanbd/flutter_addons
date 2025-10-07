@@ -1,0 +1,16 @@
+
+/build/
+
+
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+
+.idea/
+.vscode/
+
+
+.DS_Store
+projects
+Thumbs.db

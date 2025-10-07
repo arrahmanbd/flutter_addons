@@ -22,6 +22,7 @@ class PixelPerfectGridOverlay extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _PixelPerfectGridOverlayState createState() =>
       _PixelPerfectGridOverlayState();
 }
@@ -62,7 +63,7 @@ class _PixelPerfectGridOverlayState extends State<PixelPerfectGridOverlay> {
             painter: _GridPainter(
               columns: widget.columns,
               columnWidth: columnWidth,
-              color: widget.color.withOpacity(widget.opacity),
+              color: widget.color.withValues(alpha: widget.opacity),
             ),
           ),
         );
@@ -99,7 +100,7 @@ class _GridPainter extends CustomPainter {
     // Horizontal baseline grid every 8px
     final horizontalPaint =
         Paint()
-          ..color = color.withOpacity(0.1)
+          ..color = color.withValues(alpha: 0.1)
           ..strokeWidth = 1
           ..style = PaintingStyle.stroke;
 

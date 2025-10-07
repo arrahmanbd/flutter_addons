@@ -2,7 +2,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 
 /// Abstract class defining typography styles (Users only extend this)
 /// Abstract class defining typography styles for Soul
-abstract class AppTypo {
+abstract class BrandTypo {
   /// Font family for all text styles.
   String get fontFamily;
 

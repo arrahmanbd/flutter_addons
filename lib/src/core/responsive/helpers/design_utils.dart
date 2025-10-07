@@ -48,7 +48,7 @@ class _DesignUtils {
     _initialized = true;
 
     if (isLoggingEnabled) {
-      _LogUtility.logDesignUtilsInit(
+      ConsoleLogger.logDesignUtilsInit(
         designWidth: _designWidth,
         designHeight: _designHeight,
         screenWidth: _screenWidth,

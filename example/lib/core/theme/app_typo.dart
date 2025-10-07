@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_addons/flutter_addons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppFonts extends AppTypo {
+class AppFonts extends BrandTypo {
   @override
   String get fontFamily => GoogleFonts.ubuntu().fontFamily!;
 

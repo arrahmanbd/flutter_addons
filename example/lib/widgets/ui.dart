@@ -17,14 +17,14 @@ class _UiExamplesState extends State<UiExamples> {
     return Scaffold(
       appBar: AppBar(title: const Text('')),
       body: Padding(
-        padding: 24.pt,
+        padding: 24.px,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 16.h),
-            UiTextField.filled(
+            UiTextField(
               controller: controller,
-              borderColor: context.primaryColor,
+              borderColor: context.brandPrimary,
               label: 'Email',
               hintText: 'Enter your email',
               keyboardType: TextInputType.emailAddress,
@@ -36,7 +36,7 @@ class _UiExamplesState extends State<UiExamples> {
               },
             ),
             SizedBox(height: 16.h),
-            UiTextField.outlined(
+            UiTextField(
               label: 'Password',
               hintText: 'Enter your password',
               obscureText: true,
@@ -51,53 +51,42 @@ class _UiExamplesState extends State<UiExamples> {
               controller: null,
             ),
             SizedBox(height: 16.h),
-            UiTextField.borderless(
+            UiTextField(
               //label: 'Username',
               hintText: 'Enter your username',
 
               prefixIcon: Icon(Icons.person_outline),
               controller: null,
             ),
+             SizedBox(height: 16.h),
             Center(
               child: UiOtpField(
                 pinLength: 4,
-                fieldWidth: 48,
+                fieldSize: 56,
+                fieldGap: 12,
                 autoSubmit: true,
+                onCompleted: (otp) {
+                  // Handle OTP verification
+                  print('OTP entered: $otp');
+                },
+                onResend: () {
+                  // Handle resend logic
+                  print('Resend OTP requested');
+                },
                 decoration: const OtpDecoration(
-                  borderColor: Colors.grey,
-                  focusBorderColor: Colors.blue,
-                  errorBorderColor: Colors.red,
-                  successBorderColor: Colors.green,
                   borderRadius: 12,
-                  boxColor: Color(0xFFF9F9F9),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
+                  focusBorderColor: Colors.blue,
+                  successBorderColor: Colors.green,
+                  errorBorderColor: Colors.red,
                 ),
-                onCompleted: (code) {
-                  print('Completed: $code');
-                  // Trigger API verification here
+                resendButtonBuilder: (context, onResend, seconds, isEnabled) {
+                  return isEnabled
+                      ? TextButton(
+                          onPressed: onResend,
+                          child: const Text('Resend OTP'),
+                        )
+                      : Text('Resend available in $seconds seconds');
                 },
-                onChanged: (code) {
-                  print('Changed: $code');
-                },
-
-                // boxDecoration: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(12),
-                //   color: Colors.white,
-                //   border: Border.all(color:context.primaryColor),
-                // ),
-                cursorColor: Colors.blue,
-
-                resendButtonBuilder: (onTap, seconds) => UiButton.text(
-                  onPressed: seconds == 0 ? onTap : null,
-                  label: seconds == 0 ? 'Resend OTP' : 'Resend in ${seconds}s',
-                  foregroundColor: seconds == 0 ? Colors.blue : Colors.grey,
-                ),
               ),
             ),
 
@@ -106,7 +95,7 @@ class _UiExamplesState extends State<UiExamples> {
               icon: Icon(Icons.arrow_forward),
               onPressed: () {},
               //padding: 16.px + 18.py,
-              backgroundColor: context.primaryColor,
+              backgroundColor: context.brandPrimary,
             ),
             SizedBox(height: 8.h),
             UiButton.text(label: "Forgot Password?", onPressed: () {}),
@@ -117,14 +106,10 @@ class _UiExamplesState extends State<UiExamples> {
                 UiButton.icon(
                   icon: Icon(Icons.delete),
                   onPressed: () {},
-                  foregroundColor: context.primaryColor,
+                  foregroundColor: context.brandPrimary,
                 ),
                 8.s,
-                UiButton.circle(
-                  size: 36.sp,
-                  icon: Icon(Icons.add),
-                  onPressed: () {},
-                ),
+                UiButton.icon(icon: Icon(Icons.add), onPressed: () {}),
               ],
             ),
             SizedBox(height: 24.h),

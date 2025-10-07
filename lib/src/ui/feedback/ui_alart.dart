@@ -3,7 +3,7 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// Available alert animations
 enum AlertAnimation { fade, scale, slide, rotation }
 
-class GlassAlertDialog {
+class UiAlertDialog {
   static void show(
     BuildContext context, {
     required String title,
@@ -28,7 +28,7 @@ class GlassAlertDialog {
       context: context,
       barrierDismissible: dismissible,
       builder: (context) {
-        return _GlassAlertWidget(
+        return _UiGlassAlertWidget(
           title: title,
           message: message,
           confirmText: confirmText,
@@ -44,7 +44,7 @@ class GlassAlertDialog {
           border:
               border ??
               Border.all(
-                color: context.outline.withValues(alpha: .25),
+                color: context.colorScheme.outline.withValues(alpha: .25),
                 width: 2,
               ),
         );
@@ -54,7 +54,7 @@ class GlassAlertDialog {
 }
 
 /// Alert Widget with Glassmorphism & Animations
-class _GlassAlertWidget extends StatefulWidget {
+class _UiGlassAlertWidget extends StatefulWidget {
   final String title;
   final String message;
   final String confirmText;
@@ -68,7 +68,7 @@ class _GlassAlertWidget extends StatefulWidget {
   final double backgroundRadius;
   final Border? border;
 
-  const _GlassAlertWidget({
+  const _UiGlassAlertWidget({
     required this.title,
     required this.message,
     required this.confirmText,
@@ -84,10 +84,10 @@ class _GlassAlertWidget extends StatefulWidget {
   });
 
   @override
-  _GlassAlertWidgetState createState() => _GlassAlertWidgetState();
+  _UiGlassAlertWidgetState createState() => _UiGlassAlertWidgetState();
 }
 
-class _GlassAlertWidgetState extends State<_GlassAlertWidget>
+class _UiGlassAlertWidgetState extends State<_UiGlassAlertWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
@@ -186,11 +186,11 @@ class _GlassAlertWidgetState extends State<_GlassAlertWidget>
                         if (widget.cancelText != null)
                           OutlinedButton(
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: context.primaryColor.withValues(
+                              backgroundColor: context.brandPrimary.withValues(
                                 alpha: 0.13,
                               ),
                               side: BorderSide(
-                                color: context.primaryColor.withValues(
+                                color: context.brandPrimary.withValues(
                                   alpha: 0.75,
                                 ),
 
@@ -208,7 +208,7 @@ class _GlassAlertWidgetState extends State<_GlassAlertWidget>
                             },
                             child: Text(
                               widget.cancelText!,
-                              style: TextStyle(color: context.primaryColor),
+                              style: TextStyle(color: context.brandPrimary),
                             ),
                           ),
                         OutlinedButton(
@@ -217,11 +217,11 @@ class _GlassAlertWidgetState extends State<_GlassAlertWidget>
                             Navigator.pop(context);
                           },
                           style: OutlinedButton.styleFrom(
-                            backgroundColor: context.primaryColor.withValues(
+                            backgroundColor: context.brandPrimary.withValues(
                               alpha: 0.65,
                             ),
                             side: BorderSide(
-                              color: context.primaryColor.withValues(
+                              color: context.brandPrimary.withValues(
                                 alpha: 0.75,
                               ),
 
@@ -235,7 +235,7 @@ class _GlassAlertWidgetState extends State<_GlassAlertWidget>
                           ),
                           child: Text(
                             widget.confirmText,
-                            style: TextStyle(color: context.forground),
+                            style: TextStyle(color: context.background),
                           ),
                         ),
                       ],
