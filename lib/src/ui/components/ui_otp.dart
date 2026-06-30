@@ -269,7 +269,7 @@ class _UiOtpFieldState extends State<UiOtpField>
     final decoration =
         widget.decoration ??
         const OtpDecoration().copyWith(
-          boxColor: context.surfaceElevated,
+          boxColor: context.surfaceHigh,
           focusedBoxColor: context.surface,
         );
     final hasFocus = _focusNodes[index].hasFocus;

@@ -186,13 +186,11 @@ class _UiGlassAlertWidgetState extends State<_UiGlassAlertWidget>
                         if (widget.cancelText != null)
                           OutlinedButton(
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: context.brandPrimary.withValues(
+                              backgroundColor: context.primary.withValues(
                                 alpha: 0.13,
                               ),
                               side: BorderSide(
-                                color: context.brandPrimary.withValues(
-                                  alpha: 0.75,
-                                ),
+                                color: context.primary.withValues(alpha: 0.75),
 
                                 width: 1,
                               ),
@@ -208,7 +206,7 @@ class _UiGlassAlertWidgetState extends State<_UiGlassAlertWidget>
                             },
                             child: Text(
                               widget.cancelText!,
-                              style: TextStyle(color: context.brandPrimary),
+                              style: TextStyle(color: context.primary),
                             ),
                           ),
                         OutlinedButton(
@@ -217,13 +215,11 @@ class _UiGlassAlertWidgetState extends State<_UiGlassAlertWidget>
                             Navigator.pop(context);
                           },
                           style: OutlinedButton.styleFrom(
-                            backgroundColor: context.brandPrimary.withValues(
+                            backgroundColor: context.primary.withValues(
                               alpha: 0.65,
                             ),
                             side: BorderSide(
-                              color: context.brandPrimary.withValues(
-                                alpha: 0.75,
-                              ),
+                              color: context.primary.withValues(alpha: 0.75),
 
                               width: 1,
                             ),

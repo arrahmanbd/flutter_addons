@@ -107,14 +107,14 @@ class BlogPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
-                  color: context.brandPrimary,
+                  color: context.primary,
                 ),
               ),
               SizedBox(height: 8.h),
               Text(
                 "Explore top deals and new arrivals.",
                 style: context.bodyLarge.copyWith(
-                  color: context.brandSecondary,
+                  color: context.secondary,
                 ),
               ),
               SizedBox(height: 16.h),
@@ -146,12 +146,12 @@ class BlogPage extends StatelessWidget {
           label: "Primary",
           icon: Icon(Icons.arrow_right_alt_outlined, size: 24.sp),
           onPressed: () => dummyPost.launch(context),
-          backgroundColor: context.brandPrimary,
+          backgroundColor: context.primary,
         ),
         UiFlatButton.outlined(
           borderColor: context.border,
           label: "Save",
-          textColor: context.textInverse,
+          textColor: context.textPrimary,
           icon: const Icon(Icons.save_alt),
           onPressed: () => print("Outlined clicked"),
         ),

@@ -69,64 +69,6 @@ Smooth scaling across devices. Use one mode globally for consistency.
 > ⚡ Check out the example app for a quick understanding: [View Example App](/example/lib/main.dart).
 
 
-
-### 💎 Effortless Theming with Soul —  Quickstart Guide
-
-1. **Use Own Brand Colors**  
-   Extend `BrandKolors` and override colors:
-   ```dart
-   class CustomColors extends BrandKolors {
-     @override
-     Color get primaryColor => Color(0xFF4A90E2);
-     // override other colors...
-   }```
-
-2. **Create Brand Typography**
-   Extend `BrandTypo` and define text styles:
-
-   ```dart
-   class CustomTypography extends BrandTypo {
-     @override
-     String get fontFamily => 'Montserrat';
-     @override
-     TextStyle get bodyText => TextStyle(fontSize: 16.sp);
-     // define more styles...
-   }
-   ```
-
-3. **Generate Theme**
-   Use `ThemeMaker.makeTheme` with your custom classes:
-
-   ```dart
-   ThemeData get lightTheme =>
-      ThemeMaker.makeTheme(BrandLightColors(), typography: MyBrandFonts());
-
-   ```
-
-## 🎨 Apply the Theme
-
-Use your custom theme in `MaterialApp`. By Extending `ThemeManager` create your own controller that handles theme state and switching logic more easily. See the example app.
-
-
- ```dart
- class Themer extends ThemeManager {
-  static const _themeKey = 'selected_theme';
-
-  Themer() {
-    _loadThemeFromPrefs(); // Load theme on initialization
-  }
-
-  @override
-  ThemeData get lightTheme =>
-      ThemeMaker.makeTheme(BrandLightColors(), typography: MyBrandFonts());
-
-  @override
-  ThemeData get darkTheme =>
-      ThemeMaker.makeTheme(BrandDarkColors(), typography: MyBrandFonts());
- }
-```
----
-
 #### 1. Applying Text Styles
 
 You can use the extension on `num` to apply various text styles directly.
@@ -216,6 +158,64 @@ The `Spacing` extension provides quick, expressive syntax for margins, paddings,
 ---
 
 
+
+### 💎 Effortless Theming with Soul [OPTIONAL] —  Quickstart Guide
+
+1. **Use Own Brand Colors**  
+   Extend `BrandKolors` and override colors:
+   ```dart
+   class CustomColors extends BrandKolors {
+     @override
+     Color get primaryColor => Color(0xFF4A90E2);
+     // override other colors...
+   }```
+
+2. **Create Brand Typography**
+   Extend `BrandTypo` and define text styles:
+
+   ```dart
+   class CustomTypography extends BrandTypo {
+     @override
+     String get fontFamily => 'Montserrat';
+     @override
+     TextStyle get bodyText => TextStyle(fontSize: 16.sp);
+     // define more styles...
+   }
+   ```
+
+3. **Generate Theme**
+   Use `ThemeMaker.makeTheme` with your custom classes:
+
+   ```dart
+   ThemeData get lightTheme =>
+      ThemeMaker.makeTheme(BrandLightColors(), typography: MyBrandFonts());
+
+   ```
+
+## 🎨 Apply the Theme
+
+Use your custom theme in `MaterialApp`. By Extending `ThemeManager` create your own controller that handles theme state and switching logic more easily. See the example app.
+
+
+ ```dart
+ class Themer extends ThemeManager {
+  static const _themeKey = 'selected_theme';
+
+  Themer() {
+    _loadThemeFromPrefs(); // Load theme on initialization
+  }
+
+  @override
+  ThemeData get lightTheme =>
+      ThemeMaker.makeTheme(BrandLightColors(), typography: MyBrandFonts());
+
+  @override
+  ThemeData get darkTheme =>
+      ThemeMaker.makeTheme(BrandDarkColors(), typography: MyBrandFonts());
+ }
+```
+---
+
 ## Navigation Extension Usage
 
 ### Available animations
@@ -256,6 +256,7 @@ Instead of using `print` for debugging, leverage a dedicated logging system for 
 | `debug()`         | Logs a generic message        |
 
 Using a structured logging system allows better control and visibility over your app’s runtime behavior, making it easier to debug and maintain.
+
 
 ## 📚 Learn More
 

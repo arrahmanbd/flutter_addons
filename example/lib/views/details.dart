@@ -62,7 +62,7 @@ class PostDetailsScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w700,
-                color: context.brandPrimary,
+                color: context.primary,
               ),
             ),
             SizedBox(height: 8.h),

@@ -22,7 +22,7 @@ class FacebookAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 0,
-      color: context.brandPrimary,
+      color: context.primary,
       child: SafeArea(
         bottom: false,
         child: Container(

@@ -24,7 +24,7 @@ class _UiExamplesState extends State<UiExamples> {
             SizedBox(height: 16.h),
             UiTextField(
               controller: controller,
-              borderColor: context.brandPrimary,
+              borderColor: context.primary,
               label: 'Email',
               hintText: 'Enter your email',
               keyboardType: TextInputType.emailAddress,
@@ -95,7 +95,7 @@ class _UiExamplesState extends State<UiExamples> {
               icon: Icon(Icons.arrow_forward),
               onPressed: () {},
               //padding: 16.px + 18.py,
-              backgroundColor: context.brandPrimary,
+              backgroundColor: context.primary,
             ),
             SizedBox(height: 8.h),
             UiButton.text(label: "Forgot Password?", onPressed: () {}),
@@ -106,7 +106,7 @@ class _UiExamplesState extends State<UiExamples> {
                 UiButton.icon(
                   icon: Icon(Icons.delete),
                   onPressed: () {},
-                  foregroundColor: context.brandPrimary,
+                  foregroundColor: context.primary,
                 ),
                 8.s,
                 UiButton.icon(icon: Icon(Icons.add), onPressed: () {}),

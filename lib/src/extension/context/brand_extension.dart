@@ -4,240 +4,188 @@ part of 'package:flutter_addons/flutter_addons.dart';
 /// to theme-related properties such as current theme mode.
 /// [Professional Brand Design System]
 /// Comprehensive theme extensions with actual brand color semantics
+
+/// Core theme access
 extension BrandThemeExtension on BuildContext {
-  // Core theme access
   ThemeData get _theme => Theme.of(this);
+
   ColorScheme get colorScheme => _theme.colorScheme;
+
   TextTheme get textTheme => _theme.textTheme;
 
-  /// Check if current theme is dark
   bool get isDark => _theme.brightness == Brightness.dark;
 }
 
-/// Brand Color System - Semantic color names for professional design
-extension BrandColorsExtensions on BuildContext {
-  // === BRAND CORE COLORS ===
+/// Clean Brand Color System
+extension BrandColorsExtension on BuildContext {
+  // ─────────────────────────────────────────────
+  // Brand
+  // ─────────────────────────────────────────────
 
-  /// Primary brand color - Used for main brand elements, primary buttons, FABs
-  Color get brandPrimary => colorScheme.primary;
+  Color get primary => colorScheme.primary;
 
-  /// Secondary brand color - Used for secondary actions, accents
-  Color get brandSecondary => colorScheme.secondary;
+  Color get secondary => colorScheme.secondary;
 
-  /// Accent brand color - Used for highlights, CTAs, important indicators
-  Color get brandAccent => colorScheme.tertiary;
+  Color get accent => colorScheme.tertiary;
 
-  /// Success state color - Used for success messages, positive actions
-  Color get brandSuccess => colorScheme.tertiaryContainer;
+  // ─────────────────────────────────────────────
+  // Status
+  // ─────────────────────────────────────────────
 
-  /// Warning state color - Used for warnings, cautions
-  Color get brandWarning => colorScheme.errorContainer;
+  Color get success => colorScheme.tertiary;
 
-  /// Error state color - Used for errors, destructive actions
-  Color get brandError => colorScheme.error;
+  Color get successContainer => colorScheme.tertiaryContainer;
 
-  // === SURFACE COLORS ===
+  Color get warning => const Color(0xFFFFB300);
 
-  /// Main app background color
+  Color get warningContainer => const Color(0xFFFFF3CD);
+
+  Color get error => colorScheme.error;
+
+  Color get errorContainer => colorScheme.errorContainer;
+
+  // ─────────────────────────────────────────────
+  // Surface
+  // ─────────────────────────────────────────────
+
   Color get background => colorScheme.surface;
 
-  /// Surface color for cards, dialogs, sheets
   Color get surface => colorScheme.surface;
 
-  /// Elevated surface for raised elements
-  Color get surfaceElevated => colorScheme.surfaceContainerHighest;
-
-  // usefull for migration
-  Color get inputBackground => colorScheme.surfaceContainerHigh;
-
-  /// Highest elevation surface
   Color get surfaceHigh => colorScheme.surfaceContainerHighest;
 
-  // === TEXT & CONTENT COLORS ===
+  Color get inputBackground => colorScheme.surfaceContainerHigh;
 
-  /// Primary text color - Main content, headlines
+  // ─────────────────────────────────────────────
+  // Text
+  // ─────────────────────────────────────────────
+
   Color get textPrimary => colorScheme.onSurface;
 
-  /// Secondary text color - Subtitles, supporting text
   Color get textSecondary => colorScheme.onSurfaceVariant;
 
-  /// Tertiary text color - Placeholders, disabled text
   Color get textTertiary => colorScheme.outline;
 
-  /// Text on colored backgrounds (buttons, chips)
-  Color get textOnColor => colorScheme.onPrimary;
+  Color get textOnPrimary => colorScheme.onPrimary;
 
-  /// Inverse text color for dark backgrounds
-  Color get textInverse => colorScheme.onSurface;
+  // ─────────────────────────────────────────────
+  // Buttons
+  // ─────────────────────────────────────────────
 
-  // === INTERACTIVE ELEMENTS ===
+  Color get primaryButton => colorScheme.primary;
 
-  /// Primary button background
-  Color get buttonPrimary => colorScheme.primary;
+  Color get secondaryButton => colorScheme.secondaryContainer;
 
-  /// Secondary button background
-  Color get buttonSecondary => colorScheme.secondaryContainer;
+  Color get outlineButtonBorder => colorScheme.outline;
 
-  /// Outline button border color
-  Color get buttonOutline => colorScheme.outline;
-
-  /// Disabled button color
   Color get buttonDisabled => colorScheme.onSurface.withValues(alpha: 0.12);
 
-  /// FAB background color
   Color get fabBackground => colorScheme.primaryContainer;
 
-  // === BORDER & DIVIDER COLORS ===
+  // ─────────────────────────────────────────────
+  // Border & Divider
+  // ─────────────────────────────────────────────
 
-  /// Default border color
   Color get border => colorScheme.outline;
 
-  /// Focus border color
   Color get borderFocus => colorScheme.primary;
 
-  /// Divider color for content separation
   Color get divider => colorScheme.outlineVariant;
 
-  /// Subtle divider for less prominent separations
   Color get dividerSubtle => colorScheme.surfaceContainerHighest;
 
-  // === FEEDBACK SURFACES ===
+  // ─────────────────────────────────────────────
+  // Effects
+  // ─────────────────────────────────────────────
 
-  /// Success background surface
-  Color get surfaceSuccess => colorScheme.tertiaryContainer;
-
-  /// Warning background surface
-  Color get surfaceWarning => colorScheme.errorContainer;
-
-  /// Error background surface
-  Color get surfaceError => colorScheme.errorContainer;
-
-  /// Info background surface
-  Color get surfaceInfo => colorScheme.primaryContainer;
-
-  // === SHADOW & OVERLAY ===
-
-  /// Shadow color for elevations
   Color get shadow => colorScheme.shadow;
 
-  /// Scrim color for dialogs, bottom sheets
   Color get scrim => colorScheme.scrim;
 
-  /// Overlay color for backdrops
   Color get overlay => colorScheme.surfaceTint;
 
-  // === BRAND GRADIENTS ===
+  // ─────────────────────────────────────────────
+  // Gradients
+  // ─────────────────────────────────────────────
 
-  /// Primary brand gradient
   Gradient get brandGradient => LinearGradient(
-    colors: [brandPrimary, brandAccent],
+    colors: [primary, accent],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
-  /// Surface gradient for cards
   Gradient get surfaceGradient => LinearGradient(
-    colors: [surface, surfaceElevated],
+    colors: [surface, surfaceHigh],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
 }
 
-// /// Professional Text Color System with brand semantics
-// extension BrandTextColors on BuildContext {
-//   // === HEADLINE COLORS ===
-//   Color get headlineColor => textTheme.headlineLarge?.color ?? textPrimary;
+/// Adaptive Color Helpers
+extension BrandAdaptiveColors on BuildContext {
+  Color adaptiveColor({required Color light, required Color dark}) {
+    return isDark ? dark : light;
+  }
 
-//   // === TITLE COLORS ===
-//   Color get titleColor => textTheme.titleLarge?.color ?? textPrimary;
-
-//   // === BODY COLORS ===
-//   Color get bodyColor => textTheme.bodyLarge?.color ?? textPrimary;
-//   Color get bodySecondary => textTheme.bodySmall?.color ?? textSecondary;
-
-//   // === LABEL COLORS ===
-//   Color get labelColor => textTheme.labelLarge?.color ?? textSecondary;
-//   Color get labelOnColor => textTheme.labelMedium?.color ?? textOnColor;
-//   Color get labelTertiary => textTheme.labelSmall?.color ?? textTertiary;
-
-//   // === BRAND COLORS ===
-//   Color get brand => brandPrimary;
-//   Color get success => brandSuccess;
-//   Color get warning => brandWarning;
-//   Color get error => brandError;
-// }
-/// Adaptive Color System for professional theming
-extension ProfessionalAdaptiveColors on BuildContext {
-  /// Returns appropriate color based on theme brightness
-  Color adaptive({required Color light, required Color dark}) =>
-      isDark ? dark : light;
-
-  /// Adaptive brand color with auto-generated dark variant
-  Color adaptiveBrand(Color baseColor, [double darkAdjustment = -0.1]) {
+  Color adaptiveBrand(Color baseColor, {double darkAdjustment = -0.1}) {
     if (!isDark) return baseColor;
 
     final hsl = HSLColor.fromColor(baseColor);
-    return hsl.withLightness(hsl.lightness + darkAdjustment).toColor();
+    final lightness = (hsl.lightness + darkAdjustment).clamp(0.0, 1.0);
+
+    return hsl.withLightness(lightness).toColor();
   }
 
-  /// Adaptive text color with proper contrast
-  Color adaptiveText({Color? light, Color? dark}) {
-    if (light != null && dark != null) {
-      return adaptive(light: light, dark: dark);
-    }
-
-    return isDark ? Colors.white : Colors.black;
-  }
-
-  /// Adaptive surface color with elevation awareness
   Color adaptiveSurface([int elevation = 0]) {
     const lightSurfaces = [
-      Color(0xFFFFFFFF), // 0dp
-      Color(0xFFF8F9FA), // 1dp
-      Color(0xFFF1F3F4), // 2dp
-      Color(0xFFECEEF0), // 3dp
+      Color(0xFFFFFFFF),
+      Color(0xFFF8F9FA),
+      Color(0xFFF1F3F4),
+      Color(0xFFECEEF0),
     ];
 
     const darkSurfaces = [
-      Color(0xFF121212), // 0dp
-      Color(0xFF1E1E1E), // 1dp
-      Color(0xFF242424), // 2dp
-      Color(0xFF272727), // 3dp
+      Color(0xFF121212),
+      Color(0xFF1E1E1E),
+      Color(0xFF242424),
+      Color(0xFF272727),
     ];
 
     final index = elevation.clamp(0, lightSurfaces.length - 1);
-    return adaptive(light: lightSurfaces[index], dark: darkSurfaces[index]);
+
+    return adaptiveColor(
+      light: lightSurfaces[index],
+      dark: darkSurfaces[index],
+    );
   }
 }
 
-/// Brand-specific styling extensions
-extension BrandStyling on BuildContext {
-  // === BORDER RADIUS ===
+/// Brand Layout & Styling Tokens
+extension BrandStylingExtension on BuildContext {
+  // ─────────────────────────────────────────────
+  // Radius
+  // ─────────────────────────────────────────────
 
-  /// Small radius for small elements (buttons, chips)
   BorderRadius get radiusSmall => const BorderRadius.all(Radius.circular(8));
 
-  /// Medium radius for cards, dialogs
   BorderRadius get radiusMedium => const BorderRadius.all(Radius.circular(12));
 
-  /// Large radius for large containers, modals
   BorderRadius get radiusLarge => const BorderRadius.all(Radius.circular(16));
 
-  /// Extra large radius for hero elements
   BorderRadius get radiusXLarge => const BorderRadius.all(Radius.circular(24));
 
-  // === SHADOWS ===
+  // ─────────────────────────────────────────────
+  // Shadows
+  // ─────────────────────────────────────────────
 
-  /// Small shadow for elevated elements
   List<BoxShadow> get shadowSmall => [
     BoxShadow(
-      color: shadow.withValues(alpha: 0.1),
+      color: shadow.withValues(alpha: 0.10),
       blurRadius: 4,
       offset: const Offset(0, 1),
     ),
   ];
 
-  /// Medium shadow for cards
   List<BoxShadow> get shadowMedium => [
     BoxShadow(
       color: shadow.withValues(alpha: 0.15),
@@ -246,122 +194,25 @@ extension BrandStyling on BuildContext {
     ),
   ];
 
-  /// Large shadow for dialogs, modals
   List<BoxShadow> get shadowLarge => [
     BoxShadow(
-      color: shadow.withValues(alpha: 0.2),
+      color: shadow.withValues(alpha: 0.20),
       blurRadius: 16,
       offset: const Offset(0, 4),
     ),
   ];
 
-  // === SPACING ===
+  // ─────────────────────────────────────────────
+  // Spacing
+  // ─────────────────────────────────────────────
 
-  /// Small spacing (4px)
   double get spacingXS => 4;
 
-  /// Medium spacing (8px)
   double get spacingSM => 8;
 
-  /// Regular spacing (16px)
   double get spacingMD => 16;
 
-  /// Large spacing (24px)
   double get spacingLG => 24;
 
-  /// Extra large spacing (32px)
   double get spacingXL => 32;
 }
-
-/// Quick access to brand design tokens
-extension BrandTokens on BuildContext {
-  /// Get brand design tokens for consistent styling
-  BrandDesignTokens get tokens => BrandDesignTokens(this);
-}
-
-/// Professional design tokens class
-class BrandDesignTokens {
-  final BuildContext context;
-
-  BrandDesignTokens(this.context);
-
-  // Colors
-  Color get brandPrimary => context.brandPrimary;
-  Color get brandSecondary => context.brandSecondary;
-  Color get surface => context.surface;
-  Color get textPrimary => context.textPrimary;
-
-  // Typography
-  TextStyle get headlineLarge => context.textTheme.headlineLarge!;
-  TextStyle get bodyMedium => context.textTheme.bodyMedium!;
-  TextStyle get labelLarge => context.textTheme.labelLarge!;
-
-  // Spacing
-  double get spacingMD => context.spacingMD;
-  double get spacingLG => context.spacingLG;
-
-  // Borders
-  BorderRadius get radiusMedium => context.radiusMedium;
-  List<BoxShadow> get shadowMedium => context.shadowMedium;
-}
-
-// === USAGE EXAMPLES ===
-
-// class ProfessionalComponent extends StatelessWidget {
-//   const ProfessionalComponent({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: EdgeInsets.all(context.spacingMD),
-//       decoration: BoxDecoration(
-//         color: context.surface,
-//         borderRadius: context.radiusMedium,
-//         boxShadow: context.shadowMedium,
-//         gradient: context.surfaceGradient,
-//       ),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Text(
-//             'Professional Headline',
-//             style: context.textTheme.headlineMedium?.copyWith(
-//               color: context.brandPrimary,
-//             ),
-//           ),
-//           SizedBox(height: context.spacingSM),
-//           Text(
-//             'This uses professional brand color system with actual semantic names',
-//             style: context.textTheme.bodyMedium?.copyWith(
-//               color: context.textSecondary,
-//             ),
-//           ),
-//           SizedBox(height: context.spacingMD),
-//           Row(
-//             children: [
-//               ElevatedButton(
-//                 onPressed: () {},
-//                 style: ElevatedButton.styleFrom(
-//                   backgroundColor: context.buttonPrimary,
-//                   foregroundColor: context.textOnColor,
-//                 ),
-//                 child: const Text('Primary Action'),
-//               ),
-//               SizedBox(width: context.spacingSM),
-//               OutlinedButton(
-//                 onPressed: () {},
-//                 style: OutlinedButton.styleFrom(
-//                   side: BorderSide(color: context.buttonOutline),
-//                 ),
-//                 child: Text(
-//                   'Secondary',
-//                   style: TextStyle(color: context.textPrimary),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

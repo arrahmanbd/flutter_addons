@@ -101,11 +101,9 @@ part 'src/routes/navigator_manager.dart';
 /// 🎞️ Animations
 /// -----------------------
 part 'src/animation/base_wraper.dart';
-part 'src/animation/basic_animation.dart';
 part 'src/animation/beizer_motion.dart';
 part 'src/animation/collision_effect.dart';
 part 'src/animation/page_transitions.dart';
-part 'src/animation/animate_proxy.dart';
 
 /// -----------------------
 /// 🧩 Reusable Functions

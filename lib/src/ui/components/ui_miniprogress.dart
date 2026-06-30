@@ -70,7 +70,7 @@ class _MiniProgressBarState extends State<MiniProgressBar>
               width: 200 * _progressAnimation.value,
               height: widget.height,
               decoration: BoxDecoration(
-                color: widget.color ?? context.brandPrimary,
+                color: widget.color ?? context.primary,
                 borderRadius: BorderRadius.circular(widget.height / 2),
               ),
             );
