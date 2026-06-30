@@ -1,4 +1,4 @@
-# 3.0.0
+# 3.0.1
 
 The **3.0.0 Final Release** marks a major evolution in design consistency, theming flexibility, and framework stability. This version transforms the UI experience with a **complete brand-based color and typography system**, smarter localization, and robust production-ready optimizations.
 
